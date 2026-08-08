@@ -49,3 +49,8 @@ test_news.py
 
 # ===== 打包产物 =====
 /dist/
+# 速评运行残留
+data/screening/batch/*.bak
+data/screening/batch/*.bak*
+fix_progress.py
+commit_msg.txt
