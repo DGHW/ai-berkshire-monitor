@@ -146,12 +146,30 @@ def detect_financial_anomalies(ts_code: str) -> dict:
                         })
 
             # ③ 应收/营收 比率（收入质量）
+            # 口径修正：应收是存量（全年累计），必须对比【年报营收】而非单季营收，
+            # 否则 Q1 单季营收（全年最低）会高估比率（例：三德科技单季1.60倍/年报0.35倍）
             if cur.get("ar") and cur.get("revenue") and cur["revenue"] != 0:
                 ar_ratio = cur["ar"] / cur["revenue"]
                 result["ar_to_revenue"] = round(ar_ratio, 2)
+                # 若当前期是 Q1/Q2/Q3（非年报），用年化营收修正
+                end_d = str(cur.get("end_date", ""))
+                if end_d and not end_d.endswith("1231"):
+                    # 年化：Q1×4, H1×2, Q3×4/3
+                    m = int(end_d[4:6]) if len(end_d) >= 6 else 0
+                    if 1 <= m <= 3:
+                        annual_rev = cur["revenue"] * 4
+                    elif 4 <= m <= 6:
+                        annual_rev = cur["revenue"] * 2
+                    elif 7 <= m <= 9:
+                        annual_rev = cur["revenue"] * 4 / 3
+                    else:
+                        annual_rev = cur["revenue"]
+                    if annual_rev and annual_rev != 0:
+                        ar_ratio = cur["ar"] / annual_rev
+                        result["ar_to_revenue_annualized"] = round(ar_ratio, 2)
                 if ar_ratio > 1.0:
                     result["signals"].append({"type": "ar_quality", "label": "应收/营收",
-                                              "note": f"应收账款是营收的 {fnum(ar_ratio,2)} 倍（收入质量差，回款风险）"})
+                                              "note": f"应收账款是（年化）营收的 {fnum(ar_ratio,2)} 倍（收入质量差，回款风险）"})
 
             # ④ 经营现金流/净利润（利润质量）
             if cur.get("ocf") and cur.get("n_income") and cur["n_income"] != 0:
