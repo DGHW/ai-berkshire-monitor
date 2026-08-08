@@ -35,3 +35,17 @@ assets/公司品牌图/
 reports/portfolio-latest.md
 
 # 实盘记录/ 公开权重口径版；原始账本（含股数/金额）在 local/实盘记录-原始/（已被 /local/ 规则覆盖）
+local/
+local
+data/api_keys.json
+data/monitor/state/
+
+# ===== WorkBuddy 本地任务数据（含 automation 配置），绝不入库 =====
+.workbuddy/
+
+# ===== 本地安全检查/测试脚本，不公开 =====
+security_check.py
+test_news.py
+
+# ===== 打包产物 =====
+/dist/

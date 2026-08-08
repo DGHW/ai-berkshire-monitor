@@ -1,0 +1,94 @@
+{
+  "_comment": "全局股票映射表：ticker → 中文名/市场/数据源路由。data_source 取值: akshare / futu / finmind / yfinance（按优先级降级链）",
+  "600519": {
+    "name_cn": "贵州茅台",
+    "market": "A",
+    "exchange": "SSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "000858": {
+    "name_cn": "五粮液",
+    "market": "A",
+    "exchange": "SZSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "601318": {
+    "name_cn": "中国平安",
+    "market": "A",
+    "exchange": "SSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "600036": {
+    "name_cn": "招商银行",
+    "market": "A",
+    "exchange": "SSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "300750": {
+    "name_cn": "宁德时代",
+    "market": "A",
+    "exchange": "SZSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "600900": {
+    "name_cn": "长江电力",
+    "market": "A",
+    "exchange": "SSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "000333": {
+    "name_cn": "美的集团",
+    "market": "A",
+    "exchange": "SZSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "601899": {
+    "name_cn": "紫金矿业",
+    "market": "A",
+    "exchange": "SSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "000001": {
+    "name_cn": "平安银行",
+    "market": "A",
+    "exchange": "SZSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "600276": {
+    "name_cn": "恒瑞医药",
+    "market": "A",
+    "exchange": "SSE",
+    "currency": "CNY",
+    "data_source": "akshare"
+  },
+  "002272": {
+    "name_cn": "川润股份",
+    "market": "A",
+    "exchange": "SZSE",
+    "currency": "CNY",
+    "data_source": "tencent"
+  },
+  "0700.HK": {
+    "name_cn": "腾讯控股",
+    "market": "HK",
+    "exchange": "HKEX",
+    "currency": "HKD",
+    "data_source": "tencent"
+  },
+  "PDD": {
+    "name_cn": "拼多多",
+    "market": "US",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "data_source": "tencent"
+  }
+}

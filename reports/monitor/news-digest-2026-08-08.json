@@ -1,0 +1,68 @@
+  [gdelt 限流/错误 429] 贵州茅台
+  [gdelt 限流/错误 429] 五粮液
+  [gdelt 限流/错误 429] 中国平安
+  [gdelt 限流/错误 429] 招商银行
+  [gdelt 限流/错误 429] 宁德时代
+  [gdelt 限流/错误 429] 长江电力
+  [gdelt 限流/错误 429] 美的集团
+  [gdelt 限流/错误 429] 川润股份
+{
+  "600519": {
+    "name": "贵州茅台",
+    "news": [],
+    "announcements": []
+  },
+  "000858": {
+    "name": "五粮液",
+    "news": [],
+    "announcements": []
+  },
+  "601318": {
+    "name": "中国平安",
+    "news": [],
+    "announcements": []
+  },
+  "600036": {
+    "name": "招商银行",
+    "news": [],
+    "announcements": [
+      {
+        "source": "cninfo",
+        "title": "招商银行股份有限公司关于行长任职资格核准的公告",
+        "url": "http://static.cninfo.com.cn/finalpage/2026-07-29/1225444610.PDF",
+        "date": "2026-07-28",
+        "code": "600036.SH",
+        "type": "01010503||010113||012303"
+      }
+    ]
+  },
+  "300750": {
+    "name": "宁德时代",
+    "news": [],
+    "announcements": []
+  },
+  "600900": {
+    "name": "长江电力",
+    "news": [],
+    "announcements": [
+      {
+        "source": "cninfo",
+        "title": "长江电力关于公司总法律顾问辞职的公告",
+        "url": "http://static.cninfo.com.cn/finalpage/2026-08-06/1225458807.PDF",
+        "date": "2026-08-05",
+        "code": "600900.SH",
+        "type": "01010501||010113||012399"
+      }
+    ]
+  },
+  "000333": {
+    "name": "美的集团",
+    "news": [],
+    "announcements": []
+  },
+  "002272": {
+    "name": "川润股份",
+    "news": [],
+    "announcements": []
+  }
+}

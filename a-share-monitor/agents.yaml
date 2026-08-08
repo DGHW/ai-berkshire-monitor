@@ -1,0 +1,40 @@
+# A-Share Monitor agent configuration
+# 供支持 agents.yaml 的 agent 框架使用（如 Codex/Otter 等）。
+# SKILL.md 是主要入口；此文件声明运行环境与安全边界。
+
+version: 1
+name: a-share-monitor
+description: A股全市场初筛与监控工作流（初筛→监控→仓位→轮动）
+
+permissions:
+  allow:
+    - Bash(python3 tools/ashare_screener.py:*)
+    - Bash(python3 tools/price_monitor.py:*)
+    - Bash(python3 tools/kelly_sizer.py:*)
+    - Bash(python3 tools/extract_targets.py:*)
+    - Bash(python3 tools/pool_rotator.py:*)
+    - Bash(python3 tools/quote_fetcher.py:*)
+    - Read(data/screening/*)
+    - Read(data/monitor/*)
+    - Write(reports/monitor/*)
+    - WebFetch(*)
+  deny:
+    - Write(data/api_keys.json)
+    - Bash(git push:*)
+
+environment:
+  python: ">=3.10"
+  pip:
+    - requests
+    - tushare
+  data_files:
+    - data/screening/stage1_pool.json
+    - data/monitor/pool.json
+    - data/monitor/ticker_map.json
+    - data/api_keys.json
+
+notes:
+  - Tushare token 存放于 data/api_keys.json（gitignore 排除，勿提交、勿外泄）
+  - 行情走腾讯/新浪免费接口，无需密钥
+  - 财务层（Layer1）依赖 Tushare，token 到期需续费
+  - 本 skill 只产出分析与建议，不执行真实交易
