@@ -177,8 +177,83 @@ def verify_valuation(price, eps=None, bvps=None, fcf_per_share=None,
 # 3. Cross-Source Data Validation (多源交叉验证)
 # ---------------------------------------------------------------------------
 
-def cross_validate(field_name, source_values: dict, unit="", tolerance_pct=2.0):
-    """Compare a data point across multiple sources, flag discrepancies."""
+# 3.0 自动从 Tushare 拉取财务数据作为独立验证源（接入 ts.gyzcloud.top 周卡代理）
+def _auto_tushare(field: str, ts_code: str) -> dict | None:
+    """自动从 Tushare 拉取字段，用于 cross_validate 自动对比。
+    财务指标（ROE/毛利/净利/负债）优先用**年报口径**（end_date 以 1231 结尾）避免单季/年化口径错位。
+    返回 {source_name: value} 或 None。"""
+    try:
+        import sys, os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from financial_data import get_pro
+        pro = get_pro()
+
+        def _pick_annual(df):
+            """优先选年报（end_date 以 1231 结尾），否则用最近一期。"""
+            if df.empty: return None
+            annual = df[df["end_date"].astype(str).str.endswith("1231")]
+            if not annual.empty: return annual.iloc[0]
+            return df.iloc[0]
+
+        if field in ("revenue", "营收"):
+            df = pro.income(ts_code=ts_code, fields="ts_code,end_date,revenue", limit=4)
+            r = _pick_annual(df)
+            if r is None: return None
+            return {"Tushare-income": float(r["revenue"]) / 1e8}  # 转亿
+        if field in ("net_profit", "净利", "归母净利"):
+            df = pro.income(ts_code=ts_code, fields="ts_code,end_date,n_income_attr_p", limit=4)
+            r = _pick_annual(df)
+            if r is None: return None
+            return {"Tushare-income": float(r["n_income_attr_p"]) / 1e8}
+        if field in ("roe", "ROE"):
+            # 年化 ROE（roe_yearly 即年化值）
+            df = pro.fina_indicator(ts_code=ts_code, fields="ts_code,end_date,roe_yearly,roe", limit=4)
+            r = _pick_annual(df)
+            if r is None: return None
+            roe = r.get("roe_yearly") if r.get("roe_yearly") is not None else r.get("roe")
+            return {"Tushare-fina(年化)": float(roe)} if roe is not None else None
+        if field in ("pe_ttm", "PE"):
+            df = pro.daily_basic(ts_code=ts_code, fields="ts_code,trade_date,pe_ttm", limit=1)
+            if df.empty: return None
+            return {"Tushare-daily": float(df.iloc[0]["pe_ttm"])}
+        if field in ("total_mv", "市值"):
+            df = pro.daily_basic(ts_code=ts_code, fields="ts_code,trade_date,total_mv", limit=1)
+            if df.empty: return None
+            return {"Tushare-daily": float(df.iloc[0]["total_mv"]) / 1e8}
+        if field in ("gross_margin", "毛利率"):
+            df = pro.fina_indicator(ts_code=ts_code, fields="ts_code,end_date,grossprofit_margin", limit=4)
+            r = _pick_annual(df)
+            if r is None: return None
+            return {"Tushare-fina(年报)": float(r["grossprofit_margin"])}
+        if field in ("net_margin", "净利率"):
+            df = pro.fina_indicator(ts_code=ts_code, fields="ts_code,end_date,netprofit_margin", limit=4)
+            r = _pick_annual(df)
+            if r is None: return None
+            return {"Tushare-fina(年报)": float(r["netprofit_margin"])}
+        if field in ("debt_ratio", "负债率"):
+            df = pro.fina_indicator(ts_code=ts_code, fields="ts_code,end_date,debt_to_assets", limit=4)
+            r = _pick_annual(df)
+            if r is None: return None
+            return {"Tushare-fina(年报)": float(r["debt_to_assets"])}
+        return None
+    except Exception as e:
+        print(f"  [auto-tushare 错误] {e}")
+        return None
+
+
+def cross_validate(field_name, source_values: dict, unit="", tolerance_pct=2.0, ts_code=None):
+    """Compare a data point across multiple sources, flag discrepancies.
+
+    若传入 ts_code 且配置了 Tushare token，会自动从 Tushare 拉取同名字段作为独立验证源。
+    自动源结果会追加到 source_values 中参与中位数计算。
+    """
+    # 自动补充 Tushare 数据源（若 ts_code 提供）
+    if ts_code:
+        auto = _auto_tushare(field_name, ts_code)
+        if auto:
+            source_values = {**source_values, **auto}
+            print(f"  [自动补充] Tushare 源已加入: {auto}")
+
     print("=" * 60)
     print(f"交叉验证: {field_name} (Cross-Validation)")
     print("=" * 60)
@@ -414,6 +489,7 @@ Examples:
     cv.add_argument("--values", required=True, help="JSON: {来源: 数值}")
     cv.add_argument("--unit", default="")
     cv.add_argument("--tolerance", type=float, default=2.0, help="容差百分比")
+    cv.add_argument("--ts-code", default=None, help="A股代码(如 600519.SH)，自动调 Tushare 补充独立验证源")
 
     # benford
     bf = sub.add_parser("benford", help="Benford定律检测")
@@ -445,7 +521,7 @@ Examples:
                         args.dividend, args.revenue_per_share)
     elif args.command == "cross-validate":
         values = json.loads(args.values)
-        cross_validate(args.field, values, args.unit, args.tolerance)
+        cross_validate(args.field, values, args.unit, args.tolerance, ts_code=args.ts_code)
     elif args.command == "benford":
         values = json.loads(args.values)
         benford_check(values)
