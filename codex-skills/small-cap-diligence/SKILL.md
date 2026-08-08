@@ -1,0 +1,98 @@
+---
+name: small-cap-diligence
+description: "AI Berkshire skill: 小盘股冷启动调研：数据补全 Agent. Source: skills/small-cap-diligence.md."
+---
+
+## Codex adapter note
+
+This skill is generated from `skills/small-cap-diligence.md` so Claude Code and Codex users share one canonical workflow.
+
+- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
+- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
+- Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
+- Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
+- Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
+
+# 小盘股冷启动调研：数据补全 Agent
+
+对 $ARGUMENTS 执行小盘股（C 级信息稀缺标的）深度调研前置任务。**本 skill 解决的是"小盘股没有讨论热度"这个天然缺陷**——原版四大师框架强在分析大量公开讨论（研报/媒体/散户帖子），但小盘股没有这些热度，直接跑 `/investment-team` 会得到同质化二手摘要。
+
+## 核心方法论：不搜"讨论"，挖"冷信息"
+
+小盘股没有热度 ≠ 没有信息。信息藏在【不需要讨论热度】的结构化数据里：
+
+| 冷信息源 | 数据 | 解决什么问题 |
+|---------|------|------------|
+| **财务时间序列** | 应收/存货/在建工程/现金流环比突变 | 业务拐点信号（比研报快 1 个季度） |
+| **股东结构** | 股东户数变化、十大流通股东 | 主力动向（筹码集中/分散） |
+| **交易数据** | 大宗交易、龙虎榜席位 | 聪明钱/机构行为 |
+| **公告分类** | 增持/回购/中标/质押/诉讼/解禁 | 事件型信号（一手披露） |
+| **产业链交叉** | 上下游大客户/供应商公告反推 | 间接验证业务量 |
+| **物理世界** | 招聘扩张、地方媒体、专利 | 经营活动的侧面证据 |
+
+## 执行流程
+
+### 第一步：冷信息挖掘（工具先行）
+
+运行 `tools/small_cap_diligence.py` 拉取结构化冷数据：
+
+```bash
+python3 tools/small_cap_diligence.py 002272 --out md
+# 或 --json 拿原始结构 / --signal 只看信号摘要
+```
+
+工具会输出：财务异常信号、股东户数趋势、大宗/龙虎榜、公告分类。**把这些信号作为调研的"疑点清单"**——每个 ⚠️ 信号都值得在后续搜索中重点验证。
+
+### 第二步：疑点驱动的搜索（不再漫无目的）
+
+用工具产出的疑点清单驱动 WebSearch，而不是泛泛搜"公司名"：
+- "应收账款 3.4 倍营收" → 搜客户集中度、账龄结构、坏账计提
+- "营收环比下滑 81%" → 搜是季节性还是丢单
+- "股东户数中期集中 23%" → 搜近期定增/回购/大宗接盘方
+
+### 第三步：一手披露深挖
+
+- 巨潮公告原文（`news_fetcher.py cninfo`）——不只读标题，读 PDF 附注
+- 招股书/年报附注：关联交易、客户集中度、预收款、在建工程明细
+- 交易所问询函及回复（小盘股被问询是免费尽调材料！）
+
+### 第四步：治理风险反向尽调
+
+- 减持记录、股权质押比例（Tushare pledge 数据）
+- 实控人背景、历史资本运作
+- 裁判文书网涉诉
+- 商誉减值风险
+
+### 第五步：输出调研包
+
+产出 `data/screening/diligence/{公司名}-diligence.md`，格式：
+
+```markdown
+# {公司名} 小盘股调研包
+## 一、冷数据信号（工具产出）
+## 二、疑点验证结果（每条信号 → 结论）
+## 三、一手披露发现
+## 四、治理风险清单
+## 五、信息缺口（仍未解决的关键问题）
+## 六、建议：是否值得跑 /investment-team
+```
+
+## 与 investment-team 的衔接
+
+**本 skill 是前置，不是替代**。完成调研包后：
+1. 把调研包作为**输入材料**喂给 `/investment-team`（4 Agent 各自读调研包再独立分析）
+2. 4 Agent 的分析逻辑完全不变（原生 skill 零改动）
+3. 效果：小盘股从"4 个 Agent 搜到同一批二手摘要"变成"4 个 Agent 各自从不同角度深挖同一份一手调研包"——**研究质量提升来自输入，不来自改分析框架**
+
+## 输出要求
+
+- 每个核心数据点标注来源与置信度（🟢高/🟡中/🔴低）
+- 数据不足的明确写"信息缺口"，不用推测填充
+- 区分"事实"与"推测"
+- 遵循 CLAUDE.md 客观性原则
+
+## 参考
+
+- 工具：`tools/small_cap_diligence.py`（财务异常/股东/交易/公告）
+- 上游框架：`skills/investment-team.md`（本 skill 的输出喂给它的 4 Agent）
+- 一手披露：`tools/news_fetcher.py`（巨潮公告）
