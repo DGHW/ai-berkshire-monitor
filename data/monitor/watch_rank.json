@@ -1,0 +1,646 @@
+[
+ {
+  "code": "600018",
+  "name": "上港集团",
+  "dist_pct": 0.4,
+  "price": 5.12,
+  "entry": 5.1
+ },
+ {
+  "code": "600036",
+  "name": "招商银行",
+  "dist_pct": 0.5,
+  "price": 38.7,
+  "entry": 38.5
+ },
+ {
+  "code": "601128",
+  "name": "常熟银行",
+  "dist_pct": 1.8,
+  "price": 6.11,
+  "entry": 6.0
+ },
+ {
+  "code": "600415",
+  "name": "小商品城",
+  "dist_pct": 2.7,
+  "price": 11.81,
+  "entry": 11.5
+ },
+ {
+  "code": "601601",
+  "name": "中国太保",
+  "dist_pct": 3.3,
+  "price": 30.48,
+  "entry": 29.5
+ },
+ {
+  "code": "600993",
+  "name": "马应龙",
+  "dist_pct": 4.2,
+  "price": 23.45,
+  "entry": 22.5
+ },
+ {
+  "code": "603323",
+  "name": "苏农银行",
+  "dist_pct": 4.2,
+  "price": 4.17,
+  "entry": 4.0
+ },
+ {
+  "code": "002884",
+  "name": "凌霄泵业",
+  "dist_pct": 4.5,
+  "price": 16.2,
+  "entry": 15.5
+ },
+ {
+  "code": "601319",
+  "name": "中国人保",
+  "dist_pct": 5.0,
+  "price": 6.98,
+  "entry": 6.65
+ },
+ {
+  "code": "603558",
+  "name": "健盛集团",
+  "dist_pct": 5.2,
+  "price": 12.36,
+  "entry": 11.75
+ },
+ {
+  "code": "601169",
+  "name": "北京银行",
+  "dist_pct": 5.5,
+  "price": 5.01,
+  "entry": 4.75
+ },
+ {
+  "code": "002415",
+  "name": "海康威视",
+  "dist_pct": 5.7,
+  "price": 36.47,
+  "entry": 34.5
+ },
+ {
+  "code": "600919",
+  "name": "江苏银行",
+  "dist_pct": 6.1,
+  "price": 11.67,
+  "entry": 11.0
+ },
+ {
+  "code": "000902",
+  "name": "新洋丰",
+  "dist_pct": 6.2,
+  "price": 13.27,
+  "entry": 12.5
+ },
+ {
+  "code": "600926",
+  "name": "杭州银行",
+  "dist_pct": 6.2,
+  "price": 15.93,
+  "entry": 15.0
+ },
+ {
+  "code": "601577",
+  "name": "长沙银行",
+  "dist_pct": 6.2,
+  "price": 9.19,
+  "entry": 8.65
+ },
+ {
+  "code": "603345",
+  "name": "安井食品",
+  "dist_pct": 6.3,
+  "price": 85.05,
+  "entry": 80.0
+ },
+ {
+  "code": "300628",
+  "name": "亿联网络",
+  "dist_pct": 6.7,
+  "price": 38.96,
+  "entry": 36.5
+ },
+ {
+  "code": "601336",
+  "name": "新华保险",
+  "dist_pct": 7.0,
+  "price": 58.83,
+  "entry": 55.0
+ },
+ {
+  "code": "002588",
+  "name": "史丹利",
+  "dist_pct": 7.2,
+  "price": 8.74,
+  "entry": 8.15
+ },
+ {
+  "code": "000783",
+  "name": "长江证券",
+  "dist_pct": 7.5,
+  "price": 8.87,
+  "entry": 8.25
+ },
+ {
+  "code": "600900",
+  "name": "长江电力",
+  "dist_pct": 7.8,
+  "price": 28.02,
+  "entry": 26.0
+ },
+ {
+  "code": "688029",
+  "name": "南微医学",
+  "dist_pct": 7.8,
+  "price": 70.6,
+  "entry": 65.5
+ },
+ {
+  "code": "605016",
+  "name": "百龙创园",
+  "dist_pct": 7.8,
+  "price": 20.75,
+  "entry": 19.25
+ },
+ {
+  "code": "601166",
+  "name": "兴业银行",
+  "dist_pct": 8.1,
+  "price": 18.1,
+  "entry": 16.75
+ },
+ {
+  "code": "300012",
+  "name": "华测检测",
+  "dist_pct": 8.5,
+  "price": 14.1,
+  "entry": 13.0
+ },
+ {
+  "code": "601009",
+  "name": "南京银行",
+  "dist_pct": 8.5,
+  "price": 11.23,
+  "entry": 10.35
+ },
+ {
+  "code": "000999",
+  "name": "华润三九",
+  "dist_pct": 8.6,
+  "price": 24.97,
+  "entry": 23.0
+ },
+ {
+  "code": "605305",
+  "name": "中际联合",
+  "dist_pct": 8.6,
+  "price": 39.1,
+  "entry": 36.0
+ },
+ {
+  "code": "600276",
+  "name": "恒瑞医药",
+  "dist_pct": 8.7,
+  "price": 54.36,
+  "entry": 50.0
+ },
+ {
+  "code": "603998",
+  "name": "方盛制药",
+  "dist_pct": 8.8,
+  "price": 9.79,
+  "entry": 9.0
+ },
+ {
+  "code": "601077",
+  "name": "渝农商行",
+  "dist_pct": 8.8,
+  "price": 6.53,
+  "entry": 6.0
+ },
+ {
+  "code": "000598",
+  "name": "兴蓉环境",
+  "dist_pct": 9.0,
+  "price": 7.14,
+  "entry": 6.55
+ },
+ {
+  "code": "002275",
+  "name": "桂林三金",
+  "dist_pct": 9.0,
+  "price": 13.3,
+  "entry": 12.2
+ },
+ {
+  "code": "002262",
+  "name": "恩华药业",
+  "dist_pct": 9.1,
+  "price": 22.1,
+  "entry": 20.25
+ },
+ {
+  "code": "601288",
+  "name": "农业银行",
+  "dist_pct": 9.2,
+  "price": 6.44,
+  "entry": 5.9
+ },
+ {
+  "code": "600285",
+  "name": "羚锐制药",
+  "dist_pct": 9.2,
+  "price": 20.47,
+  "entry": 18.75
+ },
+ {
+  "code": "000680",
+  "name": "山推股份",
+  "dist_pct": 9.3,
+  "price": 10.82,
+  "entry": 9.9
+ },
+ {
+  "code": "605098",
+  "name": "行动教育",
+  "dist_pct": 9.5,
+  "price": 56.94,
+  "entry": 52.0
+ },
+ {
+  "code": "603444",
+  "name": "吉比特",
+  "dist_pct": 9.5,
+  "price": 383.3,
+  "entry": 350.0
+ },
+ {
+  "code": "603338",
+  "name": "浙江鼎力",
+  "dist_pct": 9.5,
+  "price": 56.96,
+  "entry": 52.0
+ },
+ {
+  "code": "603091",
+  "name": "众鑫股份",
+  "dist_pct": 9.6,
+  "price": 49.34,
+  "entry": 45.0
+ },
+ {
+  "code": "688208",
+  "name": "道通科技",
+  "dist_pct": 9.7,
+  "price": 27.42,
+  "entry": 25.0
+ },
+ {
+  "code": "300206",
+  "name": "理邦仪器",
+  "dist_pct": 9.7,
+  "price": 12.23,
+  "entry": 11.15
+ },
+ {
+  "code": "002948",
+  "name": "青岛银行",
+  "dist_pct": 9.8,
+  "price": 5.71,
+  "entry": 5.2
+ },
+ {
+  "code": "603199",
+  "name": "九华旅游",
+  "dist_pct": 10.0,
+  "price": 32.99,
+  "entry": 30.0
+ },
+ {
+  "code": "002507",
+  "name": "涪陵榨菜",
+  "dist_pct": 10.1,
+  "price": 11.56,
+  "entry": 10.5
+ },
+ {
+  "code": "300515",
+  "name": "三德科技",
+  "dist_pct": 10.1,
+  "price": 15.97,
+  "entry": 14.5
+ },
+ {
+  "code": "601298",
+  "name": "青岛港",
+  "dist_pct": 10.2,
+  "price": 8.76,
+  "entry": 7.95
+ },
+ {
+  "code": "002833",
+  "name": "弘亚数控",
+  "dist_pct": 10.2,
+  "price": 18.46,
+  "entry": 16.75
+ },
+ {
+  "code": "000963",
+  "name": "华东医药",
+  "dist_pct": 10.3,
+  "price": 29.5,
+  "entry": 26.75
+ },
+ {
+  "code": "002966",
+  "name": "苏州银行",
+  "dist_pct": 10.5,
+  "price": 8.45,
+  "entry": 7.65
+ },
+ {
+  "code": "300866",
+  "name": "安克创新",
+  "dist_pct": 10.5,
+  "price": 124.29,
+  "entry": 112.5
+ },
+ {
+  "code": "300453",
+  "name": "三鑫医疗",
+  "dist_pct": 10.9,
+  "price": 9.48,
+  "entry": 8.55
+ },
+ {
+  "code": "601665",
+  "name": "齐鲁银行",
+  "dist_pct": 10.9,
+  "price": 6.21,
+  "entry": 5.6
+ },
+ {
+  "code": "300415",
+  "name": "伊之密",
+  "dist_pct": 11.0,
+  "price": 21.64,
+  "entry": 19.5
+ },
+ {
+  "code": "601975",
+  "name": "招商南油",
+  "dist_pct": 11.1,
+  "price": 3.61,
+  "entry": 3.25
+ },
+ {
+  "code": "000538",
+  "name": "云南白药",
+  "dist_pct": 11.1,
+  "price": 50.55,
+  "entry": 45.5
+ },
+ {
+  "code": "002991",
+  "name": "甘源食品",
+  "dist_pct": 11.2,
+  "price": 43.37,
+  "entry": 39.0
+ },
+ {
+  "code": "000899",
+  "name": "赣能股份",
+  "dist_pct": 11.4,
+  "price": 10.75,
+  "entry": 9.65
+ },
+ {
+  "code": "600872",
+  "name": "中炬高新",
+  "dist_pct": 11.6,
+  "price": 19.25,
+  "entry": 17.25
+ },
+ {
+  "code": "000333",
+  "name": "美的集团",
+  "dist_pct": 11.7,
+  "price": 84.34,
+  "entry": 75.5
+ },
+ {
+  "code": "688578",
+  "name": "艾力斯",
+  "dist_pct": 11.7,
+  "price": 117.31,
+  "entry": 105.0
+ },
+ {
+  "code": "000885",
+  "name": "城发环境",
+  "dist_pct": 11.7,
+  "price": 12.85,
+  "entry": 11.5
+ },
+ {
+  "code": "601998",
+  "name": "中信银行",
+  "dist_pct": 11.8,
+  "price": 7.6,
+  "entry": 6.8
+ },
+ {
+  "code": "600885",
+  "name": "宏发股份",
+  "dist_pct": 11.8,
+  "price": 34.65,
+  "entry": 31.0
+ },
+ {
+  "code": "000685",
+  "name": "中山公用",
+  "dist_pct": 11.9,
+  "price": 11.19,
+  "entry": 10.0
+ },
+ {
+  "code": "001332",
+  "name": "锡装股份",
+  "dist_pct": 12.1,
+  "price": 31.66,
+  "entry": 28.25
+ },
+ {
+  "code": "000682",
+  "name": "东方电子",
+  "dist_pct": 12.2,
+  "price": 11.95,
+  "entry": 10.65
+ },
+ {
+  "code": "002946",
+  "name": "新乳业",
+  "dist_pct": 12.3,
+  "price": 16.85,
+  "entry": 15.0
+ },
+ {
+  "code": "601997",
+  "name": "贵阳银行",
+  "dist_pct": 12.4,
+  "price": 5.62,
+  "entry": 5.0
+ },
+ {
+  "code": "601939",
+  "name": "建设银行",
+  "dist_pct": 12.5,
+  "price": 10.24,
+  "entry": 9.1
+ },
+ {
+  "code": "301345",
+  "name": "涛涛车业",
+  "dist_pct": 12.8,
+  "price": 250.96,
+  "entry": 222.5
+ },
+ {
+  "code": "601963",
+  "name": "重庆银行",
+  "dist_pct": 12.8,
+  "price": 10.89,
+  "entry": 9.65
+ },
+ {
+  "code": "601187",
+  "name": "厦门银行",
+  "dist_pct": 12.9,
+  "price": 7.34,
+  "entry": 6.5
+ },
+ {
+  "code": "600030",
+  "name": "中信证券",
+  "dist_pct": 13.1,
+  "price": 27.7,
+  "entry": 24.5
+ },
+ {
+  "code": "300487",
+  "name": "蓝晓科技",
+  "dist_pct": 13.1,
+  "price": 67.3,
+  "entry": 59.5
+ },
+ {
+  "code": "603508",
+  "name": "思维列控",
+  "dist_pct": 13.2,
+  "price": 22.07,
+  "entry": 19.5
+ },
+ {
+  "code": "601838",
+  "name": "成都银行",
+  "dist_pct": 13.4,
+  "price": 18.15,
+  "entry": 16.0
+ },
+ {
+  "code": "688016",
+  "name": "心脉医疗",
+  "dist_pct": 13.6,
+  "price": 93.7,
+  "entry": 82.5
+ },
+ {
+  "code": "601688",
+  "name": "华泰证券",
+  "dist_pct": 14.1,
+  "price": 19.39,
+  "entry": 17.0
+ },
+ {
+  "code": "603706",
+  "name": "东方环宇",
+  "dist_pct": 14.1,
+  "price": 19.12,
+  "entry": 16.75
+ },
+ {
+  "code": "000001",
+  "name": "平安银行",
+  "dist_pct": 14.2,
+  "price": 11.25,
+  "entry": 9.85
+ },
+ {
+  "code": "001286",
+  "name": "陕西能源",
+  "dist_pct": 14.3,
+  "price": 10.74,
+  "entry": 9.4
+ },
+ {
+  "code": "600694",
+  "name": "大商股份",
+  "dist_pct": 14.3,
+  "price": 14.57,
+  "entry": 12.75
+ },
+ {
+  "code": "002947",
+  "name": "恒铭达",
+  "dist_pct": 14.4,
+  "price": 58.32,
+  "entry": 51.0
+ },
+ {
+  "code": "002142",
+  "name": "宁波银行",
+  "dist_pct": 14.4,
+  "price": 32.04,
+  "entry": 28.0
+ },
+ {
+  "code": "688188",
+  "name": "柏楚电子",
+  "dist_pct": 14.5,
+  "price": 103.05,
+  "entry": 90.0
+ },
+ {
+  "code": "605499",
+  "name": "东鹏饮料",
+  "dist_pct": 14.7,
+  "price": 127.9,
+  "entry": 111.5
+ },
+ {
+  "code": "603195",
+  "name": "公牛集团",
+  "dist_pct": 14.7,
+  "price": 41.02,
+  "entry": 35.75
+ },
+ {
+  "code": "603929",
+  "name": "亚翔集成",
+  "dist_pct": 14.7,
+  "price": 166.38,
+  "entry": 145.0
+ },
+ {
+  "code": "601398",
+  "name": "工商银行",
+  "dist_pct": 14.8,
+  "price": 7.52,
+  "entry": 6.55
+ }
+]

@@ -1,4 +1,17 @@
 {
-  "last_health_check": "2026-08-08",
-  "alerts": []
+  "last_health_check": "2026-08-13",
+  "alerts": [],
+  "last_rotation": "2026-08-12",
+  "last_rotation_result": {
+    "date": "2026-08-12",
+    "moved_out": [],
+    "moved_in": []
+  },
+  "reviews": [
+    {
+      "code": "300573",
+      "date": "2026-08-12",
+      "status": "PENDING"
+    }
+  ]
 }

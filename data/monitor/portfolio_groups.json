@@ -1,0 +1,3396 @@
+{
+ "updated": "2026-08-12",
+ "rule": "买入组=现价≤建仓价(四视角中位数); 观察组=现价≤建仓价×1.15; 后备组=有质量但价格远; 放弃组=四视角全🔴不维护(仅轮动后备)",
+ "buy": {
+  "001316": {
+   "name": "润贝航科",
+   "price": 27.22,
+   "entry_med": 32.5,
+   "entry_min": 24.0,
+   "gain_med": 12.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300573": {
+   "name": "兴齐眼药",
+   "price": 42.19,
+   "entry_med": 49.0,
+   "entry_min": 38.0,
+   "gain_med": 82.5,
+   "zones": [
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600211": {
+   "name": "西藏药业",
+   "price": 38.94,
+   "entry_med": 44.0,
+   "entry_min": 44.0,
+   "gain_med": 39.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  }
+ },
+ "watch": {
+  "000001": {
+   "name": "平安银行",
+   "price": 11.25,
+   "entry_med": 9.85,
+   "entry_min": 9.6,
+   "gain_med": 6.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000333": {
+   "name": "美的集团",
+   "price": 84.34,
+   "entry_med": 75.5,
+   "entry_min": 70.0,
+   "gain_med": 6.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000538": {
+   "name": "云南白药",
+   "price": 50.55,
+   "entry_med": 45.5,
+   "entry_min": 45.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000598": {
+   "name": "兴蓉环境",
+   "price": 7.14,
+   "entry_med": 6.55,
+   "entry_min": 6.0,
+   "gain_med": 6.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000680": {
+   "name": "山推股份",
+   "price": 10.82,
+   "entry_med": 9.9,
+   "entry_min": 9.5,
+   "gain_med": 12.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000682": {
+   "name": "东方电子",
+   "price": 11.95,
+   "entry_med": 10.65,
+   "entry_min": 10.5,
+   "gain_med": -5.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000685": {
+   "name": "中山公用",
+   "price": 11.19,
+   "entry_med": 10.0,
+   "entry_min": 9.5,
+   "gain_med": 10.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000783": {
+   "name": "长江证券",
+   "price": 8.87,
+   "entry_med": 8.25,
+   "entry_min": 7.6,
+   "gain_med": 2.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000885": {
+   "name": "城发环境",
+   "price": 12.85,
+   "entry_med": 11.5,
+   "entry_min": 10.5,
+   "gain_med": -0.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000899": {
+   "name": "赣能股份",
+   "price": 10.75,
+   "entry_med": 9.65,
+   "entry_min": 7.5,
+   "gain_med": 6.8,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000902": {
+   "name": "新洋丰",
+   "price": 13.27,
+   "entry_med": 12.5,
+   "entry_min": 12.5,
+   "gain_med": 39.0,
+   "zones": [
+    "🟢",
+    "🟢",
+    "🟢",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000963": {
+   "name": "华东医药",
+   "price": 29.5,
+   "entry_med": 26.75,
+   "entry_min": 26.0,
+   "gain_med": 9.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000999": {
+   "name": "华润三九",
+   "price": 24.97,
+   "entry_med": 23.0,
+   "entry_min": 23.0,
+   "gain_med": 6.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "001286": {
+   "name": "陕西能源",
+   "price": 10.74,
+   "entry_med": 9.4,
+   "entry_min": 8.5,
+   "gain_med": -8.8,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "001332": {
+   "name": "锡装股份",
+   "price": 31.66,
+   "entry_med": 28.25,
+   "entry_min": 19.0,
+   "gain_med": 1.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002142": {
+   "name": "宁波银行",
+   "price": 32.04,
+   "entry_med": 28.0,
+   "entry_min": 27.5,
+   "gain_med": -1.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002262": {
+   "name": "恩华药业",
+   "price": 22.1,
+   "entry_med": 20.25,
+   "entry_min": 20.0,
+   "gain_med": 25.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002275": {
+   "name": "桂林三金",
+   "price": 13.3,
+   "entry_med": 12.2,
+   "entry_min": 12.0,
+   "gain_med": 7.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002415": {
+   "name": "海康威视",
+   "price": 36.47,
+   "entry_med": 34.5,
+   "entry_min": 30.0,
+   "gain_med": 9.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002507": {
+   "name": "涪陵榨菜",
+   "price": 11.56,
+   "entry_med": 10.5,
+   "entry_min": 10.0,
+   "gain_med": -5.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002588": {
+   "name": "史丹利",
+   "price": 8.74,
+   "entry_med": 8.15,
+   "entry_min": 7.0,
+   "gain_med": 17.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002833": {
+   "name": "弘亚数控",
+   "price": 18.46,
+   "entry_med": 16.75,
+   "entry_min": 16.0,
+   "gain_med": 11.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002884": {
+   "name": "凌霄泵业",
+   "price": 16.2,
+   "entry_med": 15.5,
+   "entry_min": 15.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002946": {
+   "name": "新乳业",
+   "price": 16.85,
+   "entry_med": 15.0,
+   "entry_min": 14.0,
+   "gain_med": 8.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002947": {
+   "name": "恒铭达",
+   "price": 58.32,
+   "entry_med": 51.0,
+   "entry_min": 48.0,
+   "gain_med": -7.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002948": {
+   "name": "青岛银行",
+   "price": 5.71,
+   "entry_med": 5.2,
+   "entry_min": 5.0,
+   "gain_med": 5.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002966": {
+   "name": "苏州银行",
+   "price": 8.45,
+   "entry_med": 7.65,
+   "entry_min": 6.9,
+   "gain_med": 2.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002991": {
+   "name": "甘源食品",
+   "price": 43.37,
+   "entry_med": 39.0,
+   "entry_min": 30.0,
+   "gain_med": 1.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300012": {
+   "name": "华测检测",
+   "price": 14.1,
+   "entry_med": 13.0,
+   "entry_min": 12.0,
+   "gain_med": 4.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300206": {
+   "name": "理邦仪器",
+   "price": 12.23,
+   "entry_med": 11.15,
+   "entry_min": 10.0,
+   "gain_med": 7.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300415": {
+   "name": "伊之密",
+   "price": 21.64,
+   "entry_med": 19.5,
+   "entry_min": 17.0,
+   "gain_med": 8.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300453": {
+   "name": "三鑫医疗",
+   "price": 9.48,
+   "entry_med": 8.55,
+   "entry_min": 8.5,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300487": {
+   "name": "蓝晓科技",
+   "price": 67.3,
+   "entry_med": 59.5,
+   "entry_min": 52.0,
+   "gain_med": 2.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300515": {
+   "name": "三德科技",
+   "price": 15.97,
+   "entry_med": 14.5,
+   "entry_min": 11.5,
+   "gain_med": 9.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300628": {
+   "name": "亿联网络",
+   "price": 38.96,
+   "entry_med": 36.5,
+   "entry_min": 33.0,
+   "gain_med": 13.9,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300866": {
+   "name": "安克创新",
+   "price": 124.29,
+   "entry_med": 112.5,
+   "entry_min": 110.0,
+   "gain_med": 7.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "301345": {
+   "name": "涛涛车业",
+   "price": 250.96,
+   "entry_med": 222.5,
+   "entry_min": 155.0,
+   "gain_med": 2.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600018": {
+   "name": "上港集团",
+   "price": 5.12,
+   "entry_med": 5.1,
+   "entry_min": 4.4,
+   "gain_med": 5.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600030": {
+   "name": "中信证券",
+   "price": 27.7,
+   "entry_med": 24.5,
+   "entry_min": 23.0,
+   "gain_med": -1.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600036": {
+   "name": "招商银行",
+   "price": 38.7,
+   "entry_med": 38.5,
+   "entry_min": 37.0,
+   "gain_med": 8.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600276": {
+   "name": "恒瑞医药",
+   "price": 54.36,
+   "entry_med": 50.0,
+   "entry_min": 48.0,
+   "gain_med": 9.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600285": {
+   "name": "羚锐制药",
+   "price": 20.47,
+   "entry_med": 18.75,
+   "entry_min": 17.0,
+   "gain_med": 19.6,
+   "zones": [
+    "🟢",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600415": {
+   "name": "小商品城",
+   "price": 11.81,
+   "entry_med": 11.5,
+   "entry_min": 11.0,
+   "gain_med": 15.5,
+   "zones": [
+    "🟢",
+    "🟡",
+    "🟢",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600694": {
+   "name": "大商股份",
+   "price": 14.57,
+   "entry_med": 12.75,
+   "entry_min": 10.87,
+   "gain_med": -3.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600872": {
+   "name": "中炬高新",
+   "price": 19.25,
+   "entry_med": 17.25,
+   "entry_min": 17.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600885": {
+   "name": "宏发股份",
+   "price": 34.65,
+   "entry_med": 31.0,
+   "entry_min": 30.0,
+   "gain_med": 2.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600900": {
+   "name": "长江电力",
+   "price": 28.02,
+   "entry_med": 26.0,
+   "entry_min": 25.0,
+   "gain_med": -4.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600919": {
+   "name": "江苏银行",
+   "price": 11.67,
+   "entry_med": 11.0,
+   "entry_min": 10.5,
+   "gain_med": 4.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600926": {
+   "name": "杭州银行",
+   "price": 15.93,
+   "entry_med": 15.0,
+   "entry_min": 15.0,
+   "gain_med": 21.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600993": {
+   "name": "马应龙",
+   "price": 23.45,
+   "entry_med": 22.5,
+   "entry_min": 20.0,
+   "gain_med": 10.0,
+   "zones": [
+    "🟡",
+    "🟢",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601009": {
+   "name": "南京银行",
+   "price": 11.23,
+   "entry_med": 10.35,
+   "entry_min": 10.0,
+   "gain_med": 2.2,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601077": {
+   "name": "渝农商行",
+   "price": 6.53,
+   "entry_med": 6.0,
+   "entry_min": 5.6,
+   "gain_med": -3.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601128": {
+   "name": "常熟银行",
+   "price": 6.11,
+   "entry_med": 6.0,
+   "entry_min": 6.0,
+   "gain_med": 17.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601166": {
+   "name": "兴业银行",
+   "price": 18.1,
+   "entry_med": 16.75,
+   "entry_min": 15.4,
+   "gain_med": 0.5,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601169": {
+   "name": "北京银行",
+   "price": 5.01,
+   "entry_med": 4.75,
+   "entry_min": 4.7,
+   "gain_med": 9.4,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601187": {
+   "name": "厦门银行",
+   "price": 7.34,
+   "entry_med": 6.5,
+   "entry_min": 6.2,
+   "gain_med": -1.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601288": {
+   "name": "农业银行",
+   "price": 6.44,
+   "entry_med": 5.9,
+   "entry_min": 5.6,
+   "gain_med": -4.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601298": {
+   "name": "青岛港",
+   "price": 8.76,
+   "entry_med": 7.95,
+   "entry_min": 7.7,
+   "gain_med": 6.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601319": {
+   "name": "中国人保",
+   "price": 6.98,
+   "entry_med": 6.65,
+   "entry_min": 6.5,
+   "gain_med": 4.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601336": {
+   "name": "新华保险",
+   "price": 58.83,
+   "entry_med": 55.0,
+   "entry_min": 52.0,
+   "gain_med": 18.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601398": {
+   "name": "工商银行",
+   "price": 7.52,
+   "entry_med": 6.55,
+   "entry_min": 6.2,
+   "gain_med": -4.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601577": {
+   "name": "长沙银行",
+   "price": 9.19,
+   "entry_med": 8.65,
+   "entry_min": 8.0,
+   "gain_med": -0.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601601": {
+   "name": "中国太保",
+   "price": 30.48,
+   "entry_med": 29.5,
+   "entry_min": 28.0,
+   "gain_med": 22.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟢",
+    "🟢"
+   ],
+   "zone_all_red": false
+  },
+  "601665": {
+   "name": "齐鲁银行",
+   "price": 6.21,
+   "entry_med": 5.6,
+   "entry_min": 5.6,
+   "gain_med": 3.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601688": {
+   "name": "华泰证券",
+   "price": 19.39,
+   "entry_med": 17.0,
+   "entry_min": 17.0,
+   "gain_med": -1.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601838": {
+   "name": "成都银行",
+   "price": 18.15,
+   "entry_med": 16.0,
+   "entry_min": 15.8,
+   "gain_med": 8.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601939": {
+   "name": "建设银行",
+   "price": 10.24,
+   "entry_med": 9.1,
+   "entry_min": 8.6,
+   "gain_med": -2.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601963": {
+   "name": "重庆银行",
+   "price": 10.89,
+   "entry_med": 9.65,
+   "entry_min": 9.0,
+   "gain_med": -5.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601975": {
+   "name": "招商南油",
+   "price": 3.61,
+   "entry_med": 3.25,
+   "entry_min": 2.8,
+   "gain_med": 0.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601997": {
+   "name": "贵阳银行",
+   "price": 5.62,
+   "entry_med": 5.0,
+   "entry_min": 4.6,
+   "gain_med": 4.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601998": {
+   "name": "中信银行",
+   "price": 7.6,
+   "entry_med": 6.8,
+   "entry_min": 6.5,
+   "gain_med": 1.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603091": {
+   "name": "众鑫股份",
+   "price": 49.34,
+   "entry_med": 45.0,
+   "entry_min": 44.0,
+   "gain_med": 12.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603195": {
+   "name": "公牛集团",
+   "price": 41.02,
+   "entry_med": 35.75,
+   "entry_min": 35.0,
+   "gain_med": 6.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603199": {
+   "name": "九华旅游",
+   "price": 32.99,
+   "entry_med": 30.0,
+   "entry_min": 28.5,
+   "gain_med": 13.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603323": {
+   "name": "苏农银行",
+   "price": 4.17,
+   "entry_med": 4.0,
+   "entry_min": 4.0,
+   "gain_med": 21.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603338": {
+   "name": "浙江鼎力",
+   "price": 56.96,
+   "entry_med": 52.0,
+   "entry_min": 52.0,
+   "gain_med": 8.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603345": {
+   "name": "安井食品",
+   "price": 85.05,
+   "entry_med": 80.0,
+   "entry_min": 70.0,
+   "gain_med": 3.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603444": {
+   "name": "吉比特",
+   "price": 383.3,
+   "entry_med": 350.0,
+   "entry_min": 350.0,
+   "gain_med": 23.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603508": {
+   "name": "思维列控",
+   "price": 22.07,
+   "entry_med": 19.5,
+   "entry_min": 19.0,
+   "gain_med": 10.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603558": {
+   "name": "健盛集团",
+   "price": 12.36,
+   "entry_med": 11.75,
+   "entry_min": 11.5,
+   "gain_med": 10.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603706": {
+   "name": "东方环宇",
+   "price": 19.12,
+   "entry_med": 16.75,
+   "entry_min": 15.0,
+   "gain_med": 1.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603929": {
+   "name": "亚翔集成",
+   "price": 166.38,
+   "entry_med": 145.0,
+   "entry_min": 145.0,
+   "gain_med": 35.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603998": {
+   "name": "方盛制药",
+   "price": 9.79,
+   "entry_med": 9.0,
+   "entry_min": 6.8,
+   "gain_med": 14.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "605016": {
+   "name": "百龙创园",
+   "price": 20.75,
+   "entry_med": 19.25,
+   "entry_min": 18.5,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "605098": {
+   "name": "行动教育",
+   "price": 56.94,
+   "entry_med": 52.0,
+   "entry_min": 51.0,
+   "gain_med": 19.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "605305": {
+   "name": "中际联合",
+   "price": 39.1,
+   "entry_med": 36.0,
+   "entry_min": 36.0,
+   "gain_med": 40.0,
+   "zones": [
+    "🟢",
+    "🟢",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "605499": {
+   "name": "东鹏饮料",
+   "price": 127.9,
+   "entry_med": 111.5,
+   "entry_min": 105.0,
+   "gain_med": 27.5,
+   "zones": [
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688016": {
+   "name": "心脉医疗",
+   "price": 93.7,
+   "entry_med": 82.5,
+   "entry_min": 80.0,
+   "gain_med": -2.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688029": {
+   "name": "南微医学",
+   "price": 70.6,
+   "entry_med": 65.5,
+   "entry_min": 65.0,
+   "gain_med": 2.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688188": {
+   "name": "柏楚电子",
+   "price": 103.05,
+   "entry_med": 90.0,
+   "entry_min": 88.0,
+   "gain_med": -7.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688208": {
+   "name": "道通科技",
+   "price": 27.42,
+   "entry_med": 25.0,
+   "entry_min": 22.0,
+   "gain_med": 12.0,
+   "zones": [
+    "🟡",
+    "🟢",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688578": {
+   "name": "艾力斯",
+   "price": 117.31,
+   "entry_med": 105.0,
+   "entry_min": 105.0,
+   "gain_med": 70.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  }
+ },
+ "reserve": {
+  "000429": {
+   "name": "粤高速A",
+   "price": 13.16,
+   "entry_med": 11.0,
+   "entry_min": 10.0,
+   "gain_med": -19.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000544": {
+   "name": "中原环保",
+   "price": 7.39,
+   "entry_med": 6.15,
+   "entry_min": 6.0,
+   "gain_med": -8.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000567": {
+   "name": "海德股份",
+   "price": 6.25,
+   "entry_med": 2.5,
+   "entry_min": 2.5,
+   "gain_med": -60.0,
+   "zones": [
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000612": {
+   "name": "焦作万方",
+   "price": 11.68,
+   "entry_med": 8.25,
+   "entry_min": 5.5,
+   "gain_med": -23.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000792": {
+   "name": "盐湖股份",
+   "price": 29.06,
+   "entry_med": 21.0,
+   "entry_min": 18.0,
+   "gain_med": -17.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "000833": {
+   "name": "粤桂股份",
+   "price": 20.41,
+   "entry_med": 12.5,
+   "entry_min": 10.0,
+   "gain_med": -22.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000848": {
+   "name": "承德露露",
+   "price": 8.7,
+   "entry_med": 7.5,
+   "entry_min": 7.0,
+   "gain_med": 1.4,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000858": {
+   "name": "五粮液",
+   "price": 75.28,
+   "entry_med": 55.0,
+   "entry_min": 55.0,
+   "gain_med": 3.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000893": {
+   "name": "亚钾国际",
+   "price": 47.2,
+   "entry_med": 40.0,
+   "entry_min": 36.0,
+   "gain_med": -16.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "000895": {
+   "name": "双汇发展",
+   "price": 24.63,
+   "entry_med": 20.35,
+   "entry_min": 20.0,
+   "gain_med": -0.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "001221": {
+   "name": "悍高集团",
+   "price": 41.19,
+   "entry_med": 31.0,
+   "entry_min": 24.0,
+   "gain_med": -17.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002001": {
+   "name": "新和成",
+   "price": 30.66,
+   "entry_med": 24.75,
+   "entry_min": 22.0,
+   "gain_med": -5.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002043": {
+   "name": "兔宝宝",
+   "price": 12.94,
+   "entry_med": 10.0,
+   "entry_min": 8.0,
+   "gain_med": -10.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002128": {
+   "name": "电投能源",
+   "price": 27.42,
+   "entry_med": 22.5,
+   "entry_min": 20.0,
+   "gain_med": -8.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002154": {
+   "name": "报喜鸟",
+   "price": 4.27,
+   "entry_med": 2.8,
+   "entry_min": 2.6,
+   "gain_med": -32.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002170": {
+   "name": "芭田股份",
+   "price": 11.47,
+   "entry_med": 9.25,
+   "entry_min": 7.5,
+   "gain_med": 12.8,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002216": {
+   "name": "三全食品",
+   "price": 12.73,
+   "entry_med": 10.25,
+   "entry_min": 9.5,
+   "gain_med": -11.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002270": {
+   "name": "华明装备",
+   "price": 20.61,
+   "entry_med": 16.9,
+   "entry_min": 15.5,
+   "gain_med": -10.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002345": {
+   "name": "潮宏基",
+   "price": 11.15,
+   "entry_med": 8.9,
+   "entry_min": 7.5,
+   "gain_med": -10.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002414": {
+   "name": "高德红外",
+   "price": 13.99,
+   "entry_med": 9.0,
+   "entry_min": 7.5,
+   "gain_med": -22.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002487": {
+   "name": "大金重工",
+   "price": 43.63,
+   "entry_med": 35.0,
+   "entry_min": 24.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002558": {
+   "name": "巨人网络",
+   "price": 28.77,
+   "entry_med": 21.5,
+   "entry_min": 20.0,
+   "gain_med": 16.3,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002568": {
+   "name": "百润股份",
+   "price": 19.69,
+   "entry_med": 17.0,
+   "entry_min": 16.9,
+   "gain_med": -1.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002602": {
+   "name": "世纪华通",
+   "price": 14.29,
+   "entry_med": 8.5,
+   "entry_min": 4.5,
+   "gain_med": -8.6,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002648": {
+   "name": "卫星化学",
+   "price": 26.16,
+   "entry_med": 22.0,
+   "entry_min": 21.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002756": {
+   "name": "永兴材料",
+   "price": 48.25,
+   "entry_med": 37.5,
+   "entry_min": 30.0,
+   "gain_med": -31.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002772": {
+   "name": "众兴菌业",
+   "price": 10.71,
+   "entry_med": 8.5,
+   "entry_min": 7.5,
+   "gain_med": -15.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002832": {
+   "name": "比音勒芬",
+   "price": 26.16,
+   "entry_med": 16.5,
+   "entry_min": 15.5,
+   "gain_med": -25.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002901": {
+   "name": "大博医疗",
+   "price": 45.43,
+   "entry_med": 39.5,
+   "entry_min": 38.0,
+   "gain_med": 8.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002956": {
+   "name": "西麦食品",
+   "price": 18.05,
+   "entry_med": 14.5,
+   "entry_min": 14.5,
+   "gain_med": -15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "002961": {
+   "name": "瑞达期货",
+   "price": 19.63,
+   "entry_med": 13.5,
+   "entry_min": 12.0,
+   "gain_med": -22.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "003000": {
+   "name": "劲仔食品",
+   "price": 10.68,
+   "entry_med": 8.9,
+   "entry_min": 8.5,
+   "gain_med": 0.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300015": {
+   "name": "爱尔眼科",
+   "price": 8.87,
+   "entry_med": 7.15,
+   "entry_min": 6.8,
+   "gain_med": -10.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300059": {
+   "name": "东方财富",
+   "price": 19.83,
+   "entry_med": 16.85,
+   "entry_min": 15.0,
+   "gain_med": -7.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300181": {
+   "name": "佐力药业",
+   "price": 14.54,
+   "entry_med": 12.5,
+   "entry_min": 12.0,
+   "gain_med": 17.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟢",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300357": {
+   "name": "我武生物",
+   "price": 25.0,
+   "entry_med": 20.25,
+   "entry_min": 16.0,
+   "gain_med": 3.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300373": {
+   "name": "扬杰科技",
+   "price": 96.64,
+   "entry_med": 77.0,
+   "entry_min": 75.0,
+   "gain_med": -11.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300406": {
+   "name": "九强生物",
+   "price": 11.89,
+   "entry_med": 9.75,
+   "entry_min": 7.3,
+   "gain_med": -7.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300442": {
+   "name": "润泽科技",
+   "price": 67.7,
+   "entry_med": 43.0,
+   "entry_min": 28.0,
+   "gain_med": -39.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300458": {
+   "name": "全志科技",
+   "price": 35.1,
+   "entry_med": 24.0,
+   "entry_min": 14.0,
+   "gain_med": -11.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300502": {
+   "name": "新易盛",
+   "price": 428.2,
+   "entry_med": 247.0,
+   "entry_min": 244.0,
+   "gain_med": -7.8,
+   "zones": [
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "300693": {
+   "name": "盛弘股份",
+   "price": 46.77,
+   "entry_med": 35.0,
+   "entry_min": 34.5,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "300750": {
+   "name": "宁德时代",
+   "price": 393.93,
+   "entry_med": 325.0,
+   "entry_min": 300.0,
+   "gain_med": 12.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "301031": {
+   "name": "中熔电气",
+   "price": 90.35,
+   "entry_med": 77.5,
+   "entry_min": 64.0,
+   "gain_med": 10.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "301219": {
+   "name": "腾远钴业",
+   "price": 49.62,
+   "entry_med": 41.0,
+   "entry_min": 36.0,
+   "gain_med": -2.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "301536": {
+   "name": "星宸科技",
+   "price": 124.41,
+   "entry_med": 60.0,
+   "entry_min": 38.0,
+   "gain_med": -49.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "301606": {
+   "name": "绿联科技",
+   "price": 52.75,
+   "entry_med": 45.0,
+   "entry_min": 33.0,
+   "gain_med": 5.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600338": {
+   "name": "西藏珠峰",
+   "price": 13.95,
+   "entry_med": 7.05,
+   "entry_min": 5.5,
+   "gain_med": -49.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600351": {
+   "name": "亚宝药业",
+   "price": 6.93,
+   "entry_med": 5.75,
+   "entry_min": 5.5,
+   "gain_med": -7.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600398": {
+   "name": "海澜之家",
+   "price": 6.07,
+   "entry_med": 5.21,
+   "entry_min": 4.8,
+   "gain_med": 7.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600499": {
+   "name": "科达制造",
+   "price": 14.42,
+   "entry_med": 11.75,
+   "entry_min": 9.0,
+   "gain_med": 5.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600595": {
+   "name": "中孚实业",
+   "price": 6.72,
+   "entry_med": 4.5,
+   "entry_min": 3.0,
+   "gain_med": -25.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600901": {
+   "name": "江苏金租",
+   "price": 6.55,
+   "entry_med": 5.55,
+   "entry_min": 5.2,
+   "gain_med": -4.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "600938": {
+   "name": "中国海油",
+   "price": 32.85,
+   "entry_med": 26.5,
+   "entry_min": 24.0,
+   "gain_med": -8.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "600988": {
+   "name": "赤峰黄金",
+   "price": 40.98,
+   "entry_med": 29.5,
+   "entry_min": 26.0,
+   "gain_med": -24.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601168": {
+   "name": "西部矿业",
+   "price": 38.36,
+   "entry_med": 19.75,
+   "entry_min": 17.5,
+   "gain_med": -43.5,
+   "zones": [
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "601899": {
+   "name": "紫金矿业",
+   "price": 33.58,
+   "entry_med": 26.0,
+   "entry_min": 26.0,
+   "gain_med": -10.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "601958": {
+   "name": "金钼股份",
+   "price": 23.09,
+   "entry_med": 16.5,
+   "entry_min": 13.0,
+   "gain_med": -15.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603061": {
+   "name": "金海通",
+   "price": 327.76,
+   "entry_med": 150.0,
+   "entry_min": 100.0,
+   "gain_med": -32.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603093": {
+   "name": "南华期货",
+   "price": 12.53,
+   "entry_med": 10.5,
+   "entry_min": 10.0,
+   "gain_med": -7.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603132": {
+   "name": "金徽股份",
+   "price": 19.1,
+   "entry_med": 13.25,
+   "entry_min": 11.0,
+   "gain_med": -11.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603162": {
+   "name": "海通发展",
+   "price": 11.37,
+   "entry_med": 8.0,
+   "entry_min": 4.5,
+   "gain_med": -16.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603207": {
+   "name": "小方制药",
+   "price": 23.42,
+   "entry_med": 18.0,
+   "entry_min": 15.0,
+   "gain_med": -14.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603259": {
+   "name": "药明康德",
+   "price": 159.04,
+   "entry_med": 120.0,
+   "entry_min": 100.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603288": {
+   "name": "海天味业",
+   "price": 36.24,
+   "entry_med": 30.0,
+   "entry_min": 26.9,
+   "gain_med": -14.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603317": {
+   "name": "天味食品",
+   "price": 14.56,
+   "entry_med": 11.75,
+   "entry_min": 11.0,
+   "gain_med": -12.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603337": {
+   "name": "杰克科技",
+   "price": 43.7,
+   "entry_med": 34.5,
+   "entry_min": 31.0,
+   "gain_med": -14.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603379": {
+   "name": "三美股份",
+   "price": 64.39,
+   "entry_med": 50.0,
+   "entry_min": 44.0,
+   "gain_med": -15.0,
+   "zones": [
+    "🟡",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603486": {
+   "name": "科沃斯",
+   "price": 57.74,
+   "entry_med": 49.0,
+   "entry_min": 35.0,
+   "gain_med": -11.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603587": {
+   "name": "地素时尚",
+   "price": 11.71,
+   "entry_med": 9.5,
+   "entry_min": 8.0,
+   "gain_med": -12.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "603676": {
+   "name": "卫信康",
+   "price": 9.23,
+   "entry_med": 7.75,
+   "entry_min": 7.0,
+   "gain_med": -2.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603893": {
+   "name": "瑞芯微",
+   "price": 213.5,
+   "entry_med": 130.0,
+   "entry_min": 130.0,
+   "gain_med": -25.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "603979": {
+   "name": "金诚信",
+   "price": 74.58,
+   "entry_med": 64.0,
+   "entry_min": 63.0,
+   "gain_med": 2.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "605099": {
+   "name": "共创草坪",
+   "price": 33.48,
+   "entry_med": 28.0,
+   "entry_min": 28.0,
+   "gain_med": 12.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "605183": {
+   "name": "确成股份",
+   "price": 14.78,
+   "entry_med": 12.0,
+   "entry_min": 12.0,
+   "gain_med": -5.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688002": {
+   "name": "睿创微纳",
+   "price": 167.66,
+   "entry_med": 127.5,
+   "entry_min": 115.0,
+   "gain_med": 8.5,
+   "zones": [
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688018": {
+   "name": "乐鑫科技",
+   "price": 114.1,
+   "entry_med": 89.5,
+   "entry_min": 82.0,
+   "gain_med": -16.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688019": {
+   "name": "安集科技",
+   "price": 250.36,
+   "entry_med": 191.0,
+   "entry_min": 170.0,
+   "gain_med": -15.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688117": {
+   "name": "圣诺生物",
+   "price": 26.34,
+   "entry_med": 22.75,
+   "entry_min": 22.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688127": {
+   "name": "蓝特光学",
+   "price": 66.53,
+   "entry_med": 41.5,
+   "entry_min": 35.0,
+   "gain_med": -25.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688155": {
+   "name": "先惠技术",
+   "price": 61.75,
+   "entry_med": 41.5,
+   "entry_min": 28.0,
+   "gain_med": -9.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688257": {
+   "name": "新锐股份",
+   "price": 61.23,
+   "entry_med": 52.0,
+   "entry_min": 52.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688278": {
+   "name": "特宝生物",
+   "price": 59.36,
+   "entry_med": 50.0,
+   "entry_min": 48.0,
+   "gain_med": 12.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688334": {
+   "name": "西高院",
+   "price": 18.15,
+   "entry_med": 15.75,
+   "entry_min": 13.5,
+   "gain_med": 1.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "688617": {
+   "name": "惠泰医疗",
+   "price": 216.0,
+   "entry_med": 160.0,
+   "entry_min": 160.0,
+   "gain_med": 3.0,
+   "zones": [
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688628": {
+   "name": "优利德",
+   "price": 69.2,
+   "entry_med": 55.0,
+   "entry_min": 52.0,
+   "gain_med": 15.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "688633": {
+   "name": "星球石墨",
+   "price": 24.58,
+   "entry_med": 20.5,
+   "entry_min": 18.0,
+   "gain_med": -6.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "920037": {
+   "name": "广信科技",
+   "price": 43.5,
+   "entry_med": 35.0,
+   "entry_min": 30.0,
+   "gain_med": 22.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "920258": {
+   "name": "聚仁新材",
+   "price": 12.93,
+   "entry_med": 8.75,
+   "entry_min": 7.5,
+   "gain_med": -22.0,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": false
+  },
+  "920735": {
+   "name": "德源药业",
+   "price": 25.05,
+   "entry_med": 20.0,
+   "entry_min": 18.0,
+   "gain_med": -13.0,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "920946": {
+   "name": "森萱医药",
+   "price": 9.5,
+   "entry_med": 7.45,
+   "entry_min": 6.5,
+   "gain_med": -19.5,
+   "zones": [
+    "🔴",
+    "🟡",
+    "🟡",
+    "🔴"
+   ],
+   "zone_all_red": false
+  }
+ },
+ "drop": {
+  "000686": {
+   "name": "东北证券",
+   "price": 8.06,
+   "entry_med": 6.2,
+   "entry_min": 6.2,
+   "gain_med": -14.8,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "000690": {
+   "name": "宝新能源",
+   "price": 4.8,
+   "entry_med": 3.75,
+   "entry_min": 2.8,
+   "gain_med": -13.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "000791": {
+   "name": "甘肃能源",
+   "price": 7.81,
+   "entry_med": 6.4,
+   "entry_min": 6.2,
+   "gain_med": -8.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "001328": {
+   "name": "登康口腔",
+   "price": 29.75,
+   "entry_med": 24.25,
+   "entry_min": 20.0,
+   "gain_med": -14.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002033": {
+   "name": "丽江股份",
+   "price": 8.74,
+   "entry_med": 6.9,
+   "entry_min": 6.3,
+   "gain_med": -12.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002064": {
+   "name": "华峰化学",
+   "price": 11.53,
+   "entry_med": 8.5,
+   "entry_min": 7.0,
+   "gain_med": -26.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002293": {
+   "name": "罗莱生活",
+   "price": 11.13,
+   "entry_med": 9.65,
+   "entry_min": 8.5,
+   "gain_med": -9.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002458": {
+   "name": "益生股份",
+   "price": 10.24,
+   "entry_med": 5.2,
+   "entry_min": 5.0,
+   "gain_med": -37.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002737": {
+   "name": "葵花药业",
+   "price": 13.46,
+   "entry_med": 9.25,
+   "entry_min": 6.5,
+   "gain_med": -23.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002839": {
+   "name": "张家港行",
+   "price": 4.32,
+   "entry_med": 3.75,
+   "entry_min": 3.5,
+   "gain_med": -7.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300033": {
+   "name": "同花顺",
+   "price": 234.0,
+   "entry_med": 162.5,
+   "entry_min": 100.0,
+   "gain_med": -19.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300127": {
+   "name": "银河磁体",
+   "price": 25.58,
+   "entry_med": 16.25,
+   "entry_min": 10.5,
+   "gain_med": -32.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300146": {
+   "name": "汤臣倍健",
+   "price": 10.13,
+   "entry_med": 7.25,
+   "entry_min": 6.5,
+   "gain_med": -18.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300408": {
+   "name": "三环集团",
+   "price": 127.97,
+   "entry_med": 82.5,
+   "entry_min": 70.0,
+   "gain_med": -35.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300445": {
+   "name": "康斯特",
+   "price": 18.9,
+   "entry_med": 12.25,
+   "entry_min": 9.5,
+   "gain_med": -25.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300604": {
+   "name": "长川科技",
+   "price": 287.11,
+   "entry_med": 138.0,
+   "entry_min": 90.0,
+   "gain_med": -50.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300861": {
+   "name": "美畅股份",
+   "price": 17.54,
+   "entry_med": 13.5,
+   "entry_min": 12.0,
+   "gain_med": -33.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300867": {
+   "name": "圣元环保",
+   "price": 16.59,
+   "entry_med": 9.65,
+   "entry_min": 9.0,
+   "gain_med": -32.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300871": {
+   "name": "回盛生物",
+   "price": 23.36,
+   "entry_med": 17.25,
+   "entry_min": 15.0,
+   "gain_med": -17.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "300908": {
+   "name": "仲景食品",
+   "price": 24.92,
+   "entry_med": 18.5,
+   "entry_min": 16.0,
+   "gain_med": -14.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301019": {
+   "name": "宁波色母",
+   "price": 15.39,
+   "entry_med": 8.0,
+   "entry_min": 8.0,
+   "gain_med": -39.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301087": {
+   "name": "可孚医疗",
+   "price": 51.55,
+   "entry_med": 32.0,
+   "entry_min": 30.0,
+   "gain_med": -27.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301101": {
+   "name": "明月镜片",
+   "price": 29.87,
+   "entry_med": 24.0,
+   "entry_min": 19.5,
+   "gain_med": -10.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301246": {
+   "name": "宏源药业",
+   "price": 21.18,
+   "entry_med": 12.75,
+   "entry_min": 10.0,
+   "gain_med": -23.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301289": {
+   "name": "国缆检测",
+   "price": 44.28,
+   "entry_med": 29.0,
+   "entry_min": 25.0,
+   "gain_med": -18.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301371": {
+   "name": "敷尔佳",
+   "price": 25.61,
+   "entry_med": 17.5,
+   "entry_min": 14.5,
+   "gain_med": -18.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301566": {
+   "name": "达利凯普",
+   "price": 28.69,
+   "entry_med": 15.0,
+   "entry_min": 12.0,
+   "gain_med": -39.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301677": {
+   "name": "欣兴工具",
+   "price": 61.99,
+   "entry_med": 34.0,
+   "entry_min": 28.0,
+   "gain_med": -29.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "301680": {
+   "name": "固德电材",
+   "price": 91.2,
+   "entry_med": 60.0,
+   "entry_min": 60.0,
+   "gain_med": -22.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600026": {
+   "name": "中远海能",
+   "price": 16.74,
+   "entry_med": 12.0,
+   "entry_min": 10.0,
+   "gain_med": -31.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600236": {
+   "name": "桂冠电力",
+   "price": 10.57,
+   "entry_med": 6.0,
+   "entry_min": 5.0,
+   "gain_med": -37.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600300": {
+   "name": "维维股份",
+   "price": 3.2,
+   "entry_med": 2.3,
+   "entry_min": 2.2,
+   "gain_med": -17.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600329": {
+   "name": "达仁堂",
+   "price": 36.72,
+   "entry_med": 28.0,
+   "entry_min": 22.0,
+   "gain_med": -16.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600598": {
+   "name": "北大荒",
+   "price": 12.05,
+   "entry_med": 6.4,
+   "entry_min": 6.3,
+   "gain_med": -34.2,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600897": {
+   "name": "厦门空港",
+   "price": 14.76,
+   "entry_med": 11.0,
+   "entry_min": 9.5,
+   "gain_med": -10.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600908": {
+   "name": "无锡银行",
+   "price": 5.41,
+   "entry_med": 4.8,
+   "entry_min": 4.5,
+   "gain_med": -5.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600999": {
+   "name": "招商证券",
+   "price": 18.23,
+   "entry_med": 14.5,
+   "entry_min": 14.5,
+   "gain_med": -9.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601000": {
+   "name": "唐山港",
+   "price": 4.59,
+   "entry_med": 4.0,
+   "entry_min": 4.0,
+   "gain_med": -6.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601066": {
+   "name": "中信建投",
+   "price": 25.7,
+   "entry_med": 13.25,
+   "entry_min": 12.5,
+   "gain_med": -39.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601229": {
+   "name": "上海银行",
+   "price": 9.27,
+   "entry_med": 8.5,
+   "entry_min": 8.3,
+   "gain_med": -4.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601326": {
+   "name": "秦港股份",
+   "price": 3.36,
+   "entry_med": 2.88,
+   "entry_min": 2.6,
+   "gain_med": -4.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601579": {
+   "name": "会稽山",
+   "price": 15.86,
+   "entry_med": 8.75,
+   "entry_min": 7.5,
+   "gain_med": -35.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601600": {
+   "name": "中国铝业",
+   "price": 9.94,
+   "entry_med": 6.9,
+   "entry_min": 6.3,
+   "gain_med": -31.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601825": {
+   "name": "沪农商行",
+   "price": 8.3,
+   "entry_med": 7.4,
+   "entry_min": 7.0,
+   "gain_med": -5.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601872": {
+   "name": "招商轮船",
+   "price": 17.02,
+   "entry_med": 9.5,
+   "entry_min": 8.5,
+   "gain_med": -34.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601881": {
+   "name": "中国银河",
+   "price": 12.36,
+   "entry_med": 10.65,
+   "entry_min": 10.2,
+   "gain_med": -8.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601901": {
+   "name": "方正证券",
+   "price": 7.01,
+   "entry_med": 5.9,
+   "entry_min": 5.5,
+   "gain_med": -12.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601916": {
+   "name": "浙商银行",
+   "price": 2.91,
+   "entry_med": 2.4,
+   "entry_min": 2.2,
+   "gain_med": -9.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601995": {
+   "name": "中金公司",
+   "price": 35.23,
+   "entry_med": 27.0,
+   "entry_min": 25.0,
+   "gain_med": -15.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603040": {
+   "name": "新坐标",
+   "price": 57.42,
+   "entry_med": 35.0,
+   "entry_min": 30.0,
+   "gain_med": -23.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603193": {
+   "name": "润本股份",
+   "price": 21.17,
+   "entry_med": 14.75,
+   "entry_min": 12.5,
+   "gain_med": -19.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603203": {
+   "name": "快克智能",
+   "price": 44.28,
+   "entry_med": 24.0,
+   "entry_min": 17.0,
+   "gain_med": -37.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603387": {
+   "name": "基蛋生物",
+   "price": 9.45,
+   "entry_med": 6.25,
+   "entry_min": 6.0,
+   "gain_med": -21.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603435": {
+   "name": "嘉德利",
+   "price": 54.26,
+   "entry_med": 13.5,
+   "entry_min": 12.0,
+   "gain_med": -67.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603811": {
+   "name": "诚意药业",
+   "price": 7.49,
+   "entry_med": 6.5,
+   "entry_min": 6.0,
+   "gain_med": -8.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "603986": {
+   "name": "兆易创新",
+   "price": 413.17,
+   "entry_med": 150.0,
+   "entry_min": 150.0,
+   "gain_med": -60.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "688580": {
+   "name": "伟思医疗",
+   "price": 50.41,
+   "entry_med": 35.0,
+   "entry_min": 28.0,
+   "gain_med": -26.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "920176": {
+   "name": "维琪科技",
+   "price": 69.72,
+   "entry_med": 37.7,
+   "entry_min": 30.0,
+   "gain_med": -49.8,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "920509": {
+   "name": "同惠电子",
+   "price": 20.49,
+   "entry_med": 15.0,
+   "entry_min": 12.0,
+   "gain_med": -19.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  }
+ }
+}

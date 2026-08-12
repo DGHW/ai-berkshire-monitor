@@ -54,3 +54,5 @@ data/screening/batch/*.bak
 data/screening/batch/*.bak*
 fix_progress.py
 commit_msg.txt
+err.log
+data/tmp_*.json

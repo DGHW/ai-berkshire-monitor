@@ -12,6 +12,7 @@
 用法：
     python3 tools/pool_rotator.py --health-only    # 每日（快）
     python3 tools/pool_rotator.py --weekly          # 每周（重跑 Layer1）
+    python3 tools/pool_rotator.py --monthly-rotate  # 半月/月度轮动（观察↔放弃 联动）
     python3 tools/pool_rotator.py --report          # 生成周报
     python3 tools/pool_rotator.py --stats           # 各池数量
 """
@@ -25,6 +26,7 @@ from datetime import datetime, timedelta
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCREEN_FILE = os.path.join(REPO_ROOT, "data", "screening", "stage1_pool.json")
 MONITOR_FILE = os.path.join(REPO_ROOT, "data", "monitor", "pool.json")
+GROUPS_FILE = os.path.join(REPO_ROOT, "data", "monitor", "portfolio_groups.json")
 ROTATION_STATE = os.path.join(REPO_ROOT, "data", "monitor", "rotation_state.json")
 REPORT_DIR = os.path.join(REPO_ROOT, "reports", "monitor")
 THESIS_DIR = os.path.join(REPO_ROOT, "reports")
@@ -34,6 +36,9 @@ MIN_MV_YUAN = 30e8
 STALE_DAYS = 90
 WEAKENING_ROE_DROP = 5.0   # ROE 下滑 pct 触发标记
 WEAKENING_GM_DROP = 3.0    # 毛利率下滑 pct
+# 月度轮动阈值
+WATCH_OUT_PRICE_PCT = 40.0   # 观察组轮出：现价 > 建仓价×1.4
+DROP_IN_PRICE_PCT = 100.0    # 放弃组轮入：现价 ≤ 建仓价（深度回调）
 
 
 def _force_utf8_stdio():
@@ -103,8 +108,73 @@ def health_check() -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 统计
+# 月度轮动：观察组 ↔ 放弃组 联动（用户确认：约半月/一月跑一次）
 # ---------------------------------------------------------------------------
+def monthly_rotate() -> dict:
+    """规则：
+    观察组轮出 → 后备组/放弃组：论文过期>90天 / 现价>建仓价×1.4 / 涨幅中位数转负
+    放弃组轮入 → 观察组：现价 ≤ 建仓价（深度回调）+ 论文未过期（基本面未证伪）
+    """
+    groups = load_json(GROUPS_FILE)
+    today = datetime.now().strftime("%Y-%m-%d")
+    moved_out, moved_in = [], []
+
+    # 1. 观察组轮出检查
+    for c, s in (groups.get("watch") or {}).items():
+        reasons = []
+        # a) 价格远超建仓价 → 击球区失效
+        entry = s.get("entry_med")
+        if entry and s.get("price") and s["price"] > entry * (1 + WATCH_OUT_PRICE_PCT / 100):
+            reasons.append(f"现价{s['price']} 超建仓价{entry} +{WATCH_OUT_PRICE_PCT:.0f}%")
+        # b) 涨幅中位数转负（内在价值恶化）
+        g = s.get("gain_med")
+        if g is not None and g < -20:
+            reasons.append(f"涨幅中位数{g}% 恶化")
+        # c) 论文过期
+        thesis_file = s.get("thesis_file")
+        if thesis_file and os.path.exists(os.path.join(REPO_ROOT, thesis_file)):
+            age = (datetime.now() - datetime.fromtimestamp(
+                os.path.getmtime(os.path.join(REPO_ROOT, thesis_file)))).days
+            if age > STALE_DAYS:
+                reasons.append(f"论文{age}天未更新")
+        if reasons:
+            moved_out.append({"code": c, "name": s.get("name", s.get("name_cn", "")),
+                              "from": "watch", "to": "reserve", "reasons": reasons})
+
+    # 2. 放弃组轮入检查（深度回调至建仓价下方）
+    for c, s in (groups.get("drop") or {}).items():
+        entry = s.get("entry_med")
+        if entry and s.get("price") and s["price"] <= entry:
+            moved_in.append({"code": c, "name": s.get("name", s.get("name_cn", "")),
+                             "from": "drop", "to": "watch",
+                             "reasons": [f"深度回调至建仓价下方(现价{s['price']}≤{entry})，需重新4视角调研"]})
+
+    # 3. 后备组轮入检查（价格回落至击球区附近）
+    for c, s in (groups.get("reserve") or {}).items():
+        entry = s.get("entry_med")
+        if entry and s.get("price") and s["price"] <= entry * 1.15:
+            moved_in.append({"code": c, "name": s.get("name", s.get("name_cn", "")),
+                             "from": "reserve", "to": "watch",
+                             "reasons": [f"价格回落至建仓价+15%内(现价{s['price']})"]})
+
+    result = {"date": today, "moved_out": moved_out, "moved_in": moved_in}
+    state = load_json(ROTATION_STATE)
+    state["last_rotation"] = today
+    state["last_rotation_result"] = result
+    save_json(ROTATION_STATE, state)
+
+    # 输出
+    print(f"🔄 月度轮动 — {today}")
+    print(f"\n观察组轮出 {len(moved_out)} 只：")
+    for m in moved_out[:20]:
+        print(f"  ➡ {m['code']} {m['name']}: {', '.join(m['reasons'])}")
+    print(f"\n轮入候选（需重新研究）{len(moved_in)} 只：")
+    for m in moved_in[:20]:
+        print(f"  ⬅ {m['code']} {m['name']} ({m['from']}→watch): {', '.join(m['reasons'])}")
+    return result
+
+
+
 def show_stats():
     screen = load_json(SCREEN_FILE)
     monitor = load_json(MONITOR_FILE)
@@ -133,12 +203,15 @@ def main():
     parser = argparse.ArgumentParser(description="股票池轮动引擎")
     parser.add_argument("--health-only", action="store_true", help="每日健康检查")
     parser.add_argument("--weekly", action="store_true", help="每周轮动（重跑 Layer1）")
+    parser.add_argument("--monthly-rotate", action="store_true", help="半月/月度轮动（观察↔放弃联动）")
     parser.add_argument("--report", action="store_true", help="生成轮动周报")
     parser.add_argument("--stats", action="store_true", help="各池统计")
     args = parser.parse_args()
 
     if args.stats:
         show_stats()
+    elif args.monthly_rotate:
+        monthly_rotate()
     elif args.health_only:
         r = health_check()
         print(f"✅ 健康检查完成：{len(r['alerts'])} 条告警")
