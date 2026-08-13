@@ -56,3 +56,4 @@ fix_progress.py
 commit_msg.txt
 err.log
 data/tmp_*.json
+data/monitor/agent.lock

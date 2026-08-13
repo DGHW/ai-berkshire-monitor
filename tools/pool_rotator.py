@@ -198,18 +198,71 @@ def show_stats():
     print()
 
 
+# ---------------------------------------------------------------------------
+# 轮动计划（只读，供 agent_driver 确定批量重研清单；不落盘）
+# ---------------------------------------------------------------------------
+def rotation_plan() -> dict:
+    """与 monthly_rotate 同规则，但只计算并输出清单，不改任何文件。
+    返回 {boundary: [{code, name, action, from, to, reasons}]}。
+    boundary = 触发轮出/轮入阈值的标的（需要完整版重研）。"""
+    groups = load_json(GROUPS_FILE)
+    boundary = []
+
+    # 观察组轮出
+    for c, s in (groups.get("watch") or {}).items():
+        reasons = []
+        entry = s.get("entry_med")
+        if entry and s.get("price") and s["price"] > entry * (1 + WATCH_OUT_PRICE_PCT / 100):
+            reasons.append(f"现价{s['price']} 超建仓价{entry} +{WATCH_OUT_PRICE_PCT:.0f}%")
+        g = s.get("gain_med")
+        if g is not None and g < -20:
+            reasons.append(f"涨幅中位数{g}% 恶化")
+        thesis_file = s.get("thesis_file")
+        if thesis_file and os.path.exists(os.path.join(REPO_ROOT, thesis_file)):
+            age = (datetime.now() - datetime.fromtimestamp(
+                os.path.getmtime(os.path.join(REPO_ROOT, thesis_file)))).days
+            if age > STALE_DAYS:
+                reasons.append(f"论文{age}天未更新")
+        if reasons:
+            boundary.append({"code": c, "name": s.get("name", s.get("name_cn", "")),
+                             "action": "watch->reserve", "from": "watch", "to": "reserve",
+                             "reasons": reasons})
+
+    # 放弃组轮入
+    for c, s in (groups.get("drop") or {}).items():
+        entry = s.get("entry_med")
+        if entry and s.get("price") and s["price"] <= entry:
+            boundary.append({"code": c, "name": s.get("name", s.get("name_cn", "")),
+                             "action": "drop->watch", "from": "drop", "to": "watch",
+                             "reasons": [f"深度回调至建仓价下方(现价{s['price']}≤{entry})"]})
+
+    # 后备组轮入
+    for c, s in (groups.get("reserve") or {}).items():
+        entry = s.get("entry_med")
+        if entry and s.get("price") and s["price"] <= entry * 1.15:
+            boundary.append({"code": c, "name": s.get("name", s.get("name_cn", "")),
+                             "action": "reserve->watch", "from": "reserve", "to": "watch",
+                             "reasons": [f"价格回落至建仓价+15%内(现价{s['price']})"]})
+
+    return {"boundary": boundary, "date": datetime.now().strftime("%Y-%m-%d")}
+
+
 def main():
     _force_utf8_stdio()
     parser = argparse.ArgumentParser(description="股票池轮动引擎")
     parser.add_argument("--health-only", action="store_true", help="每日健康检查")
     parser.add_argument("--weekly", action="store_true", help="每周轮动（重跑 Layer1）")
     parser.add_argument("--monthly-rotate", action="store_true", help="半月/月度轮动（观察↔放弃联动）")
+    parser.add_argument("--plan", action="store_true", help="只读输出轮动边界清单（不落盘）")
     parser.add_argument("--report", action="store_true", help="生成轮动周报")
     parser.add_argument("--stats", action="store_true", help="各池统计")
     args = parser.parse_args()
 
     if args.stats:
         show_stats()
+    elif args.plan:
+        plan = rotation_plan()
+        print(json.dumps(plan, ensure_ascii=False, indent=1))
     elif args.monthly_rotate:
         monthly_rotate()
     elif args.health_only:

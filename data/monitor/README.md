@@ -59,15 +59,20 @@ fᵢ   = 半凯利 = fᵢ*/2，clamp 到 [0, 单票上限 12%/小盘8%]
 基准冻结：月度轮动时重算写入 kelly_basis.json，月内买入统一用冻结基准。
 ```
 
-## 四、定时任务
+## 四、定时任务（v6：已注册 + Agent 自动驱动）
 
 ```bash
-# 注册每日任务（15:05 跑 batch1）
-schtasks /create /tn "StockMonitorDaily" /tr "cmd /c C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\scripts\batch1_daily.bat" /sc daily /st 15:05
+# 注册每日任务（15:05 跑 batch1：价格扫描+持仓巡检+自动复核买入）
+schtasks /create /tn "StockMonitorDaily" /tr "cmd /c C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\scripts\batch1_daily.bat" /sc daily /st 15:05 /ru "%USERNAME%" /rl LIMITED /f
 
-# 注册半月任务（每月1号/15号 09:05 跑 batch2）
-schtasks /create /tn "StockRotationBiweekly" /tr "cmd /c C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\scripts\batch2_rotate.bat" /sc monthly /d 1,15 /st 09:05
+# 注册轮动任务（每月1号/15号 09:05 跑 batch2：混合深度研究+规则轮动+基准刷新）
+schtasks /create /tn "StockRotationBiweekly" /tr "cmd /c C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\scripts\batch2_rotate.bat" /sc monthly /d 1 /st 09:05 /ru "%USERNAME%" /rl LIMITED /f
+schtasks /create /tn "StockRotationBiweekly2" /tr "cmd /c C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\scripts\batch2_rotate.bat" /sc monthly /d 15 /st 09:05 /ru "%USERNAME%" /rl LIMITED /f
 ```
+
+> ⚠️ schtasks 的 `/d` 不接受逗号列表，故 1/15 日拆为两个任务。
+
+**Agent 自动驱动**（v6）：batch1 末尾 `agent_driver review --limit 1` 对 REVIEW_DUE 标的自动调 `/investment-team` 完整重研 → 六道闸门 → 自动建仓；batch2 开头 `agent_driver batch2-research --lite-cap 30` 边界标的完整重研 + 其余 lite 速评 → `report_sync --all` 回填。详见 LOGIC.md 第八节。
 
 ## 五、手动操作命令
 
@@ -77,11 +82,19 @@ python3 tools/price_monitor.py            # ① 监控池日报（REVIEW_DUE/触
 python3 tools/position_manager.py --daily # ② 持仓巡检（止损+估值提醒+新闻扫描）
 python3 tools/pool_rotator.py --health-only # ③ 健康检查
 
-# 深度复核（日报出现 REVIEW_DUE 时）
-python3 tools/position_manager.py --review 600036   # 开4视角重审指引
-#   → 调 /investment-team 重审 → 结论回填：
-#     基本面没改观+价在击球区 → python3 tools/position_manager.py --add 600036 1000 38.5
-#     基本面恶化 → 手动移至放弃组
+# 深度复核（日报出现 REVIEW_DUE 时——v6 已自动化，以下为人工兜底）
+python3 tools/position_manager.py --review 600036   # 开4视角重审指引（登记 PENDING）
+#   → 也可直接调 agent_driver 自动复核：
+python3 tools/agent_driver.py review --limit 1 --dry-run   # 预览将复核的标的与股数
+python3 tools/agent_driver.py review --limit 1             # 真实执行（自动买入）
+python3 tools/agent_driver.py status                       # 队列+锁状态
+python3 tools/agent_driver.py retry-failed                 # 重试失败任务
+python3 tools/agent_driver.py run-one --code 300573 --mode full   # 单只完整重研
+python3 tools/agent_driver.py run-one --code 300573 --mode lite   # 单只速评
+# 回填工具（agent_driver 内部自动调用，也可手工）
+python3 tools/report_sync.py --code 600036                # 单只报告→groups/pool
+python3 tools/report_sync.py --all                        # 全量回填
+python3 tools/report_sync.py --list-missing               # 缺报告/解析失败清单
 
 # 轮动（batch2 内容，约半月/一月）
 python3 tools/pool_rotator.py --monthly-rotate  # 观察↔放弃 联动轮动
@@ -103,8 +116,12 @@ python3 tools/position_manager.py --report      # 持仓月报
 | `data/monitor/portfolio_groups.json` | 四组分类（buy/watch/reserve/drop，含建仓价/涨幅中位数） |
 | `data/positions/kelly_basis.json` | 凯利冻结基准（G_med/σ²，月度刷新） |
 | `data/positions/positions.json` | 持仓记录（成本/股数/买卖历史） |
+| `data/positions/portfolio_cash.json` | 资金池总额（自动买入金额基准，当前 100 万） |
 | `data/monitor/rotation_state.json` | 轮动状态+深度复核登记 |
+| `data/monitor/agent_queue.json` | Agent 任务队列 |
+| `data/monitor/agent.lock` | Agent 队列互斥锁 |
 | `reports/monitor/daily/` | 每日监控日报 |
+| `reports/monitor/agent_runs/` | 每次 codebuddy 调用日志 |
 | `reports/positions/` | 持仓月报 |
 
 ## 七、已知盲点与设计说明
@@ -117,4 +134,4 @@ python3 tools/position_manager.py --report      # 持仓月报
 6. **σ² 用池方差**：保守统一；个股有足够历史时可用个股 σ² 替代（pool_kelly 预留）
 7. **轮动与触发独立**：轮动管"池构成"（半月/月），价格触发管"买入时机"（每日）——两条时间轴
 
-> 更新：2026-08-12 | 买入组：润贝航科/兴齐眼药/西藏药业（深度回调，买入前需复核）
+> 更新：2026-08-13（v6：定时任务驱动 Agent 全自动） | 买入组：润贝航科/兴齐眼药/西藏药业

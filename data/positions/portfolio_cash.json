@@ -1,0 +1,7 @@
+{
+ "total_cash": 1000000,
+ "max_position_pct": 12.0,
+ "min_lot": 100,
+ "updated": "2026-08-13",
+ "note": "自动买入金额基准；凯利建议仓位 % × total_cash = 可用金额"
+}
