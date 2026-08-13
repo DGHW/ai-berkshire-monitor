@@ -146,6 +146,9 @@ def cmd_buy(code: str, shares: int, price: float, dry_run: bool):
         return 0
     args = ["--code", futu_code, "--side", "BUY", "--quantity", str(shares),
             "--price", str(price), "--trd-env", "SIMULATE", "--remark", "ai-berkshire-auto"]
+    acc_id = cfg.get("acc_id")
+    if acc_id:
+        args += ["--acc-id", str(acc_id)]
     r = run_skill_script("place_order.py", args)
     if r["ok"]:
         result = r["json"] or {}
@@ -158,8 +161,14 @@ def cmd_buy(code: str, shares: int, price: float, dry_run: bool):
     return 0
 
 
+def _acc_id_args():
+    cfg = load_config()
+    acc_id = cfg.get("acc_id")
+    return ["--acc-id", str(acc_id)] if acc_id else []
+
+
 def cmd_positions():
-    r = run_skill_script("get_portfolio.py", [])
+    r = run_skill_script("get_portfolio.py", _acc_id_args())
     if r["ok"] and r["json"]:
         print(json.dumps(r["json"], ensure_ascii=False, indent=1))
     else:
@@ -168,16 +177,12 @@ def cmd_positions():
 
 
 def cmd_cash():
-    r = run_skill_script("get_acc_cash_flow.py", [])
+    # 模拟账户不支持现金流水；get_portfolio 返回 funds（total_assets/cash/avl）即资金快照
+    r = run_skill_script("get_portfolio.py", _acc_id_args())
     if r["ok"] and r["json"]:
-        print(json.dumps(r["json"], ensure_ascii=False, indent=1))
+        print(json.dumps(r["json"].get("funds", r["json"]), ensure_ascii=False, indent=1))
     else:
-        # 兜底用 get_accounts 的资产信息
-        r2 = run_skill_script("get_accounts.py", [])
-        if r2["ok"]:
-            print(json.dumps(r2["json"], ensure_ascii=False, indent=1))
-        else:
-            print(json.dumps({"ok": False, "error": r2.get("stderr", r2.get("error", ""))[-400:]}))
+        print(json.dumps({"ok": False, "error": r.get("stderr", r.get("error", ""))[-400:]}))
     return 0
 
 
