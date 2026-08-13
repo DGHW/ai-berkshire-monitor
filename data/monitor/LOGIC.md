@@ -93,6 +93,7 @@ WATCH(观察) → 现价进入击球区[建仓价×0.85, 建仓价]
 | `data/positions/kelly_basis.json` | 凯利冻结基准（G_med/σ²） |
 | `data/positions/positions.json` | 持仓（成本/股数/gain_med/买卖历史） |
 | `data/positions/portfolio_cash.json` | 资金池总额（自动买入金额基准） |
+| `data/positions/futu_config.json` | 富途模拟盘执行层开关（enabled/dry_run，默认 dry_run=true） |
 | `data/monitor/rotation_state.json` | 轮动状态 + 深度复核登记 |
 | `data/monitor/agent_queue.json` | Agent 任务队列（pending/in_progress/done/failed/quarantined） |
 | `data/monitor/agent.lock` | Agent 队列互斥锁（O_EXCL + 24h 陈旧抢占） |
@@ -146,6 +147,17 @@ schtasks（Windows 计划任务）
 ### E. 自动买入金额基准
 
 `data/positions/portfolio_cash.json`：`total_cash` = 资金池总额（当前 100 万）。单票金额 = 凯利仓位 % × total_cash，硬顶不超 total_cash。
+
+### F. 富途模拟盘执行层（双轨）
+
+自动买入时**双轨执行**：① 本地记账（position_manager --add，唯一决策源）② 富途 OpenD 模拟盘真实撮合下单（`tools/futu_bridge.py`，验证价格与执行）。
+
+- 交易环境**硬编码 SIMULATE**（模拟盘），代码无 REAL 路径；实盘需富途客户端手动操作
+- **模拟盘失败绝不影响记账与状态机**（futu 仅验证层，失败只记 pool.note 告警）
+- `data/positions/futu_config.json`：`enabled` 总开关、`dry_run` 默认 true（验证通过后改 false 真下单）
+- 代码映射：`6xx/688→SH.`、`0/2/3→SZ.`、`4/8/920→BJ.`（北交所模拟盘不支持则跳过）
+- 前置：OpenD 已安装并登录富途账号（端口 11111），futu-api SDK ≥10.4.6408
+- 官方技能：`~/.codebuddy/skills/futuapi`（/futuapi 自然语言行情交易，默认模拟环境）
 
 ---
 

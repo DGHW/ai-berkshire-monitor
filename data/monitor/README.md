@@ -96,6 +96,12 @@ python3 tools/report_sync.py --code 600036                # 单只报告→group
 python3 tools/report_sync.py --all                        # 全量回填
 python3 tools/report_sync.py --list-missing               # 缺报告/解析失败清单
 
+# 富途模拟盘执行层（双轨：记账+模拟盘）
+python3 tools/futu_bridge.py --check                      # 环境检查（SDK/OpenD/账户）
+python3 tools/futu_bridge.py --buy 000001 100 11.0        # 模拟盘限价买入（futu_config.dry_run 控制）
+python3 tools/futu_bridge.py --positions                  # 查模拟盘持仓
+python3 tools/futu_bridge.py --cash                       # 查模拟盘资金
+
 # 轮动（batch2 内容，约半月/一月）
 python3 tools/pool_rotator.py --monthly-rotate  # 观察↔放弃 联动轮动
 python3 tools/pool_kelly.py --refresh-basis     # 刷新凯利基准

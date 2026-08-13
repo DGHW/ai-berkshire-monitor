@@ -1,0 +1,6 @@
+{
+ "enabled": true,
+ "dry_run": true,
+ "updated": "2026-08-13",
+ "note": "富途模拟盘执行层开关。dry_run=true 时 agent_driver 只打印将下单参数不真下单；验证通过后改为 false。交易环境固定 SIMULATE（模拟盘），无 REAL 选项。"
+}

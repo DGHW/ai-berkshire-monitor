@@ -43,6 +43,7 @@ GROUPS_FILE = os.path.join(REPO_ROOT, "data", "monitor", "portfolio_groups.json"
 POOL_FILE = os.path.join(REPO_ROOT, "data", "monitor", "pool.json")
 ROTATION_STATE = os.path.join(REPO_ROOT, "data", "monitor", "rotation_state.json")
 CASH_FILE = os.path.join(REPO_ROOT, "data", "positions", "portfolio_cash.json")
+FUTU_CONFIG_FILE = os.path.join(REPO_ROOT, "data", "positions", "futu_config.json")
 AGENT_LOG_DIR = os.path.join(REPO_ROOT, "reports", "monitor", "agent_runs")
 
 LOCK_STALE_SECONDS = 24 * 3600  # 锁 24h 陈旧可抢占
@@ -356,7 +357,7 @@ def execute_buy(code: str, old_gain: float, dry_run: bool) -> dict:
     if dry_run:
         return {"bought": False, "dry_run": True, "reason": "dry-run",
                 "shares": shares, "price": price, "kelly_pct": pct}
-    # 执行买入
+    # 执行买入（记账）
     subprocess.run([sys.executable, os.path.join(REPO_ROOT, "tools", "position_manager.py"),
                     "--add", code, str(shares), str(price),
                     "--reason", f"auto-review-pass:gain{gain}%"], cwd=REPO_ROOT)
@@ -373,8 +374,35 @@ def execute_buy(code: str, old_gain: float, dry_run: bool) -> dict:
         "status": "DONE", "verdict": "PASS", "gain_med": gain,
         "shares": shares, "price": price, "source": "agent_driver"})
     save_json(ROTATION_STATE, state)
+
+    # 双轨：富途模拟盘下单（失败仅告警，绝不影响记账与状态机）
+    futu_res = {"ok": False, "reason": "futu 未启用"}
+    try:
+        futu_cfg = load_json(FUTU_CONFIG_FILE)
+        if futu_cfg.get("enabled", True):
+            from futu_bridge import cmd_buy as futu_cmd_buy  # 复用同模块逻辑
+            # 直接调用封装函数（dry_run 由 futu_config 控制）
+            import io, contextlib
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                futu_cmd_buy(code, shares, price, dry_run=False)
+            out = buf.getvalue().strip()
+            try:
+                futu_res = json.loads(out.splitlines()[-1])
+            except Exception:
+                futu_res = {"ok": False, "reason": out[-200:]}
+            log(f"📡 富途模拟盘: {out[:300]}")
+    except Exception as e:
+        futu_res = {"ok": False, "reason": f"futu_bridge 调用异常: {e}"}
+        log(f"⚠️ 富途模拟盘异常（不影响记账）: {e}")
+    # 把模拟盘结果附加到 pool note
+    if code in pool.get("stocks", {}):
+        futu_note = "futu✅" if futu_res.get("ok") else f"futu⏸({futu_res.get('reason','?')})"
+        pool["stocks"][code]["note"] = f"{pool['stocks'][code].get('note','')}; {futu_note}"
+        save_json(POOL_FILE, pool)
+
     return {"bought": True, "shares": shares, "price": price, "kelly_pct": pct,
-            "gain_med": gain}
+            "gain_med": gain, "futu": futu_res}
 
 
 # ---------------------------------------------------------------------------
