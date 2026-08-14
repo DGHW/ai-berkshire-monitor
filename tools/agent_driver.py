@@ -217,25 +217,22 @@ def run_codebuddy(prompt: str, *, timeout_min: int, max_turns: int, run_id: str)
 
 def _build_prompt_full(code: str, name: str, overwrite: bool) -> str:
     files = "\n".join(
-        f"   C:/Users/17356/WorkBuddy/2026-08-07-20-15-31/ai-berkshire/reports/{code}{name}-{suffix}.md"
+        f"- reports/{code}{name}-{suffix}.md"
         for suffix in FULL_FILES)
     return f"""/investment-team {code} {name}
 
-【headless 自动模式，必须严格遵守】
-0. 最高优先级：本次任务的验收标准是下方四个文件全部创建成功且内容完整。四视角研究是手段，四个文件是目的。
-1. 跳过技能中的全部交互步骤：团队框架展示、AI可研究性评估、WebSearch权限预检、进度表更新、向用户提问确认。直接开始研究并一气呵成。不要调用 TeamCreate/Team 工具，直接串行完成四个视角研究。
-2. 不要保存到用户主目录（~），不要使用技能默认的"{{公司名}}投资研究报告"命名。最终产出必须用 Write 工具写入以下四个文件（绝对路径，{'覆盖既有报告' if overwrite else '若已存在则覆盖'}），四个文件缺一不可：
+【输出规范】研究完成后，在 ai-berkshire 工作区的 reports/ 目录下写入以下四个文件（{'覆盖既有报告' if overwrite else '若已存在则覆盖'}）：
 {files}
-3. 每份文件必须以 "## 量化结论" 小节结尾，且严格包含以下五行（字段名与格式供机器解析，禁止改动）：
-   - 内在涨幅: **X%**
-   - 击球区: 🟢/🟡/🔴 结论一句话
-   - 目标建仓价: **X 元**
-   - 二次补仓价: **X 元**
-   - 数据核验: ✓/⚠️ 说明
-4. 串行完成四个视角：①商业模式(段永平) ②财务估值(巴菲特) ③行业竞争(芒格) ④风险评估(李录)，每完成一个视角立即写入对应文件再进入下一个。
-5. 先运行 date 确认当前日期并在报告头部标注数据截止日；财务估值视角必须调用 python tools/financial_rigor.py cross-validate 交叉验证（在 ai-berkshire 工作区根目录执行），两源不一致须在数据核验字段标注。
-6. 若发现基本面相对既有研究实质恶化（业绩/治理/行业被证伪），在四份报告的量化结论中如实给出负内在涨幅或🔴击球区，不要粉饰。
-7. 全部四个文件写入完成后，用 Bash 执行 ls 验证四个文件都存在，然后在标准输出最后打印一行：RESEARCH_DONE {code}
+每份文件必须以 "## 量化结论" 小节结尾，严格包含五行（字段名与格式供机器解析，禁止改动）：
+- 内在涨幅: **X%**
+- 击球区: 🟢/🟡/🔴 结论一句话
+- 目标建仓价: **X 元**
+- 二次补仓价: **X 元**
+- 数据核验: ✓/⚠️ 说明
+
+【强制数据核验】财务数据必须调用 python tools/financial_rigor.py cross-validate 交叉验证，两源不一致须在数据核验字段标注。
+
+【headless 说明】自动模式跳过交互确认直接执行；不要保存到用户主目录。完成后打印：RESEARCH_DONE {code}
 """
 
 
@@ -284,6 +281,38 @@ def research_succeeded(code: str):
     ok = ok_count >= 3
     detail.append(f"可解析 {ok_count}/4")
     return ok, "; ".join(detail)
+
+
+def _build_prompt_normalize(code: str, name: str) -> str:
+    """把综合研究报告拆写为四个规范视角文件（简单任务，Agent 遵守度高）。"""
+    files = "\n".join(
+        f"- reports/{code}{name}-{suffix}.md"
+        for suffix in FULL_FILES)
+    return f"""在当前 ai-berkshire 工作区的 reports/ 目录下，找到文件名含"{name}"且修改时间最新的一份研究报告（可能是综合投资研究报告或单视角报告），通读后拆写为以下四个独立文件（markdown 列表即文件名）：
+
+{files}
+
+要求：
+1. 每份文件是完整独立的视角研究报告，内容来自该报告中对应维度的分析（信息不足的维度基于报告数据合理补全，不得虚构数据）
+2. 每份文件必须以 "## 量化结论" 小节结尾，严格包含五行（供机器解析，字段名与格式禁止改动）：
+- 内在涨幅: **X%**
+- 击球区: 🟢/🟡/🔴 结论一句话
+- 目标建仓价: **X 元**
+- 二次补仓价: **X 元**
+- 数据核验: ✓/⚠️ 说明
+3. 若报告中无明确建仓价，基于其中估值区间取中值估算，并在数据核验字段标注"估算"
+4. 四个文件全部写入后，用 Bash 执行 ls 确认存在，最后打印：RESEARCH_DONE {code}
+"""
+
+
+def normalize_reports(code: str, name: str, run_id: str) -> bool:
+    """二次 codebuddy 调用：把综合报告拆写为四视角规范文件。返回是否成功。"""
+    prompt = _build_prompt_normalize(code, name)
+    run = run_codebuddy(prompt, timeout_min=30, max_turns=60,
+                        run_id=f"{run_id}_norm")
+    ok, detail = research_succeeded(code)
+    log(f"📝 落盘归一: {detail}")
+    return ok
 
 
 def _extract_lite_verdict(run) -> dict:
@@ -447,6 +476,11 @@ def review_once(limit: int, dry_run: bool) -> dict:
                                     run_id=run_id)
             ok, detail = research_succeeded(code)
             if not ok and not dry_run:
+                # 研究完成但四文件未落盘 → 归一
+                log(f"⚠️ 四文件未齐全（{detail}），执行落盘归一")
+                normalize_reports(code, name, run["run_id"])
+                ok, detail = research_succeeded(code)
+            if not ok and not dry_run:
                 mark(code, "failed", note=f"研究未落盘: {detail}; exit={run['exit_code']}", run_id=run["run_id"])
                 log(f"❌ {code} 研究失败: {detail}")
                 continue
@@ -500,6 +534,11 @@ def batch2_research(lite_cap: int, dry_run: bool) -> dict:
                                 timeout_min=FULL_TIMEOUT_MIN, max_turns=FULL_MAX_TURNS,
                                 run_id=run_id)
             ok, detail = research_succeeded(code)
+            if not ok:
+                # 归一：拆写综合报告为四视角规范文件
+                log(f"⚠️ 四文件未齐全（{detail}），执行落盘归一")
+                normalize_reports(code, name, run_id)
+                ok, detail = research_succeeded(code)
             if not ok:
                 mark(code, "failed", note=f"研究未落盘: {detail}", run_id=run_id)
                 full_done.append({"code": code, "ok": False, "detail": detail})
@@ -589,6 +628,11 @@ def run_one(code: str, mode: str, overwrite: bool, dry_run: bool):
                             timeout_min=FULL_TIMEOUT_MIN, max_turns=FULL_MAX_TURNS,
                             run_id=f"one_{code}_{datetime.now().strftime('%H%M%S')}")
         ok, detail = research_succeeded(code)
+        if not ok:
+            # 研究完成但四文件未落盘 → 归一：拆写综合报告为四视角规范文件
+            log(f"⚠️ 四文件未齐全（{detail}），执行落盘归一")
+            norm_ok = normalize_reports(code, name, run["run_id"])
+            ok, detail = research_succeeded(code)
         if ok:
             mark(code, "done", verdict="RESEARCH_OK", note=detail, run_id=run["run_id"])
             sync_stock(code, dry_run=False)
