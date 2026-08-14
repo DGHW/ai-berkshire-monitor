@@ -22,15 +22,15 @@
    "name_cn": "兴齐眼药",
    "group": "BUY",
    "buy_zone": {
-    "low": 34.0,
-    "high": 40.0
+    "low": 41.65,
+    "high": 49.0
    },
-   "entry_price": 40.0,
+   "entry_price": 49.0,
    "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300573兴齐眼药-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "BOUGHT",
-   "note": "手动建仓 2800股@42.19 (富途order 8720602, 凯利12%)",
+   "note": "手动建仓 2800股@42.19 (富途order 8720602, 凯利12%); 锚定防护:建仓价49.0→40.0被锁定回49.0",
    "triggered_since": null,
    "last_check": "2026-08-12",
    "last_price": 42.19,

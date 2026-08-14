@@ -232,7 +232,10 @@ def _build_prompt_full(code: str, name: str, overwrite: bool) -> str:
 
 【强制数据核验】财务数据必须调用 python tools/financial_rigor.py cross-validate 交叉验证，两源不一致须在数据核验字段标注。
 
-【反锚定效应（硬约束）】建仓价必须基于独立估值推导（三情景估值/股息安全垫/合理PB等），严禁锚定当前股价。若你的建仓价与现价差距<10%，必须自问：这是估值结论还是锚定效应？建仓价应与现价无关——现价翻倍或腰斩，你的建仓价都应不变。
+【反锚定效应（硬约束）】研究前必须先读 reports/ 下该股票的旧四视角报告（若存在），对比基本面。建仓价是内在价值的映射，只随基本面变动：
+- 若基本面（业绩/行业地位/治理/竞争格局）无实质变化，建仓价必须沿用旧值，禁止下调（允许 ±5% 以内微调并在数据核验字段说明）
+- 只有基本面实质恶化（业绩下滑/行业证伪/治理爆雷）才允许下调建仓价，且必须在报告中逐条列出恶化证据
+- 禁止以"股价下跌"作为下调建仓价的理由；现价变化与建仓价无关
 
 【headless 说明】自动模式跳过交互确认直接执行；不要保存到用户主目录。完成后打印：RESEARCH_DONE {code}
 """
@@ -315,6 +318,57 @@ def normalize_reports(code: str, name: str, run_id: str) -> bool:
     ok, detail = research_succeeded(code)
     log(f"📝 落盘归一: {detail}")
     return ok
+
+
+# ---------------------------------------------------------------------------
+# 建仓价漂移检测（反锚定机械层）
+# ---------------------------------------------------------------------------
+def get_group_entry(code: str):
+    """读取 code 在 groups 中的旧 entry_med / gain_med。"""
+    groups = load_json(GROUPS_FILE)
+    for g in ("buy", "watch", "reserve", "drop"):
+        if code in groups.get(g, {}):
+            s = groups[g][code]
+            return s.get("entry_med"), s.get("gain_med")
+    return None, None
+
+
+def lock_entry_price(code: str, old_entry: float, old_gain: float, new_entry: float, new_gain: float):
+    """建仓价漂移检测与锁定。
+    判据（用户定义）：基本面无恶化（新 gain_med ≥ 旧 gain_med − 10pct）但建仓价下调 >15% → 锚定嫌疑。
+    触发时：groups/pool 的建仓价锁回旧值，仅保留新 gain_med，并返回警告信息。
+    """
+    if old_entry is None or old_gain is None or new_entry is None or new_gain is None:
+        return None
+    drop_pct = (old_entry - new_entry) / old_entry * 100
+    if drop_pct <= 15:
+        return None
+    if new_gain < old_gain - 10:
+        return None  # 涨幅实质恶化 = 基本面恶化，允许下调
+    # 锚定嫌疑：锁旧建仓价
+    groups = load_json(GROUPS_FILE)
+    for g in ("buy", "watch", "reserve", "drop"):
+        if code in groups.get(g, {}):
+            s = groups[g][code]
+            s["entry_med"] = old_entry
+            if s.get("entry_min") and s["entry_min"] > old_entry:
+                s["entry_min"] = old_entry
+            groups["updated"] = datetime.now().strftime("%Y-%m-%d")
+            save_json(GROUPS_FILE, groups)
+            break
+    pool = load_json(POOL_FILE)
+    if code in pool.get("stocks", {}):
+        p = pool["stocks"][code]
+        p["entry_price"] = old_entry
+        p["buy_zone"] = {"low": round(old_entry * 0.85, 2), "high": old_entry}
+        p["note"] = (p.get("note", "") +
+                     f"; 锚定防护:建仓价{old_entry}→{new_entry}被锁定回{old_entry}").strip("; ")
+        pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+        save_json(POOL_FILE, pool)
+    warn = (f"🚨 锚定防护触发：建仓价 {old_entry}→{new_entry}（下调 {drop_pct:.0f}%）"
+            f"但涨幅 {old_gain}→{new_gain} 未恶化>10pct，基本面无变化证据，建仓价锁定回 {old_entry}")
+    log(warn)
+    return warn
 
 
 def _extract_lite_verdict(run) -> dict:
@@ -491,7 +545,11 @@ def review_once(limit: int, dry_run: bool) -> dict:
             else:
                 mark(code, "done", verdict="RESEARCH_OK", note=detail, run_id=run["run_id"])
             # 回填（dry-run 不写文件）
+            old_entry, old_gain_prev = get_group_entry(code)
             sync_stock(code, dry_run=dry_run)
+            # 反锚定漂移检测
+            new_entry, new_gain = get_group_entry(code)
+            lock_entry_price(code, old_entry, old_gain_prev, new_entry, new_gain)
             # 六道闸门自动买入
             res = execute_buy(code, old_gain, dry_run=dry_run)
             reviewed.append({"code": code, "research": detail, "buy": res})
@@ -546,7 +604,11 @@ def batch2_research(lite_cap: int, dry_run: bool) -> dict:
                 full_done.append({"code": code, "ok": False, "detail": detail})
                 continue
             mark(code, "done", verdict="RESEARCH_OK", note=detail, run_id=run_id)
+            old_entry, old_gain_prev = get_group_entry(code)
             sync_stock(code, dry_run=False)
+            # 反锚定漂移检测
+            new_entry, new_gain = get_group_entry(code)
+            lock_entry_price(code, old_entry, old_gain_prev, new_entry, new_gain)
             full_done.append({"code": code, "ok": True, "detail": detail})
             log(f"✅ 边界标的 {code} {name} 重研完成")
 
@@ -637,7 +699,11 @@ def run_one(code: str, mode: str, overwrite: bool, dry_run: bool):
             ok, detail = research_succeeded(code)
         if ok:
             mark(code, "done", verdict="RESEARCH_OK", note=detail, run_id=run["run_id"])
+            old_entry, old_gain = get_group_entry(code)
             sync_stock(code, dry_run=False)
+            # 反锚定漂移检测：基本面无恶化但建仓价大幅下调 → 锁旧价
+            new_entry, new_gain = get_group_entry(code)
+            lock_entry_price(code, old_entry, old_gain, new_entry, new_gain)
             log(f"✅ {code} 重研成功并回填: {detail}")
         else:
             mark(code, "failed", note=detail, run_id=run["run_id"])
