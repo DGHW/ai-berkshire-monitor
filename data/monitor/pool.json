@@ -48,8 +48,8 @@
    "thesis_file": null,
    "is_small_cap": false,
    "trigger_confirm_days": 2,
-   "status": "TRIGGERED",
-   "note": "达到建仓价，可分批买入",
+   "status": "BOUGHT",
+   "note": "手动建仓 3000股@38.94 (富途order 8721752, 凯利12%, 取消2天确认)",
    "triggered_since": "2026-08-14",
    "last_check": "2026-08-14",
    "last_price": 39.38,
@@ -809,10 +809,10 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-12",
-   "last_price": 20.47,
-   "last_price_date": "2026-08-12",
-   "need_news_pulse": true
+   "last_check": "2026-08-14",
+   "last_price": 19.7,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
   },
   "600415": {
    "name_cn": "小商品城",
@@ -1726,7 +1726,11 @@
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
-   "note": "轮动补位自drop组"
+   "note": "轮动补位自drop组",
+   "last_check": "2026-08-14",
+   "last_price": 9.42,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
   }
  },
  "updated": "2026-08-14"

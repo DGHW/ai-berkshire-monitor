@@ -61,25 +61,12 @@ def advance_state(stock: dict, price: float) -> str:
     low, high = zone.get("low"), zone.get("high")
     in_zone = low is not None and high is not None and low <= price <= high
     status = stock.get("status", "WATCHING")
-    confirm_days = stock.get("trigger_confirm_days", 2)
-    # 小盘股确认天数翻倍（在写入 pool 时已设，这里不重复翻）
-    if stock.get("is_small_cap"):
-        confirm_days = max(confirm_days, 3)
 
     if in_zone:
-        if status == "WATCHING":
+        # v7 规则变更（2026-08-14 用户确认）：取消 2 天连续确认，首次触发直接 REVIEW_DUE
+        if status in ("WATCHING", "TRIGGERED"):
             stock["triggered_since"] = datetime.now().strftime("%Y-%m-%d")
-            return "TRIGGERED"
-        if status == "TRIGGERED":
-            start = stock.get("triggered_since")
-            if start:
-                try:
-                    days = (datetime.now() - datetime.strptime(start, "%Y-%m-%d")).days
-                    if days >= confirm_days - 1:
-                        return "REVIEW_DUE"
-                except ValueError:
-                    pass
-            return "TRIGGERED"
+            return "REVIEW_DUE"
         if status == "REVIEW_DUE":
             return "REVIEW_DUE"
         return status

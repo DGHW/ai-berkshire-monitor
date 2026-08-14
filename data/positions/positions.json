@@ -11,6 +11,22 @@
     "sell_date": null,
     "note": "",
     "highest_price": 42.19,
-    "gain_med": 85.0
+    "gain_med": 85.0,
+    "last_price": 41.4,
+    "last_check": "2026-08-14"
+  },
+  "600211": {
+    "name_cn": "西藏药业",
+    "shares": 3000,
+    "avg_cost": 38.94,
+    "total_cost": 116820.0,
+    "buy_date": "2026-08-14",
+    "last_add": "2026-08-14",
+    "reason": "manual-futu-order:gain39%",
+    "sell_reason": null,
+    "sell_date": null,
+    "note": "",
+    "highest_price": 38.94,
+    "gain_med": 39.0
   }
 }

@@ -177,10 +177,7 @@ schtasks（Windows 计划任务）
 ### 买卖闭环（日频 · StockMonitorDaily 15:05）
 
 ```
-价格扫描(price_monitor) ── 现价入击球区 ──→ 首日 TRIGGERED 登记
-        │                                        │ 连续2日确认
-        │                                        ▼
-        │                               REVIEW_DUE
+价格扫描(price_monitor) ── 现价入击球区 ──→ 直接 REVIEW_DUE（v7:取消2天确认）
         │                                        │
         │                      agent_driver review --limit 1（自动）
         │                                        │
