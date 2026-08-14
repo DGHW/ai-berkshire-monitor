@@ -4,11 +4,11 @@
    "name_cn": "润贝航科",
    "group": "BUY",
    "buy_zone": {
-    "low": 27.62,
-    "high": 32.5
+    "low": 25.5,
+    "high": 30.0
    },
-   "entry_price": 32.5,
-   "thesis_file": "reports/001316润贝航科-综合研判.md",
+   "entry_price": 30.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\001316润贝航科-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -22,10 +22,10 @@
    "name_cn": "兴齐眼药",
    "group": "BUY",
    "buy_zone": {
-    "low": 41.65,
-    "high": 49.0
+    "low": 34.0,
+    "high": 40.0
    },
-   "entry_price": 49.0,
+   "entry_price": 40.0,
    "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300573兴齐眼药-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
@@ -61,10 +61,10 @@
    "group": "WATCH",
    "buy_zone": {
     "low": 8.37,
-    "high": 9.85
+    "high": 9.850000000000001
    },
-   "entry_price": 9.85,
-   "thesis_file": "reports/000001平安银行-风险评估-李录视角.md",
+   "entry_price": 9.850000000000001,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000001平安银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -78,11 +78,11 @@
    "name_cn": "美的集团",
    "group": "WATCH",
    "buy_zone": {
-    "low": 64.17,
-    "high": 75.5
+    "low": 64.6,
+    "high": 76.0
    },
-   "entry_price": 75.5,
-   "thesis_file": "reports/000333美的集团-风险评估-李录视角.md",
+   "entry_price": 76.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000333美的集团-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -100,7 +100,7 @@
     "high": 45.5
    },
    "entry_price": 45.5,
-   "thesis_file": "reports/000538云南白药-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000538云南白药-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -118,7 +118,7 @@
     "high": 6.55
    },
    "entry_price": 6.55,
-   "thesis_file": "reports/000598兴蓉环境-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000598兴蓉环境-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -132,11 +132,11 @@
    "name_cn": "山推股份",
    "group": "WATCH",
    "buy_zone": {
-    "low": 8.42,
-    "high": 9.9
+    "low": 8.33,
+    "high": 9.8
    },
-   "entry_price": 9.9,
-   "thesis_file": "reports/000680山推股份-风险评估-李录视角.md",
+   "entry_price": 9.8,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000680山推股份-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -154,7 +154,7 @@
     "high": 10.65
    },
    "entry_price": 10.65,
-   "thesis_file": "reports/000682东方电子-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000682东方电子-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -172,7 +172,7 @@
     "high": 10.0
    },
    "entry_price": 10.0,
-   "thesis_file": "reports/000685中山公用-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000685中山公用-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -190,7 +190,7 @@
     "high": 8.25
    },
    "entry_price": 8.25,
-   "thesis_file": "reports/000783长江证券-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000783长江证券-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -208,7 +208,7 @@
     "high": 11.5
    },
    "entry_price": 11.5,
-   "thesis_file": "reports/000885城发环境-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000885城发环境-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -222,11 +222,11 @@
    "name_cn": "赣能股份",
    "group": "WATCH",
    "buy_zone": {
-    "low": 8.2,
-    "high": 9.65
+    "low": 8.07,
+    "high": 9.5
    },
-   "entry_price": 9.65,
-   "thesis_file": "reports/000899赣能股份-风险评估-李录视角.md",
+   "entry_price": 9.5,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000899赣能股份-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -244,7 +244,7 @@
     "high": 12.5
    },
    "entry_price": 12.5,
-   "thesis_file": "reports/000902新洋丰-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000902新洋丰-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -262,7 +262,7 @@
     "high": 26.75
    },
    "entry_price": 26.75,
-   "thesis_file": "reports/000963华东医药-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000963华东医药-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -280,7 +280,7 @@
     "high": 23.0
    },
    "entry_price": 23.0,
-   "thesis_file": "reports/000999华润三九-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\000999华润三九-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -298,7 +298,7 @@
     "high": 9.4
    },
    "entry_price": 9.4,
-   "thesis_file": "reports/001286陕西能源-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\001286陕西能源-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -316,7 +316,7 @@
     "high": 28.25
    },
    "entry_price": 28.25,
-   "thesis_file": "reports/001332锡装股份-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\001332锡装股份-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -330,11 +330,11 @@
    "name_cn": "宁波银行",
    "group": "WATCH",
    "buy_zone": {
-    "low": 23.8,
-    "high": 28.0
+    "low": 24.01,
+    "high": 28.25
    },
-   "entry_price": 28.0,
-   "thesis_file": "reports/002142宁波银行-风险评估-李录视角.md",
+   "entry_price": 28.25,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002142宁波银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -348,11 +348,11 @@
    "name_cn": "恩华药业",
    "group": "WATCH",
    "buy_zone": {
-    "low": 17.21,
-    "high": 20.25
+    "low": 17.43,
+    "high": 20.5
    },
-   "entry_price": 20.25,
-   "thesis_file": "reports/002262恩华药业-综合研判.md",
+   "entry_price": 20.5,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002262恩华药业-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -366,11 +366,11 @@
    "name_cn": "桂林三金",
    "group": "WATCH",
    "buy_zone": {
-    "low": 10.37,
-    "high": 12.2
+    "low": 10.2,
+    "high": 12.0
    },
-   "entry_price": 12.2,
-   "thesis_file": "reports/002275桂林三金-综合研判.md",
+   "entry_price": 12.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002275桂林三金-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -388,7 +388,7 @@
     "high": 34.5
    },
    "entry_price": 34.5,
-   "thesis_file": "reports/002415海康威视-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002415海康威视-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -406,7 +406,7 @@
     "high": 10.5
    },
    "entry_price": 10.5,
-   "thesis_file": "reports/002507涪陵榨菜-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002507涪陵榨菜-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -424,7 +424,7 @@
     "high": 8.15
    },
    "entry_price": 8.15,
-   "thesis_file": "reports/002588史丹利-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002588史丹利-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -442,7 +442,7 @@
     "high": 16.75
    },
    "entry_price": 16.75,
-   "thesis_file": "reports/002833弘亚数控-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002833弘亚数控-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -460,7 +460,7 @@
     "high": 15.5
    },
    "entry_price": 15.5,
-   "thesis_file": "reports/002884凌霄泵业-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002884凌霄泵业-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -478,7 +478,7 @@
     "high": 15.0
    },
    "entry_price": 15.0,
-   "thesis_file": "reports/002946新乳业-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002946新乳业-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -496,7 +496,7 @@
     "high": 51.0
    },
    "entry_price": 51.0,
-   "thesis_file": "reports/002947恒铭达-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002947恒铭达-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -514,7 +514,7 @@
     "high": 5.2
    },
    "entry_price": 5.2,
-   "thesis_file": "reports/002948青岛银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002948青岛银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -532,7 +532,7 @@
     "high": 7.65
    },
    "entry_price": 7.65,
-   "thesis_file": "reports/002966苏州银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002966苏州银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -550,7 +550,7 @@
     "high": 39.0
    },
    "entry_price": 39.0,
-   "thesis_file": "reports/002991甘源食品-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\002991甘源食品-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -568,7 +568,7 @@
     "high": 13.0
    },
    "entry_price": 13.0,
-   "thesis_file": "reports/300012华测检测-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300012华测检测-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -586,7 +586,7 @@
     "high": 11.15
    },
    "entry_price": 11.15,
-   "thesis_file": "reports/300206理邦仪器-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300206理邦仪器-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -604,7 +604,7 @@
     "high": 19.5
    },
    "entry_price": 19.5,
-   "thesis_file": "reports/300415伊之密-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300415伊之密-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -622,7 +622,7 @@
     "high": 8.55
    },
    "entry_price": 8.55,
-   "thesis_file": "reports/300453三鑫医疗-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300453三鑫医疗-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -640,7 +640,7 @@
     "high": 59.5
    },
    "entry_price": 59.5,
-   "thesis_file": "reports/300487蓝晓科技-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300487蓝晓科技-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -658,7 +658,7 @@
     "high": 14.5
    },
    "entry_price": 14.5,
-   "thesis_file": "reports/300515三德科技-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300515三德科技-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -676,7 +676,7 @@
     "high": 36.5
    },
    "entry_price": 36.5,
-   "thesis_file": "reports/300628亿联网络-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300628亿联网络-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -690,11 +690,11 @@
    "name_cn": "安克创新",
    "group": "WATCH",
    "buy_zone": {
-    "low": 95.62,
-    "high": 112.5
+    "low": 93.5,
+    "high": 110.0
    },
-   "entry_price": 112.5,
-   "thesis_file": "reports/300866安克创新-综合研判.md",
+   "entry_price": 110.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300866安克创新-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -708,11 +708,11 @@
    "name_cn": "涛涛车业",
    "group": "WATCH",
    "buy_zone": {
-    "low": 189.12,
-    "high": 222.5
+    "low": 187.0,
+    "high": 220.0
    },
-   "entry_price": 222.5,
-   "thesis_file": "reports/301345涛涛车业-综合研判.md",
+   "entry_price": 220.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\301345涛涛车业-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -726,11 +726,11 @@
    "name_cn": "上港集团",
    "group": "WATCH",
    "buy_zone": {
-    "low": 4.33,
-    "high": 5.1
+    "low": 4.25,
+    "high": 5.0
    },
-   "entry_price": 5.1,
-   "thesis_file": "reports/600018上港集团-风险评估-李录视角.md",
+   "entry_price": 5.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600018上港集团-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "TRIGGERED",
@@ -749,7 +749,7 @@
     "high": 24.5
    },
    "entry_price": 24.5,
-   "thesis_file": "reports/600030中信证券-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600030中信证券-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -767,7 +767,7 @@
     "high": 38.5
    },
    "entry_price": 38.5,
-   "thesis_file": "reports/600036招商银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600036招商银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "TRIGGERED",
@@ -786,7 +786,7 @@
     "high": 50.0
    },
    "entry_price": 50.0,
-   "thesis_file": "reports/600276恒瑞医药-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600276恒瑞医药-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -800,11 +800,11 @@
    "name_cn": "羚锐制药",
    "group": "WATCH",
    "buy_zone": {
-    "low": 15.94,
-    "high": 18.75
+    "low": 16.79,
+    "high": 19.75
    },
-   "entry_price": 18.75,
-   "thesis_file": "reports/600285羚锐制药-综合研判-20260809.md",
+   "entry_price": 19.75,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600285羚锐制药-综合研判-20260809.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -822,7 +822,7 @@
     "high": 11.5
    },
    "entry_price": 11.5,
-   "thesis_file": "reports/600415小商品城-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600415小商品城-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -840,7 +840,7 @@
     "high": 12.75
    },
    "entry_price": 12.75,
-   "thesis_file": "reports/600694大商股份-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600694大商股份-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -858,7 +858,7 @@
     "high": 17.25
    },
    "entry_price": 17.25,
-   "thesis_file": "reports/600872中炬高新-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600872中炬高新-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -876,7 +876,7 @@
     "high": 31.0
    },
    "entry_price": 31.0,
-   "thesis_file": "reports/600885宏发股份-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600885宏发股份-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -894,7 +894,7 @@
     "high": 26.0
    },
    "entry_price": 26.0,
-   "thesis_file": "reports/600900长江电力-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600900长江电力-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -912,7 +912,7 @@
     "high": 11.0
    },
    "entry_price": 11.0,
-   "thesis_file": "reports/600919江苏银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600919江苏银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -930,7 +930,7 @@
     "high": 15.0
    },
    "entry_price": 15.0,
-   "thesis_file": "reports/600926杭州银行-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600926杭州银行-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -944,11 +944,11 @@
    "name_cn": "马应龙",
    "group": "WATCH",
    "buy_zone": {
-    "low": 19.12,
-    "high": 22.5
+    "low": 18.7,
+    "high": 22.0
    },
-   "entry_price": 22.5,
-   "thesis_file": "reports/600993马应龙-综合研判.md",
+   "entry_price": 22.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600993马应龙-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -966,7 +966,7 @@
     "high": 10.35
    },
    "entry_price": 10.35,
-   "thesis_file": "reports/601009南京银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601009南京银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -984,7 +984,7 @@
     "high": 6.0
    },
    "entry_price": 6.0,
-   "thesis_file": "reports/601077渝农商行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601077渝农商行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1002,7 +1002,7 @@
     "high": 6.0
    },
    "entry_price": 6.0,
-   "thesis_file": "reports/601128常熟银行-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601128常熟银行-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1020,7 +1020,7 @@
     "high": 16.75
    },
    "entry_price": 16.75,
-   "thesis_file": "reports/601166兴业银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601166兴业银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1034,11 +1034,11 @@
    "name_cn": "北京银行",
    "group": "WATCH",
    "buy_zone": {
-    "low": 4.04,
-    "high": 4.75
+    "low": 4.08,
+    "high": 4.8
    },
-   "entry_price": 4.75,
-   "thesis_file": "reports/601169北京银行-风险评估-李录视角.md",
+   "entry_price": 4.8,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601169北京银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1056,7 +1056,7 @@
     "high": 6.5
    },
    "entry_price": 6.5,
-   "thesis_file": "reports/601187厦门银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601187厦门银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1074,7 +1074,7 @@
     "high": 5.9
    },
    "entry_price": 5.9,
-   "thesis_file": "reports/601288农业银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601288农业银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1089,10 +1089,10 @@
    "group": "WATCH",
    "buy_zone": {
     "low": 6.76,
-    "high": 7.95
+    "high": 7.949999999999999
    },
-   "entry_price": 7.95,
-   "thesis_file": "reports/601298青岛港-风险评估-李录视角.md",
+   "entry_price": 7.949999999999999,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601298青岛港-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1110,7 +1110,7 @@
     "high": 6.65
    },
    "entry_price": 6.65,
-   "thesis_file": "reports/601319中国人保-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601319中国人保-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1128,7 +1128,7 @@
     "high": 55.0
    },
    "entry_price": 55.0,
-   "thesis_file": "reports/601336新华保险-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601336新华保险-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1146,7 +1146,7 @@
     "high": 6.55
    },
    "entry_price": 6.55,
-   "thesis_file": "reports/601398工商银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601398工商银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1164,7 +1164,7 @@
     "high": 8.65
    },
    "entry_price": 8.65,
-   "thesis_file": "reports/601577长沙银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601577长沙银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1178,11 +1178,11 @@
    "name_cn": "中国太保",
    "group": "WATCH",
    "buy_zone": {
-    "low": 25.07,
-    "high": 29.5
+    "low": 24.65,
+    "high": 29.0
    },
-   "entry_price": 29.5,
-   "thesis_file": "reports/601601中国太保-风险评估-李录视角.md",
+   "entry_price": 29.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601601中国太保-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1200,7 +1200,7 @@
     "high": 5.6
    },
    "entry_price": 5.6,
-   "thesis_file": "reports/601665齐鲁银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601665齐鲁银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1218,7 +1218,7 @@
     "high": 17.0
    },
    "entry_price": 17.0,
-   "thesis_file": "reports/601688华泰证券-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601688华泰证券-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1236,7 +1236,7 @@
     "high": 16.0
    },
    "entry_price": 16.0,
-   "thesis_file": "reports/601838成都银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601838成都银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1250,11 +1250,11 @@
    "name_cn": "建设银行",
    "group": "WATCH",
    "buy_zone": {
-    "low": 7.73,
-    "high": 9.1
+    "low": 7.82,
+    "high": 9.2
    },
-   "entry_price": 9.1,
-   "thesis_file": "reports/601939建设银行-风险评估-李录视角.md",
+   "entry_price": 9.2,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601939建设银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1272,7 +1272,7 @@
     "high": 9.65
    },
    "entry_price": 9.65,
-   "thesis_file": "reports/601963重庆银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601963重庆银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1286,11 +1286,11 @@
    "name_cn": "招商南油",
    "group": "WATCH",
    "buy_zone": {
-    "low": 2.76,
-    "high": 3.25
+    "low": 2.8,
+    "high": 3.3
    },
-   "entry_price": 3.25,
-   "thesis_file": "reports/601975招商南油-综合研判.md",
+   "entry_price": 3.3,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601975招商南油-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1308,7 +1308,7 @@
     "high": 5.0
    },
    "entry_price": 5.0,
-   "thesis_file": "reports/601997贵阳银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601997贵阳银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1326,7 +1326,7 @@
     "high": 6.8
    },
    "entry_price": 6.8,
-   "thesis_file": "reports/601998中信银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601998中信银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1344,7 +1344,7 @@
     "high": 45.0
    },
    "entry_price": 45.0,
-   "thesis_file": "reports/603091众鑫股份-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603091众鑫股份-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1362,7 +1362,7 @@
     "high": 35.75
    },
    "entry_price": 35.75,
-   "thesis_file": "reports/603195公牛集团-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603195公牛集团-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1380,7 +1380,7 @@
     "high": 30.0
    },
    "entry_price": 30.0,
-   "thesis_file": "reports/603199九华旅游-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603199九华旅游-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1398,7 +1398,7 @@
     "high": 4.0
    },
    "entry_price": 4.0,
-   "thesis_file": "reports/603323苏农银行-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603323苏农银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1412,11 +1412,11 @@
    "name_cn": "浙江鼎力",
    "group": "WATCH",
    "buy_zone": {
-    "low": 44.2,
-    "high": 52.0
+    "low": 45.48,
+    "high": 53.5
    },
-   "entry_price": 52.0,
-   "thesis_file": "reports/603338浙江鼎力-综合研判.md",
+   "entry_price": 53.5,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603338浙江鼎力-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1434,7 +1434,7 @@
     "high": 80.0
    },
    "entry_price": 80.0,
-   "thesis_file": "reports/603345安井食品-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603345安井食品-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1466,11 +1466,11 @@
    "name_cn": "思维列控",
    "group": "WATCH",
    "buy_zone": {
-    "low": 16.57,
-    "high": 19.5
+    "low": 16.15,
+    "high": 19.0
    },
-   "entry_price": 19.5,
-   "thesis_file": "reports/603508思维列控-综合研判.md",
+   "entry_price": 19.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603508思维列控-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1488,7 +1488,7 @@
     "high": 11.75
    },
    "entry_price": 11.75,
-   "thesis_file": "reports/603558健盛集团-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603558健盛集团-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1506,7 +1506,7 @@
     "high": 16.75
    },
    "entry_price": 16.75,
-   "thesis_file": "reports/603706东方环宇-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603706东方环宇-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1542,7 +1542,7 @@
     "high": 9.0
    },
    "entry_price": 9.0,
-   "thesis_file": "reports/603998方盛制药-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\603998方盛制药-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1560,7 +1560,7 @@
     "high": 19.25
    },
    "entry_price": 19.25,
-   "thesis_file": "reports/605016百龙创园-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\605016百龙创园-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1578,7 +1578,7 @@
     "high": 52.0
    },
    "entry_price": 52.0,
-   "thesis_file": "reports/605098行动教育-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\605098行动教育-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1596,7 +1596,7 @@
     "high": 36.0
    },
    "entry_price": 36.0,
-   "thesis_file": "reports/605305中际联合-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\605305中际联合-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1614,7 +1614,7 @@
     "high": 111.5
    },
    "entry_price": 111.5,
-   "thesis_file": "reports/605499东鹏饮料-风险评估-李录视角-20260809.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\605499东鹏饮料-财务估值-巴菲特视角-20260809.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1632,7 +1632,7 @@
     "high": 82.5
    },
    "entry_price": 82.5,
-   "thesis_file": "reports/688016心脉医疗-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\688016心脉医疗-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1650,7 +1650,7 @@
     "high": 65.5
    },
    "entry_price": 65.5,
-   "thesis_file": "reports/688029南微医学-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\688029南微医学-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1668,7 +1668,7 @@
     "high": 90.0
    },
    "entry_price": 90.0,
-   "thesis_file": "reports/688188柏楚电子-风险评估-李录视角.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\688188柏楚电子-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1686,7 +1686,7 @@
     "high": 25.0
    },
    "entry_price": 25.0,
-   "thesis_file": "reports/688208道通科技-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\688208道通科技-综合研判.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
@@ -1722,7 +1722,7 @@
     "high": 8.5
    },
    "entry_price": 8.5,
-   "thesis_file": null,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\601229上海银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
    "status": "WATCHING",
