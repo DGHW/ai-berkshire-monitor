@@ -1,27 +1,27 @@
 {
- "last_health_check": "2026-08-13",
- "alerts": [],
- "last_rotation": "2026-08-12",
- "last_rotation_result": {
-  "date": "2026-08-12",
-  "moved_out": [],
-  "moved_in": []
- },
- "reviews": [
-  {
-   "code": "300573",
-   "date": "2026-08-12",
-   "status": "PENDING"
+  "last_health_check": "2026-08-14",
+  "alerts": [],
+  "last_rotation": "2026-08-14",
+  "last_rotation_result": {
+    "date": "2026-08-14",
+    "moved_out": [],
+    "moved_in": []
   },
-  {
-   "code": "300573",
-   "date": "2026-08-14",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 85.0,
-   "shares": 2800,
-   "price": 42.19,
-   "source": "manual-futu-order"
-  }
- ]
+  "reviews": [
+    {
+      "code": "300573",
+      "date": "2026-08-12",
+      "status": "PENDING"
+    },
+    {
+      "code": "300573",
+      "date": "2026-08-14",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 85.0,
+      "shares": 2800,
+      "price": 42.19,
+      "source": "manual-futu-order"
+    }
+  ]
 }

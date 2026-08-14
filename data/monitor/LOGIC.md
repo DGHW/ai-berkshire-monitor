@@ -154,11 +154,89 @@ schtasks（Windows 计划任务）
 
 - 交易环境**硬编码 SIMULATE**（模拟盘），代码无 REAL 路径；实盘需富途客户端手动操作
 - **模拟盘失败绝不影响记账与状态机**（futu 仅验证层，失败只记 pool.note 告警）
-- `data/positions/futu_config.json`：`enabled` 总开关、`dry_run` 默认 true（验证通过后改 false 真下单）
+- `data/positions/futu_config.json`：`enabled=true`、`dry_run=false`（已正式启用）、`acc_id=20552058`（沪深模拟账户）
 - 代码映射：`6xx/688→SH.`、`0/2/3→SZ.`、`4/8/920→BJ.`（北交所模拟盘不支持则跳过）
-- 前置：OpenD 已安装并登录富途账号（端口 11111），futu-api SDK ≥10.4.6408
+- 前置：OpenD 运行并登录富途账号（端口 11111），futu-api SDK ≥10.4.6408
 - 官方技能：`~/.codebuddy/skills/futuapi`（/futuapi 自然语言行情交易，默认模拟环境）
+
+### G. 研究落盘归一（normalize_reports）
+
+`/investment-team` 完整版产出的综合报告（技能默认命名）不满足四文件规范 → 自动二次 codebuddy 调用把综合报告拆写为四视角规范文件。提示词用**相对路径 + markdown 列表**（长绝对路径会被消息截断——实测根因）。
+
+### H. 反锚定机制（2026-08-14 用户判据）
+
+锚定效应判据 = **时间序列漂移**：两次重研之间，基本面无恶化（新 gain_med ≥ 旧 gain_med − 10pct）但建仓价下调 >15% → 锚定嫌疑。
+
+- **提示词层**：重研必须先读旧报告对比基本面；基本面无变化则建仓价沿用旧值（±5% 微调）；只有基本面实质恶化才能下调且须列证据；禁止以"股价下跌"作为下调理由
+- **机械层**（lock_entry_price，接入 run-one/review/batch2 三入口）：触发时建仓价锁定回旧值（groups.entry_med + pool.buy_zone），仅保留新 gain_med
 
 ---
 
-> 逻辑版本：v6 | 更新：2026-08-13
+## 九、闭环全景（v7）
+
+### 买卖闭环（日频 · StockMonitorDaily 15:05）
+
+```
+价格扫描(price_monitor) ── 现价入击球区 ──→ 首日 TRIGGERED 登记
+        │                                        │ 连续2日确认
+        │                                        ▼
+        │                               REVIEW_DUE
+        │                                        │
+        │                      agent_driver review --limit 1（自动）
+        │                                        │
+        │                      /investment-team 完整重研（4 Agent 并行）
+        │                                        │
+        │                              研究落盘归一（四文件+五字段）
+        │                                        │
+        │                              report_sync 回填 groups
+        │                                        │
+        │                              反锚定漂移检测（锁建仓价）
+        │                                        │
+        │                              六道闸门全过？
+        │                           ┌────┴────┐
+        │                           │ 否      │ 是
+        │                           ▼         ▼
+        │                      不买(记录原因)  双轨建仓：
+        │                                       ├ 本地记账 --add（决策源）
+        │                                       └ 富途模拟盘下单（验证层）
+        │                                        │
+        │                                   pool.status=BOUGHT
+        │
+        └── 持仓巡检(position_manager --daily，已持有标的每日)：
+              止损 -20%（唯一自动卖）/ 兑现止盈 gain×80%
+              / 估值提醒 +40%（不自动）/ 基本面转换 → 卖出
+```
+
+### 挑选轮动闭环（半月频 · StockRotationBiweekly 每月1/15日 09:05）
+
+```
+pool_rotator --plan（只读边界清单）
+        │
+        ├─ 边界标的（轮出/轮入阈值触发）→ /investment-team 完整重研（并发1）
+        │                                     → 归一 → 回填 → 反锚定检测
+        ├─ 其余标的 → /investment-team-lite 速评（并发2，每轮≤30只）
+        │             verdict=FAIL → 移放弃组；PASS/HOLD → 保留
+        │
+        ▼
+report_sync --all（全量回填 groups）
+        │
+        ▼
+pool_rotator --monthly-rotate（基于新指标做组移动）
+        │
+        ▼
+pool_kelly --refresh-basis（凯利基准月度冻结更新）
+        │
+        ▼
+position_manager --rotate（BOUGHT 空位补位：drop/reserve → watch）
+        │
+        ▼
+pool_rotator --report（轮动报告落盘）
+```
+
+### 已知不一致（待修）
+
+- `position_manager --rotate` 补位只更新 pool.json（status/group=WATCH），**不同步 portfolio_groups.json 组归属**——上海银行 601229 已入监控池但 groups 仍标 drop。影响：kelly 候选池（buy+watch）漏计补位标的。修复方向：--rotate 补位时同步 groups 组移动，或 monthly_rotate 前做 groups/pool 一致性校验。
+
+---
+
+> 逻辑版本：v7 | 更新：2026-08-14
