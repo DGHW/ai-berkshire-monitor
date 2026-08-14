@@ -1,4 +1,20 @@
 {
- "jobs": [],
- "updated": "2026-08-13"
+ "jobs": [
+  {
+   "code": "300573",
+   "name": "兴齐眼药",
+   "mode": "full",
+   "reason": "manual",
+   "source": "run-one",
+   "status": "in_progress",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-14",
+   "started": "2026-08-14 15:17:08",
+   "finished": null,
+   "verdict": null,
+   "note": ""
+  }
+ ],
+ "updated": "2026-08-14"
 }

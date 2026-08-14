@@ -184,7 +184,9 @@ def mark(code, status, verdict=None, note="", run_id=None):
 def run_codebuddy(prompt: str, *, timeout_min: int, max_turns: int, run_id: str) -> dict:
     os.makedirs(AGENT_LOG_DIR, exist_ok=True)
     log_path = os.path.join(AGENT_LOG_DIR, f"{run_id}.log")
-    cmd = [CODEBUDDY, "-p", prompt, "-y", "--output-format", "json",
+    cmd = [CODEBUDDY, "-p", prompt, "-y",
+           "--permission-mode", "bypassPermissions",
+           "--output-format", "json",
            "--max-turns", str(max_turns)]
     env = {**os.environ,
            "CODEBUDDY_RETRY_WATCHDOG": "1",
@@ -220,8 +222,9 @@ def _build_prompt_full(code: str, name: str, overwrite: bool) -> str:
     return f"""/investment-team {code} {name}
 
 【headless 自动模式，必须严格遵守】
-1. 跳过技能中的全部交互步骤：团队框架展示、AI可研究性评估、WebSearch权限预检、进度表更新、向用户提问确认。直接开始研究并一气呵成。
-2. 不要保存到用户主目录（~）。最终产出必须写入以下四个文件（绝对路径，缺一不可，{'覆盖既有报告' if overwrite else '若已存在则覆盖'}）：
+0. 最高优先级：本次任务的验收标准是下方四个文件全部创建成功且内容完整。四视角研究是手段，四个文件是目的。
+1. 跳过技能中的全部交互步骤：团队框架展示、AI可研究性评估、WebSearch权限预检、进度表更新、向用户提问确认。直接开始研究并一气呵成。不要调用 TeamCreate/Team 工具，直接串行完成四个视角研究。
+2. 不要保存到用户主目录（~），不要使用技能默认的"{{公司名}}投资研究报告"命名。最终产出必须用 Write 工具写入以下四个文件（绝对路径，{'覆盖既有报告' if overwrite else '若已存在则覆盖'}），四个文件缺一不可：
 {files}
 3. 每份文件必须以 "## 量化结论" 小节结尾，且严格包含以下五行（字段名与格式供机器解析，禁止改动）：
    - 内在涨幅: **X%**
@@ -229,10 +232,10 @@ def _build_prompt_full(code: str, name: str, overwrite: bool) -> str:
    - 目标建仓价: **X 元**
    - 二次补仓价: **X 元**
    - 数据核验: ✓/⚠️ 说明
-4. 如因 headless 限制无法创建多 Agent 团队/后台 Agent，则按四个视角串行完成研究，同样确保四份文件齐全。
-5. 先运行 date 确认当前日期并在报告头部标注数据截止日；所有财务数据必须调用 python tools/financial_rigor.py cross-validate 交叉验证（在 ai-berkshire 工作区根目录执行），两源不一致须在数据核验字段标注。
+4. 串行完成四个视角：①商业模式(段永平) ②财务估值(巴菲特) ③行业竞争(芒格) ④风险评估(李录)，每完成一个视角立即写入对应文件再进入下一个。
+5. 先运行 date 确认当前日期并在报告头部标注数据截止日；财务估值视角必须调用 python tools/financial_rigor.py cross-validate 交叉验证（在 ai-berkshire 工作区根目录执行），两源不一致须在数据核验字段标注。
 6. 若发现基本面相对既有研究实质恶化（业绩/治理/行业被证伪），在四份报告的量化结论中如实给出负内在涨幅或🔴击球区，不要粉饰。
-7. 完成后在标准输出最后打印一行：RESEARCH_DONE {code}
+7. 全部四个文件写入完成后，用 Bash 执行 ls 验证四个文件都存在，然后在标准输出最后打印一行：RESEARCH_DONE {code}
 """
 
 
