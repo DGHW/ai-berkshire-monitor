@@ -33,6 +33,9 @@ GROUPS_FILE = os.path.join(REPO_ROOT, "data", "monitor", "portfolio_groups.json"
 WATCH_RANK = os.path.join(REPO_ROOT, "data", "monitor", "watch_rank.json")
 REPORT_DIR = os.path.join(REPO_ROOT, "reports", "positions")
 
+# 监控池活跃目标数（WATCHING/TRIGGERED/REVIEW_DUE 合计；BOUGHT/REMOVED 不计）
+POOL_TARGET = 95
+
 # 卖出规则阈值（用户确认 v5：止损 + 内在涨幅兑现止盈；不设固定止盈）
 STOP_LOSS_PCT = -20.0      # 止损：相对成本 -20%
 VALUATION_ALERT_PCT = 40.0  # 估值提醒：盈亏+40%时建议复核论文（非自动卖出）
@@ -247,30 +250,29 @@ def rotate() -> dict:
     pool = load_json(POOL_FILE)
     stocks = pool.get("stocks", {})
 
-    # 1. 找出待补位空位：已买入/已剔除的（status=REVIEW_DUE 或 BOUGHT/REMOVED）
-    bought = [c for c, s in stocks.items() if s.get("status") in ("REVIEW_DUE", "BOUGHT", "REMOVED")]
-    # 2. 观察组目前数量
-    watch_codes = list(groups.get("watch", {}).keys())
-    print(f"当前观察组 {len(watch_codes)} 只 | 待复审 {len(bought)} 只")
+    # 1. 补位目标：维持监控池活跃数（WATCHING/TRIGGERED/REVIEW_DUE）为 POOL_TARGET
+    active = [c for c, s in stocks.items()
+              if s.get("status") not in ("BOUGHT", "REMOVED")]
+    need = max(0, POOL_TARGET - len(active))
+    print(f"监控池活跃 {len(active)} 只（目标 {POOL_TARGET}）| 需补位 {need} 只")
 
-    # 3. 从 reserve/drop 按距建仓价最近补位（限补 N 只）
-    need = min(len(bought), 5)
+    # 2. 从 reserve/drop 按距建仓价最近补位
     candidates = []
     for g in ("reserve", "drop"):
         for c, s in groups.get(g, {}).items():
+            if c in stocks:
+                continue
             ratio = s["price"] / s["entry_med"] if s.get("entry_med") else 999
             candidates.append((ratio, c, s, g))
     candidates.sort(key=lambda x: x[0])
     filled = []
     for _, c, s, g in candidates[:need]:
-        if c in stocks:
-            continue
         stocks[c] = {
             "name_cn": s["name"],
             "group": "WATCH",
             "buy_zone": {"low": round(s["entry_med"] * 0.85, 2), "high": s["entry_med"]},
             "entry_price": s["entry_med"],
-            "thesis_file": None,
+            "thesis_file": s.get("thesis_file"),
             "is_small_cap": c.startswith(("920", "8", "4")),
             "trigger_confirm_days": 2,
             "status": "WATCHING",
@@ -284,9 +286,31 @@ def rotate() -> dict:
         print(f"🔄 轮动补位 {len(filled)} 只：")
         for c, n, g in filled:
             print(f"   {c} {n} ← {g}组")
-    else:
+
+    # 3. groups/pool 一致性修复：pool 标 WATCH（活跃监控）但 groups 不在 watch 的 → 同步组移动
+    moved = []
+    groups_dirty = False
+    for c, s in stocks.items():
+        if s.get("group") != "WATCH" or s.get("status") in ("BOUGHT", "REMOVED"):
+            continue
+        if c in groups.get("watch", {}):
+            continue
+        for g in ("reserve", "drop", "buy"):
+            if c in groups.get(g, {}):
+                item = groups[g].pop(c)
+                groups.setdefault("watch", {})[c] = item
+                moved.append((c, g))
+                groups_dirty = True
+                break
+    if groups_dirty:
+        groups["updated"] = datetime.now().strftime("%Y-%m-%d")
+        save_json(GROUPS_FILE, groups)
+        for c, g in moved:
+            print(f"   🔧 一致性修复: {c} 从 {g} 组同步移入 watch")
+
+    if not filled and not moved:
         print("🔄 无需补位")
-    return {"filled": filled}
+    return {"filled": filled, "moved": moved}
 
 
 # ---------------------------------------------------------------------------

@@ -1315,6 +1315,20 @@
     "🟡"
    ],
    "zone_all_red": false
+  },
+  "601229": {
+   "name": "上海银行",
+   "price": 9.27,
+   "entry_med": 8.5,
+   "entry_min": 8.3,
+   "gain_med": -4.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
   }
  },
  "reserve": {
@@ -3115,20 +3129,6 @@
    ],
    "zone_all_red": true
   },
-  "601229": {
-   "name": "上海银行",
-   "price": 9.27,
-   "entry_med": 8.5,
-   "entry_min": 8.3,
-   "gain_med": -4.5,
-   "zones": [
-    "🔴",
-    "🔴",
-    "🔴",
-    "🔴"
-   ],
-   "zone_all_red": true
-  },
   "601326": {
    "name": "秦港股份",
    "price": 3.36,
@@ -3163,20 +3163,6 @@
    "entry_med": 6.9,
    "entry_min": 6.3,
    "gain_med": -31.0,
-   "zones": [
-    "🔴",
-    "🔴",
-    "🔴",
-    "🔴"
-   ],
-   "zone_all_red": true
-  },
-  "601825": {
-   "name": "沪农商行",
-   "price": 8.3,
-   "entry_med": 7.4,
-   "entry_min": 7.0,
-   "gain_med": -5.5,
    "zones": [
     "🔴",
     "🔴",
@@ -3386,6 +3372,20 @@
    "entry_med": 15.0,
    "entry_min": 12.0,
    "gain_med": -19.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601825": {
+   "name": "沪农商行",
+   "price": 8.3,
+   "entry_med": 7.4,
+   "entry_min": 7.0,
+   "gain_med": -5.5,
    "zones": [
     "🔴",
     "🔴",

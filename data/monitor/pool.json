@@ -1,1733 +1,1733 @@
 {
-  "stocks": {
-    "001316": {
-      "name_cn": "润贝航科",
-      "group": "BUY",
-      "buy_zone": {
-        "low": 27.62,
-        "high": 32.5
-      },
-      "entry_price": 32.5,
-      "thesis_file": "reports/001316润贝航科-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "达到建仓价，可分批买入",
-      "last_check": "2026-08-14",
-      "last_price": 26.6,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300573": {
-      "name_cn": "兴齐眼药",
-      "group": "BUY",
-      "buy_zone": {
-        "low": 41.65,
-        "high": 49.0
-      },
-      "entry_price": 49.0,
-      "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300573兴齐眼药-商业模式-段永平视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "BOUGHT",
-      "note": "手动建仓 2800股@42.19 (富途order 8720602, 凯利12%); 锚定防护:建仓价49.0→40.0被锁定回49.0",
-      "triggered_since": null,
-      "last_check": "2026-08-14",
-      "last_price": 41.4,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600211": {
-      "name_cn": "西藏药业",
-      "group": "BUY",
-      "buy_zone": {
-        "low": 37.4,
-        "high": 44.0
-      },
-      "entry_price": 44.0,
-      "thesis_file": null,
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "TRIGGERED",
-      "note": "达到建仓价，可分批买入",
-      "triggered_since": "2026-08-14",
-      "last_check": "2026-08-14",
-      "last_price": 39.38,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000001": {
-      "name_cn": "平安银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.37,
-        "high": 9.85
-      },
-      "entry_price": 9.85,
-      "thesis_file": "reports/000001平安银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.11,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000333": {
-      "name_cn": "美的集团",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 64.17,
-        "high": 75.5
-      },
-      "entry_price": 75.5,
-      "thesis_file": "reports/000333美的集团-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 83.03,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000538": {
-      "name_cn": "云南白药",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 38.67,
-        "high": 45.5
-      },
-      "entry_price": 45.5,
-      "thesis_file": "reports/000538云南白药-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 50.03,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000598": {
-      "name_cn": "兴蓉环境",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.57,
-        "high": 6.55
-      },
-      "entry_price": 6.55,
-      "thesis_file": "reports/000598兴蓉环境-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 7.12,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000680": {
-      "name_cn": "山推股份",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.42,
-        "high": 9.9
-      },
-      "entry_price": 9.9,
-      "thesis_file": "reports/000680山推股份-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.21,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000682": {
-      "name_cn": "东方电子",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 9.05,
-        "high": 10.65
-      },
-      "entry_price": 10.65,
-      "thesis_file": "reports/000682东方电子-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.88,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000685": {
-      "name_cn": "中山公用",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.5,
-        "high": 10.0
-      },
-      "entry_price": 10.0,
-      "thesis_file": "reports/000685中山公用-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.03,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000783": {
-      "name_cn": "长江证券",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.01,
-        "high": 8.25
-      },
-      "entry_price": 8.25,
-      "thesis_file": "reports/000783长江证券-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 9.04,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000885": {
-      "name_cn": "城发环境",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 9.78,
-        "high": 11.5
-      },
-      "entry_price": 11.5,
-      "thesis_file": "reports/000885城发环境-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 12.67,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000899": {
-      "name_cn": "赣能股份",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.2,
-        "high": 9.65
-      },
-      "entry_price": 9.65,
-      "thesis_file": "reports/000899赣能股份-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.37,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000902": {
-      "name_cn": "新洋丰",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 10.62,
-        "high": 12.5
-      },
-      "entry_price": 12.5,
-      "thesis_file": "reports/000902新洋丰-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 12.92,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000963": {
-      "name_cn": "华东医药",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 22.74,
-        "high": 26.75
-      },
-      "entry_price": 26.75,
-      "thesis_file": "reports/000963华东医药-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 29.72,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "000999": {
-      "name_cn": "华润三九",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 19.55,
-        "high": 23.0
-      },
-      "entry_price": 23.0,
-      "thesis_file": "reports/000999华润三九-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 24.71,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "001286": {
-      "name_cn": "陕西能源",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.99,
-        "high": 9.4
-      },
-      "entry_price": 9.4,
-      "thesis_file": "reports/001286陕西能源-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.54,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "001332": {
-      "name_cn": "锡装股份",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 24.01,
-        "high": 28.25
-      },
-      "entry_price": 28.25,
-      "thesis_file": "reports/001332锡装股份-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 31.39,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002142": {
-      "name_cn": "宁波银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 23.8,
-        "high": 28.0
-      },
-      "entry_price": 28.0,
-      "thesis_file": "reports/002142宁波银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 32.2,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002262": {
-      "name_cn": "恩华药业",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 17.21,
-        "high": 20.25
-      },
-      "entry_price": 20.25,
-      "thesis_file": "reports/002262恩华药业-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 21.96,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002275": {
-      "name_cn": "桂林三金",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 10.37,
-        "high": 12.2
-      },
-      "entry_price": 12.2,
-      "thesis_file": "reports/002275桂林三金-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 13.33,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002415": {
-      "name_cn": "海康威视",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 29.32,
-        "high": 34.5
-      },
-      "entry_price": 34.5,
-      "thesis_file": "reports/002415海康威视-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 34.88,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002507": {
-      "name_cn": "涪陵榨菜",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.92,
-        "high": 10.5
-      },
-      "entry_price": 10.5,
-      "thesis_file": "reports/002507涪陵榨菜-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.31,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002588": {
-      "name_cn": "史丹利",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 6.93,
-        "high": 8.15
-      },
-      "entry_price": 8.15,
-      "thesis_file": "reports/002588史丹利-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 8.46,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002833": {
-      "name_cn": "弘亚数控",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 14.24,
-        "high": 16.75
-      },
-      "entry_price": 16.75,
-      "thesis_file": "reports/002833弘亚数控-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 18.29,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002884": {
-      "name_cn": "凌霄泵业",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 13.17,
-        "high": 15.5
-      },
-      "entry_price": 15.5,
-      "thesis_file": "reports/002884凌霄泵业-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 15.92,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002946": {
-      "name_cn": "新乳业",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 12.75,
-        "high": 15.0
-      },
-      "entry_price": 15.0,
-      "thesis_file": "reports/002946新乳业-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 15.81,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002947": {
-      "name_cn": "恒铭达",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 43.35,
-        "high": 51.0
-      },
-      "entry_price": 51.0,
-      "thesis_file": "reports/002947恒铭达-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 59.31,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002948": {
-      "name_cn": "青岛银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 4.42,
-        "high": 5.2
-      },
-      "entry_price": 5.2,
-      "thesis_file": "reports/002948青岛银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 5.67,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002966": {
-      "name_cn": "苏州银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 6.5,
-        "high": 7.65
-      },
-      "entry_price": 7.65,
-      "thesis_file": "reports/002966苏州银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 8.47,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "002991": {
-      "name_cn": "甘源食品",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 33.15,
-        "high": 39.0
-      },
-      "entry_price": 39.0,
-      "thesis_file": "reports/002991甘源食品-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 42.85,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300012": {
-      "name_cn": "华测检测",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 11.05,
-        "high": 13.0
-      },
-      "entry_price": 13.0,
-      "thesis_file": "reports/300012华测检测-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 13.98,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300206": {
-      "name_cn": "理邦仪器",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 9.48,
-        "high": 11.15
-      },
-      "entry_price": 11.15,
-      "thesis_file": "reports/300206理邦仪器-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 12.34,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300415": {
-      "name_cn": "伊之密",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 16.57,
-        "high": 19.5
-      },
-      "entry_price": 19.5,
-      "thesis_file": "reports/300415伊之密-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 20.73,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300453": {
-      "name_cn": "三鑫医疗",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.27,
-        "high": 8.55
-      },
-      "entry_price": 8.55,
-      "thesis_file": "reports/300453三鑫医疗-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.08,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300487": {
-      "name_cn": "蓝晓科技",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 50.57,
-        "high": 59.5
-      },
-      "entry_price": 59.5,
-      "thesis_file": "reports/300487蓝晓科技-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 66.7,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300515": {
-      "name_cn": "三德科技",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 12.32,
-        "high": 14.5
-      },
-      "entry_price": 14.5,
-      "thesis_file": "reports/300515三德科技-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 16.49,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300628": {
-      "name_cn": "亿联网络",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 31.02,
-        "high": 36.5
-      },
-      "entry_price": 36.5,
-      "thesis_file": "reports/300628亿联网络-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 39.76,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "300866": {
-      "name_cn": "安克创新",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 95.62,
-        "high": 112.5
-      },
-      "entry_price": 112.5,
-      "thesis_file": "reports/300866安克创新-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 115.75,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "301345": {
-      "name_cn": "涛涛车业",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 189.12,
-        "high": 222.5
-      },
-      "entry_price": 222.5,
-      "thesis_file": "reports/301345涛涛车业-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 254.57,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600018": {
-      "name_cn": "上港集团",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 4.33,
-        "high": 5.1
-      },
-      "entry_price": 5.1,
-      "thesis_file": "reports/600018上港集团-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "TRIGGERED",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 5.07,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false,
-      "triggered_since": "2026-08-14"
-    },
-    "600030": {
-      "name_cn": "中信证券",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 20.82,
-        "high": 24.5
-      },
-      "entry_price": 24.5,
-      "thesis_file": "reports/600030中信证券-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 27.31,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600036": {
-      "name_cn": "招商银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 32.73,
-        "high": 38.5
-      },
-      "entry_price": 38.5,
-      "thesis_file": "reports/600036招商银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "TRIGGERED",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 38.46,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false,
-      "triggered_since": "2026-08-14"
-    },
-    "600276": {
-      "name_cn": "恒瑞医药",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 42.5,
-        "high": 50.0
-      },
-      "entry_price": 50.0,
-      "thesis_file": "reports/600276恒瑞医药-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 52.62,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600285": {
-      "name_cn": "羚锐制药",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 15.94,
-        "high": 18.75
-      },
-      "entry_price": 18.75,
-      "thesis_file": "reports/600285羚锐制药-综合研判-20260809.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-12",
-      "last_price": 20.47,
-      "last_price_date": "2026-08-12",
-      "need_news_pulse": true
-    },
-    "600415": {
-      "name_cn": "小商品城",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 9.78,
-        "high": 11.5
-      },
-      "entry_price": 11.5,
-      "thesis_file": "reports/600415小商品城-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.66,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600694": {
-      "name_cn": "大商股份",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 10.84,
-        "high": 12.75
-      },
-      "entry_price": 12.75,
-      "thesis_file": "reports/600694大商股份-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 14.28,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600872": {
-      "name_cn": "中炬高新",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 14.66,
-        "high": 17.25
-      },
-      "entry_price": 17.25,
-      "thesis_file": "reports/600872中炬高新-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 18.77,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600885": {
-      "name_cn": "宏发股份",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 26.35,
-        "high": 31.0
-      },
-      "entry_price": 31.0,
-      "thesis_file": "reports/600885宏发股份-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 36.2,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600900": {
-      "name_cn": "长江电力",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 22.1,
-        "high": 26.0
-      },
-      "entry_price": 26.0,
-      "thesis_file": "reports/600900长江电力-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 28.1,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600919": {
-      "name_cn": "江苏银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 9.35,
-        "high": 11.0
-      },
-      "entry_price": 11.0,
-      "thesis_file": "reports/600919江苏银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.66,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600926": {
-      "name_cn": "杭州银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 12.75,
-        "high": 15.0
-      },
-      "entry_price": 15.0,
-      "thesis_file": "reports/600926杭州银行-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 16.28,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "600993": {
-      "name_cn": "马应龙",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 19.12,
-        "high": 22.5
-      },
-      "entry_price": 22.5,
-      "thesis_file": "reports/600993马应龙-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 23.34,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601009": {
-      "name_cn": "南京银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.8,
-        "high": 10.35
-      },
-      "entry_price": 10.35,
-      "thesis_file": "reports/601009南京银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.18,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601077": {
-      "name_cn": "渝农商行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.1,
-        "high": 6.0
-      },
-      "entry_price": 6.0,
-      "thesis_file": "reports/601077渝农商行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 6.57,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601128": {
-      "name_cn": "常熟银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.1,
-        "high": 6.0
-      },
-      "entry_price": 6.0,
-      "thesis_file": "reports/601128常熟银行-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 6.09,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601166": {
-      "name_cn": "兴业银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 14.24,
-        "high": 16.75
-      },
-      "entry_price": 16.75,
-      "thesis_file": "reports/601166兴业银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 18.03,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601169": {
-      "name_cn": "北京银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 4.04,
-        "high": 4.75
-      },
-      "entry_price": 4.75,
-      "thesis_file": "reports/601169北京银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 4.96,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601187": {
-      "name_cn": "厦门银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.52,
-        "high": 6.5
-      },
-      "entry_price": 6.5,
-      "thesis_file": "reports/601187厦门银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 7.37,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601288": {
-      "name_cn": "农业银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.02,
-        "high": 5.9
-      },
-      "entry_price": 5.9,
-      "thesis_file": "reports/601288农业银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 6.47,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601298": {
-      "name_cn": "青岛港",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 6.76,
-        "high": 7.95
-      },
-      "entry_price": 7.95,
-      "thesis_file": "reports/601298青岛港-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 8.69,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601319": {
-      "name_cn": "中国人保",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.65,
-        "high": 6.65
-      },
-      "entry_price": 6.65,
-      "thesis_file": "reports/601319中国人保-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 6.86,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601336": {
-      "name_cn": "新华保险",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 46.75,
-        "high": 55.0
-      },
-      "entry_price": 55.0,
-      "thesis_file": "reports/601336新华保险-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 57.78,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601398": {
-      "name_cn": "工商银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.57,
-        "high": 6.55
-      },
-      "entry_price": 6.55,
-      "thesis_file": "reports/601398工商银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 7.56,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601577": {
-      "name_cn": "长沙银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.35,
-        "high": 8.65
-      },
-      "entry_price": 8.65,
-      "thesis_file": "reports/601577长沙银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 9.18,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601601": {
-      "name_cn": "中国太保",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 25.07,
-        "high": 29.5
-      },
-      "entry_price": 29.5,
-      "thesis_file": "reports/601601中国太保-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 29.92,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601665": {
-      "name_cn": "齐鲁银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 4.76,
-        "high": 5.6
-      },
-      "entry_price": 5.6,
-      "thesis_file": "reports/601665齐鲁银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 6.22,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601688": {
-      "name_cn": "华泰证券",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 14.45,
-        "high": 17.0
-      },
-      "entry_price": 17.0,
-      "thesis_file": "reports/601688华泰证券-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 19.39,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601838": {
-      "name_cn": "成都银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 13.6,
-        "high": 16.0
-      },
-      "entry_price": 16.0,
-      "thesis_file": "reports/601838成都银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 18.06,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601939": {
-      "name_cn": "建设银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.73,
-        "high": 9.1
-      },
-      "entry_price": 9.1,
-      "thesis_file": "reports/601939建设银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.24,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601963": {
-      "name_cn": "重庆银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 8.2,
-        "high": 9.65
-      },
-      "entry_price": 9.65,
-      "thesis_file": "reports/601963重庆银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.81,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601975": {
-      "name_cn": "招商南油",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 2.76,
-        "high": 3.25
-      },
-      "entry_price": 3.25,
-      "thesis_file": "reports/601975招商南油-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 3.56,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601997": {
-      "name_cn": "贵阳银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 4.25,
-        "high": 5.0
-      },
-      "entry_price": 5.0,
-      "thesis_file": "reports/601997贵阳银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 5.56,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601998": {
-      "name_cn": "中信银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 5.78,
-        "high": 6.8
-      },
-      "entry_price": 6.8,
-      "thesis_file": "reports/601998中信银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 7.7,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603091": {
-      "name_cn": "众鑫股份",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 38.25,
-        "high": 45.0
-      },
-      "entry_price": 45.0,
-      "thesis_file": "reports/603091众鑫股份-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 50.47,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603195": {
-      "name_cn": "公牛集团",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 30.39,
-        "high": 35.75
-      },
-      "entry_price": 35.75,
-      "thesis_file": "reports/603195公牛集团-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 40.07,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603199": {
-      "name_cn": "九华旅游",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 25.5,
-        "high": 30.0
-      },
-      "entry_price": 30.0,
-      "thesis_file": "reports/603199九华旅游-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 32.86,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603323": {
-      "name_cn": "苏农银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 3.4,
-        "high": 4.0
-      },
-      "entry_price": 4.0,
-      "thesis_file": "reports/603323苏农银行-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 4.13,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603338": {
-      "name_cn": "浙江鼎力",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 44.2,
-        "high": 52.0
-      },
-      "entry_price": 52.0,
-      "thesis_file": "reports/603338浙江鼎力-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 55.6,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603345": {
-      "name_cn": "安井食品",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 68.0,
-        "high": 80.0
-      },
-      "entry_price": 80.0,
-      "thesis_file": "reports/603345安井食品-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 84.2,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603444": {
-      "name_cn": "吉比特",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 297.5,
-        "high": 350.0
-      },
-      "entry_price": 350.0,
-      "thesis_file": "reports/603444吉比特-风险评估-李录视角-20260809.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 390.3,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603508": {
-      "name_cn": "思维列控",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 16.57,
-        "high": 19.5
-      },
-      "entry_price": 19.5,
-      "thesis_file": "reports/603508思维列控-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 21.5,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603558": {
-      "name_cn": "健盛集团",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 9.99,
-        "high": 11.75
-      },
-      "entry_price": 11.75,
-      "thesis_file": "reports/603558健盛集团-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 11.89,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603706": {
-      "name_cn": "东方环宇",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 14.24,
-        "high": 16.75
-      },
-      "entry_price": 16.75,
-      "thesis_file": "reports/603706东方环宇-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 18.98,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603929": {
-      "name_cn": "亚翔集成",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 123.25,
-        "high": 145.0
-      },
-      "entry_price": 145.0,
-      "thesis_file": "reports/603929亚翔集成-风险评估-李录视角-20260809.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 162.7,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "603998": {
-      "name_cn": "方盛制药",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.65,
-        "high": 9.0
-      },
-      "entry_price": 9.0,
-      "thesis_file": "reports/603998方盛制药-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 10.78,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "605016": {
-      "name_cn": "百龙创园",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 16.36,
-        "high": 19.25
-      },
-      "entry_price": 19.25,
-      "thesis_file": "reports/605016百龙创园-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 19.79,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "605098": {
-      "name_cn": "行动教育",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 44.2,
-        "high": 52.0
-      },
-      "entry_price": 52.0,
-      "thesis_file": "reports/605098行动教育-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 54.14,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "605305": {
-      "name_cn": "中际联合",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 30.6,
-        "high": 36.0
-      },
-      "entry_price": 36.0,
-      "thesis_file": "reports/605305中际联合-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 38.04,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "605499": {
-      "name_cn": "东鹏饮料",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 94.77,
-        "high": 111.5
-      },
-      "entry_price": 111.5,
-      "thesis_file": "reports/605499东鹏饮料-风险评估-李录视角-20260809.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 122.93,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "688016": {
-      "name_cn": "心脉医疗",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 70.12,
-        "high": 82.5
-      },
-      "entry_price": 82.5,
-      "thesis_file": "reports/688016心脉医疗-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 92.86,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "688029": {
-      "name_cn": "南微医学",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 55.67,
-        "high": 65.5
-      },
-      "entry_price": 65.5,
-      "thesis_file": "reports/688029南微医学-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 74.13,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "688188": {
-      "name_cn": "柏楚电子",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 76.5,
-        "high": 90.0
-      },
-      "entry_price": 90.0,
-      "thesis_file": "reports/688188柏楚电子-风险评估-李录视角.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 102.82,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "688208": {
-      "name_cn": "道通科技",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 21.25,
-        "high": 25.0
-      },
-      "entry_price": 25.0,
-      "thesis_file": "reports/688208道通科技-综合研判.md",
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 26.5,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "688578": {
-      "name_cn": "艾力斯",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 89.25,
-        "high": 105.0
-      },
-      "entry_price": 105.0,
-      "thesis_file": null,
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "距建仓价15%内，等待回调",
-      "last_check": "2026-08-14",
-      "last_price": 120.4,
-      "last_price_date": "2026-08-14",
-      "need_news_pulse": false
-    },
-    "601229": {
-      "name_cn": "上海银行",
-      "group": "WATCH",
-      "buy_zone": {
-        "low": 7.22,
-        "high": 8.5
-      },
-      "entry_price": 8.5,
-      "thesis_file": null,
-      "is_small_cap": false,
-      "trigger_confirm_days": 2,
-      "status": "WATCHING",
-      "note": "轮动补位自drop组"
-    }
+ "stocks": {
+  "001316": {
+   "name_cn": "润贝航科",
+   "group": "BUY",
+   "buy_zone": {
+    "low": 27.62,
+    "high": 32.5
+   },
+   "entry_price": 32.5,
+   "thesis_file": "reports/001316润贝航科-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "达到建仓价，可分批买入",
+   "last_check": "2026-08-14",
+   "last_price": 26.6,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
   },
-  "updated": "2026-08-14"
+  "300573": {
+   "name_cn": "兴齐眼药",
+   "group": "BUY",
+   "buy_zone": {
+    "low": 41.65,
+    "high": 49.0
+   },
+   "entry_price": 49.0,
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\300573兴齐眼药-商业模式-段永平视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "BOUGHT",
+   "note": "手动建仓 2800股@42.19 (富途order 8720602, 凯利12%); 锚定防护:建仓价49.0→40.0被锁定回49.0",
+   "triggered_since": null,
+   "last_check": "2026-08-14",
+   "last_price": 41.4,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600211": {
+   "name_cn": "西藏药业",
+   "group": "BUY",
+   "buy_zone": {
+    "low": 37.4,
+    "high": 44.0
+   },
+   "entry_price": 44.0,
+   "thesis_file": null,
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "TRIGGERED",
+   "note": "达到建仓价，可分批买入",
+   "triggered_since": "2026-08-14",
+   "last_check": "2026-08-14",
+   "last_price": 39.38,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000001": {
+   "name_cn": "平安银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.37,
+    "high": 9.85
+   },
+   "entry_price": 9.85,
+   "thesis_file": "reports/000001平安银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.11,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000333": {
+   "name_cn": "美的集团",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 64.17,
+    "high": 75.5
+   },
+   "entry_price": 75.5,
+   "thesis_file": "reports/000333美的集团-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 83.03,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000538": {
+   "name_cn": "云南白药",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 38.67,
+    "high": 45.5
+   },
+   "entry_price": 45.5,
+   "thesis_file": "reports/000538云南白药-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 50.03,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000598": {
+   "name_cn": "兴蓉环境",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.57,
+    "high": 6.55
+   },
+   "entry_price": 6.55,
+   "thesis_file": "reports/000598兴蓉环境-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 7.12,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000680": {
+   "name_cn": "山推股份",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.42,
+    "high": 9.9
+   },
+   "entry_price": 9.9,
+   "thesis_file": "reports/000680山推股份-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.21,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000682": {
+   "name_cn": "东方电子",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 9.05,
+    "high": 10.65
+   },
+   "entry_price": 10.65,
+   "thesis_file": "reports/000682东方电子-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.88,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000685": {
+   "name_cn": "中山公用",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.5,
+    "high": 10.0
+   },
+   "entry_price": 10.0,
+   "thesis_file": "reports/000685中山公用-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.03,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000783": {
+   "name_cn": "长江证券",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.01,
+    "high": 8.25
+   },
+   "entry_price": 8.25,
+   "thesis_file": "reports/000783长江证券-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 9.04,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000885": {
+   "name_cn": "城发环境",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 9.78,
+    "high": 11.5
+   },
+   "entry_price": 11.5,
+   "thesis_file": "reports/000885城发环境-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 12.67,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000899": {
+   "name_cn": "赣能股份",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.2,
+    "high": 9.65
+   },
+   "entry_price": 9.65,
+   "thesis_file": "reports/000899赣能股份-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.37,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000902": {
+   "name_cn": "新洋丰",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 10.62,
+    "high": 12.5
+   },
+   "entry_price": 12.5,
+   "thesis_file": "reports/000902新洋丰-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 12.92,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000963": {
+   "name_cn": "华东医药",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 22.74,
+    "high": 26.75
+   },
+   "entry_price": 26.75,
+   "thesis_file": "reports/000963华东医药-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 29.72,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "000999": {
+   "name_cn": "华润三九",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 19.55,
+    "high": 23.0
+   },
+   "entry_price": 23.0,
+   "thesis_file": "reports/000999华润三九-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 24.71,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "001286": {
+   "name_cn": "陕西能源",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.99,
+    "high": 9.4
+   },
+   "entry_price": 9.4,
+   "thesis_file": "reports/001286陕西能源-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.54,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "001332": {
+   "name_cn": "锡装股份",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 24.01,
+    "high": 28.25
+   },
+   "entry_price": 28.25,
+   "thesis_file": "reports/001332锡装股份-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 31.39,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002142": {
+   "name_cn": "宁波银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 23.8,
+    "high": 28.0
+   },
+   "entry_price": 28.0,
+   "thesis_file": "reports/002142宁波银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 32.2,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002262": {
+   "name_cn": "恩华药业",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 17.21,
+    "high": 20.25
+   },
+   "entry_price": 20.25,
+   "thesis_file": "reports/002262恩华药业-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 21.96,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002275": {
+   "name_cn": "桂林三金",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 10.37,
+    "high": 12.2
+   },
+   "entry_price": 12.2,
+   "thesis_file": "reports/002275桂林三金-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 13.33,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002415": {
+   "name_cn": "海康威视",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 29.32,
+    "high": 34.5
+   },
+   "entry_price": 34.5,
+   "thesis_file": "reports/002415海康威视-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 34.88,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002507": {
+   "name_cn": "涪陵榨菜",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.92,
+    "high": 10.5
+   },
+   "entry_price": 10.5,
+   "thesis_file": "reports/002507涪陵榨菜-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.31,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002588": {
+   "name_cn": "史丹利",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 6.93,
+    "high": 8.15
+   },
+   "entry_price": 8.15,
+   "thesis_file": "reports/002588史丹利-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 8.46,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002833": {
+   "name_cn": "弘亚数控",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 14.24,
+    "high": 16.75
+   },
+   "entry_price": 16.75,
+   "thesis_file": "reports/002833弘亚数控-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 18.29,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002884": {
+   "name_cn": "凌霄泵业",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 13.17,
+    "high": 15.5
+   },
+   "entry_price": 15.5,
+   "thesis_file": "reports/002884凌霄泵业-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 15.92,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002946": {
+   "name_cn": "新乳业",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 12.75,
+    "high": 15.0
+   },
+   "entry_price": 15.0,
+   "thesis_file": "reports/002946新乳业-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 15.81,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002947": {
+   "name_cn": "恒铭达",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 43.35,
+    "high": 51.0
+   },
+   "entry_price": 51.0,
+   "thesis_file": "reports/002947恒铭达-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 59.31,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002948": {
+   "name_cn": "青岛银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 4.42,
+    "high": 5.2
+   },
+   "entry_price": 5.2,
+   "thesis_file": "reports/002948青岛银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 5.67,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002966": {
+   "name_cn": "苏州银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 6.5,
+    "high": 7.65
+   },
+   "entry_price": 7.65,
+   "thesis_file": "reports/002966苏州银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 8.47,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "002991": {
+   "name_cn": "甘源食品",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 33.15,
+    "high": 39.0
+   },
+   "entry_price": 39.0,
+   "thesis_file": "reports/002991甘源食品-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 42.85,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300012": {
+   "name_cn": "华测检测",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 11.05,
+    "high": 13.0
+   },
+   "entry_price": 13.0,
+   "thesis_file": "reports/300012华测检测-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 13.98,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300206": {
+   "name_cn": "理邦仪器",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 9.48,
+    "high": 11.15
+   },
+   "entry_price": 11.15,
+   "thesis_file": "reports/300206理邦仪器-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 12.34,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300415": {
+   "name_cn": "伊之密",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 16.57,
+    "high": 19.5
+   },
+   "entry_price": 19.5,
+   "thesis_file": "reports/300415伊之密-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 20.73,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300453": {
+   "name_cn": "三鑫医疗",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.27,
+    "high": 8.55
+   },
+   "entry_price": 8.55,
+   "thesis_file": "reports/300453三鑫医疗-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.08,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300487": {
+   "name_cn": "蓝晓科技",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 50.57,
+    "high": 59.5
+   },
+   "entry_price": 59.5,
+   "thesis_file": "reports/300487蓝晓科技-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 66.7,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300515": {
+   "name_cn": "三德科技",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 12.32,
+    "high": 14.5
+   },
+   "entry_price": 14.5,
+   "thesis_file": "reports/300515三德科技-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 16.49,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300628": {
+   "name_cn": "亿联网络",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 31.02,
+    "high": 36.5
+   },
+   "entry_price": 36.5,
+   "thesis_file": "reports/300628亿联网络-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 39.76,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "300866": {
+   "name_cn": "安克创新",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 95.62,
+    "high": 112.5
+   },
+   "entry_price": 112.5,
+   "thesis_file": "reports/300866安克创新-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 115.75,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "301345": {
+   "name_cn": "涛涛车业",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 189.12,
+    "high": 222.5
+   },
+   "entry_price": 222.5,
+   "thesis_file": "reports/301345涛涛车业-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 254.57,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600018": {
+   "name_cn": "上港集团",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 4.33,
+    "high": 5.1
+   },
+   "entry_price": 5.1,
+   "thesis_file": "reports/600018上港集团-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "TRIGGERED",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 5.07,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false,
+   "triggered_since": "2026-08-14"
+  },
+  "600030": {
+   "name_cn": "中信证券",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 20.82,
+    "high": 24.5
+   },
+   "entry_price": 24.5,
+   "thesis_file": "reports/600030中信证券-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 27.31,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600036": {
+   "name_cn": "招商银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 32.73,
+    "high": 38.5
+   },
+   "entry_price": 38.5,
+   "thesis_file": "reports/600036招商银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "TRIGGERED",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 38.46,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false,
+   "triggered_since": "2026-08-14"
+  },
+  "600276": {
+   "name_cn": "恒瑞医药",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 42.5,
+    "high": 50.0
+   },
+   "entry_price": 50.0,
+   "thesis_file": "reports/600276恒瑞医药-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 52.62,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600285": {
+   "name_cn": "羚锐制药",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 15.94,
+    "high": 18.75
+   },
+   "entry_price": 18.75,
+   "thesis_file": "reports/600285羚锐制药-综合研判-20260809.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-12",
+   "last_price": 20.47,
+   "last_price_date": "2026-08-12",
+   "need_news_pulse": true
+  },
+  "600415": {
+   "name_cn": "小商品城",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 9.78,
+    "high": 11.5
+   },
+   "entry_price": 11.5,
+   "thesis_file": "reports/600415小商品城-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.66,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600694": {
+   "name_cn": "大商股份",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 10.84,
+    "high": 12.75
+   },
+   "entry_price": 12.75,
+   "thesis_file": "reports/600694大商股份-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 14.28,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600872": {
+   "name_cn": "中炬高新",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 14.66,
+    "high": 17.25
+   },
+   "entry_price": 17.25,
+   "thesis_file": "reports/600872中炬高新-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 18.77,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600885": {
+   "name_cn": "宏发股份",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 26.35,
+    "high": 31.0
+   },
+   "entry_price": 31.0,
+   "thesis_file": "reports/600885宏发股份-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 36.2,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600900": {
+   "name_cn": "长江电力",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 22.1,
+    "high": 26.0
+   },
+   "entry_price": 26.0,
+   "thesis_file": "reports/600900长江电力-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 28.1,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600919": {
+   "name_cn": "江苏银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 9.35,
+    "high": 11.0
+   },
+   "entry_price": 11.0,
+   "thesis_file": "reports/600919江苏银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.66,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600926": {
+   "name_cn": "杭州银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 12.75,
+    "high": 15.0
+   },
+   "entry_price": 15.0,
+   "thesis_file": "reports/600926杭州银行-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 16.28,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "600993": {
+   "name_cn": "马应龙",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 19.12,
+    "high": 22.5
+   },
+   "entry_price": 22.5,
+   "thesis_file": "reports/600993马应龙-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 23.34,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601009": {
+   "name_cn": "南京银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.8,
+    "high": 10.35
+   },
+   "entry_price": 10.35,
+   "thesis_file": "reports/601009南京银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.18,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601077": {
+   "name_cn": "渝农商行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.1,
+    "high": 6.0
+   },
+   "entry_price": 6.0,
+   "thesis_file": "reports/601077渝农商行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 6.57,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601128": {
+   "name_cn": "常熟银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.1,
+    "high": 6.0
+   },
+   "entry_price": 6.0,
+   "thesis_file": "reports/601128常熟银行-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 6.09,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601166": {
+   "name_cn": "兴业银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 14.24,
+    "high": 16.75
+   },
+   "entry_price": 16.75,
+   "thesis_file": "reports/601166兴业银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 18.03,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601169": {
+   "name_cn": "北京银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 4.04,
+    "high": 4.75
+   },
+   "entry_price": 4.75,
+   "thesis_file": "reports/601169北京银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 4.96,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601187": {
+   "name_cn": "厦门银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.52,
+    "high": 6.5
+   },
+   "entry_price": 6.5,
+   "thesis_file": "reports/601187厦门银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 7.37,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601288": {
+   "name_cn": "农业银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.02,
+    "high": 5.9
+   },
+   "entry_price": 5.9,
+   "thesis_file": "reports/601288农业银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 6.47,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601298": {
+   "name_cn": "青岛港",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 6.76,
+    "high": 7.95
+   },
+   "entry_price": 7.95,
+   "thesis_file": "reports/601298青岛港-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 8.69,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601319": {
+   "name_cn": "中国人保",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.65,
+    "high": 6.65
+   },
+   "entry_price": 6.65,
+   "thesis_file": "reports/601319中国人保-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 6.86,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601336": {
+   "name_cn": "新华保险",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 46.75,
+    "high": 55.0
+   },
+   "entry_price": 55.0,
+   "thesis_file": "reports/601336新华保险-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 57.78,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601398": {
+   "name_cn": "工商银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.57,
+    "high": 6.55
+   },
+   "entry_price": 6.55,
+   "thesis_file": "reports/601398工商银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 7.56,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601577": {
+   "name_cn": "长沙银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.35,
+    "high": 8.65
+   },
+   "entry_price": 8.65,
+   "thesis_file": "reports/601577长沙银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 9.18,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601601": {
+   "name_cn": "中国太保",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 25.07,
+    "high": 29.5
+   },
+   "entry_price": 29.5,
+   "thesis_file": "reports/601601中国太保-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 29.92,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601665": {
+   "name_cn": "齐鲁银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 4.76,
+    "high": 5.6
+   },
+   "entry_price": 5.6,
+   "thesis_file": "reports/601665齐鲁银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 6.22,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601688": {
+   "name_cn": "华泰证券",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 14.45,
+    "high": 17.0
+   },
+   "entry_price": 17.0,
+   "thesis_file": "reports/601688华泰证券-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 19.39,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601838": {
+   "name_cn": "成都银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 13.6,
+    "high": 16.0
+   },
+   "entry_price": 16.0,
+   "thesis_file": "reports/601838成都银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 18.06,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601939": {
+   "name_cn": "建设银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.73,
+    "high": 9.1
+   },
+   "entry_price": 9.1,
+   "thesis_file": "reports/601939建设银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.24,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601963": {
+   "name_cn": "重庆银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 8.2,
+    "high": 9.65
+   },
+   "entry_price": 9.65,
+   "thesis_file": "reports/601963重庆银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.81,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601975": {
+   "name_cn": "招商南油",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 2.76,
+    "high": 3.25
+   },
+   "entry_price": 3.25,
+   "thesis_file": "reports/601975招商南油-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 3.56,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601997": {
+   "name_cn": "贵阳银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 4.25,
+    "high": 5.0
+   },
+   "entry_price": 5.0,
+   "thesis_file": "reports/601997贵阳银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 5.56,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601998": {
+   "name_cn": "中信银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 5.78,
+    "high": 6.8
+   },
+   "entry_price": 6.8,
+   "thesis_file": "reports/601998中信银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 7.7,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603091": {
+   "name_cn": "众鑫股份",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 38.25,
+    "high": 45.0
+   },
+   "entry_price": 45.0,
+   "thesis_file": "reports/603091众鑫股份-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 50.47,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603195": {
+   "name_cn": "公牛集团",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 30.39,
+    "high": 35.75
+   },
+   "entry_price": 35.75,
+   "thesis_file": "reports/603195公牛集团-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 40.07,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603199": {
+   "name_cn": "九华旅游",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 25.5,
+    "high": 30.0
+   },
+   "entry_price": 30.0,
+   "thesis_file": "reports/603199九华旅游-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 32.86,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603323": {
+   "name_cn": "苏农银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 3.4,
+    "high": 4.0
+   },
+   "entry_price": 4.0,
+   "thesis_file": "reports/603323苏农银行-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 4.13,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603338": {
+   "name_cn": "浙江鼎力",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 44.2,
+    "high": 52.0
+   },
+   "entry_price": 52.0,
+   "thesis_file": "reports/603338浙江鼎力-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 55.6,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603345": {
+   "name_cn": "安井食品",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 68.0,
+    "high": 80.0
+   },
+   "entry_price": 80.0,
+   "thesis_file": "reports/603345安井食品-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 84.2,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603444": {
+   "name_cn": "吉比特",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 297.5,
+    "high": 350.0
+   },
+   "entry_price": 350.0,
+   "thesis_file": "reports/603444吉比特-风险评估-李录视角-20260809.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 390.3,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603508": {
+   "name_cn": "思维列控",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 16.57,
+    "high": 19.5
+   },
+   "entry_price": 19.5,
+   "thesis_file": "reports/603508思维列控-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 21.5,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603558": {
+   "name_cn": "健盛集团",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 9.99,
+    "high": 11.75
+   },
+   "entry_price": 11.75,
+   "thesis_file": "reports/603558健盛集团-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 11.89,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603706": {
+   "name_cn": "东方环宇",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 14.24,
+    "high": 16.75
+   },
+   "entry_price": 16.75,
+   "thesis_file": "reports/603706东方环宇-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 18.98,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603929": {
+   "name_cn": "亚翔集成",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 123.25,
+    "high": 145.0
+   },
+   "entry_price": 145.0,
+   "thesis_file": "reports/603929亚翔集成-风险评估-李录视角-20260809.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 162.7,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "603998": {
+   "name_cn": "方盛制药",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.65,
+    "high": 9.0
+   },
+   "entry_price": 9.0,
+   "thesis_file": "reports/603998方盛制药-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 10.78,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "605016": {
+   "name_cn": "百龙创园",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 16.36,
+    "high": 19.25
+   },
+   "entry_price": 19.25,
+   "thesis_file": "reports/605016百龙创园-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 19.79,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "605098": {
+   "name_cn": "行动教育",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 44.2,
+    "high": 52.0
+   },
+   "entry_price": 52.0,
+   "thesis_file": "reports/605098行动教育-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 54.14,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "605305": {
+   "name_cn": "中际联合",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 30.6,
+    "high": 36.0
+   },
+   "entry_price": 36.0,
+   "thesis_file": "reports/605305中际联合-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 38.04,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "605499": {
+   "name_cn": "东鹏饮料",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 94.77,
+    "high": 111.5
+   },
+   "entry_price": 111.5,
+   "thesis_file": "reports/605499东鹏饮料-风险评估-李录视角-20260809.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 122.93,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "688016": {
+   "name_cn": "心脉医疗",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 70.12,
+    "high": 82.5
+   },
+   "entry_price": 82.5,
+   "thesis_file": "reports/688016心脉医疗-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 92.86,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "688029": {
+   "name_cn": "南微医学",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 55.67,
+    "high": 65.5
+   },
+   "entry_price": 65.5,
+   "thesis_file": "reports/688029南微医学-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 74.13,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "688188": {
+   "name_cn": "柏楚电子",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 76.5,
+    "high": 90.0
+   },
+   "entry_price": 90.0,
+   "thesis_file": "reports/688188柏楚电子-风险评估-李录视角.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 102.82,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "688208": {
+   "name_cn": "道通科技",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 21.25,
+    "high": 25.0
+   },
+   "entry_price": 25.0,
+   "thesis_file": "reports/688208道通科技-综合研判.md",
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 26.5,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "688578": {
+   "name_cn": "艾力斯",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 89.25,
+    "high": 105.0
+   },
+   "entry_price": 105.0,
+   "thesis_file": null,
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "距建仓价15%内，等待回调",
+   "last_check": "2026-08-14",
+   "last_price": 120.4,
+   "last_price_date": "2026-08-14",
+   "need_news_pulse": false
+  },
+  "601229": {
+   "name_cn": "上海银行",
+   "group": "WATCH",
+   "buy_zone": {
+    "low": 7.22,
+    "high": 8.5
+   },
+   "entry_price": 8.5,
+   "thesis_file": null,
+   "is_small_cap": false,
+   "trigger_confirm_days": 2,
+   "status": "WATCHING",
+   "note": "轮动补位自drop组"
+  }
+ },
+ "updated": "2026-08-14"
 }
