@@ -232,6 +232,8 @@ def _build_prompt_full(code: str, name: str, overwrite: bool) -> str:
 
 【强制数据核验】财务数据必须调用 python tools/financial_rigor.py cross-validate 交叉验证，两源不一致须在数据核验字段标注。
 
+【反锚定效应（硬约束）】建仓价必须基于独立估值推导（三情景估值/股息安全垫/合理PB等），严禁锚定当前股价。若你的建仓价与现价差距<10%，必须自问：这是估值结论还是锚定效应？建仓价应与现价无关——现价翻倍或腰斩，你的建仓价都应不变。
+
 【headless 说明】自动模式跳过交互确认直接执行；不要保存到用户主目录。完成后打印：RESEARCH_DONE {code}
 """
 

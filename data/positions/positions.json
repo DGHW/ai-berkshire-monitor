@@ -1,1 +1,16 @@
-{}
+{
+  "300573": {
+    "name_cn": "兴齐眼药",
+    "shares": 2800,
+    "avg_cost": 42.19,
+    "total_cost": 118132.0,
+    "buy_date": "2026-08-14",
+    "last_add": "2026-08-14",
+    "reason": "manual-futu-order:gain85%",
+    "sell_reason": null,
+    "sell_date": null,
+    "note": "",
+    "highest_price": 42.19,
+    "gain_med": 85.0
+  }
+}
