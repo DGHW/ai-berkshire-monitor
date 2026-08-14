@@ -10,6 +10,8 @@ echo [%date% %time%] ==== 每日 batch1 开始 ====
 %PY% tools\price_monitor.py            >> reports\monitor\daily\cron.log 2>&1
 %PY% tools\position_manager.py --daily >> reports\monitor\daily\cron.log 2>&1
 %PY% tools\pool_rotator.py --health-only >> reports\monitor\daily\cron.log 2>&1
+REM 模拟盘成交核对（本地记账 vs 富途委托/持仓，输出差异清单）
+%PY% tools\futu_bridge.py --reconcile   >> reports\monitor\daily\cron.log 2>&1
 REM 自动复核：REVIEW_DUE → 完整重研 → 六道闸门 → 自动建仓（默认每日 1 只，多只排队）
 %PY% tools\agent_driver.py review --limit 1 >> reports\monitor\cron_agent.log 2>&1
 echo [%date% %time%] ==== batch1 完成 ====

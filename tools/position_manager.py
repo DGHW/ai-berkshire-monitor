@@ -160,6 +160,21 @@ def sell_position(code: str, shares: int, price: float, reason: str):
         print(f"✅ 部分卖出 {code} {shares} 股 @{price}，剩余 {p['shares']} 股")
 
     save_positions(positions)
+    # 双轨：富途模拟盘同步卖出（失败仅告警，不影响本地记账）
+    try:
+        futu_cfg_file = os.path.join(REPO_ROOT, "data", "positions", "futu_config.json")
+        if os.path.exists(futu_cfg_file):
+            with open(futu_cfg_file, encoding="utf-8") as f:
+                futu_cfg = json.load(f)
+            if futu_cfg.get("enabled", True):
+                from futu_bridge import _place_order
+                res = _place_order(code, "SELL", shares, price, "ai-berkshire-sell", dry_run=False)
+                if res.get("ok"):
+                    print(f"📡 富途模拟盘卖出: {res.get('code')} {shares}股 status={res.get('status')}")
+                else:
+                    print(f"⚠️ 富途模拟盘卖出失败（不影响记账）: {res.get('reason', res.get('error', '?'))}")
+    except Exception as e:
+        print(f"⚠️ 富途模拟盘卖出异常（不影响记账）: {e}")
 
 
 # ---------------------------------------------------------------------------

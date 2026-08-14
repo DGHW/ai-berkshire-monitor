@@ -73,6 +73,12 @@ def health_check() -> dict:
 
     alerts = []
     for ts_code, stock in (monitor.get("stocks") or {}).items():
+        # 0. ST/退市检查（v7 补监控池覆盖，此前只查初筛池）
+        name_cn = str(stock.get("name_cn", ""))
+        if "ST" in name_cn.upper() or "退" in name_cn:
+            alerts.append({"ts_code": ts_code, "name": name_cn,
+                           "level": "HARD_EXCLUDE", "detail": f"监控池标的已变 {name_cn}"})
+
         # 1. 论文年龄检查
         thesis_file = stock.get("thesis_file")
         age_days = None
