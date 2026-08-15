@@ -246,7 +246,10 @@ def _build_prompt_lite(code: str, name: str) -> str:
 
 【headless 自动模式】
 1. 跳过批量调度器的 claim 步骤（股票已由调用方指定），直接对该标的做六关速评（能力圈/好生意/护城河/管理层/估值/财务健康）。
-2. 优先参考 reports/ 下该股票的既有报告判断基本面是否证伪；可用 tools/quote_fetcher.py {code} 取实时价。
+2. 数据链路（P2 强化）：
+   - 必须用 python tools/quote_fetcher.py {code} 取实时价，估值关的 PE/PB 一律按实时价重算，禁止使用旧快照的 PE
+   - 财务指标（ROE/毛利率/净利率/营收增速）优先取 reports/ 下该股最新报告的数据核验节；若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径
+   - 所有数据卡/速评卡字段视为可能过期快照，仅作交叉参考
 3. 最后严格输出如下 JSON（不要输出其它内容）：
    {{"verdict": "PASS|HOLD|FAIL", "reason": "一句话理由", "gain_med_updated": null}}
    其中 gain_med_updated 仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 null。
@@ -317,6 +320,15 @@ def normalize_reports(code: str, name: str, run_id: str) -> bool:
                         run_id=f"{run_id}_norm")
     ok, detail = research_succeeded(code)
     log(f"📝 落盘归一: {detail}")
+    # P2 数据抽检：四份报告的数据核验字段 ≥2 份未通过 → 警告（归一失真风险）
+    try:
+        stock = parse_stock(code)
+        if stock and stock.get("verify_oks"):
+            falses = sum(1 for v in stock["verify_oks"] if v is False)
+            if falses >= 2:
+                log(f"⚠️ 归一数据抽检: {falses}/4 份数据核验未通过，建议人工抽检 {code}")
+    except Exception:
+        pass
     return ok
 
 
@@ -856,7 +868,7 @@ def main():
     p.add_argument("--dry-run", action="store_true")
 
     p = sub.add_parser("batch2-research", help="轮动混合深度研究")
-    p.add_argument("--lite-cap", type=int, default=30)
+    p.add_argument("--lite-cap", type=int, default=60)
     p.add_argument("--dry-run", action="store_true")
 
     p = sub.add_parser("run-one", help="单只调试")

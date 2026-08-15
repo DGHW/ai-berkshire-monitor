@@ -7,8 +7,8 @@ cd /d C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire
 set PY=C:\Users\17356\.workbuddy\binaries\python\envs\default\Scripts\python.exe
 
 echo [%date% %time%] ==== batch2 轮动开始 ====
-REM ① 混合深度研究：边界标的完整重研 + 其余 lite 速评 → report_sync 回填
-%PY% tools\agent_driver.py batch2-research --lite-cap 30 >> reports\monitor\cron_agent.log 2>&1
+REM ① 混合深度研究：边界标的完整重研 + 其余 lite 速评 → report_sync 回填（P2: cap 30→60 提升覆盖率）
+%PY% tools\agent_driver.py batch2-research --lite-cap 60 >> reports\monitor\cron_agent.log 2>&1
 REM ② 基于回填后的新指标做规则轮动
 %PY% tools\pool_rotator.py --monthly-rotate  >> reports\monitor\cron_rotation.log 2>&1
 %PY% tools\pool_kelly.py --refresh-basis     >> reports\monitor\cron_rotation.log 2>&1
