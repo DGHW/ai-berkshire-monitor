@@ -20,6 +20,7 @@ import json
 import os
 import subprocess
 import sys
+from datetime import datetime
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_FILE = os.path.join(REPO_ROOT, "data", "positions", "futu_config.json")
@@ -90,10 +91,25 @@ def run_skill_script(script: str, args: list) -> dict:
                 break
             except json.JSONDecodeError:
                 continue
-        return {"ok": proc.returncode == 0, "exit": proc.returncode,
-                "stdout": out, "stderr": err, "json": parsed}
+        result = {"ok": proc.returncode == 0, "exit": proc.returncode,
+                  "stdout": out, "stderr": err, "json": parsed}
+        if not result["ok"]:
+            _alert(f"{script} 失败(exit={proc.returncode}): {err[-300:]}")
+        return result
     except subprocess.TimeoutExpired:
+        _alert(f"{script} 超时(120s)")
         return {"ok": False, "error": "脚本超时(120s)"}
+
+
+def _alert(msg: str):
+    """告警日志：OpenD 掉线/下单失败等异常集中记录，batch1 日报可读。"""
+    log_file = os.path.join(REPO_ROOT, "reports", "monitor", "futu_alerts.log")
+    try:
+        os.makedirs(os.path.dirname(log_file), exist_ok=True)
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}\n")
+    except OSError:
+        pass
 
 
 def cmd_check():
@@ -178,7 +194,7 @@ def cmd_orders():
     return 0
 
 
-def cmd_reconcile():
+def cmd_reconcile(auto_fix: bool = False):
     """成交核对：本地记账持仓 vs 模拟盘真实持仓/委托。
     输出差异清单：本地有而模拟盘无（挂单未成交）、模拟盘有而本地无（记账缺失）。
     """
@@ -231,10 +247,81 @@ def cmd_reconcile():
             issues.append({"type": "MISSING_LOCAL", "code": c,
                            "futu_shares": pos.get("qty", pos.get("shares")),
                            "suggest": "模拟盘有持仓但本地未记账：补记账或模拟盘卖出"})
-    print(json.dumps({"ok": True, "issues": issues,
+
+    # 3. 自动修复（--auto-fix）：UNFILLED/MISSING_FUTU → 撤单重下或回滚
+    fixes = []
+    if auto_fix:
+        for issue in issues:
+            if issue["type"] in ("UNFILLED", "MISSING_FUTU"):
+                res = _auto_fix_unfilled(issue, local.get(issue["code"], {}))
+                fixes.append({"code": issue["code"], "result": res})
+    print(json.dumps({"ok": True, "issues": issues, "fixes": fixes,
                       "local": sorted(local_codes),
                       "futu": sorted(futu_positions.keys())}, ensure_ascii=False, indent=1))
     return 0
+
+
+def _auto_fix_unfilled(issue: dict, local_pos: dict) -> dict:
+    """挂单未成交自动处理：撤单 → 实时价重下（击球区内）或回滚记账（超击球区）。"""
+    code = issue["code"]
+    local_shares = issue.get("local_shares", 0)
+    # 1. 撤单
+    for o in issue.get("pending_orders", []):
+        oid = str(o.get("order_id", ""))
+        if oid:
+            r = run_skill_script("cancel_order.py", ["--order-id", oid] + _acc_id_args())
+            if not r["ok"]:
+                _alert(f"{code} 撤单失败 order={oid}")
+    # 2. 实时价与击球区
+    try:
+        sys.path.insert(0, os.path.join(REPO_ROOT, "tools"))
+        from quote_fetcher import get_spot
+        spot = get_spot(code)
+        price = float(spot["price"])
+    except Exception:
+        _alert(f"{code} 实时价获取失败，回滚记账")
+        return _rollback_local(code, "实时价获取失败")
+    pool_file = os.path.join(REPO_ROOT, "data", "monitor", "pool.json")
+    zone_hi = None
+    if os.path.exists(pool_file):
+        with open(pool_file, encoding="utf-8") as f:
+            pool = json.load(f)
+        zone_hi = (pool.get("stocks", {}).get(code, {}).get("buy_zone") or {}).get("high")
+    # 3. 击球区内（含 5% 容差）→ 按现价重下
+    if zone_hi is None or price <= zone_hi * 1.05:
+        res = _place_order(code, "BUY", int(local_shares), round(price, 2),
+                           "ai-berkshire-autofix", dry_run=False)
+        _alert(f"{code} auto-fix: 撤单后按现价 {price} 重下 {local_shares} 股 → {res.get('status', res.get('ok'))}")
+        return {"action": "reorder", "price": price, "shares": local_shares,
+                "order": res.get("order_id")}
+    # 4. 超击球区 → 回滚记账
+    return _rollback_local(code, f"现价 {price} 超击球区上沿 {zone_hi}，回滚")
+
+
+def _rollback_local(code: str, reason: str) -> dict:
+    """回滚本地记账：positions 清零 + pool 状态回 WATCHING。"""
+    pos_file = os.path.join(REPO_ROOT, "data", "positions", "positions.json")
+    if os.path.exists(pos_file):
+        with open(pos_file, encoding="utf-8") as f:
+            positions = json.load(f)
+        if code in positions:
+            positions[code]["shares"] = 0
+            positions[code]["sell_reason"] = f"auto-rollback: {reason}"
+            positions[code]["sell_date"] = datetime.now().strftime("%Y-%m-%d")
+            with open(pos_file, "w", encoding="utf-8") as f:
+                f.write(json.dumps(positions, ensure_ascii=False, indent=1) + "\n")
+    pool_file = os.path.join(REPO_ROOT, "data", "monitor", "pool.json")
+    if os.path.exists(pool_file):
+        with open(pool_file, encoding="utf-8") as f:
+            pool = json.load(f)
+        if code in pool.get("stocks", {}):
+            pool["stocks"][code]["status"] = "WATCHING"
+            pool["stocks"][code]["note"] = f"auto-rollback: {reason}"
+            pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+            with open(pool_file, "w", encoding="utf-8") as f:
+                f.write(json.dumps(pool, ensure_ascii=False, indent=1) + "\n")
+    _alert(f"{code} 回滚记账: {reason}")
+    return {"action": "rollback", "reason": reason}
 
 
 def _acc_id_args():
@@ -272,6 +359,7 @@ def main():
     parser.add_argument("--positions", action="store_true", help="查模拟盘持仓")
     parser.add_argument("--orders", action="store_true", help="查当日委托")
     parser.add_argument("--reconcile", action="store_true", help="成交核对（本地 vs 模拟盘）")
+    parser.add_argument("--auto-fix", action="store_true", help="核对后自动修复（撤单重下/回滚记账）")
     parser.add_argument("--cash", action="store_true", help="查模拟盘资金")
     args = parser.parse_args()
 
@@ -288,7 +376,7 @@ def main():
     if args.orders:
         return cmd_orders()
     if args.reconcile:
-        return cmd_reconcile()
+        return cmd_reconcile(auto_fix=args.auto_fix)
     if args.cash:
         return cmd_cash()
     parser.print_help()
