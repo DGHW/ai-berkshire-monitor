@@ -494,8 +494,27 @@ def execute_buy(code: str, old_gain: float, dry_run: bool) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 主流程 1：每日 review（REVIEW_DUE → 完整重研 → 闸门 → 自动买入）
+# 主流程 1：每日 review（REVIEW_DUE + 财报窗口 → 完整重研 → 闸门 → 自动买入）
 # ---------------------------------------------------------------------------
+def earnings_due_codes() -> list:
+    """财报披露窗口内（今天）的股票代码清单。"""
+    cal_file = os.path.join(REPO_ROOT, "data", "monitor", "earnings_calendar.json")
+    if not os.path.exists(cal_file):
+        return []
+    try:
+        data = json.load(open(cal_file, encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    today_md = datetime.now().strftime("%m-%d")
+    due = []
+    for code, events in data.get("calendar", {}).items():
+        for e in events:
+            if e["window_start"] <= today_md <= e["window_end"]:
+                due.append((code, e["type"]))
+                break
+    return due
+
+
 def review_once(limit: int, dry_run: bool) -> dict:
     if not acquire_lock():
         return {"error": "locked"}
@@ -503,11 +522,17 @@ def review_once(limit: int, dry_run: bool) -> dict:
         pool = load_json(POOL_FILE)
         due = [c for c, s in pool.get("stocks", {}).items()
                if s.get("status") == "REVIEW_DUE"]
+        # P1：财报窗口内股票自动触发重研（优先，基本面在财报后可能大变）
+        earnings = earnings_due_codes()
+        earn_codes = {c for c, _ in earnings}
+        due_earn = [c for c, _ in earnings if c not in due and c in pool.get("stocks", {})]
+        due = due_earn + due
+        due = list(dict.fromkeys(due))  # 去重保序
         due.sort()
         if not due:
-            log("✅ 无 REVIEW_DUE 标的")
+            log("✅ 无 REVIEW_DUE 且无财报窗口标的")
             return {"reviewed": []}
-        log(f"📋 REVIEW_DUE 标的: {due}（本批上限 {limit}）")
+        log(f"📋 复核标的: {due}（本批上限 {limit}；财报窗口: {earn_codes or '无'}）")
         reviewed = []
         for code in due[:limit]:
             name = pool["stocks"][code].get("name_cn", "")
@@ -517,7 +542,8 @@ def review_once(limit: int, dry_run: bool) -> dict:
                 if code in groups.get(g, {}):
                     old_gain = groups[g][code].get("gain_med")
                     break
-            enqueue(code, name, "full", "REVIEW_DUE", "batch1")
+            reason = "earnings-window" if code in earn_codes else "REVIEW_DUE"
+            enqueue(code, name, "full", reason, "batch1")
             job = claim_next("full")
             if not job:
                 continue
@@ -750,6 +776,76 @@ def retry_failed():
     print(f"重试 {changed} 个 failed 任务")
 
 
+def revive(limit: int, dry_run: bool):
+    """P1 复活扫描：drop/reserve 组按报告最久未更新排序，lite 速评，
+    PASS → 复活进 watch（同步 groups + pool）。风格轮动防线：淘汰≠删除。"""
+    if not acquire_lock():
+        return {"error": "locked"}
+    try:
+        groups = load_json(GROUPS_FILE)
+        cands = []
+        for g in ("drop", "reserve"):
+            for c, s in groups.get(g, {}).items():
+                mtime = 0.0
+                thesis = s.get("thesis_file")
+                if thesis:
+                    p = os.path.join(REPO_ROOT, thesis)
+                    if os.path.exists(p):
+                        mtime = os.path.getmtime(p)
+                cands.append((mtime, c, s.get("name", ""), g))
+        cands.sort()  # 最旧报告优先
+        log(f"📋 复活扫描候选: drop+reserve 共 {len(cands)} 只，本批 {min(limit, len(cands))} 只")
+        revived = []
+        for _, code, name, src_group in cands[:limit]:
+            if dry_run:
+                log(f"🔍 [dry-run] {code} {name}（{src_group}）将 lite 速评")
+                continue
+            enqueue(code, name, "lite", f"revive-from-{src_group}", "revive")
+            job = claim_next("lite")
+            if not job:
+                continue
+            run_id = f"revive_{code}_{datetime.now().strftime('%H%M%S')}"
+            run = run_codebuddy(_build_prompt_lite(code, name),
+                                timeout_min=LITE_TIMEOUT_MIN, max_turns=LITE_MAX_TURNS,
+                                run_id=run_id)
+            v = _extract_lite_verdict(run)
+            if v is None:
+                mark(code, "failed", note="无 verdict JSON", run_id=run_id)
+                continue
+            mark(code, "done", verdict=v["verdict"], note=v.get("reason", ""), run_id=run_id)
+            if v["verdict"] == "PASS":
+                # 复活：groups 组移动 + pool 加入监控
+                item = groups[src_group].pop(code, None)
+                if item:
+                    groups.setdefault("watch", {})[code] = item
+                    groups["updated"] = datetime.now().strftime("%Y-%m-%d")
+                    save_json(GROUPS_FILE, groups)
+                pool = load_json(POOL_FILE)
+                if code not in pool.get("stocks", {}):
+                    pool["stocks"][code] = {
+                        "name_cn": name,
+                        "group": "WATCH",
+                        "buy_zone": {"low": round(item["entry_med"] * 0.85, 2), "high": item["entry_med"]}
+                        if item and item.get("entry_med") else None,
+                        "entry_price": item.get("entry_med") if item else None,
+                        "thesis_file": item.get("thesis_file") if item else None,
+                        "is_small_cap": code.startswith(("920", "8", "4")),
+                        "trigger_confirm_days": 1,
+                        "status": "WATCHING",
+                        "note": f"复活扫描PASS自{src_group}组",
+                    }
+                    pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+                    save_json(POOL_FILE, pool)
+                revived.append({"code": code, "name": name, "from": src_group,
+                                "reason": v.get("reason", "")})
+                log(f"🌱 复活 {code} {name}: {src_group}→watch（{v.get('reason','')}）")
+            else:
+                log(f"⏸ {code} {name} [{v['verdict']}] 保持 {src_group} 组")
+        return {"revived": revived}
+    finally:
+        release_lock()
+
+
 def main():
     _force_utf8_stdio()
     parser = argparse.ArgumentParser(description="定时任务 Agent 驱动")
@@ -769,6 +865,10 @@ def main():
     p.add_argument("--overwrite", action="store_true")
     p.add_argument("--dry-run", action="store_true")
 
+    p = sub.add_parser("revive", help="drop/reserve 复活扫描（季度，风格轮动防线）")
+    p.add_argument("--limit", type=int, default=30)
+    p.add_argument("--dry-run", action="store_true")
+
     sub.add_parser("status", help="队列+锁状态")
     sub.add_parser("retry-failed", help="重试失败任务")
 
@@ -779,6 +879,8 @@ def main():
         batch2_research(args.lite_cap, args.dry_run)
     elif args.cmd == "run-one":
         run_one(args.code, args.mode, args.overwrite, args.dry_run)
+    elif args.cmd == "revive":
+        revive(args.limit, args.dry_run)
     elif args.cmd == "status":
         status()
     elif args.cmd == "retry-failed":
