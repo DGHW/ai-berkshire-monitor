@@ -8,15 +8,16 @@
     "high": 30.0
    },
    "entry_price": 30.0,
-   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\001316润贝航科-综合研判.md",
+   "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\001316润贝航科-综合研判-20260817.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
-   "status": "WATCHING",
-   "note": "达到建仓价，可分批买入",
-   "last_check": "2026-08-14",
-   "last_price": 26.6,
-   "last_price_date": "2026-08-14",
-   "need_news_pulse": false
+   "status": "BOUGHT",
+   "note": "自动买入 4400股@27.22; futu⏸(?)",
+   "last_check": "2026-08-17",
+   "last_price": 27.22,
+   "last_price_date": "2026-08-17",
+   "need_news_pulse": false,
+   "triggered_since": "2026-08-17"
   },
   "300573": {
    "name_cn": "兴齐眼药",
@@ -32,9 +33,9 @@
    "status": "BOUGHT",
    "note": "手动建仓 2800股@42.19 (富途order 8720602, 凯利12%); 锚定防护:建仓价49.0→40.0被锁定回49.0",
    "triggered_since": null,
-   "last_check": "2026-08-14",
-   "last_price": 41.4,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 41.15,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600211": {
@@ -51,9 +52,9 @@
    "status": "BOUGHT",
    "note": "手动建仓 3000股@38.94 (富途order 8721752, 凯利12%, 取消2天确认)",
    "triggered_since": "2026-08-14",
-   "last_check": "2026-08-14",
-   "last_price": 39.38,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 39.07,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000001": {
@@ -69,9 +70,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.11,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 11.1,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000333": {
@@ -87,9 +88,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 83.03,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 82.61,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000538": {
@@ -105,9 +106,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 50.03,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 49.8,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000598": {
@@ -123,9 +124,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 7.12,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 7.15,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000680": {
@@ -141,9 +142,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.21,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.37,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000682": {
@@ -159,9 +160,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.88,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 12.11,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000685": {
@@ -177,9 +178,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.03,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 11.11,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000783": {
@@ -195,9 +196,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 9.04,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 9.14,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000885": {
@@ -213,9 +214,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 12.67,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 12.72,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000899": {
@@ -231,9 +232,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.37,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.44,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000902": {
@@ -249,9 +250,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 12.92,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 13.26,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000963": {
@@ -267,9 +268,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 29.72,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 29.44,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "000999": {
@@ -285,9 +286,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 24.71,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 24.4,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "001286": {
@@ -303,9 +304,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.54,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.69,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "001332": {
@@ -321,9 +322,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 31.39,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 32.01,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002142": {
@@ -339,9 +340,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 32.2,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 32.19,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002262": {
@@ -357,9 +358,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 21.96,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 21.67,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002275": {
@@ -375,9 +376,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 13.33,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 13.32,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002415": {
@@ -393,9 +394,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 34.88,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 35.09,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002507": {
@@ -411,9 +412,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.31,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 11.34,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002588": {
@@ -429,9 +430,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 8.46,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 8.6,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002833": {
@@ -447,9 +448,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 18.29,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 18.49,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002884": {
@@ -465,9 +466,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 15.92,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 16.1,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002946": {
@@ -483,9 +484,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 15.81,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 15.87,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002947": {
@@ -501,9 +502,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 59.31,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 61.27,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002948": {
@@ -519,9 +520,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 5.67,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 5.73,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002966": {
@@ -537,9 +538,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 8.47,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 8.53,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "002991": {
@@ -555,9 +556,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 42.85,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 43.17,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300012": {
@@ -573,10 +574,10 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 13.98,
-   "last_price_date": "2026-08-14",
-   "need_news_pulse": false
+   "last_check": "2026-08-17",
+   "last_price": 15.22,
+   "last_price_date": "2026-08-17",
+   "need_news_pulse": true
   },
   "300206": {
    "name_cn": "理邦仪器",
@@ -591,9 +592,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 12.34,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 12.21,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300415": {
@@ -609,9 +610,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 20.73,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 20.98,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300453": {
@@ -627,9 +628,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.08,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.0,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300487": {
@@ -645,9 +646,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 66.7,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 69.91,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300515": {
@@ -663,9 +664,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 16.49,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 16.51,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300628": {
@@ -681,9 +682,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 39.76,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 40.12,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "300866": {
@@ -699,9 +700,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 115.75,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 118.2,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "301345": {
@@ -717,9 +718,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 254.57,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 270.99,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600018": {
@@ -733,13 +734,13 @@
    "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600018上港集团-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
-   "status": "TRIGGERED",
+   "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 5.07,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 5.09,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false,
-   "triggered_since": "2026-08-14"
+   "triggered_since": null
   },
   "600030": {
    "name_cn": "中信证券",
@@ -754,9 +755,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 27.31,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 27.54,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600036": {
@@ -770,13 +771,13 @@
    "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600036招商银行-商业模式-段永平视角.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
-   "status": "TRIGGERED",
+   "status": "REVIEW_DUE",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 38.46,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 38.2,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false,
-   "triggered_since": "2026-08-14"
+   "triggered_since": "2026-08-17"
   },
   "600276": {
    "name_cn": "恒瑞医药",
@@ -791,9 +792,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 52.62,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 52.87,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600285": {
@@ -807,12 +808,13 @@
    "thesis_file": "C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600285羚锐制药-综合研判-20260809.md",
    "is_small_cap": false,
    "trigger_confirm_days": 2,
-   "status": "WATCHING",
+   "status": "REVIEW_DUE",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 19.7,
-   "last_price_date": "2026-08-14",
-   "need_news_pulse": false
+   "last_check": "2026-08-17",
+   "last_price": 19.49,
+   "last_price_date": "2026-08-17",
+   "need_news_pulse": false,
+   "triggered_since": "2026-08-17"
   },
   "600415": {
    "name_cn": "小商品城",
@@ -827,9 +829,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.66,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 11.92,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600694": {
@@ -845,9 +847,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 14.28,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 14.4,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600872": {
@@ -863,9 +865,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 18.77,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 18.87,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600885": {
@@ -881,9 +883,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 36.2,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 36.35,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600900": {
@@ -899,9 +901,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 28.1,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 27.96,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600919": {
@@ -917,9 +919,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.66,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 11.62,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600926": {
@@ -935,9 +937,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 16.28,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 16.25,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "600993": {
@@ -953,9 +955,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 23.34,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 23.16,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601009": {
@@ -971,9 +973,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.18,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 11.27,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601077": {
@@ -989,9 +991,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 6.57,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 6.54,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601128": {
@@ -1007,9 +1009,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 6.09,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 6.1,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601166": {
@@ -1025,9 +1027,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 18.03,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 17.83,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601169": {
@@ -1043,9 +1045,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 4.96,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 4.95,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601187": {
@@ -1061,9 +1063,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 7.37,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 7.42,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601288": {
@@ -1079,9 +1081,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 6.47,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 6.46,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601298": {
@@ -1097,9 +1099,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 8.69,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 8.78,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601319": {
@@ -1115,9 +1117,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 6.86,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 6.91,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601336": {
@@ -1133,9 +1135,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 57.78,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 58.55,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601398": {
@@ -1151,9 +1153,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
+   "last_check": "2026-08-17",
    "last_price": 7.56,
-   "last_price_date": "2026-08-14",
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601577": {
@@ -1169,9 +1171,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 9.18,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 9.22,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601601": {
@@ -1187,9 +1189,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 29.92,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 30.15,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601665": {
@@ -1205,9 +1207,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 6.22,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 6.34,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601688": {
@@ -1223,9 +1225,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 19.39,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 19.37,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601838": {
@@ -1241,9 +1243,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 18.06,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 18.03,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601939": {
@@ -1259,9 +1261,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.24,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.3,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601963": {
@@ -1277,9 +1279,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.81,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.85,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601975": {
@@ -1295,9 +1297,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 3.56,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 3.67,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601997": {
@@ -1313,9 +1315,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 5.56,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 5.58,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601998": {
@@ -1331,9 +1333,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 7.7,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 7.69,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603091": {
@@ -1349,9 +1351,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 50.47,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 51.42,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603195": {
@@ -1367,9 +1369,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 40.07,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 39.81,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603199": {
@@ -1385,9 +1387,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 32.86,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 32.61,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603323": {
@@ -1403,9 +1405,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
+   "last_check": "2026-08-17",
    "last_price": 4.13,
-   "last_price_date": "2026-08-14",
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603338": {
@@ -1421,9 +1423,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 55.6,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 55.9,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603345": {
@@ -1439,9 +1441,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 84.2,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 84.23,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603444": {
@@ -1457,9 +1459,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 390.3,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 389.8,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603508": {
@@ -1475,9 +1477,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 21.5,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 21.64,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603558": {
@@ -1493,9 +1495,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 11.89,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 12.09,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603706": {
@@ -1511,9 +1513,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 18.98,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 19.33,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "603929": {
@@ -1529,10 +1531,10 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 162.7,
-   "last_price_date": "2026-08-14",
-   "need_news_pulse": false
+   "last_check": "2026-08-17",
+   "last_price": 178.97,
+   "last_price_date": "2026-08-17",
+   "need_news_pulse": true
   },
   "603998": {
    "name_cn": "方盛制药",
@@ -1547,9 +1549,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 10.78,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 10.5,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "605016": {
@@ -1565,9 +1567,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 19.79,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 20.09,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "605098": {
@@ -1583,9 +1585,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 54.14,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 55.64,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "605305": {
@@ -1601,9 +1603,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 38.04,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 38.81,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "605499": {
@@ -1619,9 +1621,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 122.93,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 123.47,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "688016": {
@@ -1637,9 +1639,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 92.86,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 92.81,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "688029": {
@@ -1655,9 +1657,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 74.13,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 73.17,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "688188": {
@@ -1673,9 +1675,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 102.82,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 102.9,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "688208": {
@@ -1691,9 +1693,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 26.5,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 26.84,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "688578": {
@@ -1709,9 +1711,9 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "距建仓价15%内，等待回调",
-   "last_check": "2026-08-14",
-   "last_price": 120.4,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 120.04,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   },
   "601229": {
@@ -1727,11 +1729,11 @@
    "trigger_confirm_days": 2,
    "status": "WATCHING",
    "note": "轮动补位自drop组",
-   "last_check": "2026-08-14",
-   "last_price": 9.42,
-   "last_price_date": "2026-08-14",
+   "last_check": "2026-08-17",
+   "last_price": 9.43,
+   "last_price_date": "2026-08-17",
    "need_news_pulse": false
   }
  },
- "updated": "2026-08-14"
+ "updated": "2026-08-17"
 }

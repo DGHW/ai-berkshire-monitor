@@ -463,7 +463,23 @@
    "verdict": "HOLD",
    "note": "基本面未证伪但沿用既有深研结论：PE-TTM 20.35x(10年9.5%分位)公道价无安全边际，Q1净现比0.08与应收连升待8/26中报验证，等回调至10.8-12元或中报确认",
    "run_id": "b2lite_300206_235108"
+  },
+  {
+   "code": "001316",
+   "name": "润贝航科",
+   "mode": "full",
+   "reason": "REVIEW_DUE",
+   "source": "batch1",
+   "status": "done",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-17",
+   "started": "2026-08-17 15:35:09",
+   "finished": "2026-08-17 15:47:19",
+   "verdict": "RESEARCH_OK",
+   "note": "行业竞争解析失败; 可解析 3/4",
+   "run_id": "review_001316_153509"
   }
  ],
- "updated": "2026-08-14"
+ "updated": "2026-08-17"
 }
