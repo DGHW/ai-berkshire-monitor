@@ -9,11 +9,12 @@
   "reason": "manual-futu-order:gain85%",
   "sell_reason": null,
   "sell_date": null,
-  "note": "",
+  "note": "老仓12%已满:add_count=1封顶不补",
   "highest_price": 42.19,
   "gain_med": 85.0,
-  "last_price": 41.25,
-  "last_check": "2026-08-19"
+  "last_price": 40.1,
+  "last_check": "2026-08-19",
+  "add_count": 1
  },
  "600211": {
   "name_cn": "西藏药业",
@@ -25,11 +26,12 @@
   "reason": "manual-futu-order:gain39%",
   "sell_reason": null,
   "sell_date": null,
-  "note": "",
+  "note": "老仓12%已满:add_count=1封顶不补",
   "highest_price": 39.07,
   "gain_med": 39.0,
-  "last_price": 38.8,
-  "last_check": "2026-08-19"
+  "last_price": 38.05,
+  "last_check": "2026-08-19",
+  "add_count": 1
  },
  "001316": {
   "name_cn": "润贝航科",
@@ -41,11 +43,12 @@
   "reason": "auto-review-pass:gain10.0%",
   "sell_reason": null,
   "sell_date": null,
-  "note": "",
+  "note": "老仓12%已满:add_count=1封顶不补",
   "highest_price": 27.22,
   "gain_med": 10.0,
-  "last_price": 27.02,
-  "last_check": "2026-08-19"
+  "last_price": 25.7,
+  "last_check": "2026-08-19",
+  "add_count": 1
  },
  "600036": {
   "name_cn": "招商银行",
@@ -71,8 +74,11 @@
   "reason": "auto-review-pass:gain20.9%",
   "sell_reason": null,
   "sell_date": null,
-  "note": "",
-  "highest_price": 19.73,
-  "gain_med": 20.9
+  "note": "老仓12%已满:add_count=1封顶不补",
+  "highest_price": 19.97,
+  "gain_med": 20.9,
+  "last_price": 19.97,
+  "last_check": "2026-08-19",
+  "add_count": 1
  }
 }
