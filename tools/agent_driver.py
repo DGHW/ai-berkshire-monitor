@@ -610,9 +610,150 @@ def review_once(limit: int, dry_run: bool) -> dict:
                 log(f"⏸ {code} 未买入: {res.get('reason')}")
             if not dry_run and len(reviewed) >= limit:
                 break
+        # 8+4 分批：补仓复核（ADD_DUE，独立于 REVIEW_DUE 上限）
+        if not dry_run:
+            add_review_once(dry_run=False)
         return {"reviewed": reviewed}
     finally:
         release_lock()
+
+
+# ---------------------------------------------------------------------------
+# 主流程 1b：8+4 分批补仓复核（ADD_DUE → lite 速评 → PASS/HOLD 补仓 4%）
+# ---------------------------------------------------------------------------
+ADD_PCT = 4.0          # 补仓仓位（%）——与 pool_kelly.ADD_POSITION 对应
+ADD_MAX_COUNT = 1      # 每笔最多补仓次数
+ADD_FAIL_COOLDOWN = 7  # 复核 FAIL 后的冷却天数（防每日重触发循环）
+
+
+def add_review_once(dry_run: bool) -> dict:
+    """补仓复核：持仓股跌至补仓价（ADD_DUE）→ lite 速评。
+    PASS/HOLD（错杀）→ 补仓 4%；FAIL（证伪）→ 不加仓并冷却 7 天。"""
+    pool = load_json(POOL_FILE)
+    due = [c for c, s in pool.get("stocks", {}).items()
+           if s.get("status") == "ADD_DUE"]
+    if not due:
+        return {"added": []}
+    log(f"📋 补仓复核标的: {due}")
+    added = []
+    for code in due:
+        stock = pool["stocks"][code]
+        name = stock.get("name_cn", "")
+        # 补仓次数封顶
+        positions = load_json(os.path.join(REPO_ROOT, "data", "positions", "positions.json")) or {}
+        pos = positions.get(code, {})
+        add_count = pos.get("add_count", 0)
+        if add_count >= ADD_MAX_COUNT:
+            stock["status"] = "BOUGHT"
+            stock["note"] = f"补仓次数已封顶（{add_count}次）"
+            pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+            save_json(POOL_FILE, pool)
+            log(f"⏸ {code} {name} 补仓次数封顶，复位 BOUGHT")
+            continue
+        # FAIL 冷却期
+        last_fail = stock.get("add_reviewed_at")
+        if last_fail:
+            try:
+                days = (datetime.now() - datetime.strptime(last_fail[:10], "%Y-%m-%d")).days
+                if days < ADD_FAIL_COOLDOWN:
+                    stock["status"] = "BOUGHT"
+                    stock["note"] = f"补仓复核FAIL冷却中（{days}/{ADD_FAIL_COOLDOWN}天）"
+                    pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+                    save_json(POOL_FILE, pool)
+                    log(f"⏸ {code} {name} 复核FAIL冷却中，跳过")
+                    continue
+            except ValueError:
+                pass
+        if dry_run:
+            log(f"🔍 [dry-run] {code} {name} 将 lite 复核后决定是否补仓 4%")
+            continue
+        # lite 复核
+        enqueue(code, name, "lite", "ADD_DUE", "batch1")
+        job = claim_next("lite")
+        if not job:
+            continue
+        run_id = f"add_{code}_{datetime.now().strftime('%H%M%S')}"
+        run = run_codebuddy(_build_prompt_lite(code, name),
+                            timeout_min=LITE_TIMEOUT_MIN, max_turns=LITE_MAX_TURNS,
+                            run_id=run_id)
+        v = _extract_lite_verdict(run)
+        stock["add_reviewed_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        if v is None:
+            mark(code, "failed", note="补仓复核无 verdict", run_id=run_id)
+            stock["status"] = "BOUGHT"  # 复核失败复位，明天重新触发
+            pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+            save_json(POOL_FILE, pool)
+            log(f"❌ {code} {name} 补仓复核无 verdict，复位 BOUGHT")
+            continue
+        mark(code, "done", verdict=v["verdict"], note=v.get("reason", ""), run_id=run_id)
+        if v["verdict"] not in ("PASS", "HOLD"):
+            # 基本面证伪 → 不加仓
+            stock["status"] = "BOUGHT"
+            stock["note"] = f"补仓复核FAIL({v['verdict']})：不加仓，冷却{ADD_FAIL_COOLDOWN}天"
+            pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+            save_json(POOL_FILE, pool)
+            log(f"🛑 {code} {name} 复核{v['verdict']}：基本面证伪，不加仓")
+            continue
+        # 补仓 4%（实时价）
+        try:
+            from quote_fetcher import get_spot
+            price = float(get_spot(code)["price"])
+        except Exception as e:
+            price = stock.get("last_price")
+            log(f"⚠️ 实时价获取失败({e})，用缓存价 {price}")
+        if not price:
+            stock["status"] = "BOUGHT"
+            pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+            save_json(POOL_FILE, pool)
+            log(f"❌ {code} 无现价，补仓失败")
+            continue
+        cash = load_json(CASH_FILE)
+        total_cash = cash.get("total_cash", 0)
+        amount = total_cash * ADD_PCT / 100
+        shares = int(amount / price / 100) * 100
+        if shares < 100:
+            stock["status"] = "BOUGHT"
+            pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+            save_json(POOL_FILE, pool)
+            log(f"❌ {code} 补仓股数 {shares} < 100，放弃补仓")
+            continue
+        # 记账补仓
+        subprocess.run([sys.executable, os.path.join(REPO_ROOT, "tools", "position_manager.py"),
+                        "--add", code, str(shares), str(price),
+                        "--reason", f"add-review-{v['verdict']}:跌至补仓价错杀补仓{ADD_PCT}%"],
+                       cwd=REPO_ROOT)
+        # add_count 记录（封顶依据）
+        positions = load_json(os.path.join(REPO_ROOT, "data", "positions", "positions.json")) or {}
+        if code in positions:
+            positions[code]["add_count"] = add_count + 1
+            save_json(os.path.join(REPO_ROOT, "data", "positions", "positions.json"), positions)
+        # 富途双轨
+        futu_res = {"ok": False, "reason": "futu 未启用"}
+        try:
+            futu_cfg = load_json(FUTU_CONFIG_FILE)
+            if futu_cfg.get("enabled", True):
+                from futu_bridge import cmd_buy as futu_cmd_buy
+                import io, contextlib
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    futu_cmd_buy(code, shares, price, dry_run=False)
+                out = buf.getvalue().strip()
+                try:
+                    futu_res = json.loads(out.splitlines()[-1])
+                except Exception:
+                    futu_res = {"ok": False, "reason": out[-200:]}
+                log(f"📡 富途模拟盘: {out[:200]}")
+        except Exception as e:
+            futu_res = {"ok": False, "reason": f"异常: {e}"}
+        # 状态复位
+        stock["status"] = "BOUGHT"
+        stock["note"] = f"补仓 {shares}股@{price}（复核{v['verdict']}，第{add_count+1}次补仓）"
+        pool["updated"] = datetime.now().strftime("%Y-%m-%d")
+        save_json(POOL_FILE, pool)
+        added.append({"code": code, "name": name, "shares": shares, "price": price,
+                      "verdict": v["verdict"]})
+        log(f"✅ {code} {name} 补仓 {shares}股@{price}（{ADD_PCT}%，复核{v['verdict']}）")
+    return {"added": added}
 
 
 # ---------------------------------------------------------------------------

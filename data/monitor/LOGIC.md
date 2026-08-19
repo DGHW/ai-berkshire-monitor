@@ -170,6 +170,14 @@ schtasks（Windows 计划任务）
 - **提示词层**：重研必须先读旧报告对比基本面；基本面无变化则建仓价沿用旧值（±5% 微调）；只有基本面实质恶化才能下调且须列证据；禁止以"股价下跌"作为下调理由
 - **机械层**（lock_entry_price，接入 run-one/review/batch2 三入口）：触发时建仓价锁定回旧值（groups.entry_med + pool.buy_zone），仅保留新 gain_med
 
+### I. 8+4 分批建仓（2026-08-19 用户确认）
+
+- **初仓**：凯利 clamp 12% → **8%**（打 2/3，留 1/3 子弹；小盘股维持 8% 不设补仓）
+- **补仓触发**：持仓股（BOUGHT）现价 ≤ 二次补仓价（四视角报告 entry_min）→ `ADD_DUE`
+- **补仓复核**（agent_driver add_review_once）：ADD_DUE → lite 速评 → **PASS/HOLD（错杀）→ 补仓 4%**（8+4=12 总敞口封顶）；**FAIL（证伪）→ 不加仓 + 7 天冷却**（防每日重触发循环）
+- **封顶**：每笔最多补 1 次（positions.add_count）；补仓价锚定报告值，禁止随股价下移
+- 触发链：price_monitor ADD_DUE → batch1 review 内自动复核 → 双轨补仓（记账+富途）
+
 ---
 
 ## 九、闭环全景（v7）

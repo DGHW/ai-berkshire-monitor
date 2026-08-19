@@ -31,8 +31,9 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GROUPS_FILE = os.path.join(REPO_ROOT, "data", "monitor", "portfolio_groups.json")
 BASIS_FILE = os.path.join(REPO_ROOT, "data", "positions", "kelly_basis.json")
 
-MAX_POSITION = 0.12        # 单票上限 12%
-SMALL_CAP_MAX = 0.08       # 小盘股上限 8%
+MAX_POSITION = 0.08        # 初仓上限 8%（8+4 分批：初仓 2/3，留 1/3 补仓）
+ADD_POSITION = 0.04        # 下跌复核补仓 4%（初仓+补仓 = 12% 总敞口封顶）
+SMALL_CAP_MAX = 0.08       # 小盘股上限 8%（小盘不设补仓，8% 一次打满）
 FLOOR_RATIO = 0.0          # 超额为负 → 0 仓位（不买）
 
 

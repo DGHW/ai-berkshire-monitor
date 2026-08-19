@@ -52,15 +52,29 @@ def save_pool(pool: dict):
         json.dump(pool, f, ensure_ascii=False, indent=2)
 
 
-def advance_state(stock: dict, price: float) -> str:
-    """状态机：返回新状态。"""
+def advance_state(stock: dict, price: float, add_price: float = None) -> str:
+    """状态机：返回新状态。
+
+    新增 8+4 分批（2026-08-19 用户确认）：
+      BOUGHT 且现价 ≤ 补仓价（entry_min）→ ADD_DUE（补仓复核触发）
+      ADD_DUE 且回升至补仓价上方 → 复位 BOUGHT
+    """
+    status = stock.get("status", "WATCHING")
+
+    # 补仓触发：已持仓股票跌至补仓价
+    if status in ("BOUGHT", "ADD_DUE") and add_price is not None:
+        if price <= add_price:
+            return "ADD_DUE"
+        if status == "ADD_DUE":
+            return "BOUGHT"
+        return status
+
     zone = stock.get("buy_zone")
     if not zone:
-        return stock.get("status", "WATCHING")
+        return status
 
     low, high = zone.get("low"), zone.get("high")
     in_zone = low is not None and high is not None and low <= price <= high
-    status = stock.get("status", "WATCHING")
 
     if in_zone:
         # v7 规则变更（2026-08-14 用户确认）：取消 2 天连续确认，首次触发直接 REVIEW_DUE
@@ -89,6 +103,24 @@ def main():
     stocks = pool["stocks"]
     today = datetime.now().strftime("%Y-%m-%d")
 
+    # 补仓价（8+4 分批）：从 groups 读 entry_min
+    groups = {}
+    gpath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         "data", "monitor", "portfolio_groups.json")
+    if os.path.exists(gpath):
+        try:
+            with open(gpath, encoding="utf-8") as f:
+                groups = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            groups = {}
+
+    def get_add_price(ticker: str):
+        for g in ("buy", "watch", "reserve", "drop"):
+            s = groups.get(g, {}).get(ticker)
+            if s and s.get("entry_min"):
+                return s["entry_min"]
+        return None
+
     rows = []
     errors = []
 
@@ -99,7 +131,7 @@ def main():
             q = get_spot(ticker)
             price = q["price"]
             old_status = stock.get("status", "WATCHING")
-            new_status = advance_state(stock, price)
+            new_status = advance_state(stock, price, add_price=get_add_price(ticker))
             stock["status"] = new_status
             stock["last_check"] = today
             stock["last_price"] = price
@@ -128,6 +160,7 @@ def main():
     # ---- 生成日报 ----
     review_due = [r for r in rows if r["new"] == "REVIEW_DUE"]
     triggered = [r for r in rows if r["new"] == "TRIGGERED"]
+    add_due = [r for r in rows if r["new"] == "ADD_DUE"]
     near = []
     for r in rows:
         z = r["zone"]
@@ -163,6 +196,19 @@ def main():
                          f"{z['low']}-{z['high']} | REVIEW_DUE |")
         lines.append("")
         lines.append("**这些股票已连续确认进入击球区，需要执行 /thesis-drift 复审后再决定买入。**")
+    else:
+        lines.append("无")
+    lines.append("")
+
+    lines.append(f"## 补仓触发（{len(add_due)}）")
+    if add_due:
+        lines.append("| 股票 | 名称 | 现价 | 补仓价 | 状态 |")
+        lines.append("|------|------|------|--------|------|")
+        for r in add_due:
+            lines.append(f"| {r['ticker']} | {r['name']} | {r['price']:.2f} | "
+                         f"{get_add_price(r['ticker']):.2f} | ADD_DUE |")
+        lines.append("")
+        lines.append("**持仓股跌至补仓价，待 lite 复核（错杀则补仓 4%，证伪则不加）。**")
     else:
         lines.append("无")
     lines.append("")

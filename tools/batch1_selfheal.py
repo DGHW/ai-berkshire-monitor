@@ -53,8 +53,10 @@ def main() -> int:
         return 0
     due = [c for c, s in pool.get("stocks", {}).items()
            if s.get("status") == "REVIEW_DUE"]
-    if not due:
-        _log("无 REVIEW_DUE 标的，无需补跑")
+    add_due = [c for c, s in pool.get("stocks", {}).items()
+               if s.get("status") == "ADD_DUE"]
+    if not due and not add_due:
+        _log("无 REVIEW_DUE/ADD_DUE 标的，无需补跑")
         return 0
 
     # 2. 锁检查（fresh 锁 = review 正在跑，不打扰）
@@ -88,7 +90,7 @@ def main() -> int:
         pass
 
     # 4. 补跑 review
-    _log(f"检测到 {len(due)} 只 REVIEW_DUE（{due}），补跑 review --limit 1")
+    _log(f"检测到 REVIEW_DUE {len(due)} 只（{due}）+ ADD_DUE {len(add_due)} 只（{add_due}），补跑 review --limit 1")
     driver = os.path.join(REPO_ROOT, "tools", "agent_driver.py")
     r = subprocess.run([sys.executable, driver, "review", "--limit", "1"],
                        cwd=REPO_ROOT)
