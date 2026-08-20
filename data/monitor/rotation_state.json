@@ -1,5 +1,5 @@
 {
- "last_health_check": "2026-08-17",
+ "last_health_check": "2026-08-19",
  "alerts": [],
  "last_rotation": "2026-08-14",
  "last_rotation_result": {
@@ -31,6 +31,36 @@
    "gain_med": 10.0,
    "shares": 4400,
    "price": 27.22,
+   "source": "agent_driver"
+  },
+  {
+   "code": "600036",
+   "date": "2026-08-19",
+   "status": "DONE",
+   "verdict": "PASS",
+   "gain_med": 8.0,
+   "shares": 3100,
+   "price": 38.29,
+   "source": "agent_driver"
+  },
+  {
+   "code": "600285",
+   "date": "2026-08-19",
+   "status": "DONE",
+   "verdict": "PASS",
+   "gain_med": 20.9,
+   "shares": 6000,
+   "price": 19.73,
+   "source": "agent_driver"
+  },
+  {
+   "code": "002415",
+   "date": "2026-08-20",
+   "status": "DONE",
+   "verdict": "PASS",
+   "gain_med": 9.0,
+   "shares": 2300,
+   "price": 34.35,
    "source": "agent_driver"
   }
  ]

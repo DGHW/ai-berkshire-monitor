@@ -283,10 +283,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:45:36",
-   "finished": "2026-08-14 23:46:50",
-   "verdict": "PASS",
-   "note": "全球安防龙头 PE-TTM 19.5x 处 10 年约 20% 低分位、净现金 328 亿、股息 3.7%，现价 34.88 已低于既有报告建仓价 35 元，六关加权 4.1 分；但 2026H1 净现比 0.41/存货 +44% 与 SDN 尾部风险需完整版深研",
-   "run_id": "b2lite_002415_234536"
+   "finished": "2026-08-20 13:12:05",
+   "verdict": "RESEARCH_OK",
+   "note": "中断后续跑: 重研8/19已完成",
+   "run_id": "review_002415_150634"
   },
   {
    "code": "002507",
@@ -479,7 +479,54 @@
    "verdict": "RESEARCH_OK",
    "note": "行业竞争解析失败; 可解析 3/4",
    "run_id": "review_001316_153509"
+  },
+  {
+   "code": "600036",
+   "name": "招商银行",
+   "mode": "full",
+   "reason": "REVIEW_DUE",
+   "source": "batch1",
+   "status": "done",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-19",
+   "started": "2026-08-19 01:52:52",
+   "finished": "2026-08-19 02:03:50",
+   "verdict": "RESEARCH_OK",
+   "note": "可解析 4/4",
+   "run_id": "review_600036_015252"
+  },
+  {
+   "code": "600285",
+   "name": "羚锐制药",
+   "mode": "full",
+   "reason": "REVIEW_DUE",
+   "source": "batch1",
+   "status": "done",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-19",
+   "started": "2026-08-19 02:10:50",
+   "finished": "2026-08-19 02:25:11",
+   "verdict": "RESEARCH_OK",
+   "note": "可解析 4/4",
+   "run_id": "review_600285_021050"
+  },
+  {
+   "code": "002415",
+   "name": "海康威视",
+   "mode": "full",
+   "reason": "REVIEW_DUE",
+   "source": "batch1",
+   "status": "in_progress",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-19",
+   "started": "2026-08-19 15:06:34",
+   "finished": null,
+   "verdict": null,
+   "note": ""
   }
  ],
- "updated": "2026-08-17"
+ "updated": "2026-08-20"
 }
