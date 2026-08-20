@@ -74,18 +74,28 @@ def main() -> int:
         except (ValueError, OSError, json.JSONDecodeError):
             pass
 
-    # 3. 今天队列里是否有进行中的 full 任务
+    # 3. 队列任务检查：清理僵死 in_progress（锁已陈旧时它们必死），跳过活跃任务
     today = datetime.now().strftime("%Y-%m-%d")
     try:
         with open(QUEUE_FILE, encoding="utf-8") as f:
             q = json.load(f)
+        q_dirty = False
         for job in q.get("jobs", []):
             if job.get("mode") != "full":
                 continue
-            if job.get("status") in ("pending", "in_progress") and \
-               job.get("enqueued_at", "").startswith(today):
-                _log(f"{job['code']} 在排队/进行中，不重复补跑")
+            if job.get("status") == "in_progress":
+                # 锁已陈旧（前面已清除）→ in_progress 必为僵死，标 failed 释放
+                _log(f"清理僵死 in_progress: {job['code']}（锁陈旧时仍标进行中=进程已死）")
+                job["status"] = "failed"
+                job["note"] = (job.get("note", "") + "; selfheal判定僵死").strip("; ")
+                q_dirty = True
+            elif job.get("status") == "pending" and \
+                    job.get("enqueued_at", "").startswith(today):
+                _log(f"{job['code']} 今日排队中，不重复补跑")
                 return 0
+        if q_dirty:
+            with open(QUEUE_FILE, "w", encoding="utf-8") as f:
+                json.dump(q, f, ensure_ascii=False, indent=1)
     except (OSError, json.JSONDecodeError):
         pass
 

@@ -296,6 +296,20 @@ def research_succeeded(code: str):
     return ok, "; ".join(detail)
 
 
+def _reports_newest_mtime(code: str):
+    """该股四视角报告的最新修改时间（续跑新鲜度判断用）。"""
+    reports, _synth = find_reports(code)
+    newest = None
+    for path in reports.values():
+        try:
+            m = datetime.fromtimestamp(os.path.getmtime(path))
+            if newest is None or m > newest:
+                newest = m
+        except OSError:
+            pass
+    return newest
+
+
 def _build_prompt_normalize(code: str, name: str) -> str:
     """把综合研究报告拆写为四个规范视角文件（简单任务，Agent 遵守度高）。"""
     files = "\n".join(
@@ -572,7 +586,20 @@ def review_once(limit: int, dry_run: bool) -> dict:
             job = claim_next("full")
             if not job:
                 continue
-            if dry_run:
+            # 续跑检测：重研报告已落盘且新鲜（<48h）→ 跳过 90min 重研，直接回填+闸门
+            # （隔夜中断场景：8/19 落盘后 ^C，8/20 自愈补跑时无需重研）
+            resume_ok = False
+            if not dry_run:
+                ok_pre, _ = research_succeeded(code)
+                if ok_pre:
+                    newest = _reports_newest_mtime(code)
+                    if newest and (datetime.now() - newest).total_seconds() < 48 * 3600:
+                        resume_ok = True
+                        log(f"🔁 {code} {name} 报告新鲜（{newest.strftime('%m-%d %H:%M')}），续跑跳过重研")
+            if resume_ok:
+                run = {"exit_code": 0, "stdout": "", "stderr": "", "timed_out": False,
+                       "run_id": f"resume_{code}", "log_path": ""}
+            elif dry_run:
                 log(f"🔍 [dry-run] {code} {name} 将执行完整重研+自动买入评估")
                 run = {"exit_code": 0, "stdout": "", "stderr": "", "timed_out": False,
                        "run_id": f"dryrun_{code}", "log_path": ""}
