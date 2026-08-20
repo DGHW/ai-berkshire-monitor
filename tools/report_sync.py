@@ -120,7 +120,11 @@ def parse_report(path: str):
 
 
 def find_reports(code: str):
-    """返回该代码的 {视角: 文件路径} 映射（在 REPORTS_DIR 顶层）。"""
+    """返回该代码的 {视角: 文件路径} 映射（在 REPORTS_DIR 顶层）。
+
+    同视角存在新旧多份文件（带 -YYYYMMDD 后缀）时，取 mtime 最新的一份
+    （修复：此前依赖 os.listdir 顺序，新旧文件选择不确定）。
+    """
     found = {}
     synth = None
     try:
@@ -132,16 +136,29 @@ def find_reports(code: str):
             continue
         m = DASH_RE.match(name)
         if m and m.group(1) == code:
-            found[m.group(3)] = os.path.join(REPORTS_DIR, name)
+            _set_newest(found, m.group(3), os.path.join(REPORTS_DIR, name))
             continue
         m = USCORE_RE.match(name)
         if m and m.group(2) == code:
-            found[m.group(3)] = os.path.join(REPORTS_DIR, name)
+            _set_newest(found, m.group(3), os.path.join(REPORTS_DIR, name))
             continue
         m = SYNTH_RE.match(name)
         if m and m.group(1) == code and synth is None:
             synth = os.path.join(REPORTS_DIR, name)
     return found, synth
+
+
+def _set_newest(found: dict, view: str, path: str):
+    """同视角取 mtime 最新的文件路径。"""
+    old = found.get(view)
+    if old is None:
+        found[view] = path
+        return
+    try:
+        if os.path.getmtime(path) > os.path.getmtime(old):
+            found[view] = path
+    except OSError:
+        pass
 
 
 def parse_stock(code: str):

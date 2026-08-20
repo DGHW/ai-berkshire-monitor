@@ -62,6 +62,7 @@ FULL_FILES = [
     "行业竞争-芒格视角",
     "风险评估-李录视角",
 ]
+FULL_VIEWS = ["商业模式", "财务估值", "行业竞争", "风险评估"]
 
 
 def _force_utf8_stdio():
@@ -308,6 +309,109 @@ def _reports_newest_mtime(code: str):
         except OSError:
             pass
     return newest
+
+
+def reports_atomic_check(code: str, max_spread_h: float = 1.0):
+    """落盘原子性检查：四视角文件 mtime 最大差 > max_spread_h → 非原子（重研半途而废）。
+
+    返回 (atomic: bool, stale_views: list[str])——非原子时列出陈旧视角名。
+    """
+    reports, _synth = find_reports(code)
+    if len(reports) < 4:
+        return False, [v for v in ("商业模式", "财务估值", "行业竞争", "风险评估")
+                       if v not in reports]
+    mtimes = {}
+    for view, path in reports.items():
+        try:
+            mtimes[view] = datetime.fromtimestamp(os.path.getmtime(path))
+        except OSError:
+            mtimes[view] = None
+    valid = {v: t for v, t in mtimes.items() if t is not None}
+    if len(valid) < 4:
+        return False, [v for v in mtimes if mtimes[v] is None]
+    newest = max(valid.values())
+    stale = [v for v, t in valid.items()
+             if (newest - t).total_seconds() > max_spread_h * 3600]
+    return not stale, stale
+
+
+def reports_quality_check(code: str, max_spread_h: float = 1.0):
+    """落盘质量检查：四视角文件须 (a) 齐全 (b) mtime 原子 (c) 各自可解析五字段。
+
+    返回 (ok: bool, bad_views: list[str])——bad_views 为需补写的视角
+    （含"解析失败的新文件"——增量重研产出增量格式、缺五字段的情况）。
+    """
+    reports, _synth = find_reports(code)
+    bad = []
+    if len(reports) < 4:
+        missing = [v for v in FULL_VIEWS if v not in reports]
+        return False, missing
+    # (b) 原子性
+    mtimes = {}
+    for view, path in reports.items():
+        try:
+            mtimes[view] = datetime.fromtimestamp(os.path.getmtime(path))
+        except OSError:
+            bad.append(view)
+    if not bad:
+        newest = max(mtimes.values())
+        for v, t in mtimes.items():
+            if (newest - t).total_seconds() > max_spread_h * 3600:
+                bad.append(v)
+    # (c) 解析完整性：每个视角文件必须能解析出五字段
+    for view, path in reports.items():
+        try:
+            r = parse_report(path)
+            if r is None:
+                bad.append(view)
+        except Exception:
+            bad.append(view)
+    bad = list(dict.fromkeys(bad))
+    return not bad, bad
+
+
+def _build_prompt_backfill_view(code: str, name: str, view: str) -> str:
+    """补写单个陈旧视角：读其他三个新视角 + 本视角旧文件，重写该视角对齐新结论。"""
+    suffix = FULL_FILES[FULL_VIEWS.index(view)]
+    target = f"reports/{code}{name}-{suffix}.md"
+    others = "、".join(f"reports/{code}{name}-{FULL_FILES[i]}.md"
+                       for i, v in enumerate(FULL_VIEWS) if v != view)
+    return f"""在 ai-berkshire 工作区的 reports/ 目录下：
+
+1. 先读以下三份**最新**研究报告（若同视角存在带 -YYYYMMDD 日期后缀的新文件和旧文件，优先读带日期后缀的新文件）：
+   {others}
+2. 再读 {target}（这是旧的 {view} 视角文件，内容已过时）。
+
+任务：**重写 {target}**，使其与其他三份最新报告结论对齐（同一只股票的同一次重研，四个视角的建仓价/击球区/内在涨幅应一致，除非视角自身观点有依据地不同）。
+
+要求：
+1. 保持 {view} 视角的分析立场与方法论，但数据、估值、结论必须与其他三份新报告一致
+2. 文件必须以 "## 量化结论" 小节结尾，严格包含五行（字段名与格式禁止改动）：
+- 内在涨幅: **X%**
+- 击球区: 🟢/🟡/🔴 结论一句话
+- 目标建仓价: **X 元**
+- 二次补仓价: **X 元**
+- 数据核验: ✓/⚠️ 说明
+3. 完成后用 Bash 执行 ls 确认文件已更新，最后打印：RESEARCH_DONE {code}
+"""
+
+
+def backfill_stale_views(code: str, name: str, run_id: str, stale_views: list) -> bool:
+    """对问题视角逐个补写（原子性/解析完整性修复）。返回是否全部补齐。"""
+    for view in stale_views:
+        log(f"🔧 {code} {view} 视角需补写，对齐其他视角新结论")
+        prompt = _build_prompt_backfill_view(code, name, view)
+        run = run_codebuddy(prompt, timeout_min=30, max_turns=60,
+                            run_id=f"{run_id}_backfill_{view}")
+        if run["timed_out"] or run["exit_code"] != 0:
+            log(f"❌ {code} {view} 补写失败（exit={run['exit_code']}）")
+            continue
+    ok_q, bad = reports_quality_check(code)
+    if ok_q:
+        log(f"✅ {code} 落盘质量修复完成（四视角齐全+原子+可解析）")
+        return True
+    log(f"⚠️ {code} 补写后仍有问题视角: {bad}")
+    return False
 
 
 def _build_prompt_normalize(code: str, name: str) -> str:
@@ -614,6 +718,15 @@ def review_once(limit: int, dry_run: bool) -> dict:
                 log(f"⚠️ 四文件未齐全（{detail}），执行落盘归一")
                 normalize_reports(code, name, run["run_id"])
                 ok, detail = research_succeeded(code)
+            if ok and not dry_run:
+                # 落盘质量检查：齐全+原子+五字段可解析；不合格视角（含增量格式缺五字段）→ 补写
+                ok_q, bad_views = reports_quality_check(code)
+                if not ok_q:
+                    log(f"⚠️ {code} 落盘质量不合格（需补写视角: {bad_views}），补写对齐")
+                    backfill_stale_views(code, name, run["run_id"], bad_views)
+                    ok_q, bad_views = reports_quality_check(code)
+                    if not ok_q:
+                        log(f"⚠️ {code} 补写后仍有问题视角: {bad_views}，标记待人工")
             if not ok and not dry_run:
                 mark(code, "failed", note=f"研究未落盘: {detail}; exit={run['exit_code']}", run_id=run["run_id"])
                 log(f"❌ {code} 研究失败: {detail}")
