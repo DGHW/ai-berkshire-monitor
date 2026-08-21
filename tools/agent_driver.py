@@ -185,7 +185,8 @@ def mark(code, status, verdict=None, note="", run_id=None):
 def run_codebuddy(prompt: str, *, timeout_min: int, max_turns: int, run_id: str) -> dict:
     os.makedirs(AGENT_LOG_DIR, exist_ok=True)
     log_path = os.path.join(AGENT_LOG_DIR, f"{run_id}.log")
-    cmd = [CODEBUDDY, "-p", prompt, "-y",
+    # 提示词走 stdin（命令行参数在 Windows 下中文+换行组合会被截断——实测根因）
+    cmd = [CODEBUDDY, "-p", "-y",
            "--permission-mode", "bypassPermissions",
            "--output-format", "json",
            "--max-turns", str(max_turns)]
@@ -198,6 +199,7 @@ def run_codebuddy(prompt: str, *, timeout_min: int, max_turns: int, run_id: str)
     t0 = time.time()
     try:
         proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True,
+                              input=prompt.encode("utf-8"),
                               timeout=timeout_min * 60, env=env)
         out = (proc.stdout or b"").decode("utf-8", errors="replace")
         err = (proc.stderr or b"").decode("utf-8", errors="replace")
@@ -374,25 +376,25 @@ def _build_prompt_backfill_view(code: str, name: str, view: str) -> str:
     """补写单个陈旧视角：读其他三个新视角 + 本视角旧文件，重写该视角对齐新结论。"""
     suffix = FULL_FILES[FULL_VIEWS.index(view)]
     target = f"reports/{code}{name}-{suffix}.md"
-    others = "、".join(f"reports/{code}{name}-{FULL_FILES[i]}.md"
-                       for i, v in enumerate(FULL_VIEWS) if v != view)
-    return f"""在 ai-berkshire 工作区的 reports/ 目录下：
+    others = " ".join(f"reports/{code}{name}-{FULL_FILES[i]}.md"
+                      for i, v in enumerate(FULL_VIEWS) if v != view)
+    return f"""请执行以下任务（这是完整的任务描述）：
 
-1. 先读以下三份**最新**研究报告（若同视角存在带 -YYYYMMDD 日期后缀的新文件和旧文件，优先读带日期后缀的新文件）：
-   {others}
-2. 再读 {target}（这是旧的 {view} 视角文件，内容已过时）。
+1) 读三个文件：{others}
+（同视角若存在带 -YYYYMMDD 日期后缀的新文件和旧文件，优先读带日期后缀的新文件）
 
-任务：**重写 {target}**，使其与其他三份最新报告结论对齐（同一只股票的同一次重研，四个视角的建仓价/击球区/内在涨幅应一致，除非视角自身观点有依据地不同）。
+2) 读旧文件 {target}（{view} 视角，内容已过时）
 
-要求：
-1. 保持 {view} 视角的分析立场与方法论，但数据、估值、结论必须与其他三份新报告一致
-2. 文件必须以 "## 量化结论" 小节结尾，严格包含五行（字段名与格式禁止改动）：
+3) 重写 {target}，使其与其他三份最新报告的结论对齐：同一只股票的同一次重研，四个视角的建仓价/击球区/内在涨幅应一致，除非该视角有依据地持不同观点。保持 {view} 视角的分析立场与方法论，但数据、估值、结论对齐其他三份新报告。
+
+4) 文件必须以 "## 量化结论" 小节结尾，严格包含五行（字段名与格式禁止改动）：
 - 内在涨幅: **X%**
 - 击球区: 🟢/🟡/🔴 结论一句话
 - 目标建仓价: **X 元**
 - 二次补仓价: **X 元**
 - 数据核验: ✓/⚠️ 说明
-3. 完成后用 Bash 执行 ls 确认文件已更新，最后打印：RESEARCH_DONE {code}
+
+5) 完成后用 Bash 执行 ls 确认文件已更新，最后打印：RESEARCH_DONE {code}
 """
 
 
@@ -406,11 +408,14 @@ def backfill_stale_views(code: str, name: str, run_id: str, stale_views: list) -
         if run["timed_out"] or run["exit_code"] != 0:
             log(f"❌ {code} {view} 补写失败（exit={run['exit_code']}）")
             continue
-    ok_q, bad = reports_quality_check(code)
-    if ok_q:
-        log(f"✅ {code} 落盘质量修复完成（四视角齐全+原子+可解析）")
+    # 尾检查：只看解析完整性。分批补写（可能跨天）必然造成 mtime spread 超阈值，
+    # 原子性 mtime 检查在此场景会误报——补写本身已是修复过程。
+    reports, _synth = find_reports(code)
+    bad_parse = [v for v, p in reports.items() if parse_report(p) is None]
+    if len(reports) >= 4 and not bad_parse:
+        log(f"✅ {code} 落盘质量修复完成（四视角齐全且可解析）")
         return True
-    log(f"⚠️ {code} 补写后仍有问题视角: {bad}")
+    log(f"⚠️ {code} 补写后仍缺: {bad_parse or '数量不足'}")
     return False
 
 
