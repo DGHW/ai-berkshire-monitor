@@ -548,14 +548,15 @@
    "mode": "full",
    "reason": "REVIEW_DUE",
    "source": "batch1",
-   "status": "in_progress",
+   "status": "done",
    "tries": 0,
    "max_tries": 2,
    "created": "2026-08-22",
    "started": "2026-08-22 15:07:14",
-   "finished": null,
-   "verdict": null,
-   "note": ""
+   "finished": "2026-08-22 17:25:39",
+   "verdict": "RESEARCH_OK",
+   "note": "中断后续跑: 重研8/22已完成",
+   "run_id": "review_600276_150714"
   }
  ],
  "updated": "2026-08-22"

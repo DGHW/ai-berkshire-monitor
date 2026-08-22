@@ -1,5 +1,5 @@
 {
- "last_health_check": "2026-08-19",
+ "last_health_check": "2026-08-22",
  "alerts": [],
  "last_rotation": "2026-08-14",
  "last_rotation_result": {
@@ -61,6 +61,26 @@
    "gain_med": 9.0,
    "shares": 2300,
    "price": 34.35,
+   "source": "agent_driver"
+  },
+  {
+   "code": "002588",
+   "date": "2026-08-21",
+   "status": "DONE",
+   "verdict": "PASS",
+   "gain_med": 17.5,
+   "shares": 10200,
+   "price": 7.78,
+   "source": "agent_driver"
+  },
+  {
+   "code": "600276",
+   "date": "2026-08-22",
+   "status": "DONE",
+   "verdict": "PASS",
+   "gain_med": 10.25,
+   "shares": 1600,
+   "price": 47.74,
    "source": "agent_driver"
   }
  ]

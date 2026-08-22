@@ -12,8 +12,8 @@
     "note": "老仓12%已满:add_count=1封顶不补",
     "highest_price": 42.19,
     "gain_med": 85.0,
-    "last_price": 40.1,
-    "last_check": "2026-08-19",
+    "last_price": 39.75,
+    "last_check": "2026-08-22",
     "add_count": 1
   },
   "600211": {
@@ -27,10 +27,10 @@
     "sell_reason": null,
     "sell_date": null,
     "note": "老仓12%已满:add_count=1封顶不补",
-    "highest_price": 39.07,
+    "highest_price": 41.86,
     "gain_med": 39.0,
-    "last_price": 38.05,
-    "last_check": "2026-08-19",
+    "last_price": 38.99,
+    "last_check": "2026-08-22",
     "add_count": 1
   },
   "001316": {
@@ -46,8 +46,8 @@
     "note": "老仓12%已满:add_count=1封顶不补",
     "highest_price": 27.22,
     "gain_med": 10.0,
-    "last_price": 25.7,
-    "last_check": "2026-08-19",
+    "last_price": 25.92,
+    "last_check": "2026-08-22",
     "add_count": 1
   },
   "600036": {
@@ -77,8 +77,8 @@
     "note": "老仓12%已满:add_count=1封顶不补",
     "highest_price": 19.97,
     "gain_med": 20.9,
-    "last_price": 19.97,
-    "last_check": "2026-08-19",
+    "last_price": 19.54,
+    "last_check": "2026-08-22",
     "add_count": 1
   },
   "002415": {
@@ -92,7 +92,39 @@
     "sell_reason": null,
     "sell_date": null,
     "note": "",
-    "highest_price": 34.35,
-    "gain_med": 9.0
+    "highest_price": 34.4,
+    "gain_med": 9.0,
+    "last_price": 34.4,
+    "last_check": "2026-08-22"
+  },
+  "002588": {
+    "name_cn": "史丹利",
+    "shares": 10200,
+    "avg_cost": 7.78,
+    "total_cost": 79356.0,
+    "buy_date": "2026-08-21",
+    "last_add": "2026-08-21",
+    "reason": "auto-review-pass:gain17.5%",
+    "sell_reason": null,
+    "sell_date": null,
+    "note": "",
+    "highest_price": 7.81,
+    "gain_med": 17.5,
+    "last_price": 7.81,
+    "last_check": "2026-08-22"
+  },
+  "600276": {
+    "name_cn": "恒瑞医药",
+    "shares": 1600,
+    "avg_cost": 47.74,
+    "total_cost": 76384.0,
+    "buy_date": "2026-08-22",
+    "last_add": "2026-08-22",
+    "reason": "auto-review-pass:gain10.25%",
+    "sell_reason": null,
+    "sell_date": null,
+    "note": "",
+    "highest_price": 47.74,
+    "gain_med": 10.25
   }
 }
