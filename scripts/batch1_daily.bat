@@ -3,6 +3,7 @@ REM ============================================================
 REM  Buy/Sell loop batch1 (daily): price scan + position check + auto review/buy
 REM  schtasks: StockMonitorDaily daily 15:05
 REM  Heartbeat: every step writes [STEP] markers into cron.log
+REM  Notify: toast popup on completion or error
 REM ============================================================
 cd /d C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire
 set PY=C:\Users\17356\.workbuddy\binaries\python\envs\default\Scripts\python.exe
@@ -23,5 +24,11 @@ echo [%date% %time%] [STEP] futu_reconcile start >> %LOG%
 echo [%date% %time%] [STEP] futu_reconcile done >> %LOG%
 echo [%date% %time%] [STEP] agent_review start >> %LOG%
 %PY% tools\agent_driver.py review --limit 1 >> reports\monitor\cron_agent.log 2>&1
+set REVIEW_RC=%ERRORLEVEL%
 echo [%date% %time%] [STEP] agent_review done >> %LOG%
 echo [%date% %time%] [STEP] batch1 done >> %LOG%
+if "%REVIEW_RC%"=="0" (
+  %PY% tools\notify.py "AI Berkshire batch1 ??" "????+????+????????review???0"
+) else (
+  %PY% tools\notify.py --error "AI Berkshire batch1 ??" "review??? %REVIEW_RC%???? cron_agent.log"
+)

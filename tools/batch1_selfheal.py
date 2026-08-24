@@ -42,6 +42,18 @@ def _force_utf8_stdio():
             pass
 
 
+def _notify(title: str, body: str, is_error: bool = False):
+    """Windows Toast 通知（调用 tools/notify.py）。"""
+    try:
+        args = [sys.executable, os.path.join(REPO_ROOT, "tools", "notify.py")]
+        if is_error:
+            args.append("--error")
+        args += [title, body]
+        subprocess.run(args, timeout=25)
+    except Exception:
+        pass
+
+
 def main() -> int:
     _force_utf8_stdio()
     # 1. REVIEW_DUE 数量
@@ -86,6 +98,9 @@ def main() -> int:
             if job.get("status") == "in_progress":
                 # 锁已陈旧（前面已清除）→ in_progress 必为僵死，标 failed 释放
                 _log(f"清理僵死 in_progress: {job['code']}（锁陈旧时仍标进行中=进程已死）")
+                _notify("AI Berkshire 自愈清理僵死任务",
+                        f"{job['code']} 的 review 进程僵死（可能被休眠/重启杀死），已标 failed 释放",
+                        is_error=True)
                 job["status"] = "failed"
                 job["note"] = (job.get("note", "") + "; selfheal判定僵死").strip("; ")
                 q_dirty = True
@@ -106,8 +121,12 @@ def main() -> int:
                        cwd=REPO_ROOT)
     if r.returncode == 0:
         _log("补跑 review 完成")
+        _notify("AI Berkshire 自愈补跑完成",
+                f"REVIEW_DUE {len(due)}只 + ADD_DUE {len(add_due)}只 已补跑")
         return 0
     _log(f"补跑 review 失败（exit={r.returncode}）")
+    _notify("AI Berkshire 自愈补跑失败",
+            f"review exit={r.returncode}，请检查 cron_agent.log", is_error=True)
     return 1
 
 
