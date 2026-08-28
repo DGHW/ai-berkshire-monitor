@@ -43,10 +43,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:38:56",
-   "finished": "2026-08-14 23:39:40",
-   "verdict": "HOLD",
-   "note": "现金流A级(净现比1.85/FCF转正)但ROE 10.6%下行、无定价权、应收占归母178%，PE 10.5x历史32.8%分位公允无安全边际，与既有报告一致：等6.5元下方股息4%区间或分红/供水调价期权兑现",
-   "run_id": "b2lite_000598_233856"
+   "finished": "2026-08-28 15:22:19",
+   "verdict": "RESEARCH_OK",
+   "note": "可解析 4/4",
+   "run_id": "review_000598_150758"
   },
   {
    "code": "000680",
@@ -139,10 +139,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:42:00",
-   "finished": "2026-08-14 23:43:04",
-   "verdict": "HOLD",
-   "note": "PE约10x/股息5.5%不算贵但无安全边际（四大师加权内在中位11.7元 vs 现价10.37元），增收不增利+筹码分散+关联交易存疑，等回调至9.5-9.8元或8-22中报验证归母增速",
-   "run_id": "b2lite_000899_234200"
+   "finished": "2026-08-24 15:34:43",
+   "verdict": "RESEARCH_OK",
+   "note": "可解析 4/4",
+   "run_id": "review_000899_150743"
   },
   {
    "code": "000902",
@@ -219,10 +219,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:43:51",
-   "finished": "2026-08-14 23:44:42",
-   "verdict": "HOLD",
-   "note": "速评卡为2026Q1单季年化口径失真（真实ROE 9.17%、2025营收-23%），现价31.05元对应正常化PE约22x无安全边际，合同负债环比下滑待8/25中报验证，与既有四篇报告结论一致：击球区未到",
-   "run_id": "b2lite_001332_234351"
+   "finished": "2026-08-28 21:37:41",
+   "verdict": "RESEARCH_OK",
+   "note": "可解析 4/4",
+   "run_id": "one_001332_213003"
   },
   {
    "code": "002142",
@@ -518,14 +518,14 @@
    "mode": "full",
    "reason": "REVIEW_DUE",
    "source": "batch1",
-   "status": "in_progress",
+   "status": "failed",
    "tries": 0,
    "max_tries": 2,
    "created": "2026-08-19",
    "started": "2026-08-19 15:06:34",
    "finished": null,
    "verdict": null,
-   "note": ""
+   "note": "selfheal判定僵死"
   },
   {
    "code": "002588",
@@ -533,14 +533,14 @@
    "mode": "full",
    "reason": "REVIEW_DUE",
    "source": "batch1",
-   "status": "in_progress",
+   "status": "failed",
    "tries": 0,
    "max_tries": 2,
    "created": "2026-08-20",
    "started": "2026-08-20 15:06:55",
    "finished": null,
    "verdict": null,
-   "note": ""
+   "note": "selfheal判定僵死"
   },
   {
    "code": "600276",
@@ -548,16 +548,121 @@
    "mode": "full",
    "reason": "REVIEW_DUE",
    "source": "batch1",
-   "status": "done",
+   "status": "failed",
    "tries": 0,
    "max_tries": 2,
    "created": "2026-08-22",
    "started": "2026-08-22 15:07:14",
-   "finished": "2026-08-22 17:25:39",
+   "finished": "2026-08-24 15:37:14",
    "verdict": "RESEARCH_OK",
-   "note": "中断后续跑: 重研8/22已完成",
-   "run_id": "review_600276_150714"
+   "note": "补仓复核无 verdict",
+   "run_id": "add_600276_153443"
+  },
+  {
+   "code": "000899",
+   "name": "赣能股份",
+   "mode": "full",
+   "reason": "REVIEW_DUE",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-24",
+   "started": "2026-08-24 15:07:43",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "600276",
+   "name": "恒瑞医药",
+   "mode": "lite",
+   "reason": "ADD_DUE",
+   "source": "batch1",
+   "status": "in_progress",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-24",
+   "started": "2026-08-24 15:34:43",
+   "finished": null,
+   "verdict": null,
+   "note": ""
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-25",
+   "started": "2026-08-25 15:07:36",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-26",
+   "started": "2026-08-26 15:07:54",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-27",
+   "started": "2026-08-27 15:08:04",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-28",
+   "started": "2026-08-28 15:07:58",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "001332",
+   "name": "锡装股份",
+   "mode": "full",
+   "reason": "manual",
+   "source": "run-one",
+   "status": "in_progress",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-28",
+   "started": "2026-08-28 21:30:03",
+   "finished": null,
+   "verdict": null,
+   "note": ""
   }
  ],
- "updated": "2026-08-22"
+ "updated": "2026-08-28"
 }

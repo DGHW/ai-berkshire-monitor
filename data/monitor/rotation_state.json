@@ -1,87 +1,94 @@
 {
- "last_health_check": "2026-08-22",
- "alerts": [],
- "last_rotation": "2026-08-14",
- "last_rotation_result": {
-  "date": "2026-08-14",
-  "moved_out": [],
-  "moved_in": []
- },
- "reviews": [
-  {
-   "code": "300573",
-   "date": "2026-08-12",
-   "status": "PENDING"
+  "last_health_check": "2026-08-28",
+  "alerts": [
+    {
+      "ts_code": "000899",
+      "name": "赣能股份",
+      "level": "ZONE_EXPIRED",
+      "detail": "现价 9.65 远超击球区上沿 4.8"
+    }
+  ],
+  "last_rotation": "2026-08-14",
+  "last_rotation_result": {
+    "date": "2026-08-14",
+    "moved_out": [],
+    "moved_in": []
   },
-  {
-   "code": "300573",
-   "date": "2026-08-14",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 85.0,
-   "shares": 2800,
-   "price": 42.19,
-   "source": "manual-futu-order"
-  },
-  {
-   "code": "001316",
-   "date": "2026-08-17",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 10.0,
-   "shares": 4400,
-   "price": 27.22,
-   "source": "agent_driver"
-  },
-  {
-   "code": "600036",
-   "date": "2026-08-19",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 8.0,
-   "shares": 3100,
-   "price": 38.29,
-   "source": "agent_driver"
-  },
-  {
-   "code": "600285",
-   "date": "2026-08-19",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 20.9,
-   "shares": 6000,
-   "price": 19.73,
-   "source": "agent_driver"
-  },
-  {
-   "code": "002415",
-   "date": "2026-08-20",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 9.0,
-   "shares": 2300,
-   "price": 34.35,
-   "source": "agent_driver"
-  },
-  {
-   "code": "002588",
-   "date": "2026-08-21",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 17.5,
-   "shares": 10200,
-   "price": 7.78,
-   "source": "agent_driver"
-  },
-  {
-   "code": "600276",
-   "date": "2026-08-22",
-   "status": "DONE",
-   "verdict": "PASS",
-   "gain_med": 10.25,
-   "shares": 1600,
-   "price": 47.74,
-   "source": "agent_driver"
-  }
- ]
+  "reviews": [
+    {
+      "code": "300573",
+      "date": "2026-08-12",
+      "status": "PENDING"
+    },
+    {
+      "code": "300573",
+      "date": "2026-08-14",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 85.0,
+      "shares": 2800,
+      "price": 42.19,
+      "source": "manual-futu-order"
+    },
+    {
+      "code": "001316",
+      "date": "2026-08-17",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 10.0,
+      "shares": 4400,
+      "price": 27.22,
+      "source": "agent_driver"
+    },
+    {
+      "code": "600036",
+      "date": "2026-08-19",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 8.0,
+      "shares": 3100,
+      "price": 38.29,
+      "source": "agent_driver"
+    },
+    {
+      "code": "600285",
+      "date": "2026-08-19",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 20.9,
+      "shares": 6000,
+      "price": 19.73,
+      "source": "agent_driver"
+    },
+    {
+      "code": "002415",
+      "date": "2026-08-20",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 9.0,
+      "shares": 2300,
+      "price": 34.35,
+      "source": "agent_driver"
+    },
+    {
+      "code": "002588",
+      "date": "2026-08-21",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 17.5,
+      "shares": 10200,
+      "price": 7.78,
+      "source": "agent_driver"
+    },
+    {
+      "code": "600276",
+      "date": "2026-08-22",
+      "status": "DONE",
+      "verdict": "PASS",
+      "gain_med": 10.25,
+      "shares": 1600,
+      "price": 47.74,
+      "source": "agent_driver"
+    }
+  ]
 }
