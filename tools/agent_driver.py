@@ -513,15 +513,26 @@ def lock_entry_price(code: str, old_entry: float, old_gain: float, new_entry: fl
 
 def _extract_lite_verdict(run) -> dict:
     """从 lite 运行 stdout 提取 verdict JSON（修复链：围栏/引号/截断/废话）。"""
+    stdout = run["stdout"] or ""
+    # 0. --output-format json：stdout 是消息数组，verdict 在最后一条 result 的文本里
+    try:
+        arr = json.loads(stdout)
+        if isinstance(arr, list):
+            for item in reversed(arr):
+                if isinstance(item, dict) and item.get("type") == "result":
+                    stdout = item.get("result") or ""
+                    break
+    except json.JSONDecodeError:
+        pass
     try:
         from llm_json_validator import repair_verdict
-        ok, v = repair_verdict(run["stdout"])
+        ok, v = repair_verdict(stdout)
         if ok and v:
             return v
     except ImportError:
         pass
     # 兜底：弱正则（修复链不可用时）
-    m = re.search(r"\{[^{}]*\"verdict\"[^{}]*\}", run["stdout"])
+    m = re.search(r"\{[^{}]*\"verdict\"[^{}]*\}", stdout)
     if not m:
         return None
     try:
