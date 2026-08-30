@@ -43,7 +43,7 @@ reports/monitor/daily/{date}-monitor.md          # 每日监控日报
 
 ## 研究任务入口
 
-- 用户要求"研究某股" → **默认用 `/investment-team-v2 {code} {name}` 技能**（投研团队 2.0：四大师 + Bull/Bear 红队对抗辩论 + 裁判强制站队，详见 `skills/investment-team-v2.md`）；快速研究可用旧版 `/investment-team {code} {name}`（四视角并行）
+- 用户要求"研究某股" → **默认用 `/investment-team-v2 {code} {name}` 技能**（投研团队 2.0：四大师 + Bull/Bear 红队对抗辩论 + 裁判强制站队，详见 `skills/investment-team-v2.md`）；**要"一次性研究透+输出单一内在涨幅" → 用 `/super-research {code} {name}`**（超级投研编排器：初筛体检→v2红队→条件路由专项→定价审计→checklist→单一涨幅，详见 `skills/super-research.md`）；快速研究可用旧版 `/investment-team {code} {name}`（四视角并行）
 - v2 产出落盘 `reports/{code}{名称}-商业模式分析.md`、`-财务估值.md`、`-行业竞争.md`、`-风险评估.md`、`-多头立论.md`、`-空头猎杀.md`、`-终审.md`；财务估值报告含 `## 量化结论` 五字段（内在涨幅/击球区/目标建仓价/二次补仓价/数据核验），终审报告含强制站队方向 + 概率加权回报 + 证伪清单
 - v2 中 Bear（空头研究员）的"致命利空命中"（须有数据支撑）→ 闸门否决项；"证伪清单"→ 持有期监控指标（衔接 skills/thesis-tracker.md）
 - 研究完成后跑 `python tools/report_sync.py --code CODE` 验证解析
