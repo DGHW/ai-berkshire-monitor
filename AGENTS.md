@@ -47,6 +47,7 @@ reports/monitor/daily/{date}-monitor.md          # 每日监控日报
 - v2 产出落盘 `reports/{code}{名称}-商业模式分析.md`、`-财务估值.md`、`-行业竞争.md`、`-风险评估.md`、`-多头立论.md`、`-空头猎杀.md`、`-终审.md`；财务估值报告含 `## 量化结论` 五字段（内在涨幅/击球区/目标建仓价/二次补仓价/数据核验），终审报告含强制站队方向 + 概率加权回报 + 证伪清单
 - v2 中 Bear（空头研究员）的"致命利空命中"（须有数据支撑）→ 闸门否决项；"证伪清单"→ 持有期监控指标（衔接 skills/thesis-tracker.md）
 - 研究完成后跑 `python tools/report_sync.py --code CODE` 验证解析
+- **行业估值难度纪律（所有研究 skill 通用）**：研究开始前先跑 `python tools/industry_valuation.py lookup --code {code}` 获取行业卡片（星级/宏观命中/额外维度/首选方法/PE陷阱/隐藏资产负债表）；★★★★+ 行业禁止 PE 直算，须用卡片首选方法；无映射先判断行业并 `map` 回写。详见 `tools/industry_valuation.py` 与 `data/industry_valuation_map.json`
 
 ## 关键文档
 

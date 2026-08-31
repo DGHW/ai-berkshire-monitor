@@ -36,6 +36,7 @@
 | 机制 | 说明 | 文件 |
 |------|------|------|
 | **六道闸门** | 研究完整性/四视角一致性/击球区/现价上沿/凯利仓位/资金充足，全部确定性代码 | `tools/agent_driver.py` |
+| **行业估值分层** | 申万二级估值难度知识库（宏观四特征→星级→额外维度→替代方法→PE陷阱→隐藏资产负债表）；研究前强制 lookup，★★★★+ 禁止 PE 直算，报告关键词合规闸门不通过自动补写 | `tools/industry_valuation.py` + `data/industry_valuation_map.json` |
 | **反锚定** | 基本面无恶化但建仓价漂移>15% → 机械锁定回旧值，防止 LLM 用现价倒推结论 | `docs/anti-overfitting.md` |
 | **8+4 分批** | 初仓 8% + 下跌复核补仓 4%（封顶 1 次，FAIL 冷却 7 天） | `tools/pool_kelly.py` |
 | **双轨交易** | 本地记账为真源，富途模拟盘为镜像，每日 reconcile 核对，失败可回滚 | `tools/futu_bridge.py` |
@@ -73,6 +74,7 @@ tools/                     # 核心工具（全部无 GUI，可 headless 运行�
 ├── pool_rotator.py        # 股票池健康检查与轮动
 ├── quote_fetcher.py       # 腾讯/新浪免费行情
 ├── financial_rigor.py     # 财务数据交叉验证
+├── industry_valuation.py  # 行业估值难度分层（lookup/map/check-report/list）
 ├── llm_json_validator.py  # LLM 输出 JSON 修复链
 └── batch1_selfheal.py     # 17:00 自愈检查
 scripts/                   # 定时任务入口（ASCII+CRLF，勿改编码）

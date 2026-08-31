@@ -233,6 +233,17 @@ def _build_prompt_full(code: str, name: str, overwrite: bool) -> str:
 - 二次补仓价: **X 元**
 - 数据核验: ✓/⚠️ 说明
 
+【行业估值难度分层（v8 硬约束）】研究开始前必须先执行：
+python tools/industry_valuation.py lookup --code {code}
+- 该命令返回该股所属申万二级行业的估值难度星级、命中的宏观问题、必须补充的估值维度、首选估值方法、PE陷阱与需穿透的隐藏资产负债表
+- 若返回无映射（ok: false）：自行判断其二级行业后执行 lookup --industry <行业名>，确认后执行 map --code {code} --industry <行业名> --level 2 回写映射供后续复用
+- 按星级执行估值纪律（财务估值与行业竞争视角均须遵守）：
+  ★~★★  常规 PE/PB/DCF 直接可用，重点是增速假设是否合理
+  ★★★   常规方法 + 补充 lookup 输出的额外维度（周期中枢盈利/集采稳态利润/分部估值等）
+  ★★★★  常规 PE 大面积失效，必须切换为 lookup 输出的首选估值方法（PS 替代 PE、NAV 替代 PE、情景概率加权、分部估值），并做增速腰斩下行情景测试
+  ★★★★★ 会计利润本身失真，必须穿透 lookup 输出的隐藏资产负债表；PE 只能作为最后参考
+- 财务估值视角报告的"数据核验"字段必须注明：行业难度星级 + 实际采用的估值方法；★★★★+ 行业报告须自然包含该行业的关键概念（如保险须含久期/内含价值，否则会被合规检查打回补写）
+
 【强制数据核验】财务数据必须调用 python tools/financial_rigor.py cross-validate 交叉验证，两源不一致须在数据核验字段标注。
 
 【反锚定效应（硬约束）】研究前必须先读 reports/ 下该股票的旧四视角报告（若存在），对比基本面。建仓价是内在价值的映射，只随基本面变动：
@@ -262,6 +273,9 @@ def _build_prompt_lite(code: str, name: str) -> str:
    {{"verdict": "PASS|HOLD|FAIL", "reason": "一句话理由", "gain_med_updated": null}}
    其中 gain_med_updated 仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 null。
 4. 若 WebSearch 不可用，禁止用训练知识冒充联网结果，在 reason 中标注"未联网"。
+5. 行业估值纪律：先执行 python tools/industry_valuation.py lookup --code {code}；
+   难度 ≥★★★★ 的标的，估值关禁止直接引用 PE 下结论，须按 lookup 输出的首选方法
+   （如保险看EV敏感性/久期、银行看隐含不良反推），并在 reason 中注明所用方法。
 """
 
 
@@ -387,6 +401,10 @@ def _build_prompt_backfill_view(code: str, name: str, view: str) -> str:
 
 3) 重写 {target}，使其与其他三份最新报告的结论对齐：同一只股票的同一次重研，四个视角的建仓价/击球区/内在涨幅应一致，除非该视角有依据地持不同观点。保持 {view} 视角的分析立场与方法论，但数据、估值、结论对齐其他三份新报告。
 
+3.5) 行业估值纪律：先执行 python tools/industry_valuation.py lookup --code {code}，
+按返回的难度星级选择估值方法（★★★★+ 禁止直接用 PE 下结论，须用返回的首选方法与额外维度）。
+"数据核验"字段注明行业难度星级与实际采用的估值方法。
+
 4) 文件必须以 "## 量化结论" 小节结尾，严格包含五行（字段名与格式禁止改动）：
 - 内在涨幅: **X%**
 - 击球区: 🟢/🟡/🔴 结论一句话
@@ -407,8 +425,7 @@ def backfill_stale_views(code: str, name: str, run_id: str, stale_views: list) -
                             run_id=f"{run_id}_backfill_{view}")
         if run["timed_out"] or run["exit_code"] != 0:
             log(f"❌ {code} {view} 补写失败（exit={run['exit_code']}）")
-            continue
-    # 尾检查：只看解析完整性。分批补写（可能跨天）必然造成 mtime spread 超阈值，
+            continue    # 尾检查：只看解析完整性。分批补写（可能跨天）必然造成 mtime spread 超阈值，
     # 原子性 mtime 检查在此场景会误报——补写本身已是修复过程。
     reports, _synth = find_reports(code)
     bad_parse = [v for v, p in reports.items() if parse_report(p) is None]
@@ -674,6 +691,35 @@ def earnings_due_codes() -> list:
     return due
 
 
+def industry_compliance_check(code: str, name: str, run_id: str) -> bool:
+    """行业估值方法合规检查（研究质量层，v8）。
+
+    ★★★★+ 行业的财务估值报告须命中行业关键概念词（如保险须提久期/内含价值），
+    否则判定研究未按难度切换估值方法（拿 PE 硬算保险），触发财务估值视角补写。
+    返回是否合规。查不到映射/难度不足 ★★★★ 的股票恒过（免检）。
+    """
+    try:
+        sys.path.insert(0, os.path.join(REPO_ROOT, "tools"))
+        from industry_valuation import check_report
+        res = check_report(code)
+    except Exception as e:
+        log(f"⚠️ {code} 行业合规检查异常（跳过）: {e}")
+        return True
+    if not res.get("checked"):
+        return True
+    if res.get("ok"):
+        log(f"✅ {code} 行业估值合规: {res.get('reason', '')}")
+        return True
+    log(f"⚠️ {code} 行业估值方法不合规: {res.get('reason', '')}")
+    backfill_stale_views(code, name, run_id, ["财务估值"])
+    res2 = check_report(code)
+    if res2.get("ok"):
+        log(f"✅ {code} 补写后行业估值合规通过")
+        return True
+    log(f"⚠️ {code} 补写后仍不合规（缺 {res2.get('missing')}），保留报告，标记待人工")
+    return False
+
+
 def review_once(limit: int, dry_run: bool) -> dict:
     if not acquire_lock():
         return {"error": "locked"}
@@ -743,6 +789,8 @@ def review_once(limit: int, dry_run: bool) -> dict:
                     ok_q, bad_views = reports_quality_check(code)
                     if not ok_q:
                         log(f"⚠️ {code} 补写后仍有问题视角: {bad_views}，标记待人工")
+                # 行业估值方法合规（v8）：★★★★+ 行业报告须含关键概念，否则补写财务估值视角
+                industry_compliance_check(code, name, run["run_id"])
             if not ok and not dry_run:
                 mark(code, "failed", note=f"研究未落盘: {detail}; exit={run['exit_code']}", run_id=run["run_id"])
                 log(f"❌ {code} 研究失败: {detail}")
@@ -952,6 +1000,7 @@ def batch2_research(lite_cap: int, dry_run: bool) -> dict:
                 full_done.append({"code": code, "ok": False, "detail": detail})
                 continue
             mark(code, "done", verdict="RESEARCH_OK", note=detail, run_id=run_id)
+            industry_compliance_check(code, name, run_id)
             old_entry, old_gain_prev = get_group_entry(code)
             sync_stock(code, dry_run=False)
             # 反锚定漂移检测
