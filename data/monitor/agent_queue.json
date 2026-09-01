@@ -43,10 +43,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:38:56",
-   "finished": "2026-08-28 15:22:19",
+   "finished": "2026-08-31 15:20:17",
    "verdict": "RESEARCH_OK",
    "note": "可解析 4/4",
-   "run_id": "review_000598_150758"
+   "run_id": "review_000598_150618"
   },
   {
    "code": "000680",
@@ -139,10 +139,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:42:00",
-   "finished": "2026-08-24 15:34:43",
+   "finished": "2026-09-01 09:17:31",
    "verdict": "RESEARCH_OK",
    "note": "可解析 4/4",
-   "run_id": "review_000899_150743"
+   "run_id": "b2full_000899_090501"
   },
   {
    "code": "000902",
@@ -219,10 +219,10 @@
    "max_tries": 2,
    "created": "2026-08-14",
    "started": "2026-08-14 23:43:51",
-   "finished": "2026-08-28 21:37:41",
+   "finished": "2026-09-01 15:23:40",
    "verdict": "RESEARCH_OK",
    "note": "可解析 4/4",
-   "run_id": "one_001332_213003"
+   "run_id": "review_001332_150725"
   },
   {
    "code": "002142",
@@ -654,15 +654,106 @@
    "mode": "full",
    "reason": "manual",
    "source": "run-one",
-   "status": "in_progress",
+   "status": "failed",
    "tries": 0,
    "max_tries": 2,
    "created": "2026-08-28",
    "started": "2026-08-28 21:30:03",
    "finished": null,
    "verdict": null,
-   "note": ""
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-29",
+   "started": "2026-08-29 15:07:05",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-30",
+   "started": "2026-08-30 15:09:17",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000598",
+   "name": "兴蓉环境",
+   "mode": "full",
+   "reason": "earnings-window",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-08-31",
+   "started": "2026-08-31 15:06:18",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "000899",
+   "name": "赣能股份",
+   "mode": "full",
+   "reason": "boundary:watch->reserve",
+   "source": "batch2",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-09-01",
+   "started": "2026-09-01 09:05:01",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
+  },
+  {
+   "code": "600398",
+   "name": "海澜之家",
+   "mode": "full",
+   "reason": "boundary:reserve->watch",
+   "source": "batch2",
+   "status": "done",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-09-01",
+   "started": "2026-09-01 09:17:31",
+   "finished": "2026-09-01 09:33:56",
+   "verdict": "RESEARCH_OK",
+   "note": "可解析 4/4",
+   "run_id": "b2full_600398_091731"
+  },
+  {
+   "code": "001332",
+   "name": "锡装股份",
+   "mode": "full",
+   "reason": "REVIEW_DUE",
+   "source": "batch1",
+   "status": "failed",
+   "tries": 0,
+   "max_tries": 2,
+   "created": "2026-09-01",
+   "started": "2026-09-01 15:07:25",
+   "finished": null,
+   "verdict": null,
+   "note": "selfheal判定僵死"
   }
  ],
- "updated": "2026-08-28"
+ "updated": "2026-09-01"
 }

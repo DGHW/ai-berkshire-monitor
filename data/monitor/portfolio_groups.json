@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-28",
+ "updated": "2026-09-01",
  "rule": "买入组=现价≤建仓价(四视角中位数); 观察组=现价≤建仓价×1.15; 后备组=有质量但价格远; 放弃组=四视角全🔴不维护(仅轮动后备)",
  "buy": {
   "001316": {
@@ -88,7 +88,7 @@
    "price": 7.14,
    "entry_med": 6.55,
    "entry_min": 6.0,
-   "gain_med": 5.0,
+   "gain_med": 2.0,
    "zones": [
     "🟡",
     "🟡",
@@ -171,7 +171,7 @@
    "price": 10.75,
    "entry_med": 4.8,
    "entry_min": 4.2,
-   "gain_med": -37.25,
+   "gain_med": -34.15,
    "zones": [
     "🔴",
     "🔴",
@@ -239,16 +239,16 @@
   "001332": {
    "name": "锡装股份",
    "price": 31.66,
-   "entry_med": 28.25,
-   "entry_min": 19.0,
-   "gain_med": 1.0,
+   "entry_med": 17.0,
+   "entry_min": 15.0,
+   "gain_med": -29.5,
    "zones": [
-    "🟡",
     "🔴",
-    "🟡",
+    "🔴",
+    "🔴",
     "🔴"
    ],
-   "zone_all_red": false
+   "zone_all_red": true
   },
   "002142": {
    "name": "宁波银行",
@@ -1318,6 +1318,76 @@
     "🔴"
    ],
    "zone_all_red": true
+  },
+  "601825": {
+   "name": "沪农商行",
+   "price": 8.3,
+   "entry_med": 7.4,
+   "entry_min": 7.0,
+   "gain_med": -5.5,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "600908": {
+   "name": "无锡银行",
+   "price": 5.41,
+   "entry_med": 4.8,
+   "entry_min": 4.5,
+   "gain_med": -5.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "601000": {
+   "name": "唐山港",
+   "price": 4.59,
+   "entry_med": 4.0,
+   "entry_min": 4.0,
+   "gain_med": -6.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
+  },
+  "002901": {
+   "name": "大博医疗",
+   "price": 45.43,
+   "entry_med": 39.5,
+   "entry_min": 38.0,
+   "gain_med": 8.5,
+   "zones": [
+    "🟡",
+    "🟡",
+    "🟡",
+    "🟡"
+   ],
+   "zone_all_red": false
+  },
+  "002839": {
+   "name": "张家港行",
+   "price": 4.32,
+   "entry_med": 3.75,
+   "entry_min": 3.5,
+   "gain_med": -7.0,
+   "zones": [
+    "🔴",
+    "🔴",
+    "🔴",
+    "🔴"
+   ],
+   "zone_all_red": true
   }
  },
  "reserve": {
@@ -1702,20 +1772,6 @@
    ],
    "zone_all_red": true
   },
-  "002901": {
-   "name": "大博医疗",
-   "price": 45.43,
-   "entry_med": 39.5,
-   "entry_min": 38.0,
-   "gain_med": 8.5,
-   "zones": [
-    "🟡",
-    "🟡",
-    "🟡",
-    "🟡"
-   ],
-   "zone_all_red": false
-  },
   "002956": {
    "name": "西麦食品",
    "price": 18.05,
@@ -1991,10 +2047,11 @@
   "600398": {
    "name": "海澜之家",
    "price": 6.07,
-   "entry_med": 5.3,
-   "entry_min": 4.8,
-   "gain_med": 8.0,
+   "entry_med": 4.875,
+   "entry_min": 4.4,
+   "gain_med": 2.0,
    "zones": [
+    "🟡",
     "🟡",
     "🟡",
     "🟡"
@@ -2679,20 +2736,6 @@
    ],
    "zone_all_red": true
   },
-  "002839": {
-   "name": "张家港行",
-   "price": 4.32,
-   "entry_med": 3.75,
-   "entry_min": 3.5,
-   "gain_med": -7.0,
-   "zones": [
-    "🔴",
-    "🔴",
-    "🔴",
-    "🔴"
-   ],
-   "zone_all_red": true
-  },
   "300033": {
    "name": "同花顺",
    "price": 234.0,
@@ -3036,40 +3079,12 @@
    ],
    "zone_all_red": true
   },
-  "600908": {
-   "name": "无锡银行",
-   "price": 5.41,
-   "entry_med": 4.8,
-   "entry_min": 4.5,
-   "gain_med": -5.0,
-   "zones": [
-    "🔴",
-    "🔴",
-    "🔴",
-    "🔴"
-   ],
-   "zone_all_red": true
-  },
   "600999": {
    "name": "招商证券",
    "price": 18.23,
    "entry_med": 14.5,
    "entry_min": 14.5,
    "gain_med": -9.5,
-   "zones": [
-    "🔴",
-    "🔴",
-    "🔴",
-    "🔴"
-   ],
-   "zone_all_red": true
-  },
-  "601000": {
-   "name": "唐山港",
-   "price": 4.59,
-   "entry_med": 4.0,
-   "entry_min": 4.0,
-   "gain_med": -6.0,
    "zones": [
     "🔴",
     "🔴",
@@ -3331,20 +3346,6 @@
    "entry_med": 15.0,
    "entry_min": 12.0,
    "gain_med": -19.0,
-   "zones": [
-    "🔴",
-    "🔴",
-    "🔴",
-    "🔴"
-   ],
-   "zone_all_red": true
-  },
-  "601825": {
-   "name": "沪农商行",
-   "price": 8.3,
-   "entry_med": 7.4,
-   "entry_min": 7.0,
-   "gain_med": -5.5,
    "zones": [
     "🔴",
     "🔴",

@@ -1,0 +1,639 @@
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-17-monitor.md
+   监控 96 只 | 触发复审 3 | 首次触发 0 | 错误 0
+  [gdelt 限流/错误 429] 300573
+  [gdelt 限流/错误 429] 600211
+✅ 无卖出信号
+✅ 健康检查完成：0 条告警
+{
+ "ok": true,
+ "issues": [
+  {
+   "type": "MISSING_FUTU",
+   "code": "300573",
+   "local_shares": 2800,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  },
+  {
+   "type": "MISSING_FUTU",
+   "code": "600211",
+   "local_shares": 3000,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  }
+ ],
+ "fixes": [],
+ "local": [
+  "300573",
+  "600211"
+ ],
+ "futu": []
+}
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-18-monitor.md
+   监控 96 只 | 触发复审 2 | 首次触发 0 | 错误 0
+  [gdelt 限流/错误 429] 300573
+  [gdelt 限流/错误 429] 600211
+[2026-08-19 02:10:50] [SELFHEAL] 检测到 1 只 REVIEW_DUE（['600285']），补跑 review --limit 1
+[2026-08-19 02:25:13] [SELFHEAL] 补跑 review 完成
+[2026/08/19 ���� 15:05:01.93] [STEP] batch1 start 
+[2026/08/19 ���� 15:05:01.93] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-19-monitor.md
+   监控 96 只 | 触发复审 1 | 首次触发 0 | 错误 0
+[2026/08/19 ���� 15:05:17.65] [STEP] price_monitor done 
+[2026/08/19 ���� 15:05:17.65] [STEP] position_manager.daily start 
+  [gdelt 限流/错误 429] 600211
+  [gdelt 限流/错误 429] 001316
+  [gdelt 限流/错误 429] 600285
+✅ 无卖出信号
+[2026/08/19 ���� 15:06:30.23] [STEP] position_manager.daily done 
+[2026/08/19 ���� 15:06:30.24] [STEP] health_check start 
+✅ 健康检查完成：0 条告警
+[2026/08/19 ���� 15:06:30.46] [STEP] health_check done 
+[2026/08/19 ���� 15:06:30.46] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "300573",
+  "600211",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "300573",
+  "600211",
+  "600285"
+ ]
+}
+[2026/08/19 ���� 15:06:33.97] [STEP] futu_reconcile done 
+[2026/08/19 ���� 15:06:33.97] [STEP] agent_review start 
+[2026-08-19 17:00:00] [SELFHEAL] 锁存在且新鲜（113min），review 进行中，不打扰
+[2026/08/20 ���� 15:05:03.98] [STEP] batch1 start 
+[2026/08/20 ���� 15:05:04.17] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-20-monitor.md
+   监控 96 只 | 触发复审 2 | 首次触发 0 | 错误 0
+[2026/08/20 ���� 15:05:20.15] [STEP] price_monitor done 
+[2026/08/20 ���� 15:05:20.15] [STEP] position_manager.daily start 
+  [gdelt 限流/错误 429] 600211
+  [gdelt 限流/错误 429] 001316
+  [gdelt 限流/错误 429] 600285
+  [gdelt 限流/错误 429] 002415
+✅ 无卖出信号
+[2026/08/20 ���� 15:06:51.35] [STEP] position_manager.daily done 
+[2026/08/20 ���� 15:06:51.35] [STEP] health_check start 
+✅ 健康检查完成：0 条告警
+[2026/08/20 ���� 15:06:51.61] [STEP] health_check done 
+[2026/08/20 ���� 15:06:51.61] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "300573",
+  "600211",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "300573",
+  "600211",
+  "600285"
+ ]
+}
+[2026/08/20 ���� 15:06:55.41] [STEP] futu_reconcile done 
+[2026/08/20 ���� 15:06:55.41] [STEP] agent_review start 
+[2026-08-20 17:00:03] [SELFHEAL] 锁存在且新鲜（113min），review 进行中，不打扰
+[2026/08/22 ���� 15:05:01.52] [STEP] batch1 start 
+[2026/08/22 ���� 15:05:01.54] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-22-monitor.md
+   监控 96 只 | 触发复审 2 | 首次触发 0 | 错误 0
+[2026/08/22 ���� 15:05:19.17] [STEP] price_monitor done 
+[2026/08/22 ���� 15:05:19.17] [STEP] position_manager.daily start 
+  [gdelt 限流/错误 429] 300573
+  [gdelt 限流/错误 429] 600211
+  [gdelt 限流/错误 429] 001316
+  [gdelt 限流/错误 429] 600285
+  [gdelt 限流/错误 429] 002415
+  [gdelt 限流/错误 429] 002588
+✅ 无卖出信号
+[2026/08/22 ���� 15:07:03.27] [STEP] position_manager.daily done 
+[2026/08/22 ���� 15:07:03.27] [STEP] health_check start 
+✅ 健康检查完成：0 条告警
+[2026/08/22 ���� 15:07:03.44] [STEP] health_check done 
+[2026/08/22 ���� 15:07:03.44] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [
+  {
+   "type": "MISSING_FUTU",
+   "code": "300573",
+   "local_shares": 2800,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  },
+  {
+   "type": "MISSING_FUTU",
+   "code": "600211",
+   "local_shares": 3000,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  },
+  {
+   "type": "MISSING_FUTU",
+   "code": "002415",
+   "local_shares": 2300,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  },
+  {
+   "type": "MISSING_FUTU",
+   "code": "002588",
+   "local_shares": 10200,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  },
+  {
+   "type": "MISSING_FUTU",
+   "code": "600285",
+   "local_shares": 6000,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  },
+  {
+   "type": "MISSING_FUTU",
+   "code": "001316",
+   "local_shares": 4400,
+   "suggest": "模拟盘无持仓且无挂单：下单失败或从未下单，需补下"
+  }
+ ],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600285"
+ ],
+ "futu": []
+}
+[2026/08/22 ���� 15:07:13.92] [STEP] futu_reconcile done 
+[2026/08/22 ���� 15:07:13.92] [STEP] agent_review start 
+[2026-08-22 17:00:02] [SELFHEAL] 锁存在且新鲜（113min），review 进行中，不打扰
+[2026/08/24 ��һ 15:05:01.89] [STEP] batch1 start 
+[2026/08/24 ��һ 15:05:01.89] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-24-monitor.md
+   监控 96 只 | 触发复审 4 | 首次触发 0 | 错误 0
+[2026/08/24 ��һ 15:05:25.66] [STEP] price_monitor done 
+[2026/08/24 ��һ 15:05:25.66] [STEP] position_manager.daily start 
+  [gdelt 限流/错误 429] 300573
+  [gdelt 限流/错误 429] 001316
+  [gdelt 限流/错误 429] 600285
+  [gdelt 限流/错误 429] 002415
+  [gdelt 限流/错误 429] 002588
+  [gdelt 限流/错误 429] 恒瑞医药
+✅ 无卖出信号
+[2026/08/24 ��һ 15:07:39.02] [STEP] position_manager.daily done 
+[2026/08/24 ��һ 15:07:39.02] [STEP] health_check start 
+✅ 健康检查完成：0 条告警
+[2026/08/24 ��һ 15:07:39.21] [STEP] health_check done 
+[2026/08/24 ��һ 15:07:39.21] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/24 ��һ 15:07:43.27] [STEP] futu_reconcile done 
+[2026/08/24 ��һ 15:07:43.27] [STEP] agent_review start 
+[2026/08/24 ��һ 15:37:14.66] [STEP] agent_review done 
+[2026/08/24 ��һ 15:37:14.66] [STEP] batch1 done 
+[2026-08-24 17:00:02] [SELFHEAL] 清理僵死 in_progress: 002415（锁陈旧时仍标进行中=进程已死）
+[2026-08-24 17:00:02] [SELFHEAL] 清理僵死 in_progress: 002588（锁陈旧时仍标进行中=进程已死）
+[2026-08-24 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000899（锁陈旧时仍标进行中=进程已死）
+[2026-08-24 17:00:02] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['000899', '001286', '603345', '688208']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-24 17:00:02] [SELFHEAL] 补跑 review 完成
+[2026/08/25 �ܶ� 15:05:01.85] [STEP] batch1 start 
+[2026/08/25 �ܶ� 15:05:01.88] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-25-monitor.md
+   监控 96 只 | 触发复审 1 | 首次触发 0 | 错误 0
+[2026/08/25 �ܶ� 15:05:19.71] [STEP] price_monitor done 
+[2026/08/25 �ܶ� 15:05:19.72] [STEP] position_manager.daily start 
+  [gdelt 限流/错误 429] 300573
+  [gdelt 限流/错误 429] 600211
+  [gdelt 限流/错误 429] 001316
+  [gdelt 限流/错误 429] 600285
+  [gdelt 限流/错误 429] 002588
+✅ 无卖出信号
+[2026/08/25 �ܶ� 15:07:30.51] [STEP] position_manager.daily done 
+[2026/08/25 �ܶ� 15:07:30.52] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.49 远超击球区上沿 4.8
+[2026/08/25 �ܶ� 15:07:30.68] [STEP] health_check done 
+[2026/08/25 �ܶ� 15:07:30.68] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/25 �ܶ� 15:07:36.05] [STEP] futu_reconcile done 
+[2026/08/25 �ܶ� 15:07:36.05] [STEP] agent_review start 
+[2026/08/25 �ܶ� 15:41:22.57] [STEP] agent_review done 
+[2026/08/25 �ܶ� 15:41:22.57] [STEP] batch1 done 
+[2026-08-25 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-25 17:00:04] [SELFHEAL] 检测到 REVIEW_DUE 1 只（['603345']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-25 17:00:06] [SELFHEAL] 补跑 review 完成
+[2026/08/26 ���� 15:05:01.89] [STEP] batch1 start 
+[2026/08/26 ���� 15:05:01.91] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-26-monitor.md
+   监控 96 只 | 触发复审 4 | 首次触发 0 | 错误 0
+[2026/08/26 ���� 15:06:32.16] [STEP] price_monitor done 
+[2026/08/26 ���� 15:06:32.16] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260823150644&enddatetime=20260826150644&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600211: ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260823150714&enddatetime=20260826150714&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002415&mode=ArtList&maxrecords=75&format=json&startdatetime=20260823150722&enddatetime=20260826150722&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002588&mode=ArtList&maxrecords=75&format=json&startdatetime=20260823150732&enddatetime=20260826150732&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 恒瑞医药: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&mode=ArtList&maxrecords=75&format=json&startdatetime=20260823150744&enddatetime=20260826150744&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+✅ 无卖出信号
+[2026/08/26 ���� 15:07:51.97] [STEP] position_manager.daily done 
+[2026/08/26 ���� 15:07:51.97] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.68 远超击球区上沿 4.8
+[2026/08/26 ���� 15:07:52.14] [STEP] health_check done 
+[2026/08/26 ���� 15:07:52.14] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/26 ���� 15:07:54.60] [STEP] futu_reconcile done 
+[2026/08/26 ���� 15:07:54.60] [STEP] agent_review start 
+[2026/08/26 ���� 15:07:55.12] [STEP] agent_review done 
+[2026/08/26 ���� 15:07:55.12] [STEP] batch1 done 
+[2026-08-26 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-26 17:00:02] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-26 17:00:03] [SELFHEAL] 补跑 review 完成
+[2026/08/27 ���� 15:05:01.97] [STEP] batch1 start 
+[2026/08/27 ���� 15:05:02.07] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-27-monitor.md
+   监控 96 只 | 触发复审 4 | 首次触发 0 | 错误 0
+[2026/08/27 ���� 15:06:35.23] [STEP] price_monitor done 
+[2026/08/27 ���� 15:06:35.23] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260824150646&enddatetime=20260827150646&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600211: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600211&mode=ArtList&maxrecords=75&format=json&startdatetime=20260824150654&enddatetime=20260827150654&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=001316&mode=ArtList&maxrecords=75&format=json&startdatetime=20260824150704&enddatetime=20260827150704&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260824150706&enddatetime=20260827150706&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 恒瑞医药: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&mode=ArtList&maxrecords=75&format=json&startdatetime=20260824150744&enddatetime=20260827150744&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+✅ 无卖出信号
+[2026/08/27 ���� 15:07:59.65] [STEP] position_manager.daily done 
+[2026/08/27 ���� 15:07:59.65] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.68 远超击球区上沿 4.8
+[2026/08/27 ���� 15:07:59.83] [STEP] health_check done 
+[2026/08/27 ���� 15:07:59.83] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/27 ���� 15:08:04.31] [STEP] futu_reconcile done 
+[2026/08/27 ���� 15:08:04.31] [STEP] agent_review start 
+[2026/08/27 ���� 15:08:04.93] [STEP] agent_review done 
+[2026/08/27 ���� 15:08:04.93] [STEP] batch1 done 
+[2026-08-27 17:00:03] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-27 17:00:06] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-27 17:00:07] [SELFHEAL] 补跑 review 完成
+[2026-08-27 18:39:52] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-27 18:39:52] [SELFHEAL] 补跑 review 完成
+[2026/08/28 ���� 15:05:02.12] [STEP] batch1 start 
+[2026/08/28 ���� 15:05:02.15] [STEP] price_monitor start 
+Traceback (most recent call last):
+  File "C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\tools\price_monitor.py", line 280, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\tools\price_monitor.py", line 195, in main
+    lines.append(f"| {r['ticker']} | {r['name']} | {r['price']:.2f} | "
+                                                   ^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
+[2026/08/28 ���� 15:06:35.08] [STEP] price_monitor done 
+[2026/08/28 ���� 15:06:35.08] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150636&enddatetime=20260828150636&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x22fb48dac10>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 600211: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600211&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150651&enddatetime=20260828150651&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x22fb4e3a210>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=001316&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150706&enddatetime=20260828150706&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150714&enddatetime=20260828150714&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002415&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150721&enddatetime=20260828150721&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002588&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150728&enddatetime=20260828150728&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x22fb5099590>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 恒瑞医药: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&mode=ArtList&maxrecords=75&format=json&startdatetime=20260825150743&enddatetime=20260828150743&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+✅ 无卖出信号
+[2026/08/28 ���� 15:07:51.35] [STEP] position_manager.daily done 
+[2026/08/28 ���� 15:07:51.35] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.65 远超击球区上沿 4.8
+[2026/08/28 ���� 15:07:51.49] [STEP] health_check done 
+[2026/08/28 ���� 15:07:51.49] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/28 ���� 15:07:57.99] [STEP] futu_reconcile done 
+[2026/08/28 ���� 15:07:57.99] [STEP] agent_review start 
+[2026/08/28 ���� 15:22:19.98] [STEP] agent_review done 
+[2026/08/28 ���� 15:22:19.98] [STEP] batch1 done 
+[2026-08-28 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-28 17:00:02] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-28 17:00:02] [SELFHEAL] 补跑 review 完成
+[2026/08/29 ���� 15:05:02.98] [STEP] batch1 start 
+[2026/08/29 ���� 15:05:02.98] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-29-monitor.md
+   监控 96 只 | 触发复审 4 | 首次触发 0 | 错误 0
+[2026/08/29 ���� 15:05:16.16] [STEP] price_monitor done 
+[2026/08/29 ���� 15:05:16.16] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260826150517&enddatetime=20260829150517&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x1ea3748ac10>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 600211: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600211&mode=ArtList&maxrecords=75&format=json&startdatetime=20260826150532&enddatetime=20260829150532&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x1ea3820a210>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=001316&mode=ArtList&maxrecords=75&format=json&startdatetime=20260826150547&enddatetime=20260829150547&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x1ea382f0690>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260826150602&enddatetime=20260829150602&sort=datedesc (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x1ea384791d0>, 'Connection to api.gdeltproject.org timed out. (connect timeout=15)'))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 恒瑞医药: ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+✅ 无卖出信号
+[2026/08/29 ���� 15:06:59.40] [STEP] position_manager.daily done 
+[2026/08/29 ���� 15:06:59.40] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.65 远超击球区上沿 4.8
+[2026/08/29 ���� 15:06:59.53] [STEP] health_check done 
+[2026/08/29 ���� 15:06:59.54] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/29 ���� 15:07:05.37] [STEP] futu_reconcile done 
+[2026/08/29 ���� 15:07:05.37] [STEP] agent_review start 
+[2026/08/29 ���� 15:07:05.84] [STEP] agent_review done 
+[2026/08/29 ���� 15:07:05.84] [STEP] batch1 done 
+[2026-08-29 17:00:02] [SELFHEAL] 清理僵死 in_progress: 001332（锁陈旧时仍标进行中=进程已死）
+[2026-08-29 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-29 17:00:03] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-29 17:00:03] [SELFHEAL] 补跑 review 完成
+[2026/08/30 ���� 15:05:02.20] [STEP] batch1 start 
+[2026/08/30 ���� 15:05:02.20] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-30-monitor.md
+   监控 96 只 | 触发复审 4 | 首次触发 0 | 错误 3
+[2026/08/30 ���� 15:07:51.99] [STEP] price_monitor done 
+[2026/08/30 ���� 15:07:52.00] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150814&enddatetime=20260830150814&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600211: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600211&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150824&enddatetime=20260830150824&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=001316&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150831&enddatetime=20260830150831&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150839&enddatetime=20260830150839&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002415&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150846&enddatetime=20260830150846&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002588&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150853&enddatetime=20260830150853&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 恒瑞医药: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&mode=ArtList&maxrecords=75&format=json&startdatetime=20260827150903&enddatetime=20260830150903&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+✅ 无卖出信号
+[2026/08/30 ���� 15:09:11.11] [STEP] position_manager.daily done 
+[2026/08/30 ���� 15:09:11.11] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.65 远超击球区上沿 4.8
+[2026/08/30 ���� 15:09:11.25] [STEP] health_check done 
+[2026/08/30 ���� 15:09:11.25] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/30 ���� 15:09:17.64] [STEP] futu_reconcile done 
+[2026/08/30 ���� 15:09:17.64] [STEP] agent_review start 
+[2026/08/30 ���� 15:09:18.23] [STEP] agent_review done 
+[2026/08/30 ���� 15:09:18.23] [STEP] batch1 done 
+[2026-08-30 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-30 17:00:02] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 0 只（[]），补跑 review --limit 1
+[2026-08-30 17:00:02] [SELFHEAL] 补跑 review 完成
+[2026/08/31 ��һ 15:05:02.06] [STEP] batch1 start 
+[2026/08/31 ��һ 15:05:02.06] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-08-31-monitor.md
+   监控 96 只 | 触发复审 3 | 首次触发 0 | 错误 0
+[2026/08/31 ��һ 15:05:32.96] [STEP] price_monitor done 
+[2026/08/31 ��һ 15:05:32.96] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150533&enddatetime=20260831150533&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600211: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600211&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150535&enddatetime=20260831150535&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=001316&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150542&enddatetime=20260831150542&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150549&enddatetime=20260831150549&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002415&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150557&enddatetime=20260831150557&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002588&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150606&enddatetime=20260831150606&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 恒瑞医药: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&mode=ArtList&maxrecords=75&format=json&startdatetime=20260828150614&enddatetime=20260831150614&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+✅ 无卖出信号
+[2026/08/31 ��һ 15:06:15.67] [STEP] position_manager.daily done 
+[2026/08/31 ��һ 15:06:15.67] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.47 远超击球区上沿 4.8
+[2026/08/31 ��һ 15:06:15.80] [STEP] health_check done 
+[2026/08/31 ��һ 15:06:15.80] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/08/31 ��һ 15:06:18.33] [STEP] futu_reconcile done 
+[2026/08/31 ��һ 15:06:18.34] [STEP] agent_review start 
+[2026/08/31 ��һ 15:20:17.66] [STEP] agent_review done 
+[2026/08/31 ��һ 15:20:17.66] [STEP] batch1 done 
+[2026-08-31 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000598（锁陈旧时仍标进行中=进程已死）
+[2026-08-31 17:00:02] [SELFHEAL] 检测到 REVIEW_DUE 3 只（['002991', '603345', '605305']）+ ADD_DUE 1 只（['600276']），补跑 review --limit 1
+[2026-08-31 17:00:02] [SELFHEAL] 补跑 review 完成
+[2026/09/01 �ܶ� 15:05:02.11] [STEP] batch1 start 
+[2026/09/01 �ܶ� 15:05:02.11] [STEP] price_monitor start 
+✅ 日报已写入: C:\Users\17356\WorkBuddy\2026-08-07-20-15-31\ai-berkshire\reports\monitor\daily\2026-09-01-monitor.md
+   监控 101 只 | 触发复审 4 | 首次触发 0 | 错误 0
+[2026/09/01 �ܶ� 15:05:54.15] [STEP] price_monitor done 
+[2026/09/01 �ܶ� 15:05:54.16] [STEP] position_manager.daily start 
+  [gdelt 错误] 300573: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=300573&mode=ArtList&maxrecords=75&format=json&startdatetime=20260829150615&enddatetime=20260901150615&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 600211: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600211&mode=ArtList&maxrecords=75&format=json&startdatetime=20260829150623&enddatetime=20260901150623&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 001316: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 600285: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=600285&mode=ArtList&maxrecords=75&format=json&startdatetime=20260829150645&enddatetime=20260901150645&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 002415: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=15)
+  [gdelt 错误] 002588: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=002588&mode=ArtList&maxrecords=75&format=json&startdatetime=20260829150708&enddatetime=20260901150708&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+  [gdelt 错误] 恒瑞医药: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&mode=ArtList&maxrecords=75&format=json&startdatetime=20260829150715&enddatetime=20260901150715&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+⚠️ 1 条卖出信号:
+  [ERR] (001316): 所有数据源失败 [001316]: tencent: HTTPSConnectionPool(host='qt.gtimg.cn', port=443): Max retries exceeded with url: /q=sz001316 (Caused by ConnectTimeoutError(<HTTPSConnection(host='qt.gtimg.cn', port=443) at 0x2ad84c4ac10>, 'Connection to qt.gtimg.cn timed out. (connect timeout=10)')) | sina: HTTPSConnectionPool(host='hq.sinajs.cn', port=443): Max retries exceeded with url: /list=sz001316 (Caused by ConnectTimeoutError(<HTTPSConnection(host='hq.sinajs.cn', port=443) at 0x2ad84d70190>, 'Connection to hq.sinajs.cn timed out. (connect timeout=10)'))
+[2026/09/01 �ܶ� 15:07:22.90] [STEP] position_manager.daily done 
+[2026/09/01 �ܶ� 15:07:22.90] [STEP] health_check start 
+✅ 健康检查完成：1 条告警
+  [ZONE_EXPIRED] 赣能股份: 现价 9.48 远超击球区上沿 4.8
+[2026/09/01 �ܶ� 15:07:23.03] [STEP] health_check done 
+[2026/09/01 �ܶ� 15:07:23.03] [STEP] futu_reconcile start 
+{
+ "ok": true,
+ "issues": [],
+ "fixes": [],
+ "local": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ],
+ "futu": [
+  "001316",
+  "002415",
+  "002588",
+  "300573",
+  "600211",
+  "600276",
+  "600285"
+ ]
+}
+[2026/09/01 �ܶ� 15:07:25.67] [STEP] futu_reconcile done 
+[2026/09/01 �ܶ� 15:07:25.67] [STEP] agent_review start 
+[2026/09/01 �ܶ� 15:23:40.63] [STEP] agent_review done 
+[2026/09/01 �ܶ� 15:23:40.64] [STEP] batch1 done 
+[2026-09-01 17:00:02] [SELFHEAL] 清理僵死 in_progress: 000899（锁陈旧时仍标进行中=进程已死）
+[2026-09-01 17:00:02] [SELFHEAL] 清理僵死 in_progress: 001332（锁陈旧时仍标进行中=进程已死）
+[2026-09-01 17:00:02] [SELFHEAL] 检测到 REVIEW_DUE 4 只（['001332', '002991', '603345', '605305']）+ ADD_DUE 1 只（['600276']），补跑 review --limit 1
+[2026-09-01 17:00:03] [SELFHEAL] 补跑 review 完成

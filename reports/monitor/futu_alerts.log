@@ -1,0 +1,49 @@
+[2026-08-15 21:56:19] 600211 auto-fix: 撤单后按现价 39.38 重下 3000 股 → submitted
+[2026-08-15 21:56:22] 300573 auto-fix: 撤单后按现价 41.4 重下 2800 股 → submitted
+[2026-08-15 22:42:07] 300573 auto-fix: 撤单后按现价 41.4 重下 2800 股 → submitted
+[2026-08-17 13:35:09] get_orders.py 失败(exit=1): 
+[2026-08-17 13:35:34] get_orders.py 失败(exit=1): 
+[2026-08-17 13:35:37] get_portfolio.py 失败(exit=1): 
+[2026-08-17 13:36:16] get_accounts.py 失败(exit=1): 
+[2026-08-17 13:41:59] get_portfolio.py 失败(exit=1): 
+[2026-08-17 13:42:21] get_portfolio.py 失败(exit=1): 
+[2026-08-17 15:35:08] get_portfolio.py 失败(exit=1): scripts\trade\get_portfolio.py", line 31, in <module>
+    from common import (
+    ...<16 lines>...
+    )
+  File "C:\Users\17356\.codebuddy\skills\futuapi\scripts\common.py", line 209, in <module>
+    from futu import (
+    ...<23 lines>...
+    )
+ModuleNotFoundError: No module named 'futu'
+
+[2026-08-17 15:35:08] get_orders.py 失败(exit=1): pi\scripts\trade\get_orders.py", line 26, in <module>
+    from common import (
+    ...<16 lines>...
+    )
+  File "C:\Users\17356\.codebuddy\skills\futuapi\scripts\common.py", line 209, in <module>
+    from futu import (
+    ...<23 lines>...
+    )
+ModuleNotFoundError: No module named 'futu'
+
+[2026-08-17 15:47:19] place_order.py 失败(exit=1): i\scripts\trade\place_order.py", line 33, in <module>
+    from common import (
+    ...<20 lines>...
+    )
+  File "C:\Users\17356\.codebuddy\skills\futuapi\scripts\common.py", line 209, in <module>
+    from futu import (
+    ...<23 lines>...
+    )
+ModuleNotFoundError: No module named 'futu'
+
+[2026-08-19 01:50:09] get_portfolio.py 失败(exit=1): 
+[2026-08-19 01:50:34] get_orders.py 失败(exit=1): 
+[2026-08-19 02:03:55] place_order.py 失败(exit=1): 
+[2026-08-19 13:45:16] 600036 回滚记账: 现价39.00超出击球区上沿38.5，等回落
+[2026-08-22 15:07:11] get_portfolio.py 失败(exit=1): 
+[2026-08-22 15:07:13] get_orders.py 失败(exit=1): 
+[2026-08-22 15:32:23] get_orders.py 失败(exit=1): 
+[2026-08-22 15:32:26] get_portfolio.py 失败(exit=1): 
+[2026-08-22 15:32:47] get_orders.py 失败(exit=1): 
+[2026-08-28 14:20:47] get_portfolio.py 失败(exit=1): 

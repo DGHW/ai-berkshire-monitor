@@ -1,0 +1,1050 @@
+# run add_600276_153443 | exit=0 | 151s
+
+## PROMPT
+/investment-team-lite 600276 恒瑞医药
+
+【headless 自动模式】
+1. 跳过批量调度器的 claim 步骤（股票已由调用方指定），直接对该标的做六关速评（能力圈/好生意/护城河/管理层/估值/财务健康）。
+2. 数据链路（P2 强化）：
+   - 必须用 python tools/quote_fetcher.py 600276 取实时价，估值关的 PE/PB 一律按实时价重算，禁止使用旧快照的 PE
+   - 财务指标（ROE/毛利率/净利率/营收增速）优先取 reports/ 下该股最新报告的数据核验节；若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径
+   - 所有数据卡/速评卡字段视为可能过期快照，仅作交叉参考
+3. 最后严格输出如下 JSON（不要输出其它内容）：
+   {"verdict": "PASS|HOLD|FAIL", "reason": "一句话理由", "gain_med_updated": null}
+   其中 gain_med_updated 仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 null。
+4. 若 WebSearch 不可用，禁止用训练知识冒充联网结果，在 reason 中标注"未联网"。
+
+
+## STDOUT
+[
+  {
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "<system-reminder data-role=\"memory\"><memory>\n# auto memory\n\nYou have a persistent, file-based memory system at `C:\\Users\\17356\\.codebuddy\\projects\\c-Users-17356-WorkBuddy-2026-08-07-20-15-31-ai-berkshire\\memory`. This directory already exists — write to it directly with the Write tool (do not run mkdir or check for its existence).\n\nYou should build up this memory system over time so that future conversations can have a complete picture of who the user is, how they'd like to collaborate with you, what behaviors to avoid or repeat, and the context behind the work the user gives you.\n\nIf the user explicitly asks you to remember something, save it immediately as whichever type fits best. If they ask you to forget something, find and remove the relevant entry.\n\n## Types of memory\n\nThere are several discrete types of memory that you can store in your memory system:\n\n<types>\n<type>\n    <name>user</name>\n    <description>Contain information about the user's role, goals, responsibilities, and knowledge. Great user memories help you tailor your future behavior to the user's preferences and perspective. Your goal in reading and writing these memories is to build up an understanding of who the user is and how you can be most helpful to them specifically. For example, you should collaborate with a senior software engineer differently than a student who is coding for the very first time. Keep in mind, that the aim here is to be helpful to the user. Avoid writing memories about the user that could be viewed as a negative judgement or that are not relevant to the work you're trying to accomplish together.</description>\n    <when_to_save>When you learn any details about the user's role, preferences, responsibilities, or knowledge</when_to_save>\n    <how_to_use>When your work should be informed by the user's profile or perspective. For example, if the user is asking you to explain a part of the code, you should answer that question in a way that is tailored to the specific details that they will find most valuable or that helps them build their mental model in relation to domain knowledge they already have.</how_to_use>\n    <examples>\n    user: I'm a data scientist investigating what logging we have in place\n    assistant: [saves user memory: user is a data scientist, currently focused on observability/logging]\n\n    user: I've been writing Go for ten years but this is my first time touching the React side of this repo\n    assistant: [saves user memory: deep Go expertise, new to React and this project's frontend — frame frontend explanations in terms of backend analogues]\n    </examples>\n</type>\n<type>\n    <name>feedback</name>\n    <description>Guidance the user has given you about how to approach work — both what to avoid and what to keep doing. These are a very important type of memory to read and write as they allow you to remain coherent and responsive to the way you should approach work in the project. Record from failure AND success: if you only save corrections, you will avoid past mistakes but drift away from approaches the user has already validated, and may grow overly cautious.</description>\n    <when_to_save>Any time the user corrects your approach (\"no not that\", \"don't\", \"stop doing X\") OR confirms a non-obvious approach worked (\"yes exactly\", \"perfect, keep doing that\", accepting an unusual choice without pushback). Corrections are easy to notice; confirmations are quieter — watch for them. In both cases, save what is applicable to future conversations, especially if surprising or not obvious from the code. Include *why* so you can judge edge cases later.</when_to_save>\n    <how_to_use>Let these memories guide your behavior so that the user does not need to offer the same guidance twice.</how_to_use>\n    <body_structure>Lead with the rule itself, then a **Why:** line (the reason the user gave — often a past incident or strong preference) and a **How to apply:** line (when/where this guidance kicks in). Knowing *why* lets you judge edge cases instead of blindly following the rule.</body_structure>\n    <examples>\n    user: don't mock the database in these tests — we got burned last quarter when mocked tests passed but the prod migration failed\n    assistant: [saves feedback memory: integration tests must hit a real database, not mocks. Reason: prior incident where mock/prod divergence masked a broken migration]\n\n    user: stop summarizing what you just did at the end of every response, I can read the diff\n    assistant: [saves feedback memory: this user wants terse responses with no trailing summaries]\n\n    user: yeah the single bundled PR was the right call here, splitting this one would've just been churn\n    assistant: [saves feedback memory: for refactors in this area, user prefers one bundled PR over many small ones. Confirmed after I chose this approach — a validated judgment call, not a correction]\n    </examples>\n</type>\n<type>\n    <name>project</name>\n    <description>Information that you learn about ongoing work, goals, initiatives, bugs, or incidents within the project that is not otherwise derivable from the code or git history. Project memories help you understand the broader context and motivation behind the work the user is doing within this working directory.</description>\n    <when_to_save>When you learn who is doing what, why, or by when. These states change relatively quickly so try to keep your understanding of this up to date. Always convert relative dates in user messages to absolute dates when saving (e.g., \"Thursday\" → \"2026-03-05\"), so the memory remains interpretable after time passes.</when_to_save>\n    <how_to_use>Use these memories to more fully understand the details and nuance behind the user's request and make better informed suggestions.</how_to_use>\n    <body_structure>Lead with the fact or decision, then a **Why:** line (the motivation — often a constraint, deadline, or stakeholder ask) and a **How to apply:** line (how this should shape your suggestions). Project memories decay fast, so the why helps future-you judge whether the memory is still load-bearing.</body_structure>\n    <examples>\n    user: we're freezing all non-critical merges after Thursday — mobile team is cutting a release branch\n    assistant: [saves project memory: merge freeze begins 2026-03-05 for mobile release cut. Flag any non-critical PR work scheduled after that date]\n\n    user: the reason we're ripping out the old auth middleware is that legal flagged it for storing session tokens in a way that doesn't meet the new compliance requirements\n    assistant: [saves project memory: auth middleware rewrite is driven by legal/compliance requirements around session token storage, not tech-debt cleanup — scope decisions should favor compliance over ergonomics]\n    </examples>\n</type>\n<type>\n    <name>reference</name>\n    <description>Stores pointers to where information can be found in external systems. These memories allow you to remember where to look to find up-to-date information outside of the project directory.</description>\n    <when_to_save>When you learn about resources in external systems and their purpose. For example, that bugs are tracked in a specific project in Linear or that feedback can be found in a specific Slack channel.</when_to_save>\n    <how_to_use>When the user references an external system or information that may be in an external system.</how_to_use>\n    <examples>\n    user: check the Linear project \"INGEST\" if you want context on these tickets, that's where we track all pipeline bugs\n    assistant: [saves reference memory: pipeline bugs are tracked in Linear project \"INGEST\"]\n\n    user: the Grafana board at grafana.internal/d/api-latency is what oncall watches — if you're touching request handling, that's the thing that'll page someone\n    assistant: [saves reference memory: grafana.internal/d/api-latency is the oncall latency dashboard — check it when editing request-path code]\n    </examples>\n</type>\n</types>\n\n## What NOT to save in memory\n\n- Code patterns, conventions, architecture, file paths, or project structure — these can be derived by reading the current project state.\n- Git history, recent changes, or who-changed-what — `git log` / `git blame` are authoritative.\n- Debugging solutions or fix recipes — the fix is in the code; the commit message has the context.\n- Anything already documented in CODEBUDDY.md files.\n- Ephemeral task details: in-progress work, temporary state, current conversation context.\n\nThese exclusions apply even when the user explicitly asks you to save. If they ask you to save a PR list or activity summary, ask what was *surprising* or *non-obvious* about it — that is the part worth keeping.\n\n## How to save memories\n\nSaving a memory is a two-step process:\n\n**Step 1** — write the memory to its own file (e.g., `user_role.md`, `feedback_testing.md`) using this frontmatter format:\n\n```markdown\n---\nname: {{memory name}}\ndescription: {{one-line description — used to decide relevance in future conversations, so be specific}}\ntype: {{user, feedback, project, reference}}\n---\n\n{{memory content — for feedback/project types, structure as: rule/fact, then **Why:** and **How to apply:** lines}}\n```\n\n**Step 2** — add a pointer to that file in `MEMORY.md`. `MEMORY.md` is an index, not a memory — each entry should be one line, under ~150 characters: `- [Title](file.md) — one-line hook`. It has no frontmatter. Never write memory content directly into `MEMORY.md`.\n\n- `MEMORY.md` is always loaded into your conversation context — lines after 200 will be truncated, so keep the index concise\n- Keep the name, description, and type fields in memory files up-to-date with the content\n- Organize memory semantically by topic, not chronologically\n- Update or remove memories that turn out to be wrong or outdated\n- Do not write duplicate memories. First check if there is an existing memory you can update before writing a new one.\n\n## When to access memories\n- When memories seem relevant, or the user references prior-conversation work.\n- You MUST access memory when the user explicitly asks you to check, recall, or remember.\n- If the user says to *ignore* or *not use* memory: proceed as if MEMORY.md were empty. Do not apply remembered facts, cite, compare against, or mention memory content.\n- Memory records can become stale over time. Use memory as context for what was true at a given point in time. Before answering the user or building assumptions based solely on information in memory records, verify that the memory is still correct and up-to-date by reading the current state of the files or resources. If a recalled memory conflicts with current information, trust what you observe now — and update or remove the stale memory rather than acting on it.\n\n## Before recommending from memory\n\nA memory that names a specific function, file, or flag is a claim that it existed *when the memory was written*. It may have been renamed, removed, or never merged. Before recommending it:\n\n- If the memory names a file path: check the file exists.\n- If the memory names a function or flag: grep for it.\n- If the user is about to act on your recommendation (not just asking about history), verify first.\n\n\"The memory says X exists\" is not the same as \"X exists now.\"\n\nA memory that summarizes repo state (activity logs, architecture snapshots) is frozen in time. If the user asks about *recent* or *current* state, prefer `git log` or reading the code over recalling the snapshot.\n\n## Memory and other forms of persistence\nMemory is one of several persistence mechanisms available to you as you assist the user in a given conversation. The distinction is often that memory can be recalled in future conversations and should not be used for persisting information that is only useful within the scope of the current conversation.\n- When to use or update a plan instead of memory: If you are about to start a non-trivial implementation task and would like to reach alignment with the user on your approach you should use a Plan rather than saving this information to memory. Similarly, if you already have a plan within the conversation and you have changed your approach persist that change by updating the plan rather than saving a memory.\n- When to use or update tasks instead of memory: When you need to break your work in current conversation into discrete steps or keep track of your progress use tasks instead of saving to memory. Tasks are great for persisting information about the work that needs to be done in the current conversation, but memory should be reserved for information that will be useful in future conversations.\n\n\n## Searching past context\n\nWhen looking for past context:\n1. Search topic files in your memory directory:\n```\nGrep with pattern=\"<search term>\" path=\"C:\\Users\\17356\\.codebuddy\\projects\\c-Users-17356-WorkBuddy-2026-08-07-20-15-31-ai-berkshire\\memory\" glob=\"*.md\"\n```\n2. Session transcript logs (last resort — large files, slow):\n```\nGrep with pattern=\"<search term>\" path=\"C:\\Users\\17356\\.codebuddy\\projects\\c-Users-17356-WorkBuddy-2026-08-07-20-15-31-ai-berkshire\\sessions/\" glob=\"*.jsonl\"\n```\nUse narrow search terms (error messages, file paths, function names) rather than broad keywords.\n\n## MEMORY.md\n\n# Memory Index\n\n- [环境工具权限限制（非交互模式）](env_tool_permissions.md) — Bash 2026-08-24 已恢复；Agent 带 name 参数会报 No active team；investment-team 用无 name 的后台 Agent 替代团队模式\n- [investment-team 重复轮次工作流](feedback_rerun_rounds.md) — 四视角固定文件名覆盖格式+量化结论五行格式+反锚定建仓价约束+除权/基线价核查；赣能第二轮为下调标准案例\n</memory></system-reminder>"
+      },
+      {
+        "type": "input_text",
+        "text": "<system-reminder data-role=\"hook\">⚠️ agent-browser 目前不支持 Windows 系统\n请使用 macOS 或 Linux\n</system-reminder>"
+      },
+      {
+        "type": "input_text",
+        "text": "<system-reminder>\nAs you answer the user's questions, you can use the following context:\n# codebuddyMd\nCodebase and user instructions are shown below. Be sure to adhere to these instructions. IMPORTANT: These instructions OVERRIDE any default behavior and you MUST follow them exactly as written.\n<rules>\nThe rules section has a number of possible rules/memories/context that you should consider. In each subsection, we provide instructions about what information the subsection contains and how you should consider/follow the contents of the subsection.\n<always_applied_workspace_rules description=\"These are rules set by the project that you should follow if appropriate.\">\n\nContents of C:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\AGENTS.md (project instructions, checked into the codebase):\n\n# AI Berkshire Codex Guide\r\n\r\nThis repository contains investment research workflows, reports, and shared\r\nvalidation tools. Keep compatibility with both Claude Code and Codex users.\r\n\r\n## Project Layout\r\n\r\n- `skills/*.md`: Claude Code slash-command source files.\r\n- `codex-skills/*/SKILL.md`: Codex skill packages. Most are generated from\r\n  `skills/*.md`; Codex-only hand-written packages are allowed when clearly\r\n  marked and no same-named `skills/*.md` source exists.\r\n- `codex-prompts/*.md`: generated Codex custom prompts for slash-command\r\n  style entry points. These are a compatibility layer; skills remain preferred.\r\n- `tools/*.py`: shared financial validation and data tools used by both systems.\r\n- `reports/`: research outputs. Do not rewrite unrelated reports while changing\r\n  tooling or skills.\r\n- `scripts/sync-codex-skills.py`: regenerates Codex skills from `skills/*.md`.\r\n- `scripts/install-codex-skills.sh` / `scripts/install-codex-skills.bat`:\r\n  installs Codex skills locally.\r\n- `scripts/install-codex-prompts.sh` / `scripts/install-codex-prompts.bat`:\r\n  installs generated Codex slash prompts locally.\r\n- `scripts/install-claude-commands.sh` / `scripts/install-claude-commands.bat`:\r\n  installs Claude Code commands locally.\r\n\r\n## Compatibility Rules\r\n\r\n- Treat `skills/*.md` as the canonical workflow source.\r\n- After changing any file in `skills/`, run:\r\n  `python3 scripts/sync-codex-skills.py`\r\n- If slash prompt compatibility is needed, also run:\r\n  `python3 scripts/sync-codex-prompts.py`\r\n- Do not manually edit generated `codex-skills/*/SKILL.md` unless also updating\r\n  the corresponding source in `skills/`.\r\n- For Codex-only hand-written packages under `codex-skills/`, keep them clearly\r\n  marked as Codex-only and do not create a same-named `skills/*.md` file unless\r\n  intentionally adopting the workflow for Claude Code too.\r\n- Keep tool paths compatible with the documented checkout path:\r\n  `~/ai-berkshire/tools/...`\r\n- Keep `CLAUDE.md` for Claude Code behavior and this `AGENTS.md` for Codex\r\n  behavior.\r\n\r\n## Research Quality Rules\r\n\r\n- Before starting any research, run the `date` command to confirm today's\r\n  date. Treat that date as the baseline for \"latest\" data (prices, market cap,\r\n  most recent filings), and state the data cutoff date in the report header.\r\n  Never assume the current date from training data.\r\n- Financial data must come from at least two independent sources when the skill\r\n  requires verification.\r\n- Use exact arithmetic tools for market cap, valuation, cross-source checks, and\r\n  scenario analysis:\r\n  `python3 tools/financial_rigor.py ...`\r\n- Use report audit tooling before treating generated research as publishable:\r\n  `python3 tools/report_audit.py ...`\r\n- Clearly label low-confidence conclusions, incomplete data, and source gaps.\r\n- This project is for learning and research, not investment advice.\r\n\r\n## Editing Rules\r\n\r\n- Preserve existing report files unless the task specifically asks to change\r\n  them.\r\n- Keep changes scoped to the requested skill, tool, script, or documentation.\r\n- Before finishing a skill/tool change, run the relevant syntax or generation\r\n  check. For compatibility changes, run:\r\n  `python3 scripts/sync-codex-skills.py`\r\n- To verify generated Codex artifacts are current without rewriting files, run:\r\n  `python3 scripts/sync-codex-skills.py --check`\r\n  and, when slash prompts are relevant:\r\n  `python3 scripts/sync-codex-prompts.py --check`\r\n\n</always_applied_workspace_rules>\n</rules>\n      IMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.\n</system-reminder>\n"
+      },
+      {
+        "type": "input_text",
+        "text": "<user_query>/investment-team-lite 600276 恒瑞医药\n\n【headless 自动模式】\n1. 跳过批量调度器的 claim 步骤（股票已由调用方指定），直接对该标的做六关速评（能力圈/好生意/护城河/管理层/估值/财务健康）。\n2. 数据链路（P2 强化）：\n   - 必须用 python tools/quote_fetcher.py 600276 取实时价，估值关的 PE/PB 一律按实时价重算，禁止使用旧快照的 PE\n   - 财务指标（ROE/毛利率/净利率/营收增速）优先取 reports/ 下该股最新报告的数据核验节；若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径\n   - 所有数据卡/速评卡字段视为可能过期快照，仅作交叉参考\n3. 最后严格输出如下 JSON（不要输出其它内容）：\n   {\"verdict\": \"PASS|HOLD|FAIL\", \"reason\": \"一句话理由\", \"gain_med_updated\": null}\n   其中 gain_med_updated 仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 null。\n4. 若 WebSearch 不可用，禁止用训练知识冒充联网结果，在 reason 中标注\"未联网\"。</user_query>"
+      }
+    ],
+    "providerData": {
+      "__codebuddySensitiveUserInputReviewed": true,
+      "agent": "cli"
+    },
+    "id": "ba67d764-629f-4b69-90cc-10c4071594fa",
+    "timestamp": 1787556885640,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256"
+  },
+  {
+    "type": "file-history-snapshot",
+    "id": "a101b7b9-249d-477c-84e5-1760eec9b7e2",
+    "timestamp": 1787556885650,
+    "isSnapshotUpdate": false,
+    "snapshot": {
+      "messageId": "ba67d764-629f-4b69-90cc-10c4071594fa",
+      "trackedFileBackups": {}
+    }
+  },
+  {
+    "providerData": {
+      "messageId": "d262314b18004a0fa8989513909cac1d",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "type": "reasoning",
+    "content": [],
+    "rawContent": [
+      {
+        "type": "reasoning_text",
+        "text": "The user wants me to run an investment-team-lite style quick evaluation on 600276 恒瑞医药 (Hengrui Medicine). They've given explicit instructions for headless auto mode:\n\n1. Skip batch scheduler claim, directly do six-gate quick eval (能力圈/好生意/护城河/管理层/估值/财务健康)\n2. Data pipeline (P2 reinforced):\n   - Must use `python tools/quote_fetcher.py 600276` for real-time price, PE/PB recalculated from real-time price\n   - Financial metrics (ROE/gross margin/net margin/revenue growth) prefer latest report in reports/ for this stock; if report > 30 days old or new financials disclosed, use WebSearch\n   - All data cards/quick eval cards treated as possibly stale snapshots\n3. Output strict JSON only:\n   {\"verdict\": \"PASS|HOLD|FAIL\", \"reason\": \"一句话理由\", \"gain_med_updated\": null}\n   gain_med_updated only if I can give newer intrinsic gain estimate (%).\n4. If WebSearch unavailable, don't use training knowledge as web results, mark \"未联网\" in reason.\n\nThere's also a system reminder about agent-browser not supporting Windows — irrelevant here.\n\nLet me check my memory first — the memory index mentions investment-team related feedback about file naming, quantified conclusions, etc. Also env_tool_permissions memory about Bash restored, Agent with name parameter issues.\n\nThe user's instructions are pretty explicit. Let me:\n1. Check the date (per AGENTS.md rule: run `date` command first)\n2. Run quote_fetcher.py 600276\n3. Check reports/ for 600276 latest report\n4. Possibly WebSearch for latest financials\n5. Run six-gate evaluation\n6. Output strict JSON\n\nLet me start. First, run date and quote fetcher in parallel, and check reports directory for 600276 files.\n\nActually the skill investment-team-lite should probably be invoked. The user is invoking `/investment-team-lite 600276 恒瑞医药`. The system says when users reference a slash command, use the Skill tool. But the user has given headless auto mode instructions that override/simplify the workflow. Hmm. The instruction says: \"When users reference a 'slash command' or '/<something>', they are referring to a skill. Use this tool to invoke it.\" The skill is investment-team-lite. I should invoke the skill to load its instructions, then follow the user's headless mode instructions which override parts.\n\nLet me invoke the Skill tool first."
+      }
+    ],
+    "timestamp": 1787556899641,
+    "id": "1fe7bb59-61a5-4459-8369-7faeadb3a132",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "ba67d764-629f-4b69-90cc-10c4071594fa"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "The user wants me to run an investment-team-lite style quick evaluation on 600276 恒瑞医药 (Hengrui Medicine). They've given explicit instructions for headless auto mode:\n\n1. Skip batch scheduler claim, directly do six-gate quick eval (能力圈/好生意/护城河/管理层/估值/财务健康)\n2. Data pipeline (P2 reinforced):\n   - Must use `python tools/quote_fetcher.py 600276` for real-time price, PE/PB recalculated from real-time price\n   - Financial metrics (ROE/gross margin/net margin/revenue growth) prefer latest report in reports/ for this stock; if report > 30 days old or new financials disclosed, use WebSearch\n   - All data cards/quick eval cards treated as possibly stale snapshots\n3. Output strict JSON only:\n   {\"verdict\": \"PASS|HOLD|FAIL\", \"reason\": \"一句话理由\", \"gain_med_updated\": null}\n   gain_med_updated only if I can give newer intrinsic gain estimate (%).\n4. If WebSearch unavailable, don't use training knowledge as web results, mark \"未联网\" in reason.\n\nThere's also a system reminder about agent-browser not supporting Windows — irrelevant here.\n\nLet me check my memory first — the memory index mentions investment-team related feedback about file naming, quantified conclusions, etc. Also env_tool_permissions memory about Bash restored, Agent with name parameter issues.\n\nThe user's instructions are pretty explicit. Let me:\n1. Check the date (per AGENTS.md rule: run `date` command first)\n2. Run quote_fetcher.py 600276\n3. Check reports/ for 600276 latest report\n4. Possibly WebSearch for latest financials\n5. Run six-gate evaluation\n6. Output strict JSON\n\nLet me start. First, run date and quote fetcher in parallel, and check reports directory for 600276 files.\n\nActually the skill investment-team-lite should probably be invoked. The user is invoking `/investment-team-lite 600276 恒瑞医药`. The system says when users reference a slash command, use the Skill tool. But the user has given headless auto mode instructions that override/simplify the workflow. Hmm. The instruction says: \"When users reference a 'slash command' or '/<something>', they are referring to a skill. Use this tool to invoke it.\" The skill is investment-team-lite. I should invoke the skill to load its instructions, then follow the user's headless mode instructions which override parts.\n\nLet me invoke the Skill tool first.",
+      "messageId": "d262314b18004a0fa8989513909cac1d",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "rawUsage": {
+        "prompt_tokens": 27580,
+        "completion_tokens": 616,
+        "total_tokens": 28196,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 549,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 17792
+        },
+        "prompt_cache_hit_tokens": 17792,
+        "prompt_cache_miss_tokens": 9788,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 549,
+        "credit": 3.14,
+        "cached_tokens": 0
+      },
+      "agent": "cli",
+      "argumentsDisplayText": "investment-team-lite",
+      "usage": {
+        "requests": 1,
+        "inputTokens": 27580,
+        "outputTokens": 616,
+        "totalTokens": 28196,
+        "inputTokensDetails": [
+          {
+            "cached_tokens": 17792
+          }
+        ],
+        "outputTokensDetails": [
+          {
+            "reasoning_tokens": 549
+          }
+        ]
+      }
+    },
+    "id": "d262314b18004a0fa8989513909cac1d",
+    "type": "function_call",
+    "callId": "call_00_8iGHlWZQ0v2iJBg3t5n84141",
+    "name": "Skill",
+    "arguments": "{\"skill\": \"investment-team-lite\", \"args\": \"600276 恒瑞医药\"}",
+    "timestamp": 1787556899657,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "1fe7bb59-61a5-4459-8369-7faeadb3a132"
+  },
+  {
+    "type": "function_call_result",
+    "name": "Skill",
+    "callId": "call_00_8iGHlWZQ0v2iJBg3t5n84141",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "Base directory for this skill: C:\\Users\\17356\\.codebuddy\\skills\\investment-team-lite\n## CodeBuddy adapter note\n\nThis skill is generated from `skills/investment-team-lite.md` so Claude Code, Codex, and CodeBuddy users share one canonical workflow.\n\n- Treat `600276 恒瑞医药` as the user's request in the current CodeBuddy conversation. Expected format: `{代码} {公司名}`，例如 `300573 兴齐眼药`。\n- This skill is invoked by `tools/agent_driver.py` in **headless 自动模式**（`codebuddy -p \"/investment-team-lite ...\" -y`）：\n  1. **跳过批量调度器的 claim 步骤**——股票已由调用方指定，无需运行 `tools/batch_review.py claim`，直接对该股票做六关速评。\n  2. 不必展示步骤、不要向用户提问、不要输出交互式确认。\n  3. 可用 `tools/quote_fetcher.py {code}` 取实时价、`tools/financial_rigor.py` 做数据核验；优先参考 `reports/` 下该股票的既有报告判断基本面是否证伪。\n  4. 若 WebSearch 不可用，禁止用训练知识冒充联网结果，在 verdict.reason 中标注\"未联网\"。\n  5. 最终必须严格输出一个 JSON 对象（其余内容放 JSON 之前的说明文字即可，但 JSON 必须完整且是最后一段）：\n     ```json\n     {\"verdict\": \"PASS|HOLD|FAIL\", \"reason\": \"一句话理由\", \"gain_med_updated\": null}\n     ```\n     `gain_med_updated` 仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 `null`。\n- Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.\n\n# 投资速评 Lite：批量快速研判（investment-team 轻量版）\n\n对 600276 恒瑞医药 执行轻量级投资速评。**这是 `/investment-team` 的阉割版**——每只 5-6 分钟出结论。\n\n## 定位：漏斗的第二层\n\n```\n全A 5539 → 初筛 890（脚本） → 【本 skill：速评 ~300-400】 → 完整 investment-team ~50-100 → 监控池\n```\n\n| 对比 | /investment-team（完整版） | /investment-team-lite（本 skill） |\n|------|---------------------------|----------------------------------|\n| Agent 数 | 4 个并行 + Team Lead | **1 个** |\n| 耗时 | 30-45 分钟/只 | **5-6 分钟/只** |\n| 深度 | 七模块全方位 | 六关速评 + 数据卡 |\n| 输出 | 完整报告 | **PASS / HOLD / FAIL + 一句话理由** |\n| 用途 | 最终候选深研 | **批量初筛/轮动刷新** |\n\n## 执行流程（每只 5-6 分钟）\n\n### 第一步：确定标的（headless 模式下由调用方指定，跳过 claim）\n\nheadless 调用时 `600276 恒瑞医药` 已包含 `{代码} {公司名}`，直接进入第二步。人工使用时才需要：\n\n```bash\npython3 tools/batch_review.py claim --worker {你的编号}   # 领取下一只待处理股票\n```\n\n### 第二步：六关速评（基于数据，2 分钟）\n\n| 关 | 问题 | 关键字段 |\n|----|------|----------|\n| 1 能力圈 | 这生意你能理解吗？ | industry + 常识判断 |\n| 2 好生意 | 赚钱容易吗？ | 毛利率/净利率/ROE |\n| 3 护城河 | 凭什么不被抢？ | 行业地位（需 1 次快速搜索） |\n| 4 管理层 | 值得信任吗？ | 治理记录/质押/减持（快速搜索） |\n| 5 估值 | 便宜吗？ | PE + 行业对比 + 与既有报告建仓价比 |\n| 6 财务健康 | 会爆雷吗？ | 负债率/净利润/营收增速 |\n\n**评分**：每关 1-5 星，加权 = ROE(25%) + 毛利(15%) + 净利(15%) + 估值(20%) + 财务健康(25%)。≥3.5 → PASS，2.5-3.5 → HOLD，<2.5 → FAIL。\n\n### 第三步：冷信息补充（可选，小盘股）\n\n市值 <80亿 可跑冷信息挖掘：\n\n```bash\npython3 tools/small_cap_diligence.py {代码} --signal\n```\n\n重点看：应收/营收比率（>1 = 收入质量差）、股东户数筹码变化、存货激增。\n\n### 第四步：输出结论\n\nheadless 模式：严格输出 JSON（见 adapter note），不要运行 `batch_review.py done`（调用方自行收集）。\n\n人工模式：\n\n```bash\npython3 tools/batch_review.py done {代码} --verdict PASS --summary \"PE 14 倍 + ROE 22% + 毛利率 26%，制造业龙头低估\"\n```\n\n**PASS**：值得进入完整深研 / **HOLD**：存疑，标记待定 / **FAIL**：明确排除。\n\n## 关键原则\n\n1. **快胜过全**——这是筛选不是研究，5-6 分钟必须出结论\n2. **宁 HOLD 勿 FAIL**——不确定的标 HOLD，留给完整版深研，不要误杀\n3. **理由要具体**——\"PE 低\"不够，\"PE 14 倍 vs 行业 20 倍\"才有用\n4. **既有报告对照**——与 `reports/` 下旧报告对比：基本面被证伪 → FAIL；无实质变化 → 沿用旧结论\n5. **完整版衔接**：PASS 的股票可进入 `/investment-team` 完整深研\n\n## 与其他 Skill 的关系\n\n| Skill | 分工 |\n|-------|------|\n| /investment-checklist | 单只快速六关（本 skill 的速评逻辑来源） |\n| **/investment-team-lite（本 skill）** | **批量速评（headless 队列）** |\n| /investment-team | 完整深研（PASS 之后才用） |\n| small-cap-diligence | 小盘冷信息补充（第三步可选） |"
+    },
+    "providerData": {
+      "agent": "cli",
+      "toolResult": {
+        "content": "Base directory for this skill: C:\\Users\\17356\\.codebuddy\\skills\\investment-team-lite\n## CodeBuddy adapter note\n\nThis skill is generated from `skills/investment-team-lite.md` so Claude Code, Codex, and CodeBuddy users share one canonical workflow.\n\n- Treat `600276 恒瑞医药` as the user's request in the current CodeBuddy conversation. Expected format: `{代码} {公司名}`，例如 `300573 兴齐眼药`。\n- This skill is invoked by `tools/agent_driver.py` in **headless 自动模式**（`codebuddy -p \"/investment-team-lite ...\" -y`）：\n  1. **跳过批量调度器的 claim 步骤**——股票已由调用方指定，无需运行 `tools/batch_review.py claim`，直接对该股票做六关速评。\n  2. 不必展示步骤、不要向用户提问、不要输出交互式确认。\n  3. 可用 `tools/quote_fetcher.py {code}` 取实时价、`tools/financial_rigor.py` 做数据核验；优先参考 `reports/` 下该股票的既有报告判断基本面是否证伪。\n  4. 若 WebSearch 不可用，禁止用训练知识冒充联网结果，在 verdict.reason 中标注\"未联网\"。\n  5. 最终必须严格输出一个 JSON 对象（其余内容放 JSON 之前的说明文字即可，但 JSON 必须完整且是最后一段）：\n     ```json\n     {\"verdict\": \"PASS|HOLD|FAIL\", \"reason\": \"一句话理由\", \"gain_med_updated\": null}\n     ```\n     `gain_med_updated` 仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 `null`。\n- Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.\n\n# 投资速评 Lite：批量快速研判（investment-team 轻量版）\n\n对 600276 恒瑞医药 执行轻量级投资速评。**这是 `/investment-team` 的阉割版**——每只 5-6 分钟出结论。\n\n## 定位：漏斗的第二层\n\n```\n全A 5539 → 初筛 890（脚本） → 【本 skill：速评 ~300-400】 → 完整 investment-team ~50-100 → 监控池\n```\n\n| 对比 | /investment-team（完整版） | /investment-team-lite（本 skill） |\n|------|---------------------------|----------------------------------|\n| Agent 数 | 4 个并行 + Team Lead | **1 个** |\n| 耗时 | 30-45 分钟/只 | **5-6 分钟/只** |\n| 深度 | 七模块全方位 | 六关速评 + 数据卡 |\n| 输出 | 完整报告 | **PASS / HOLD / FAIL + 一句话理由** |\n| 用途 | 最终候选深研 | **批量初筛/轮动刷新** |\n\n## 执行流程（每只 5-6 分钟）\n\n### 第一步：确定标的（headless 模式下由调用方指定，跳过 claim）\n\nheadless 调用时 `600276 恒瑞医药` 已包含 `{代码} {公司名}`，直接进入第二步。人工使用时才需要：\n\n```bash\npython3 tools/batch_review.py claim --worker {你的编号}   # 领取下一只待处理股票\n```\n\n### 第二步：六关速评（基于数据，2 分钟）\n\n| 关 | 问题 | 关键字段 |\n|----|------|----------|\n| 1 能力圈 | 这生意你能理解吗？ | industry + 常识判断 |\n| 2 好生意 | 赚钱容易吗？ | 毛利率/净利率/ROE |\n| 3 护城河 | 凭什么不被抢？ | 行业地位（需 1 次快速搜索） |\n| 4 管理层 | 值得信任吗？ | 治理记录/质押/减持（快速搜索） |\n| 5 估值 | 便宜吗？ | PE + 行业对比 + 与既有报告建仓价比 |\n| 6 财务健康 | 会爆雷吗？ | 负债率/净利润/营收增速 |\n\n**评分**：每关 1-5 星，加权 = ROE(25%) + 毛利(15%) + 净利(15%) + 估值(20%) + 财务健康(25%)。≥3.5 → PASS，2.5-3.5 → HOLD，<2.5 → FAIL。\n\n### 第三步：冷信息补充（可选，小盘股）\n\n市值 <80亿 可跑冷信息挖掘：\n\n```bash\npython3 tools/small_cap_diligence.py {代码} --signal\n```\n\n重点看：应收/营收比率（>1 = 收入质量差）、股东户数筹码变化、存货激增。\n\n### 第四步：输出结论\n\nheadless 模式：严格输出 JSON（见 adapter note），不要运行 `batch_review.py done`（调用方自行收集）。\n\n人工模式：\n\n```bash\npython3 tools/batch_review.py done {代码} --verdict PASS --summary \"PE 14 倍 + ROE 22% + 毛利率 26%，制造业龙头低估\"\n```\n\n**PASS**：值得进入完整深研 / **HOLD**：存疑，标记待定 / **FAIL**：明确排除。\n\n## 关键原则\n\n1. **快胜过全**——这是筛选不是研究，5-6 分钟必须出结论\n2. **宁 HOLD 勿 FAIL**——不确定的标 HOLD，留给完整版深研，不要误杀\n3. **理由要具体**——\"PE 低\"不够，\"PE 14 倍 vs 行业 20 倍\"才有用\n4. **既有报告对照**——与 `reports/` 下旧报告对比：基本面被证伪 → FAIL；无实质变化 → 沿用旧结论\n5. **完整版衔接**：PASS 的股票可进入 `/investment-team` 完整深研\n\n## 与其他 Skill 的关系\n\n| Skill | 分工 |\n|-------|------|\n| /investment-checklist | 单只快速六关（本 skill 的速评逻辑来源） |\n| **/investment-team-lite（本 skill）** | **批量速评（headless 队列）** |\n| /investment-team | 完整深研（PASS 之后才用） |\n| small-cap-diligence | 小盘冷信息补充（第三步可选） |",
+        "renderer": {
+          "type": "text",
+          "value": "Skill \"investment-team-lite\" loaded. Follow the instructions below to complete it:"
+        }
+      },
+      "messageId": "d262314b18004a0fa8989513909cac1d",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a"
+    },
+    "id": "db0a2f4b-392d-4244-a353-0eb9a2895853",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "timestamp": 1787556899668,
+    "parentId": "d262314b18004a0fa8989513909cac1d"
+  },
+  {
+    "providerData": {
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "type": "reasoning",
+    "content": [],
+    "rawContent": [
+      {
+        "type": "reasoning_text",
+        "text": "Following the skill + user's headless instructions:\n\n1. Get date\n2. Run quote_fetcher.py 600276 for real-time price\n3. Check reports/ for 600276 latest report\n4. WebSearch for latest financials (Q2 2025 earnings, since today is 2026-08-24, latest would be 2026 H1 report possibly disclosed around Aug 2026)\n5. Six-gate evaluation\n6. Output strict JSON\n\nLet me start with date and quote fetch in parallel, plus glob reports for 600276."
+      }
+    ],
+    "timestamp": 1787556904886,
+    "id": "d16fa4b6-36a2-4004-8089-1acd19ce1a74",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "db0a2f4b-392d-4244-a353-0eb9a2895853"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Following the skill + user's headless instructions:\n\n1. Get date\n2. Run quote_fetcher.py 600276 for real-time price\n3. Check reports/ for 600276 latest report\n4. WebSearch for latest financials (Q2 2025 earnings, since today is 2026-08-24, latest would be 2026 H1 report possibly disclosed around Aug 2026)\n5. Six-gate evaluation\n6. Output strict JSON\n\nLet me start with date and quote fetch in parallel, plus glob reports for 600276.",
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "argumentsDisplayText": "date"
+    },
+    "id": "49c51870f50a43f8a895051311bcf81a",
+    "type": "function_call",
+    "callId": "call_00_VMG42Q12jOdeWJcPQuoP3605",
+    "name": "Bash",
+    "arguments": "{\"command\": \"date\", \"description\": \"Confirm today's date\"}",
+    "timestamp": 1787556904909,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "d16fa4b6-36a2-4004-8089-1acd19ce1a74"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Following the skill + user's headless instructions:\n\n1. Get date\n2. Run quote_fetcher.py 600276 for real-time price\n3. Check reports/ for 600276 latest report\n4. WebSearch for latest financials (Q2 2025 earnings, since today is 2026-08-24, latest would be 2026 H1 report possibly disclosed around Aug 2026)\n5. Six-gate evaluation\n6. Output strict JSON\n\nLet me start with date and quote fetch in parallel, plus glob reports for 600276.",
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "argumentsDisplayText": "python tools/quote_fetcher.py 600276"
+    },
+    "id": "49c51870f50a43f8a895051311bcf81a",
+    "type": "function_call",
+    "callId": "call_01_r0gXesAB2SwUAiyBf7Cl3221",
+    "name": "Bash",
+    "arguments": "{\"command\": \"python tools/quote_fetcher.py 600276\", \"description\": \"Fetch real-time quote for 600276\"}",
+    "timestamp": 1787556904958,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "d16fa4b6-36a2-4004-8089-1acd19ce1a74"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Following the skill + user's headless instructions:\n\n1. Get date\n2. Run quote_fetcher.py 600276 for real-time price\n3. Check reports/ for 600276 latest report\n4. WebSearch for latest financials (Q2 2025 earnings, since today is 2026-08-24, latest would be 2026 H1 report possibly disclosed around Aug 2026)\n5. Six-gate evaluation\n6. Output strict JSON\n\nLet me start with date and quote fetch in parallel, plus glob reports for 600276.",
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "rawUsage": {
+        "prompt_tokens": 29662,
+        "completion_tokens": 281,
+        "total_tokens": 29943,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 119,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 28160
+        },
+        "prompt_cache_hit_tokens": 28160,
+        "prompt_cache_miss_tokens": 1502,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 119,
+        "credit": 0.84,
+        "cached_tokens": 0
+      },
+      "agent": "cli",
+      "argumentsDisplayText": "pattern: \"reports/**/*600276*\"",
+      "usage": {
+        "requests": 1,
+        "inputTokens": 29662,
+        "outputTokens": 281,
+        "totalTokens": 29943,
+        "inputTokensDetails": [
+          {
+            "cached_tokens": 28160
+          }
+        ],
+        "outputTokensDetails": [
+          {
+            "reasoning_tokens": 119
+          }
+        ]
+      }
+    },
+    "id": "49c51870f50a43f8a895051311bcf81a",
+    "type": "function_call",
+    "callId": "call_02_wIuVgYmqiOlRZndftigi8036",
+    "name": "Glob",
+    "arguments": "{\"pattern\": \"reports/**/*600276*\"}",
+    "timestamp": 1787556904978,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "d16fa4b6-36a2-4004-8089-1acd19ce1a74"
+  },
+  {
+    "type": "function_call_result",
+    "name": "Bash",
+    "callId": "call_00_VMG42Q12jOdeWJcPQuoP3605",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "Command: date\nStdout: Mon Aug 24 15:35:05     2026\n\nStderr: (empty)\nExit Code: 0\nSignal: (none)"
+    },
+    "timestamp": 1787556906439,
+    "providerData": {
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "toolResult": {
+        "content": "Command: date\nStdout: Mon Aug 24 15:35:05     2026\n\nStderr: (empty)\nExit Code: 0\nSignal: (none)",
+        "renderer": {
+          "type": "text",
+          "value": "Mon Aug 24 15:35:05     2026"
+        },
+        "rawResponse": {
+          "exitCode": 0,
+          "signal": null,
+          "interrupted": false,
+          "sandboxDenied": false,
+          "stderrBytesTruncated": 0,
+          "stdoutBytesTruncated": 0,
+          "tool_error_code": "0"
+        }
+      }
+    },
+    "id": "65c617f7-e7cb-4aff-b035-58c1abcb79df",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "49c51870f50a43f8a895051311bcf81a"
+  },
+  {
+    "type": "function_call_result",
+    "name": "Bash",
+    "callId": "call_01_r0gXesAB2SwUAiyBf7Cl3221",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "Command: python tools/quote_fetcher.py 600276\nStdout: (empty)\nStderr: usage: quote_fetcher.py [-h] {spot,spot-multi,hist} ...\r\nquote_fetcher.py: error: argument cmd: invalid choice: '600276' (choose from spot, spot-multi, hist)\r\n\nExit Code: 2\nSignal: (none)"
+    },
+    "providerData": {
+      "toolResult": {
+        "content": "Command: python tools/quote_fetcher.py 600276\nStdout: (empty)\nStderr: usage: quote_fetcher.py [-h] {spot,spot-multi,hist} ...\r\nquote_fetcher.py: error: argument cmd: invalid choice: '600276' (choose from spot, spot-multi, hist)\r\n\nExit Code: 2\nSignal: (none)",
+        "renderer": {
+          "type": "text",
+          "value": "usage: quote_fetcher.py [-h] {spot,spot-multi,hist} ...\r\nquote_fetcher.py: error: argument cmd: invalid choice: '600276' (choose from spot, spot-multi, hist)"
+        },
+        "rawResponse": {
+          "exitCode": 2,
+          "signal": null,
+          "interrupted": false,
+          "sandboxDenied": false,
+          "stderrBytesTruncated": 0,
+          "stdoutBytesTruncated": 0,
+          "tool_error_code": "8002",
+          "is_error": true,
+          "error": "usage: quote_fetcher.py [-h] {spot,spot-multi,hist} ...\r\nquote_fetcher.py: error: argument cmd: invalid choice: '600276' (choose from spot, spot-multi, hist)\r\n"
+        }
+      },
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "timestamp": 1787556906445,
+    "id": "3fa392a3-4d89-47ec-be77-86e23764d076",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "65c617f7-e7cb-4aff-b035-58c1abcb79df"
+  },
+  {
+    "type": "function_call_result",
+    "name": "Glob",
+    "callId": "call_02_wIuVgYmqiOlRZndftigi8036",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "[\"c:\\\\Users\\\\17356\\\\WorkBuddy\\\\2026-08-07-20-15-31\\\\ai-berkshire\\\\reports\\\\600276恒瑞医药-商业模式-段永平视角.md\",\"c:\\\\Users\\\\17356\\\\WorkBuddy\\\\2026-08-07-20-15-31\\\\ai-berkshire\\\\reports\\\\600276恒瑞医药-风险评估-李录视角.md\",\"c:\\\\Users\\\\17356\\\\WorkBuddy\\\\2026-08-07-20-15-31\\\\ai-berkshire\\\\reports\\\\600276恒瑞医药-行业竞争-芒格视角.md\",\"c:\\\\Users\\\\17356\\\\WorkBuddy\\\\2026-08-07-20-15-31\\\\ai-berkshire\\\\reports\\\\600276恒瑞医药-财务估值-巴菲特视角.md\",\"c:\\\\Users\\\\17356\\\\WorkBuddy\\\\2026-08-07-20-15-31\\\\ai-berkshire\\\\reports\\\\600276恒瑞医药-综合研判.md\"]"
+    },
+    "providerData": {
+      "agent": "cli",
+      "toolResult": {
+        "title": "Found 5 files",
+        "content": [
+          "c:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600276恒瑞医药-商业模式-段永平视角.md",
+          "c:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600276恒瑞医药-风险评估-李录视角.md",
+          "c:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600276恒瑞医药-行业竞争-芒格视角.md",
+          "c:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600276恒瑞医药-财务估值-巴菲特视角.md",
+          "c:\\Users\\17356\\WorkBuddy\\2026-08-07-20-15-31\\ai-berkshire\\reports\\600276恒瑞医药-综合研判.md"
+        ],
+        "renderer": {
+          "type": "list"
+        }
+      },
+      "messageId": "49c51870f50a43f8a895051311bcf81a",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a"
+    },
+    "id": "23456843-b525-42d7-a0c0-2ee5378ea5c8",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "timestamp": 1787556906443,
+    "parentId": "3fa392a3-4d89-47ec-be77-86e23764d076"
+  },
+  {
+    "providerData": {
+      "messageId": "346b65896d674bfc930baee1b7685323",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "type": "reasoning",
+    "content": [],
+    "rawContent": [
+      {
+        "type": "reasoning_text",
+        "text": "Today is 2026-08-24. quote_fetcher.py needs subcommand `spot`. Let me run `python tools/quote_fetcher.py spot 600276`.\n\nAlso read the existing reports — the 财务估值 report has data verification section, and 综合研判 has the overall conclusion. Let me read those two (most important: 财务估值 for financials, 综合研判 for conclusion and gain estimate)."
+      }
+    ],
+    "timestamp": 1787556911350,
+    "id": "491720aa-5c76-416d-b6e6-131f58e4b972",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "23456843-b525-42d7-a0c0-2ee5378ea5c8"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Today is 2026-08-24. quote_fetcher.py needs subcommand `spot`. Let me run `python tools/quote_fetcher.py spot 600276`.\n\nAlso read the existing reports — the 财务估值 report has data verification section, and 综合研判 has the overall conclusion. Let me read those two (most important: 财务估值 for financials, 综合研判 for conclusion and gain estimate).",
+      "messageId": "346b65896d674bfc930baee1b7685323",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "argumentsDisplayText": "python tools/quote_fetcher.py spot 600276"
+    },
+    "id": "346b65896d674bfc930baee1b7685323",
+    "type": "function_call",
+    "callId": "call_00_7ODcrXynZNvFFhi9qpHy8886",
+    "name": "Bash",
+    "arguments": "{\"command\": \"python tools/quote_fetcher.py spot 600276\", \"description\": \"Fetch real-time spot quote for 600276\"}",
+    "timestamp": 1787556911360,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "491720aa-5c76-416d-b6e6-131f58e4b972"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Today is 2026-08-24. quote_fetcher.py needs subcommand `spot`. Let me run `python tools/quote_fetcher.py spot 600276`.\n\nAlso read the existing reports — the 财务估值 report has data verification section, and 综合研判 has the overall conclusion. Let me read those two (most important: 财务估值 for financials, 综合研判 for conclusion and gain estimate).",
+      "messageId": "346b65896d674bfc930baee1b7685323",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "rawUsage": {
+        "prompt_tokens": 30324,
+        "completion_tokens": 238,
+        "total_tokens": 30562,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 88,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 29824
+        },
+        "prompt_cache_hit_tokens": 29824,
+        "prompt_cache_miss_tokens": 500,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 88,
+        "credit": 0.57,
+        "cached_tokens": 0
+      },
+      "agent": "cli",
+      "argumentsDisplayText": "reports\\600276恒瑞医药-综合研判.md",
+      "usage": {
+        "requests": 1,
+        "inputTokens": 30324,
+        "outputTokens": 238,
+        "totalTokens": 30562,
+        "inputTokensDetails": [
+          {
+            "cached_tokens": 29824
+          }
+        ],
+        "outputTokensDetails": [
+          {
+            "reasoning_tokens": 88
+          }
+        ]
+      }
+    },
+    "id": "346b65896d674bfc930baee1b7685323",
+    "type": "function_call",
+    "callId": "call_01_7DWHV36hjiJ3Jev6qFFz2643",
+    "name": "Read",
+    "arguments": "{\"file_path\": \"c:\\\\Users\\\\17356\\\\WorkBuddy\\\\2026-08-07-20-15-31\\\\ai-berkshire\\\\reports\\\\600276恒瑞医药-综合研判.md\"}",
+    "timestamp": 1787556911365,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "491720aa-5c76-416d-b6e6-131f58e4b972"
+  },
+  {
+    "type": "function_call_result",
+    "name": "Bash",
+    "callId": "call_00_7ODcrXynZNvFFhi9qpHy8886",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "Command: python tools/quote_fetcher.py spot 600276\nStdout: 恒瑞医药 (600276)  现价 46.76  -2.05%  成交额 40.48亿  PE(TTM) 40.2  [tencent]\r\n\nStderr: (empty)\nExit Code: 0\nSignal: (none)"
+    },
+    "timestamp": 1787556912487,
+    "providerData": {
+      "messageId": "346b65896d674bfc930baee1b7685323",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "toolResult": {
+        "content": "Command: python tools/quote_fetcher.py spot 600276\nStdout: 恒瑞医药 (600276)  现价 46.76  -2.05%  成交额 40.48亿  PE(TTM) 40.2  [tencent]\r\n\nStderr: (empty)\nExit Code: 0\nSignal: (none)",
+        "renderer": {
+          "type": "text",
+          "value": "恒瑞医药 (600276)  现价 46.76  -2.05%  成交额 40.48亿  PE(TTM) 40.2  [tencent]"
+        },
+        "rawResponse": {
+          "exitCode": 0,
+          "signal": null,
+          "interrupted": false,
+          "sandboxDenied": false,
+          "stderrBytesTruncated": 0,
+          "stdoutBytesTruncated": 0,
+          "tool_error_code": "0"
+        }
+      }
+    },
+    "id": "3726fde7-48cc-4055-8a5f-e437f7383f3d",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "346b65896d674bfc930baee1b7685323"
+  },
+  {
+    "type": "function_call_result",
+    "name": "Read",
+    "callId": "call_01_7DWHV36hjiJ3Jev6qFFz2643",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "   1→# 恒瑞医药(600276.SH) 综合研判\n   2→\n   3→> 第二十八轮 · 四大师并行分析 · 数据核验已执行\n   4→\n   5→## 一、四视角结论汇总\n   6→\n   7→| 视角 | 大师 | 内在涨幅 | 击球区 | 目标建仓价 | 二次补仓价 | 核心逻辑 |\n   8→|------|------|---------|--------|-----------|-----------|---------|\n   9→| 商业模式 | 段永平 | +20% | 🟡 | 50元 | 44元 | 好公司真护城河:创新药占比58.34%+BD 13笔海外授权超400亿美元+BMS 152亿,但卡瑞利珠FDA三次因cGMP受阻是护城河裂缝;44.6x不便宜安全边际不足 |\n  10→| 财务估值 | 巴菲特 | +8% | 🟡 | 50元 | 43元 | 速评卡质量罕见的高(五项偏差≤0.55%,ROE 14.6%确认为年报真实非Q1陷阱);盈利质量A级(净现比145.6%/应收5年零增长)+资产负债表A+(净现金400亿/零商誉);DCF中枢59.2元,安全边际仅9% |\n  11→| 行业竞争 | 芒格 | +13% | 🟡 | 52元 | 45元 | 好行业顶级位置:创新药占市场仅21.5%(美国80%)+2026H1出海License-out近千亿美元全球TOP10占8席;但PD-1红海+GLP-1价格战+医保降价60%+;BD里程碑是纸面金额(退单率约20%) |\n  12→| 风险评估 | 李录 | +3% | 🟡 | 48元 | 42元 | 管理层A级(孙飘扬25年三次押注全兑现/零质押零减持)+GLP-1未来5年最大期权兑现中,但FDA三拒出海受阻+净利率28%含BD一次性(内生约20-22%)+价格不便宜安全边际<10% |\n  13→\n  14→**结论: 4黄 🟡🟡🟡🟡** — \"伟大公司合理偏贵——盈利质量与资产负债表A股医药顶级(净现比145.6%/零商誉/净现金400亿/创新药占61.69%/BD期权218亿美元),PE 44.3x处自身十年7.8%分位历史低位,但绝对PE贵、安全边际仅约9%,宜轻仓试探等50元以下加码\"。恒瑞医药是A股创新药龙头:2025年创新药收入163.42亿(+26%)占比58.34%(2026Q1升至61.69%),24款1类创新药+100+临床管线+A股研发之王(研发87.24亿/费率27.6%),近三年13笔海外授权潜在总额超400亿美元(BMS 152亿/GSK 120亿/Kailera NewCo上市),2026H1中国License-out总额997-1100亿美元全球TOP10占8席。四视角一致:①**速评卡质量罕见的高**——PE/市值/ROE/毛利率/营收增速五项精确吻合(偏差≤0.55%),ROE 14.6%确认为2025年报加权真实值(非单季年化陷阱),仅净利率/负债率为Q1口径方向一致;②**盈利质量A级(巴菲特第一问顶级)**——净现比145.6%、销售收现比106.25%、扣非纯度96.1%、**应收5年零增长而营收+49%(增长不靠赊销)**——全市场最典型\"利润高度真实\"样本;③**资产负债表A+级(零瑕疵)**——净现金约400亿(占市值11%)、零有息负债、零商誉;账面ROE 14.4%被研发费用化低估,正常化ROE约18-19%;④**最大风险=FDA出海路径受阻**——\"双艾\"组合肝癌一线BLA 2026-07-10第三次被FDA拒绝(皆因连云港cGMP合规),恒瑞\"中国冠军→全球玩家\"能力鸿沟;但12笔BD均为license-out可绕开生产短板;⑤**BD里程碑是\"纸面金额\"**——2020年62起License-out交易25起已终止退单率约20%,不能把152亿当到账收入;⑥**估值贵公司便宜自身价格**——PE-TTM 44.3x绝对偏贵但处自身十年7.8%分位,DCF中枢59.2元,概率加权年化约15%,安全边际仅约9%。2026-08-20中报为验证窗口。\n  15→\n  16→## 二、数据核验(速评卡质量罕见的高,ROE 确认为年报真实值)\n  17→\n  18→| 指标 | 速评卡口径 | 年报真值 | 判定 |\n  19→|------|-----------|---------|------|\n  20→| ROE | 14.6% | **14.44%**(2025加权,Tushare) | ✅ 偏差0.55%,确认为年报真实非Q1陷阱 |\n  21→| 毛利率 | 86.6% | 偏差0.23% | ✅ 基本一致 |\n  22→| 营收增速 | 13.0% | Q1/年报双重吻合 | ✅ |\n  23→| PE/市值 | 44.6x/3625.2亿 | 44.65x/3625.2亿 | ✅ 偏差0.00% |\n  24→| 净利率 | 28.0%(Q1) | 24.38%(年报,含BD一次性) | 🟡 Q1口径 |\n  25→| 负债率 | 10.0%(Q1末) | 11.55%(年报) | 🟡 方向一致 |\n  26→| 净现比/扣非纯度 | — | 145.6%/96.1% | ✅ 盈利质量A级 |\n  27→| 应收 | — | 5年零增长(48-52亿)而营收+49% | ✅ 增长不靠赊销 |\n  28→\n  29→2025年报: 营收+12.98%、归母+21.78%(扣非+16.59%含BD非经常)、OCF 112.35亿(+51.36%,净现比145.6%)、销售收现比106.25%、扣非纯度96.1%、应收5年零增长、净现金约400亿(负债率11.55%)、零商誉、分红率16.53%+10亿回购(2025-08起)+2026首次中期分红。业务: 创新药163.42亿(+26.09%)占58.34%(2026Q1 61.69%)、仿制药战略收缩(第十批集采8产品丢标)、BD收入33.92亿(占10.72%)、非肿瘤板块+73.36%;研发87.24亿(27.58%)全行业第一梯队。出海: 13笔授权潜在超400亿美元(BMS 152亿/首付6亿、GSK 120亿/首付5亿、Kailera NewCo 2026-04纳斯达克IPO恒瑞持股9.8%约值3亿美元、默沙东128亿里程碑);卡瑞利珠FDA三次被拒(2024-05/2026-07-10,皆因连云港cGMP合规);GLP-1瑞普泊肽(双靶减重上市申请受理,预计2026Q4-2027获批首个国产双靶,T2DM III期阳性)+口服HRS-7535 III期成功;HER2 ADC SHR-A1811已获批CRC适应症。行业: 中国创新药占药品市场21.5%(美国80%),2026政府工作报告首次将生物医药列为\"新兴支柱产业\";2026H1 License-out 997-1100亿美元(全球TOP10占8席);PD-1红海(卡瑞利珠占比从20%降至10%)、GLP-1价格战(礼来/诺和诺德2026H1卷走450亿美元)、医保首谈平均降价60%+(2025续约降幅温和至8-14%);退单率约20%(2020年62起25起终止)。治理: 孙飘扬持股21.50%零质押零减持、2025-08起10亿回购(已耗8.53亿);股东户数45.83万(+15%分散)、融资余额55.43亿。\n  30→\n  31→## 三、综合研判\n  32→\n  33→**定性**: 恒瑞医药是\"受管制的优秀生意\"——国内单一支付方(医保谈判)管住创新药定价权,出海BD是把受限国内定价权兑换成自由全球定价权的关键通道。护城河=研发流水线型(24款1类创新药+100+管线+A股研发之王,需持续高投入维持),MNC真金白银验证(BMS/GSK/Kailera),但卡瑞利珠FDA三次cGMP受阻=制造合规是护城河裂缝。\n  34→\n  35→**核心矛盾**:\n  36→1. **FDA出海路径受阻(最大风险)**——\"双艾\"组合肝癌一线BLA 2026-07-10第三次被FDA拒绝(皆因连云港cGMP合规,2024-07警告信),恒瑞\"中国冠军→全球玩家\"能力鸿沟;但12笔BD均为license-out可绕开生产短板\n  37→2. **BD里程碑是\"纸面金额\"**——13笔授权潜在超400亿美元但退单率约20%(2020年62起25起终止),不能把152亿当到账收入;BMS战略合作2026Q3才完成,GLP-1价格战已打响(礼来/诺和诺德卷走450亿美元)\n  38→3. **净利率28%含BD一次性**——2026Q1 BD确认7.87亿,剔除后内生净利率约20-22%;医保降价+PD-1红海(卡瑞利珠占比从20%降至10%)压制\n  39→4. **估值绝对不便宜**——PE-TTM 44.3x/PEG约1.7,股息率仅0.35%,账面ROE 14.4%低于20%门槛(被研发费用化低估,正常化18-19%);但处自身十年7.8%分位(历史低位),DCF中枢59.2元安全边际仅9%\n  40→5. **股东回报偏低**——分红率仅16.53%(2025-08起10亿回购+2026首次中期分红,股东回报意识提升)\n  41→6. **正面(巴菲特最满意处)**——盈利质量A级(净现比145.6%/应收5年零增长)/资产负债表A+(净现金400亿/零商誉/零有息负债)/创新药占比61.69%/GLP-1双靶+HER2 ADC全球三期/BD期权218亿美元报表外免费期权/管理层A级(孙飘扬25年三次押注全兑现)\n  42→\n  43→**定量**: DCF中枢59.2元(30x终值,终值敏感性51.5-67元);2026E EPS 1.42×40x=56.8元;三情景概率加权年化约15%;机构共识2026净利94.48亿(+22.5%)、目标价均值76.6元;安全区间51.5-67元,现价54.18处下沿。\n  44→\n  45→**策略**: 4黄一致。**宜轻仓试探,等50元以下加码**(巴菲特):核心验证点=2026-08-20中报创新药增速是否维持25%+(H1归母48-52亿/+20-30%)+BD收入确认+全年指引。目标建仓48-52元(2026E 33.8-36.6x,对应6月低点47-52区间)、二次补仓42-45元(2026E 29.6-31.7x,覆盖GLP-1竞争/BD延迟/医保降价悲观组合)。\n  46→\n  47→## 四、量化结论\n  48→\n  49→- 内在涨幅: **+11%**(四视角+3/+8/+13/+20中位数;DCF中枢59.2元 vs 现价54.18元,安全区间51.5-67元)\n  50→- 击球区: **🟡 轻仓试探**(4灯全黄,伟大公司合理偏贵,盈利质量+资产负债表A股医药顶级但绝对PE贵+安全边际仅9%)\n  51→- 目标建仓价: **50 元**(四视角48/50/50/52中位数,≈2026E PE 35x,对应6月低点47-52区间)\n  52→- 二次补仓价: **44 元**(四视角42/43/44/45中位数,≈2026E PE 31x,覆盖悲观组合重仓区)\n  53→- 数据核验: ✅ 已用2025年报+2026Q1+Tushare交叉验证:速评卡五项(PE/市值/ROE/毛利率/营收增速)精确吻合偏差≤0.55%,ROE 14.6%确认为年报加权真实值(非Q1陷阱);净现比145.6%/销售收现比106.25%/扣非96.1%/应收5年零增长均核验;净现金400亿/零商誉/零有息负债/研发87.24亿;FDA三次被拒cGMP、退单率约20%、BD 218亿美元期权、GLP-1瑞普泊肽III期阳性、PE-TTM 44.3x十年7.8%分位均多源互证\n  54→"
+    },
+    "providerData": {
+      "agent": "cli",
+      "toolResult": {
+        "title": "Read 54 lines",
+        "content": "   1→# 恒瑞医药(600276.SH) 综合研判\n   2→\n   3→> 第二十八轮 · 四大师并行分析 · 数据核验已执行\n   4→\n   5→## 一、四视角结论汇总\n   6→\n   7→| 视角 | 大师 | 内在涨幅 | 击球区 | 目标建仓价 | 二次补仓价 | 核心逻辑 |\n   8→|------|------|---------|--------|-----------|-----------|---------|\n   9→| 商业模式 | 段永平 | +20% | 🟡 | 50元 | 44元 | 好公司真护城河:创新药占比58.34%+BD 13笔海外授权超400亿美元+BMS 152亿,但卡瑞利珠FDA三次因cGMP受阻是护城河裂缝;44.6x不便宜安全边际不足 |\n  10→| 财务估值 | 巴菲特 | +8% | 🟡 | 50元 | 43元 | 速评卡质量罕见的高(五项偏差≤0.55%,ROE 14.6%确认为年报真实非Q1陷阱);盈利质量A级(净现比145.6%/应收5年零增长)+资产负债表A+(净现金400亿/零商誉);DCF中枢59.2元,安全边际仅9% |\n  11→| 行业竞争 | 芒格 | +13% | 🟡 | 52元 | 45元 | 好行业顶级位置:创新药占市场仅21.5%(美国80%)+2026H1出海License-out近千亿美元全球TOP10占8席;但PD-1红海+GLP-1价格战+医保降价60%+;BD里程碑是纸面金额(退单率约20%) |\n  12→| 风险评估 | 李录 | +3% | 🟡 | 48元 | 42元 | 管理层A级(孙飘扬25年三次押注全兑现/零质押零减持)+GLP-1未来5年最大期权兑现中,但FDA三拒出海受阻+净利率28%含BD一次性(内生约20-22%)+价格不便宜安全边际<10% |\n  13→\n  14→**结论: 4黄 🟡🟡🟡🟡** — \"伟大公司合理偏贵——盈利质量与资产负债表A股医药顶级(净现比145.6%/零商誉/净现金400亿/创新药占61.69%/BD期权218亿美元),PE 44.3x处自身十年7.8%分位历史低位,但绝对PE贵、安全边际仅约9%,宜轻仓试探等50元以下加码\"。恒瑞医药是A股创新药龙头:2025年创新药收入163.42亿(+26%)占比58.34%(2026Q1升至61.69%),24款1类创新药+100+临床管线+A股研发之王(研发87.24亿/费率27.6%),近三年13笔海外授权潜在总额超400亿美元(BMS 152亿/GSK 120亿/Kailera NewCo上市),2026H1中国License-out总额997-1100亿美元全球TOP10占8席。四视角一致:①**速评卡质量罕见的高**——PE/市值/ROE/毛利率/营收增速五项精确吻合(偏差≤0.55%),ROE 14.6%确认为2025年报加权真实值(非单季年化陷阱),仅净利率/负债率为Q1口径方向一致;②**盈利质量A级(巴菲特第一问顶级)**——净现比145.6%、销售收现比106.25%、扣非纯度96.1%、**应收5年零增长而营收+49%(增长不靠赊销)**——全市场最典型\"利润高度真实\"样本;③**资产负债表A+级(零瑕疵)**——净现金约400亿(占市值11%)、零有息负债、零商誉;账面ROE 14.4%被研发费用化低估,正常化ROE约18-19%;④**最大风险=FDA出海路径受阻**——\"双艾\"组合肝癌一线BLA 2026-07-10第三次被FDA拒绝(皆因连云港cGMP合规),恒瑞\"中国冠军→全球玩家\"能力鸿沟;但12笔BD均为license-out可绕开生产短板;⑤**BD里程碑是\"纸面金额\"**——2020年62起License-out交易25起已终止退单率约20%,不能把152亿当到账收入;⑥**估值贵公司便宜自身价格**——PE-TTM 44.3x绝对偏贵但处自身十年7.8%分位,DCF中枢59.2元,概率加权年化约15%,安全边际仅约9%。2026-08-20中报为验证窗口。\n  15→\n  16→## 二、数据核验(速评卡质量罕见的高,ROE 确认为年报真实值)\n  17→\n  18→| 指标 | 速评卡口径 | 年报真值 | 判定 |\n  19→|------|-----------|---------|------|\n  20→| ROE | 14.6% | **14.44%**(2025加权,Tushare) | ✅ 偏差0.55%,确认为年报真实非Q1陷阱 |\n  21→| 毛利率 | 86.6% | 偏差0.23% | ✅ 基本一致 |\n  22→| 营收增速 | 13.0% | Q1/年报双重吻合 | ✅ |\n  23→| PE/市值 | 44.6x/3625.2亿 | 44.65x/3625.2亿 | ✅ 偏差0.00% |\n  24→| 净利率 | 28.0%(Q1) | 24.38%(年报,含BD一次性) | 🟡 Q1口径 |\n  25→| 负债率 | 10.0%(Q1末) | 11.55%(年报) | 🟡 方向一致 |\n  26→| 净现比/扣非纯度 | — | 145.6%/96.1% | ✅ 盈利质量A级 |\n  27→| 应收 | — | 5年零增长(48-52亿)而营收+49% | ✅ 增长不靠赊销 |\n  28→\n  29→2025年报: 营收+12.98%、归母+21.78%(扣非+16.59%含BD非经常)、OCF 112.35亿(+51.36%,净现比145.6%)、销售收现比106.25%、扣非纯度96.1%、应收5年零增长、净现金约400亿(负债率11.55%)、零商誉、分红率16.53%+10亿回购(2025-08起)+2026首次中期分红。业务: 创新药163.42亿(+26.09%)占58.34%(2026Q1 61.69%)、仿制药战略收缩(第十批集采8产品丢标)、BD收入33.92亿(占10.72%)、非肿瘤板块+73.36%;研发87.24亿(27.58%)全行业第一梯队。出海: 13笔授权潜在超400亿美元(BMS 152亿/首付6亿、GSK 120亿/首付5亿、Kailera NewCo 2026-04纳斯达克IPO恒瑞持股9.8%约值3亿美元、默沙东128亿里程碑);卡瑞利珠FDA三次被拒(2024-05/2026-07-10,皆因连云港cGMP合规);GLP-1瑞普泊肽(双靶减重上市申请受理,预计2026Q4-2027获批首个国产双靶,T2DM III期阳性)+口服HRS-7535 III期成功;HER2 ADC SHR-A1811已获批CRC适应症。行业: 中国创新药占药品市场21.5%(美国80%),2026政府工作报告首次将生物医药列为\"新兴支柱产业\";2026H1 License-out 997-1100亿美元(全球TOP10占8席);PD-1红海(卡瑞利珠占比从20%降至10%)、GLP-1价格战(礼来/诺和诺德2026H1卷走450亿美元)、医保首谈平均降价60%+(2025续约降幅温和至8-14%);退单率约20%(2020年62起25起终止)。治理: 孙飘扬持股21.50%零质押零减持、2025-08起10亿回购(已耗8.53亿);股东户数45.83万(+15%分散)、融资余额55.43亿。\n  30→\n  31→## 三、综合研判\n  32→\n  33→**定性**: 恒瑞医药是\"受管制的优秀生意\"——国内单一支付方(医保谈判)管住创新药定价权,出海BD是把受限国内定价权兑换成自由全球定价权的关键通道。护城河=研发流水线型(24款1类创新药+100+管线+A股研发之王,需持续高投入维持),MNC真金白银验证(BMS/GSK/Kailera),但卡瑞利珠FDA三次cGMP受阻=制造合规是护城河裂缝。\n  34→\n  35→**核心矛盾**:\n  36→1. **FDA出海路径受阻(最大风险)**——\"双艾\"组合肝癌一线BLA 2026-07-10第三次被FDA拒绝(皆因连云港cGMP合规,2024-07警告信),恒瑞\"中国冠军→全球玩家\"能力鸿沟;但12笔BD均为license-out可绕开生产短板\n  37→2. **BD里程碑是\"纸面金额\"**——13笔授权潜在超400亿美元但退单率约20%(2020年62起25起终止),不能把152亿当到账收入;BMS战略合作2026Q3才完成,GLP-1价格战已打响(礼来/诺和诺德卷走450亿美元)\n  38→3. **净利率28%含BD一次性**——2026Q1 BD确认7.87亿,剔除后内生净利率约20-22%;医保降价+PD-1红海(卡瑞利珠占比从20%降至10%)压制\n  39→4. **估值绝对不便宜**——PE-TTM 44.3x/PEG约1.7,股息率仅0.35%,账面ROE 14.4%低于20%门槛(被研发费用化低估,正常化18-19%);但处自身十年7.8%分位(历史低位),DCF中枢59.2元安全边际仅9%\n  40→5. **股东回报偏低**——分红率仅16.53%(2025-08起10亿回购+2026首次中期分红,股东回报意识提升)\n  41→6. **正面(巴菲特最满意处)**——盈利质量A级(净现比145.6%/应收5年零增长)/资产负债表A+(净现金400亿/零商誉/零有息负债)/创新药占比61.69%/GLP-1双靶+HER2 ADC全球三期/BD期权218亿美元报表外免费期权/管理层A级(孙飘扬25年三次押注全兑现)\n  42→\n  43→**定量**: DCF中枢59.2元(30x终值,终值敏感性51.5-67元);2026E EPS 1.42×40x=56.8元;三情景概率加权年化约15%;机构共识2026净利94.48亿(+22.5%)、目标价均值76.6元;安全区间51.5-67元,现价54.18处下沿。\n  44→\n  45→**策略**: 4黄一致。**宜轻仓试探,等50元以下加码**(巴菲特):核心验证点=2026-08-20中报创新药增速是否维持25%+(H1归母48-52亿/+20-30%)+BD收入确认+全年指引。目标建仓48-52元(2026E 33.8-36.6x,对应6月低点47-52区间)、二次补仓42-45元(2026E 29.6-31.7x,覆盖GLP-1竞争/BD延迟/医保降价悲观组合)。\n  46→\n  47→## 四、量化结论\n  48→\n  49→- 内在涨幅: **+11%**(四视角+3/+8/+13/+20中位数;DCF中枢59.2元 vs 现价54.18元,安全区间51.5-67元)\n  50→- 击球区: **🟡 轻仓试探**(4灯全黄,伟大公司合理偏贵,盈利质量+资产负债表A股医药顶级但绝对PE贵+安全边际仅9%)\n  51→- 目标建仓价: **50 元**(四视角48/50/50/52中位数,≈2026E PE 35x,对应6月低点47-52区间)\n  52→- 二次补仓价: **44 元**(四视角42/43/44/45中位数,≈2026E PE 31x,覆盖悲观组合重仓区)\n  53→- 数据核验: ✅ 已用2025年报+2026Q1+Tushare交叉验证:速评卡五项(PE/市值/ROE/毛利率/营收增速)精确吻合偏差≤0.55%,ROE 14.6%确认为年报加权真实值(非Q1陷阱);净现比145.6%/销售收现比106.25%/扣非96.1%/应收5年零增长均核验;净现金400亿/零商誉/零有息负债/研发87.24亿;FDA三次被拒cGMP、退单率约20%、BD 218亿美元期权、GLP-1瑞普泊肽III期阳性、PE-TTM 44.3x十年7.8%分位均多源互证\n  54→",
+        "renderer": {
+          "type": "code",
+          "context": {
+            "language": "markdown"
+          }
+        }
+      },
+      "messageId": "346b65896d674bfc930baee1b7685323",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a"
+    },
+    "id": "601c0a5f-456e-4ca3-b053-c81ea65b86d4",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "timestamp": 1787556912489,
+    "parentId": "3726fde7-48cc-4055-8a5f-e437f7383f3d"
+  },
+  {
+    "providerData": {
+      "messageId": "2084d204f2d0442aba39f95ae92cb8e4",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "type": "reasoning",
+    "content": [],
+    "rawContent": [
+      {
+        "type": "reasoning_text",
+        "text": "Now I have:\n- Today: 2026-08-24\n- Real-time price: 46.76 元, -2.05%, PE(TTM) 40.2 (from Tencent)\n- Existing report (第二十八轮, dated around 2026-08-07 presumably, based on data cutoff; it mentions 2026-08-20 中报为验证窗口 — so the report was written BEFORE 2026-08-20, likely early August). The report is likely more than... let me check its date. The report mentions \"2026-08-20中报为验证窗口\" meaning as of the report writing, the H1 2026 interim report hadn't been disclosed yet. Today is 2026-08-24 — the interim report (中报) should have been disclosed around 2026-08-20 (as stated). So per user instruction: \"若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径\" — the report mentions H1 report as a future validation window, and now (Aug 24) the H1 report should be out. So I should WebSearch to verify the latest H1 2026 financials.\n\nThe report price snapshot: 54.18元 (现价 at report time). Current price 46.76 — significantly lower. PE(TTM) now 40.2 vs 44.3x in report.\n\nKey questions for the six gates:\n1. 能力圈: 创新药 — understandable business (pharma R&D), PASS\n2. 好生意: 毛利率 ~85%+, 净利率 ~24-28%, ROE ~14.4% (账面) / 18-19% normalized\n3. 护城河: 研发流水线 + BD validation; FDA cGMP crack\n4. 管理层: 孙飘扬 A级, 零质押零减持\n5. 估值: PE-TTM 40.2x at 46.76, need recalc; report said at 54.18 PE 44.3x, DCF中枢59.2元, 内在涨幅+11%. At current price 46.76, upside to 59.2 = +26.6%. But need to verify H1 2026 results first — if H1 earnings missed or declined, DCF would shift.\n6. 财务健康: A+ balance sheet, net cash 400亿\n\nNeed WebSearch for: 恒瑞医药 2026 中报 (H1 2026 interim results). Let me search.\n\nThe user's instruction: \"财务指标（ROE/毛利率/净利率/营收增速）优先取 reports/ 下该股最新报告的数据核验节；若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径\". The report says 2026-08-20 中报为验证窗口 — so 财报已披露 (or about to be). Today is 2026-08-24. So WebSearch is needed.\n\nLet me search for 恒瑞医药 2026半年报."
+      }
+    ],
+    "timestamp": 1787556928700,
+    "id": "23d25450-05b9-4a4f-aee3-f9c5467cef3e",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "601c0a5f-456e-4ca3-b053-c81ea65b86d4"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Now I have:\n- Today: 2026-08-24\n- Real-time price: 46.76 元, -2.05%, PE(TTM) 40.2 (from Tencent)\n- Existing report (第二十八轮, dated around 2026-08-07 presumably, based on data cutoff; it mentions 2026-08-20 中报为验证窗口 — so the report was written BEFORE 2026-08-20, likely early August). The report is likely more than... let me check its date. The report mentions \"2026-08-20中报为验证窗口\" meaning as of the report writing, the H1 2026 interim report hadn't been disclosed yet. Today is 2026-08-24 — the interim report (中报) should have been disclosed around 2026-08-20 (as stated). So per user instruction: \"若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径\" — the report mentions H1 report as a future validation window, and now (Aug 24) the H1 report should be out. So I should WebSearch to verify the latest H1 2026 financials.\n\nThe report price snapshot: 54.18元 (现价 at report time). Current price 46.76 — significantly lower. PE(TTM) now 40.2 vs 44.3x in report.\n\nKey questions for the six gates:\n1. 能力圈: 创新药 — understandable business (pharma R&D), PASS\n2. 好生意: 毛利率 ~85%+, 净利率 ~24-28%, ROE ~14.4% (账面) / 18-19% normalized\n3. 护城河: 研发流水线 + BD validation; FDA cGMP crack\n4. 管理层: 孙飘扬 A级, 零质押零减持\n5. 估值: PE-TTM 40.2x at 46.76, need recalc; report said at 54.18 PE 44.3x, DCF中枢59.2元, 内在涨幅+11%. At current price 46.76, upside to 59.2 = +26.6%. But need to verify H1 2026 results first — if H1 earnings missed or declined, DCF would shift.\n6. 财务健康: A+ balance sheet, net cash 400亿\n\nNeed WebSearch for: 恒瑞医药 2026 中报 (H1 2026 interim results). Let me search.\n\nThe user's instruction: \"财务指标（ROE/毛利率/净利率/营收增速）优先取 reports/ 下该股最新报告的数据核验节；若报告超 30 天或发现财报已披露，用 WebSearch 核实最新财报口径\". The report says 2026-08-20 中报为验证窗口 — so 财报已披露 (or about to be). Today is 2026-08-24. So WebSearch is needed.\n\nLet me search for 恒瑞医药 2026半年报.",
+      "messageId": "2084d204f2d0442aba39f95ae92cb8e4",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "rawUsage": {
+        "prompt_tokens": 33792,
+        "completion_tokens": 742,
+        "total_tokens": 34534,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 662,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 30464
+        },
+        "prompt_cache_hit_tokens": 30464,
+        "prompt_cache_miss_tokens": 3328,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 662,
+        "credit": 1.69,
+        "cached_tokens": 0
+      },
+      "agent": "cli",
+      "argumentsDisplayText": "恒瑞医药 2026 半年报 中报 营收 净利润 创新药",
+      "usage": {
+        "requests": 1,
+        "inputTokens": 33792,
+        "outputTokens": 742,
+        "totalTokens": 34534,
+        "inputTokensDetails": [
+          {
+            "cached_tokens": 30464
+          }
+        ],
+        "outputTokensDetails": [
+          {
+            "reasoning_tokens": 662
+          }
+        ]
+      }
+    },
+    "id": "2084d204f2d0442aba39f95ae92cb8e4",
+    "type": "function_call",
+    "callId": "call_00_jxEG3j8zS6biCBvpbr9o7594",
+    "name": "WebSearch",
+    "arguments": "{\"query\": \"恒瑞医药 2026 半年报 中报 营收 净利润 创新药\", \"freshness\": \"m1\"}",
+    "timestamp": 1787556928707,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "23d25450-05b9-4a4f-aee3-f9c5467cef3e"
+  },
+  {
+    "type": "function_call_result",
+    "name": "WebSearch",
+    "callId": "call_00_jxEG3j8zS6biCBvpbr9o7594",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "# Search Results for \"恒瑞医药 2026 半年报 中报 营收 净利润 创新药\"\n\n## 1. [恒瑞医药半年报中的产业变局：创新药占比首破六成，\"NewCo\"出海迎来 ...](https://www.xinhuanet.com/health/20260820/b6f12f1a472a4918ad393d07a28b4b42/c.html)\n\n这一比例变化，勾勒出中国创新药行业“存量出清、增量崛起”的典型发展路径。自2018年国家药品集采试点启动以来，仿制药的高毛利时代宣告结束，全行业被迫从“销售驱动”转向“创新驱动”。\n\n**URL:** https://www.xinhuanet.com/health/20260820/b6f12f1a472a4918ad393d07a28b4b42/c.html\n\n---\n\n## 2. [恒瑞医药半年报：赚了44.65亿元，创新药撑起六成营收](https://finance.sina.com.cn/jjxw/2026-08-20/doc-ininxkrv6802254.shtml)\n\n恒瑞医药在半年报中提及，报告期内，公司核心创新品种表现突出，多个品种药品实现放量，但与此同时，部分上市时间较早的成熟创新药收入有所回落。其中，吡咯替尼等上市较早产品，报告期内受市场竞争格局变化影响，同类产品竞争加剧，销售收入出现下滑。阿帕替尼和硫培非格司亭因医保续约价格调整，销售收入有所下降。在上述因素共同作用下，报告期内公司抗肿瘤创新药整体收入仅实现小幅增长。\n\n**URL:** https://finance.sina.com.cn/jjxw/2026-08-20/doc-ininxkrv6802254.shtml\n\n---\n\n## 3. [恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟](http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml)\n\n表面是“营收小跌、利润横盘”，拆开看则是一条清晰的增长错位——靠院端肿瘤老药吃饭的基本盘几乎停滞，而真正能打开天花板的非肿瘤/消费医疗新盘，恒瑞既缺产品成熟度，也缺市场化肌肉。公司在半年报里写“抗肿瘤创新产品收入62.65亿元，同比增2.58%”，这一句话，基本解释了为什么总盘提不起来。而更能反映主业发展状况的扣非净利的大幅下滑也反映了恒瑞当前面临的困局——抗肿瘤“老盘”失速、非肿瘤“新盘”不熟。\n\n**URL:** http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml\n\n---\n\n## 4. [恒瑞医药2026半年报：基本面稳中向好，创新药销售占比 ...](https://www.jiemian.com/article/14949378.html)\n\n5 天之前 · 8月19日，恒瑞医药发布2026年半年度报告。报告期内，公司坚持科技创新与国际化双轮驱动发展战略，创新成果持续兑 …\n\n**URL:** https://www.jiemian.com/article/14949378.html\n\n---\n\n## 5. [恒瑞医药2026上半年营收净利承压 非肿瘤创新药激增74%](https://www.sdenews.cn/html/2026/08/510321.shtml)\n\n4 天之前 · 恒瑞医药2026上半年营收154.56亿元，净利润44.65亿元，创新药占比升至63.16%。拟10亿至20亿元回购股份。\n\n**URL:** https://www.sdenews.cn/html/2026/08/510321.shtml\n\n---\n\n*Found 5 results • Provider: 0 • Search performed on 2026-08-24*"
+    },
+    "timestamp": 1787556933576,
+    "providerData": {
+      "messageId": "2084d204f2d0442aba39f95ae92cb8e4",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "toolResult": {
+        "content": "# Search Results for \"恒瑞医药 2026 半年报 中报 营收 净利润 创新药\"\n\n## 1. [恒瑞医药半年报中的产业变局：创新药占比首破六成，\"NewCo\"出海迎来 ...](https://www.xinhuanet.com/health/20260820/b6f12f1a472a4918ad393d07a28b4b42/c.html)\n\n这一比例变化，勾勒出中国创新药行业“存量出清、增量崛起”的典型发展路径。自2018年国家药品集采试点启动以来，仿制药的高毛利时代宣告结束，全行业被迫从“销售驱动”转向“创新驱动”。\n\n**URL:** https://www.xinhuanet.com/health/20260820/b6f12f1a472a4918ad393d07a28b4b42/c.html\n\n---\n\n## 2. [恒瑞医药半年报：赚了44.65亿元，创新药撑起六成营收](https://finance.sina.com.cn/jjxw/2026-08-20/doc-ininxkrv6802254.shtml)\n\n恒瑞医药在半年报中提及，报告期内，公司核心创新品种表现突出，多个品种药品实现放量，但与此同时，部分上市时间较早的成熟创新药收入有所回落。其中，吡咯替尼等上市较早产品，报告期内受市场竞争格局变化影响，同类产品竞争加剧，销售收入出现下滑。阿帕替尼和硫培非格司亭因医保续约价格调整，销售收入有所下降。在上述因素共同作用下，报告期内公司抗肿瘤创新药整体收入仅实现小幅增长。\n\n**URL:** https://finance.sina.com.cn/jjxw/2026-08-20/doc-ininxkrv6802254.shtml\n\n---\n\n## 3. [恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟](http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml)\n\n表面是“营收小跌、利润横盘”，拆开看则是一条清晰的增长错位——靠院端肿瘤老药吃饭的基本盘几乎停滞，而真正能打开天花板的非肿瘤/消费医疗新盘，恒瑞既缺产品成熟度，也缺市场化肌肉。公司在半年报里写“抗肿瘤创新产品收入62.65亿元，同比增2.58%”，这一句话，基本解释了为什么总盘提不起来。而更能反映主业发展状况的扣非净利的大幅下滑也反映了恒瑞当前面临的困局——抗肿瘤“老盘”失速、非肿瘤“新盘”不熟。\n\n**URL:** http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml\n\n---\n\n## 4. [恒瑞医药2026半年报：基本面稳中向好，创新药销售占比 ...](https://www.jiemian.com/article/14949378.html)\n\n5 天之前 · 8月19日，恒瑞医药发布2026年半年度报告。报告期内，公司坚持科技创新与国际化双轮驱动发展战略，创新成果持续兑 …\n\n**URL:** https://www.jiemian.com/article/14949378.html\n\n---\n\n## 5. [恒瑞医药2026上半年营收净利承压 非肿瘤创新药激增74%](https://www.sdenews.cn/html/2026/08/510321.shtml)\n\n4 天之前 · 恒瑞医药2026上半年营收154.56亿元，净利润44.65亿元，创新药占比升至63.16%。拟10亿至20亿元回购股份。\n\n**URL:** https://www.sdenews.cn/html/2026/08/510321.shtml\n\n---\n\n*Found 5 results • Provider: 0 • Search performed on 2026-08-24*",
+        "title": "Found 5 results for \"恒瑞医药 2026 半年报 中报 营收 净利润 创新药\" (provider: 0)",
+        "renderer": {
+          "type": "text"
+        },
+        "rawResponse": {
+          "type": "web_search_tool_result",
+          "query": "恒瑞医药 2026 半年报 中报 营收 净利润 创新药",
+          "searchType": "text2text",
+          "provider": "0",
+          "results": [
+            {
+              "title": "恒瑞医药半年报中的产业变局：创新药占比首破六成，\"NewCo\"出海迎来 ...",
+              "url": "https://www.xinhuanet.com/health/20260820/b6f12f1a472a4918ad393d07a28b4b42/c.html",
+              "snippet": "这一比例变化，勾勒出中国创新药行业“存量出清、增量崛起”的典型发展路径。自2018年国家药品集采试点启动以来，仿制药的高毛利时代宣告结束，全行业被迫从“销售驱动”转向“创新驱动”。"
+            },
+            {
+              "title": "恒瑞医药半年报：赚了44.65亿元，创新药撑起六成营收",
+              "url": "https://finance.sina.com.cn/jjxw/2026-08-20/doc-ininxkrv6802254.shtml",
+              "snippet": "恒瑞医药在半年报中提及，报告期内，公司核心创新品种表现突出，多个品种药品实现放量，但与此同时，部分上市时间较早的成熟创新药收入有所回落。其中，吡咯替尼等上市较早产品，报告期内受市场竞争格局变化影响，同类产品竞争加剧，销售收入出现下滑。阿帕替尼和硫培非格司亭因医保续约价格调整，销售收入有所下降。在上述因素共同作用下，报告期内公司抗肿瘤创新药整体收入仅实现小幅增长。"
+            },
+            {
+              "title": "恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟",
+              "url": "http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml",
+              "snippet": "表面是“营收小跌、利润横盘”，拆开看则是一条清晰的增长错位——靠院端肿瘤老药吃饭的基本盘几乎停滞，而真正能打开天花板的非肿瘤/消费医疗新盘，恒瑞既缺产品成熟度，也缺市场化肌肉。公司在半年报里写“抗肿瘤创新产品收入62.65亿元，同比增2.58%”，这一句话，基本解释了为什么总盘提不起来。而更能反映主业发展状况的扣非净利的大幅下滑也反映了恒瑞当前面临的困局——抗肿瘤“老盘”失速、非肿瘤“新盘”不熟。"
+            },
+            {
+              "title": "恒瑞医药2026半年报：基本面稳中向好，创新药销售占比 ...",
+              "url": "https://www.jiemian.com/article/14949378.html",
+              "snippet": "5 天之前 · 8月19日，恒瑞医药发布2026年半年度报告。报告期内，公司坚持科技创新与国际化双轮驱动发展战略，创新成果持续兑 …"
+            },
+            {
+              "title": "恒瑞医药2026上半年营收净利承压 非肿瘤创新药激增74%",
+              "url": "https://www.sdenews.cn/html/2026/08/510321.shtml",
+              "snippet": "4 天之前 · 恒瑞医药2026上半年营收154.56亿元，净利润44.65亿元，创新药占比升至63.16%。拟10亿至20亿元回购股份。"
+            }
+          ],
+          "totalResults": 5,
+          "responseTimeMs": 4543
+        }
+      }
+    },
+    "id": "71182a08-684c-4b50-82c7-a64f36671cc4",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "2084d204f2d0442aba39f95ae92cb8e4"
+  },
+  {
+    "providerData": {
+      "messageId": "e77b1fb6cac54d0fb1a228cb191aa737",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "type": "reasoning",
+    "content": [],
+    "rawContent": [
+      {
+        "type": "reasoning_text",
+        "text": "Key data from search results:\n- H1 2026: 营收 154.56亿元 (vs H1 2025 ~152.3亿?), 净利润 44.65亿元, 创新药占比 63.16%, 拟10-20亿回购\n- 抗肿瘤创新产品收入 62.65亿元 (+2.58% 仅小幅增长)\n- 扣非净利大幅下滑 (per ce.cn article — \"扣非净利的大幅下滑\")\n- 非肿瘤创新药激增 74%\n- 吡咯替尼等成熟创新药收入下滑; 阿帕替尼和硫培非格司亭因医保续约降价收入下降\n\nLet me get more details on the financials — revenue growth YoY, 扣非净利. Let me fetch one or two articles for precise numbers.\n\n2025 H1 revenue: 2025 年报 full year 营收+12.98%. H1 2025 was ~152.3亿 (I recall 恒瑞 2025H1 revenue was 152.30亿). H1 2026 = 154.56亿 → +1.5% YoY roughly. Net profit 44.65亿 vs 2025H1 39.58亿? Let me check: 2025H1 归母净利 was 39.58亿 (+22.9%?). Actually let me verify with the articles rather than rely on memory.\n\nLet me fetch the ce.cn article and sdenews article for precise figures."
+      }
+    ],
+    "timestamp": 1787556942722,
+    "id": "ad2bc4fa-3663-4e91-af0c-33ad762fb226",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "71182a08-684c-4b50-82c7-a64f36671cc4"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Key data from search results:\n- H1 2026: 营收 154.56亿元 (vs H1 2025 ~152.3亿?), 净利润 44.65亿元, 创新药占比 63.16%, 拟10-20亿回购\n- 抗肿瘤创新产品收入 62.65亿元 (+2.58% 仅小幅增长)\n- 扣非净利大幅下滑 (per ce.cn article — \"扣非净利的大幅下滑\")\n- 非肿瘤创新药激增 74%\n- 吡咯替尼等成熟创新药收入下滑; 阿帕替尼和硫培非格司亭因医保续约降价收入下降\n\nLet me get more details on the financials — revenue growth YoY, 扣非净利. Let me fetch one or two articles for precise numbers.\n\n2025 H1 revenue: 2025 年报 full year 营收+12.98%. H1 2025 was ~152.3亿 (I recall 恒瑞 2025H1 revenue was 152.30亿). H1 2026 = 154.56亿 → +1.5% YoY roughly. Net profit 44.65亿 vs 2025H1 39.58亿? Let me check: 2025H1 归母净利 was 39.58亿 (+22.9%?). Actually let me verify with the articles rather than rely on memory.\n\nLet me fetch the ce.cn article and sdenews article for precise figures.",
+      "messageId": "e77b1fb6cac54d0fb1a228cb191aa737",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "argumentsDisplayText": "https://www.sdenews.cn/html/2026/08/510321.shtml"
+    },
+    "id": "e77b1fb6cac54d0fb1a228cb191aa737",
+    "type": "function_call",
+    "callId": "call_00_RAsMVxn52Ak9aXmPR5QF9120",
+    "name": "WebFetch",
+    "arguments": "{\"url\": \"https://www.sdenews.cn/html/2026/08/510321.shtml\", \"prompt\": \"提取恒瑞医药2026半年报的关键财务数据：营收及同比增速、归母净利润及同比增速、扣非净利润及同比增速、创新药收入及占比、毛利率、研发费用、回购计划金额。给出精确数字。\"}",
+    "timestamp": 1787556942740,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "ad2bc4fa-3663-4e91-af0c-33ad762fb226"
+  },
+  {
+    "providerData": {
+      "extra_fields": null,
+      "reasoning": "Key data from search results:\n- H1 2026: 营收 154.56亿元 (vs H1 2025 ~152.3亿?), 净利润 44.65亿元, 创新药占比 63.16%, 拟10-20亿回购\n- 抗肿瘤创新产品收入 62.65亿元 (+2.58% 仅小幅增长)\n- 扣非净利大幅下滑 (per ce.cn article — \"扣非净利的大幅下滑\")\n- 非肿瘤创新药激增 74%\n- 吡咯替尼等成熟创新药收入下滑; 阿帕替尼和硫培非格司亭因医保续约降价收入下降\n\nLet me get more details on the financials — revenue growth YoY, 扣非净利. Let me fetch one or two articles for precise numbers.\n\n2025 H1 revenue: 2025 年报 full year 营收+12.98%. H1 2025 was ~152.3亿 (I recall 恒瑞 2025H1 revenue was 152.30亿). H1 2026 = 154.56亿 → +1.5% YoY roughly. Net profit 44.65亿 vs 2025H1 39.58亿? Let me check: 2025H1 归母净利 was 39.58亿 (+22.9%?). Actually let me verify with the articles rather than rely on memory.\n\nLet me fetch the ce.cn article and sdenews article for precise figures.",
+      "messageId": "e77b1fb6cac54d0fb1a228cb191aa737",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "rawUsage": {
+        "prompt_tokens": 35391,
+        "completion_tokens": 562,
+        "total_tokens": 35953,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 324,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 34432
+        },
+        "prompt_cache_hit_tokens": 34432,
+        "prompt_cache_miss_tokens": 959,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 324,
+        "credit": 0.98,
+        "cached_tokens": 0
+      },
+      "agent": "cli",
+      "argumentsDisplayText": "http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml",
+      "usage": {
+        "requests": 1,
+        "inputTokens": 35391,
+        "outputTokens": 562,
+        "totalTokens": 35953,
+        "inputTokensDetails": [
+          {
+            "cached_tokens": 34432
+          }
+        ],
+        "outputTokensDetails": [
+          {
+            "reasoning_tokens": 324
+          }
+        ]
+      }
+    },
+    "id": "e77b1fb6cac54d0fb1a228cb191aa737",
+    "type": "function_call",
+    "callId": "call_01_P0LzQlVHyO1My3PTyqKo4252",
+    "name": "WebFetch",
+    "arguments": "{\"url\": \"http://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml\", \"prompt\": \"提取恒瑞医药2026半年报的关键数据：营收、归母净利润、扣非净利润及各自同比增速，抗肿瘤创新药收入，非肿瘤板块收入及增速。给出精确数字。\"}",
+    "timestamp": 1787556942774,
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "ad2bc4fa-3663-4e91-af0c-33ad762fb226"
+  },
+  {
+    "type": "function_call_result",
+    "name": "WebFetch",
+    "callId": "call_00_RAsMVxn52Ak9aXmPR5QF9120",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "**标题**: 404 Not Found\n\n# 404 Not Found\n\n* * *\n\nnginx"
+    },
+    "timestamp": 1787556945395,
+    "providerData": {
+      "messageId": "e77b1fb6cac54d0fb1a228cb191aa737",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli",
+      "toolResult": {
+        "content": "**标题**: 404 Not Found\n\n# 404 Not Found\n\n* * *\n\nnginx",
+        "title": "✓ Fetched content from https://www.sdenews.cn/html/2026/08/510321.shtml",
+        "renderer": {
+          "type": "text"
+        }
+      }
+    },
+    "id": "a222d3e6-7818-4ea2-a6c4-b859d69a0002",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "e77b1fb6cac54d0fb1a228cb191aa737"
+  },
+  {
+    "type": "function_call_result",
+    "name": "WebFetch",
+    "callId": "call_01_P0LzQlVHyO1My3PTyqKo4252",
+    "status": "completed",
+    "output": {
+      "type": "text",
+      "text": "**标题**: 恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟_中国经济网——国家经济门户\n**发布时间**: 2026-08-20 14:29 来源：蓝鲸新闻\n\n[首页](http://finance.ce.cn/ \"首页\") > [2026股市](http://finance.ce.cn/stock/ \"2026股市\") > [股市滚动新闻](http://finance.ce.cn/stock/gsgdbd/ \"股市滚动新闻\")\n\n## 恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟\n\n蓝鲸新闻8月20日讯（记者 何天骄）8月19日晚，恒瑞医药（600276.SH / 1276.HK）交出2026年半年报：营业收入154.56亿元，同比下降1.94%，归母净利润44.65亿元，同比微增0.34%，扣非归母净利润37.30亿元，同比下降12.71%，经营现金流19.87亿元，同比下降53.80%。\n\n表面是“营收小跌、利润横盘”，拆开看则是一条清晰的增长错位——靠院端肿瘤老药吃饭的基本盘几乎停滞，而真正能打开天花板的非肿瘤/消费医疗新盘，恒瑞既缺产品成熟度，也缺市场化肌肉。公司在半年报里写“抗肿瘤创新产品收入62.65亿元，同比增2.58%”，这一句话，基本解释了为什么总盘提不起来。而更能反映主业发展状况的扣非净利的大幅下滑也反映了恒瑞当前面临的困局——抗肿瘤“老盘”失速、非肿瘤“新盘”不熟。\n\n营收下滑暴露危机：肿瘤老盘“缺亮点”，仿制药集采“尾浪”仍在\n\n据财报，恒瑞上半年产品销售收入139.48亿元，同比增加1.87%，但总营收下滑，缺口来自两块，仿制药继续出清以及抗肿瘤创新药近乎失速。"
+    },
+    "providerData": {
+      "agent": "cli",
+      "toolResult": {
+        "content": "**标题**: 恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟_中国经济网——国家经济门户\n**发布时间**: 2026-08-20 14:29 来源：蓝鲸新闻\n\n[首页](http://finance.ce.cn/ \"首页\") > [2026股市](http://finance.ce.cn/stock/ \"2026股市\") > [股市滚动新闻](http://finance.ce.cn/stock/gsgdbd/ \"股市滚动新闻\")\n\n## 恒瑞医药经营错位困局：抗肿瘤“老盘”失速，非肿瘤“新盘”不熟\n\n蓝鲸新闻8月20日讯（记者 何天骄）8月19日晚，恒瑞医药（600276.SH / 1276.HK）交出2026年半年报：营业收入154.56亿元，同比下降1.94%，归母净利润44.65亿元，同比微增0.34%，扣非归母净利润37.30亿元，同比下降12.71%，经营现金流19.87亿元，同比下降53.80%。\n\n表面是“营收小跌、利润横盘”，拆开看则是一条清晰的增长错位——靠院端肿瘤老药吃饭的基本盘几乎停滞，而真正能打开天花板的非肿瘤/消费医疗新盘，恒瑞既缺产品成熟度，也缺市场化肌肉。公司在半年报里写“抗肿瘤创新产品收入62.65亿元，同比增2.58%”，这一句话，基本解释了为什么总盘提不起来。而更能反映主业发展状况的扣非净利的大幅下滑也反映了恒瑞当前面临的困局——抗肿瘤“老盘”失速、非肿瘤“新盘”不熟。\n\n营收下滑暴露危机：肿瘤老盘“缺亮点”，仿制药集采“尾浪”仍在\n\n据财报，恒瑞上半年产品销售收入139.48亿元，同比增加1.87%，但总营收下滑，缺口来自两块，仿制药继续出清以及抗肿瘤创新药近乎失速。",
+        "title": "✓ Fetched content from https://finance.ce.cn/stock/gsgdbd/202608/t20260820_3158909.shtml",
+        "renderer": {
+          "type": "text"
+        }
+      },
+      "messageId": "e77b1fb6cac54d0fb1a228cb191aa737",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a"
+    },
+    "id": "141243f3-995b-4dab-ad7d-cdbd4720f59f",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "timestamp": 1787556945400,
+    "parentId": "a222d3e6-7818-4ea2-a6c4-b859d69a0002"
+  },
+  {
+    "providerData": {
+      "messageId": "16086658a824458ab8c8f987b7e99d83",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "agent": "cli"
+    },
+    "type": "reasoning",
+    "content": [],
+    "rawContent": [
+      {
+        "type": "reasoning_text",
+        "text": "Key H1 2026 data confirmed:\n- 营收 154.56亿元, **-1.94% YoY** (revenue DECLINED)\n- 归母净利润 44.65亿元, **+0.34%** (flat)\n- 扣非归母净利润 37.30亿元, **-12.71%** (significant decline)\n- 经营现金流 19.87亿元, **-53.80%** (big drop — this damages the \"净现比145.6% A级\" thesis!)\n- 创新药占比 63.16%\n- 抗肿瘤创新药 62.65亿元, +2.58%\n- 非肿瘤创新药 +74% (from other article: 非肿瘤创新药激增74%)\n- 拟10-20亿回购\n\nLet me get a bit more detail — gross margin, R&D. Let me fetch the jiemian or sina article for more. Actually, for a lite evaluation I have enough: revenue declining, 扣非 -12.71%, OCF -53.8%, net profit flat (boosted by BD one-time?).\n\nActually 归母 44.65亿 +0.34% while 扣非 -12.71% → 非经常性损益大幅增加 (BD收入确认). This confirms the report's warning that 净利率含BD一次性.\n\nNow valuation: current price 46.76元, PE-TTM 40.2 (per Tencent, using TTM net profit). TTM net profit = 2025FY (归母 ~78.6亿? Actually 2025 归母 was ~77.5亿? Let me compute: PE 40.2 → market cap = 46.76 × shares. Shares outstanding: 恒瑞 has ~63.8亿股. Market cap = 46.76 × 63.8 ≈ 2983亿. Hmm report said 3625亿 at 54.18元 → shares = 3625/54.18 = 66.9亿股 (includes H-share listing 1276.HK — 恒瑞 listed H shares in 2026? The ce.cn article mentions \"600276.SH / 1276.HK\" — yes, Hengrui H-share IPO in 2026). So total shares ~66.9亿.\n\nMarket cap now = 46.76 × 66.9 ≈ 3128亿. Wait, but price dropped from 54.18 to 46.76 = -13.7%. If shares unchanged, market cap = 3625 × 46.76/54.18 = 3128亿.\n\nPE-TTM 40.2 → TTM net profit = 3128/40.2 ≈ 77.8亿.\n\n2025FY 归母 = ? Report said 2025 归母 +21.78%. 2024 归母 was 63.37亿 → 2025 ≈ 77.2亿. TTM now (H1'26 + H2'25) = 44.65 + (77.2 - 39.58... hmm 2025H1 归母 = 77.2 - 44.5? No. Let me not over-engineer. Tencent PE-TTM 40.2 is authoritative-ish.\n\nDCF中枢 59.2元 from the report vs current 46.76 → +26.6% upside. But the H1 2026 results DISPROVE part of the thesis: revenue declined, 扣非 -12.71%, OCF -53.8%. The report's core validation point: \"2026-08-20中报创新药增速是否维持25%+\" — answer: NO. 抗肿瘤创新药 only +2.58%. 营收 -1.94%. The \"2026E EPS 1.42\" estimate now looks too high: H1 扣非 37.3亿 (-12.71%), if H2 similar, FY2026 扣非 ~75-78亿, EPS ~1.16-1.2. At 40x that's 46-48元. At current 46.76, roughly fair.\n\nActually the 综合研判 report was written at 54.18元 with 建仓 50 / 补仓 44. Now price is 46.76 — below 建仓价 50, above 补仓 44. But thesis has deteriorated: H1 2026 中报证实了增长放缓 (营收负增长、扣非-12.7%、OCF -53.8%)。 The report expected \"H1归母48-52亿/+20-30%\" — actual 44.65亿/+0.34%. Big miss.\n\nSix gates:\n1. 能力圈: 创新药/仿制药 — 可理解 (4-5星)\n2. 好生意: 毛利率 ~85%, 但营收负增长、扣非下滑 — 生意本质好但当前增长停滞 (3-4星)\n3. 护城河: 研发管线强、BD验证, 但FDA三次被拒+肿瘤老盘失速 — (4星)\n4. 管理层: 孙飘扬 A级、回购10-20亿 (4-5星)\n5. 估值: PE-TTM 40.2x, 绝对仍贵; 但价格46.76已跌破既有报告建仓价50元; 增长证伪下 40x 不便宜 (2-3星)\n6. 财务健康: 资产负债表仍A+, 但OCF -53.8% 是警示信号 (4星)\n\nWeighted: ROE 25% + 毛利 15% + 净利 15% + 估值 20% + 财务健康 25%.\n\nPer the skill's principle: 既有报告对照 — 基本面被证伪 → FAIL; 无实质变化 → 沿用旧结论. Here it's between: 增长放缓被证实 (营收负增长、扣非-12.7%、OCF腰斩), but 创新药占比升至63.16%、非肿瘤+74%、BD和新品在放量. It's partial 证伪 of the growth thesis, not 暴雷. 综合研判 was \"4黄轻仓试探, 等50以下加码\". Now 46.76 < 50, in the 建仓-补仓 range.\n\nVerdict: HOLD seems right. Not PASS (growth thesis damaged: revenue declined, 扣非 -12.71%, OCF -53.8% — the A级盈利质量 was this report's crown jewel and OCF collapse is a real deterioration). Not FAIL (balance sheet still A+, innovative drug ratio rising to 63%, buyback 10-20亿, price now below target entry).\n\ngain_med_updated: Can I give an updated intrinsic gain? DCF中枢59.2元 was based on 2026E EPS 1.42 and growth assumptions now violated. H1 扣非 37.3亿 → FY2026E 扣非 ~75亿 (H2 usually slightly stronger), EPS ~1.12-1.16 (based on 66.9亿股). At 35x (growth premium reduced given stagnation) → 39-41元; at 40x → 45-46元. Current price 46.76 is near/above that. So updated intrinsic estimate would be roughly flat to slightly negative. Hmm.\n\nIf I use the report's DCF中枢 59.2 with updated earnings, it no longer holds. My updated estimate: fair value ~45-48元 → gain vs 46.76 ≈ -4% to +2%. Given the strict instruction \"仅在你能给出比既有报告更新的内在涨幅估算时填数字\", I could fill a small number. But with the thesis damaged, an honest updated estimate is negative/neutral. If I fill e.g. -4%, is that allowed? The spec says 填数字(%) — presumably the gain. A negative number is still a number. But risky. Let me think about what's defensible:\n\n- 2026E 归母: H1 44.65 (含BD非经常 ~7.4亿: 44.65-37.30=7.35亿). FY2026E 归母 ≈ 88-90亿 (if H2 BD continues) → EPS ≈ 1.32-1.35\n- At 35-40x: 46-54元\n- 机构目标价均值76.6元 was based on 2026E +22.5% growth which is now broken.\n\nHonestly the cleanest: gain_med_updated = null, since I can't produce a *better* intrinsic estimate than the existing report with confidence — the existing report's DCF 59.2 is now stale (based on disproven growth), and my updated estimate is roughly equal to current price (±5%), which doesn't constitute a meaningful \"比既有报告更新的内在涨幅估算\"... Actually it does — it's an update. But given uncertainty, \"宁HOLD勿FAIL\" principle applies to the verdict, and for gain — the instruction says only fill if I can give a newer intrinsic gain estimate. I can: fair value mid ~47元 → gain ≈ +0.5%. That's a weird number to put.\n\nLet me reconsider: with 扣非 -12.71% and OCF -53.8%, and PE-TTM still 40x, the stock at 46.76 is NOT cheap on updated fundamentals. Updated intrinsic gain ≈ 0% to -5%. I'll fill a modest negative or null.\n\nI think the safest honest choice: null, because the updated estimate has wide uncertainty and the \"比既有报告更新\" implies a meaningful refined number. Actually, re-reading: \"仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 null\". I CAN give an updated estimate: based on H1'26 actuals, my updated DCF-ish fair value is ~45元 (35x FY26E EPS 1.3), gain ≈ -4%. Filling -4% is \"更新\" and honest. But is a negative gain_med meaningful in the pipeline? Probably the consumer expects positive numbers for PASS candidates. For HOLD, negative is fine and informative.\n\nHmm, but the skill's principle 5: \"理由要具体\". The reason should mention: 中报证伪增长 (营收-1.94%/扣非-12.7%/OCF-53.8%), 创新药占比63.16%+非肿瘤+74%仍好, 价46.76低于原建仓50, PE-TTM 40.2仍不便宜 → HOLD.\n\nI'll go with gain_med_updated = -4 (integer). Or null. Let me decide: the report's +11% is stale (based on 54.18 and growth assumptions). Updated: fair ~45元 vs 46.76 → -4%. I'll fill -4. Actually, let me double-check EPS math:\n\nShares: A股 63.79亿 + H股? The H-share IPO in May 2026 raised ~HK$... total shares ~66.9亿? Let me verify market cap: PE 40.2 × TTM net profit. TTM net profit = 2025FY 77.2亿? Wait: 2025FY 归母. 2024 归母 63.37亿, +21.78% → 77.17亿. TTM (2025H2 + 2026H1) = 77.17 - 2025H1归母 + 44.65. 2025H1 归母 = 39.58亿 (2025H1 was +22.94%? 2024H1 32.2亿 → 39.58). So TTM = 77.17 - 39.58 + 44.65 = 82.24亿. Market cap = 82.24 × 40.2 = 3306亿. Shares = 3306/46.76 = 70.7亿. Hmm that gives ~70.7亿股. H-share IPO + A-shares. Whatever — I won't build precise EPS from uncertain share counts.\n\nFair value estimate: FY2026E 归母 ≈ 44.65×2 = 89.3亿 (H2 typically seasonally higher for Hengrui; also H2'26 BMS deal revenue may kick in). At PE 40x (current) → 89.3×40 = 3572亿 → per share 3572/70.7 = 50.5元. At 35x → 44.2元. Mid ~47元 → gain ≈ +0.5%.\n\nGiven the range -4% to +8% depending on multiple, the honest statement is \"内在涨幅≈0%±5%, 无安全边际\". I'll fill gain_med_updated: -4? or 0? or null?\n\nThe instruction's intent: fill a number only when I can give a *newer* intrinsic gain estimate than the existing report. The existing report's +11% is based on DCF 59.2. My updated estimate based on actual H1'26: mid ~47元 vs 46.76 → ~0%. I can fill 0. That is \"updated\" (down from +11%). Hmm, but \"涨幅估算\" of 0 is a legitimate number.\n\nActually, let me be more careful. 扣非 -12.71% H1. If FY26E 归母 89亿 is right, at 40x = 50.5元. If the market rerates to 35x (growth gone), 44元. The report's own 二次补仓价 44元 ≈ 2026E 29.6-31.7x — wait that was based on 2026E EPS 1.42. With EPS ~1.26 (89.3/70.7), 补仓区对应 31x ≈ 39元.\n\nThe report's framework: 目标建仓 50元 ≈ 2026E 35x. With updated EPS 1.26, 35x = 44元. So updated 建仓 ≈ 44元, current 46.76 slightly above. Updated intrinsic: DCF would give ~50-55元 if growth recovers; with growth stalled, ~44-48元 fair.\n\nDecision: gain_med_updated = -5 (fair ~44.5元 vs 46.76 ≈ -5%). I'll state reason concisely: \"中报证伪高增长(营收-1.94%/扣非-12.7%/OCF-53.8%),PE-TTM 40x仍贵,价46.76虽低于原建仓50但按更新盈利已无安全边际→HOLD\".\n\nHmm, wait — but should I double check OCF: 经营现金流 19.87亿 -53.8%. That's a major deterioration vs 2025's 净现比145.6%. OCF 19.87 vs 归母 44.65 → 净现比 ~44.5%. That's a big red flag shift. Though H1 OCF can be lumpy (BD receipts timing), -53.8% is still notable. The 李录-style risk view would flag this.\n\nAlso note: PE-TTM 40.2 (Tencent) — the report's 44.3x at 54.18元. Consistent.\n\nScore check per skill weights:\n- ROE: 14.4% (4星)\n- 毛利率: ~85% (5星)\n- 净利率: 28% headline but 扣非 -12.7% growth; quality: 3星\n- 估值: PE 40x with declining earnings (2星)\n- 财务健康: balance sheet A+, OCF collapse (3.5-4星)\n\nWeighted: 0.25×4 + 0.15×5 + 0.15×3 + 0.20×2 + 0.25×3.5 = 1.0+0.75+0.45+0.4+0.875 = 3.475 ≈ 3.5 → borderline PASS/HOLD. Given 宁HOLD勿FAIL and the thesis damage, HOLD is right.\n\nNow output: The instruction says \"最后严格输出如下 JSON（不要输出其它内容）\". The skill adapter note says \"最终必须严格输出一个 JSON 对象（其余内容放 JSON 之前的说明文字即可，但 JSON 必须完整且是最后一段）\". The user's own instruction (overrides): \"最后严格输出如下 JSON（不要输出其它内容）\". To be safe, I'll keep preamble minimal and make JSON the last thing. Actually user says don't output other content — I'll output just a brief data line? No — \"不要输出其它内容\" is strict. But I need to convey the data verification briefly. The safest: minimal preamble + JSON last. The user's stricter instruction says only JSON. Hmm. The skill adapter note allows explanation before JSON. User's headless instruction says \"最后严格输出如下 JSON（不要输出其它内容）\". I'll follow the user: output ONLY the JSON. But then \"reason\" must contain the one-sentence reason including the data check. And the 未联网 marker — WebSearch WAS available (it worked), so no 未联网 mark needed.\n\nReason (one sentence): \"中报证伪高增长(营收-1.94%/扣非-12.7%/OCF-53.8%),PE-TTM 40.2x按更新盈利无安全边际,但创新药占比63.16%+回购10-20亿+价46.76已破原建仓50元→HOLD待观察\"\n\ngain_med_updated: I'll fill -5. Hmm, or null? Let me think once more about whether my updated estimate is defensible as \"比既有报告更新\": Yes — existing report's DCF 59.2元 was built on 2026E EPS 1.42 (+22.5% growth), which H1'26 actuals disproved (扣非 -12.71%). My update: FY26E 归母 ~89亿 (H1×2, 含非经常), EPS ~1.26, fair at 35x ≈ 44元 → gain ≈ -5%. That's a genuine update. Fill -5.\n\nWait, but should gain reflect 中位数 of scenarios? The report used 四视角中位数. For lite mode, a single updated estimate is fine. -5% it is. Actually let me round: 44.1/46.76 - 1 = -5.7%. I'll use -6? Let me just compute cleanly: fair 44元 (≈35x × EPS 1.26) → -5.9% ≈ -6%. Alternatively fair range 42-48 → median 45 → -3.8% ≈ -4%. I'll fill -4 as a mid estimate. Hmm, precision theater. Given EPS uncertainty, I'll say -4.\n\nActually, simpler and more honest: with fair-value range roughly 42-48元 (35x-40x on updated EPS), midpoint 45元 vs 46.76 → -3.8% → round -4.\n\nFinal JSON:\n{\"verdict\": \"HOLD\", \"reason\": \"中报证伪高增长:营收-1.94%/扣非-12.71%/OCF-53.8%,按更新盈利PE-TTM 40.2x已无安全边际;但创新药占比63.16%+非肿瘤+74%+拟回购10-20亿,价46.76破原建仓50元,先观察不重仓\", \"gain_med_updated\": -4}\n\nHmm wait, is gain_med_updated supposed to be positive-only? The spec: \"仅在你能给出比既有报告更新的内在涨幅估算时填数字（%），否则填 null\". A negative number is a valid 涨幅估算. I'll keep -4.\n\nLet me also quickly double check the Jiemian article for 毛利率/研发 to strengthen the data. Actually for lite speed, I have enough. But let me be careful about one thing: the sdenews summary said \"净利润44.65亿元\" and ce.cn confirmed 归母 44.65亿 +0.34%, 扣非 37.30亿 -12.71%, OCF 19.87亿 -53.8%, 营收 154.56亿 -1.94%, 抗肿瘤创新 62.65亿 +2.58%. Good enough. 创新药占比 63.16% (2026H1).\n\nOutput only JSON per user instruction."
+      }
+    ],
+    "timestamp": 1787557034411,
+    "id": "b1a0150f-aced-44ee-bf2d-8c91ddc4bf8c",
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "141243f3-995b-4dab-ad7d-cdbd4720f59f"
+  },
+  {
+    "id": "16086658a824458ab8c8f987b7e99d83",
+    "type": "message",
+    "role": "assistant",
+    "status": "completed",
+    "content": [
+      {
+        "providerData": {
+          "annotations": []
+        },
+        "type": "output_text",
+        "text": "{\"verdict\": \"HOLD\", \"reason\": \"中报证伪高增长:2026H1营收154.56亿(-1.94%)/扣非37.30亿(-12.71%)/经营现金流19.87亿(-53.8%),按更新盈利现价46.76元PE-TTM 40.2x已无安全边际;但创新药占比升至63.16%+非肿瘤+74%+拟10-20亿回购+价已破原建仓50元,观察不重仓\", \"gain_med_updated\": -4}"
+      }
+    ],
+    "timestamp": 1787557034421,
+    "providerData": {
+      "messageId": "16086658a824458ab8c8f987b7e99d83",
+      "model": "deepseek-v4-pro",
+      "requestModelId": "deepseek-v4-pro",
+      "requestModelName": "Deepseek-V4-Pro",
+      "traceId": "ea84065c7aa5829124f98f69897cc5ae",
+      "conversationRequestId": "2107c698e0dc4fe9b4411f0ee9517e8a",
+      "rawUsage": {
+        "prompt_tokens": 36433,
+        "completion_tokens": 4612,
+        "total_tokens": 41045,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 4485,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 35840
+        },
+        "prompt_cache_hit_tokens": 35840,
+        "prompt_cache_miss_tokens": 593,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 4485,
+        "credit": 4.02,
+        "cached_tokens": 0
+      },
+      "agent": "cli",
+      "usage": {
+        "requests": 1,
+        "inputTokens": 36433,
+        "outputTokens": 4612,
+        "totalTokens": 41045,
+        "inputTokensDetails": [
+          {
+            "cached_tokens": 35840
+          }
+        ],
+        "outputTokensDetails": [
+          {
+            "reasoning_tokens": 4485
+          }
+        ]
+      }
+    },
+    "sessionId": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "parentId": "b1a0150f-aced-44ee-bf2d-8c91ddc4bf8c"
+  },
+  {
+    "type": "result",
+    "subtype": "success",
+    "is_error": false,
+    "result": "{\"verdict\": \"HOLD\", \"reason\": \"中报证伪高增长:2026H1营收154.56亿(-1.94%)/扣非37.30亿(-12.71%)/经营现金流19.87亿(-53.8%),按更新盈利现价46.76元PE-TTM 40.2x已无安全边际;但创新药占比升至63.16%+非肿瘤+74%+拟10-20亿回购+价已破原建仓50元,观察不重仓\", \"gain_med_updated\": -4}",
+    "uuid": "821edb45-de7f-4880-944f-e6ceb502f99c",
+    "session_id": "22c8a762-8513-449b-b2ae-3cba67b12256",
+    "duration_ms": 147629,
+    "duration_api_ms": 147628,
+    "num_turns": 26,
+    "total_cost_usd": 0,
+    "usage": {
+      "input_tokens": 193182,
+      "output_tokens": 7051,
+      "cache_creation_input_tokens": 16670,
+      "cache_read_input_tokens": 176512,
+      "cache_creation": null,
+      "server_tool_use": null,
+      "service_tier": null
+    },
+    "permission_denials": [],
+    "__timestamp": "2026-08-24T07:37:14.593Z"
+  }
+]
+
+
+## STDERR
+

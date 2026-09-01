@@ -1,17 +1,28 @@
 {
-  "last_health_check": "2026-08-28",
+  "last_health_check": "2026-09-01",
   "alerts": [
     {
       "ts_code": "000899",
       "name": "赣能股份",
       "level": "ZONE_EXPIRED",
-      "detail": "现价 9.65 远超击球区上沿 4.8"
+      "detail": "现价 9.48 远超击球区上沿 4.8"
     }
   ],
-  "last_rotation": "2026-08-14",
+  "last_rotation": "2026-09-01",
   "last_rotation_result": {
-    "date": "2026-08-14",
-    "moved_out": [],
+    "date": "2026-09-01",
+    "moved_out": [
+      {
+        "code": "000899",
+        "name": "赣能股份",
+        "from": "watch",
+        "to": "reserve",
+        "reasons": [
+          "现价10.75 超建仓价4.8 +40%",
+          "涨幅中位数-34.15% 恶化"
+        ]
+      }
+    ],
     "moved_in": []
   },
   "reviews": [
