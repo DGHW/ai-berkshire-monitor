@@ -20,14 +20,14 @@
 
 产出：`reports/{code}{名称}-S0体检.md`
 
-### S1 深度研究（核心，调用 `investment-team-v2` 全流程）
+### S1 深度研究（核心，调用 `investment-team-v2 --mode evidence-only`）
 
-**不重复造轮子**——直接执行 `skills/investment-team-v2.md` 的三层架构：
+**不重复造轮子**——执行 v2 的分析师层 + 辩论层，**evidence-only 模式**（跳过 v2 内部的定价审计与裁判站队——S1 只产出证据，S3 只建模型，S5 只裁决，防止提前裁判与后续重复计价）：
 - 分析师层：四大师（business/financial/industry/risk），只研究不给结论
 - 辩论层：Bull/Bear 红队对抗（角色锁定、逐条反驳、论点收敛即停）
-- 裁判层：强制站队（Anti-Hold）
+- 产出 **Evidence Pack**：business/financial/industry/risk_evidence + bull_arguments + bear_arguments + fatal_risks + catalyst_candidates + disputed_assumptions——**不含价格判断/目标价/概率加权回报/仓位**
 
-产出落盘沿用 v2 规范：`reports/{code}{名称}-商业模式分析.md`、`-财务估值.md`、`-行业竞争.md`、`-风险评估.md`、`-多头立论.md`、`-空头猎杀.md`
+产出落盘沿用 v2 规范：`reports/{code}{名称}-商业模式分析.md`、`-财务估值.md`、`-行业竞争.md`、`-风险评估.md`、`-多头立论.md`、`-空头猎杀.md`、`-evidence-pack.json`
 
 ### S2 专项深挖（条件路由，按需触发 0-N 个）
 
@@ -61,17 +61,17 @@
 
 综合 S0-S4，输出：
 
-1. **单一内在涨幅（核心交付）**：
-   - **禁止** `内在价值 = f(正常化利润, 合理倍数) ± 市场隐含假设修正`——"内在价值"与"市场预期差"是两个不同对象，把 expectation gap 直接加减到 intrinsic value 上会 double count
-   - 正确做法：Fundamental Model（S3B 业务路径）→ 独立估值 → Fundamental Value Distribution；Current Price → Reverse Valuation（S3A）→ Market Implied Expectations；最后只比较 **Our expectations VS Market expectations**
-   - 单一涨幅 = S3C(forward-return) 选定的 return distribution 对应的内在价值 ÷ 现价 − 1
-   - **裁判只裁决"我接受哪套假设，因此采用 S3C 的哪个 return distribution"，不自己重新建模**
-   - 附三情景交叉验算（乐观/中性/保守），单一数字取中性偏保守中枢
-2. **概率加权回报**：直接采用 S3C 的收益率期限结构（6m/1y/2y/3y/5y + attribution），乐观/基准/悲观/极端四档（悲观必填），概率加权年化 + 累计分布区间
-3. **证伪清单**（每条利空必须有数据支撑）
-4. **加仓/减仓信号清单**（可证伪的事件）
-5. **thesis-tracker 衔接**：将证伪清单与监控指标写入 `reports/{code}{名称}-thesis.md`（建立/更新投资论文）；catalyst 状态变化时触发 `forward-return --refresh` 重算收益率曲线，决定持有/加仓/轮出
-6. 数据校正小节 + "不构成投资建议"声明
+1. **Primary Horizon Expected CAGR（核心交付，v1.3 升级）**：
+   - "单一内在涨幅 +40%"已信息不足——6个月+40% 和 3年+40% 是两笔质量完全不同的投资
+   - 核心数字改为：**Primary Horizon Expected CAGR + Expected HPR + P(loss) + Bear CAGR + Extreme downside**
+   - 示例：主决策期限 2 年 → Expected CAGR 21.4% / Expected HPR 47.4% / P(loss) 18% / Bear CAGR -9% / Extreme downside -43%；兼容保留 Fundamental upside（如 +47%）
+   - **防过拟合红线：primary_horizon 必须在计算收益前先选定**（`selected_before_return_calculation: true`，依据=催化剂 base 兑现期+认识时滞+业务能见度）；6m/1y/2y/5y 只是敏感性检查——**禁止看完曲线挑最高 CAGR 的期限宣布"最佳持有期"**
+2. **单一内在涨幅**（兼容保留）：Fundamental upside = S3C 选定的 return distribution 内在价值 ÷ 现价 − 1
+3. **概率加权回报**：直接采用 S3C 的收益率期限结构（6m/1y/2y/3y/5y + attribution），乐观/基准/悲观/极端四档（悲观必填），概率加权年化 + 累计分布区间
+4. **证伪清单**（每条利空必须有数据支撑）
+5. **加仓/减仓信号清单**（可证伪的事件）
+6. **thesis-tracker 衔接**：将证伪清单与监控指标写入 `reports/{code}{名称}-thesis.md`（建立/更新投资论文）；catalyst 状态变化时触发 `forward_return --refresh` 重算收益率曲线，决定持有/加仓/轮出
+7. 数据校正小节 + "不构成投资建议"声明
 
 产出：`reports/{code}{名称}-super终审.md` + `data/forecasts/{code}.json`
 
