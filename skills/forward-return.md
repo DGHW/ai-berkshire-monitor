@@ -32,7 +32,7 @@ expectation-arb          catalyst-ledger
 | catalyst-ledger | 哪些关键事件何时发生、概率多大（催化剂台账） |
 | **forward-return（本 skill）** | 把"业务路径 + 市场预期 + 催化剂时点"合成为**各期限的收益率分布** |
 
-**输入契约**：只接受 canonical financial snapshot（来自 `financial-data.md` 的 T0/T1/T2 层）+ S1/S2 基本面证据。Web Agent（T3）不允许改这些数字。
+**输入契约**：只接受 canonical financial snapshot（来自 `financial-data.md` 的 **T0/T1** 层；T2 仅 provisional 补洞、不得进入 Base Case 核心估值 driver）+ S1/S2 基本面证据。Web Agent（T3）不允许改这些数字。
 
 **输出契约**：①收益率期限结构表（Markdown，人读）② `data/forecasts/{code}.json`（机器可读、可追踪、可回测）。
 
