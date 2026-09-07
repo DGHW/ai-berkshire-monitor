@@ -47,6 +47,8 @@ reports/monitor/daily/{date}-monitor.md          # 每日监控日报
 - v2 产出落盘 `reports/{code}{名称}-商业模式分析.md`、`-财务估值.md`、`-行业竞争.md`、`-风险评估.md`、`-多头立论.md`、`-空头猎杀.md`、`-终审.md`；财务估值报告含 `## 量化结论` 五字段（内在涨幅/击球区/目标建仓价/二次补仓价/数据核验），终审报告含强制站队方向 + 概率加权回报 + 证伪清单
 - v2 中 Bear（空头研究员）的"致命利空命中"（须有数据支撑）→ 闸门否决项；"证伪清单"→ 持有期监控指标（衔接 skills/thesis-tracker.md）
 - 研究完成后跑 `python tools/report_sync.py --code CODE` 验证解析
+- **定价中枢 skill 体系（新增）**：`/expectation-arb`（预期差审计：市场已定价什么，Consensus vs Price-Implied 预期二分法，只做审计不做估值，详见 `skills/expectation-arb.md`）；`/forward-return`（收益率期限结构引擎：Business Driver Tree + Catalyst Object + 6m/1y/2y/3y/5y 回报曲线 + attribution + JSON 可回测落盘，详见 `skills/forward-return.md`）。super-research 的 S3 已拆为 S3A(expectation-arb 市场隐含)/S3B(forward-return 业务路径)/S3C(forward-return 期限回报) 三层，S5 只裁决不重新建模（禁止 "内在价值=f(正常化利润,合理倍数)±隐含假设修正" 的 double count）
+- **财务数据规范（已升级）**：所有财务事实用四层体系（T0原始披露/T1结构化数据商/T2金融聚合网站/T3 Web研究），Web(T3) 只产生研究证据不得覆盖 canonical 财务事实；每个数字按 canonical fact schema 记录（metric/value/period/basis/scope/source_tier/filing_date/confidence），详见 `skills/financial-data.md`
 - **行业估值难度纪律（所有研究 skill 通用）**：研究开始前先跑 `python tools/industry_valuation.py lookup --code {code}` 获取行业卡片（星级/宏观命中/额外维度/首选方法/PE陷阱/隐藏资产负债表）；★★★★+ 行业禁止 PE 直算，须用卡片首选方法；无映射先判断行业并 `map` 回写。详见 `tools/industry_valuation.py` 与 `data/industry_valuation_map.json`
 
 ## 关键文档
@@ -54,4 +56,7 @@ reports/monitor/daily/{date}-monitor.md          # 每日监控日报
 - `data/monitor/LOGIC.md` —— 闭环全部判据细节（最高权威）
 - `docs/anti-overfitting.md` —— 反过拟合四层防线
 - `docs/agent_backtest_brief.md` —— 回测开发任务书
+- `skills/expectation-arb.md` —— 预期差审计（市场已定价什么，只做审计不做估值）
+- `skills/forward-return.md` —— 收益率期限结构引擎（项目核心定价中枢）
+- `skills/financial-data.md` —— 四层财务数据规范（T0/T1/T2/T3 + canonical schema）
 - `README.md` —— 项目全景
