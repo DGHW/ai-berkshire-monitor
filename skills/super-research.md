@@ -43,33 +43,37 @@
 
 **规则**：默认只触发 0-2 个最相关的专项；每个专项产出落到 `reports/{code}{名称}-S2{专项名}.md`，并作为**增量证据喂给 S3 定价审计**（不是另起炉灶）。
 
-### S3 定价审计与预期差（调用 `expectation-arb`）
+### S3 定价与回报（三层，调用 `expectation-arb` + `forward-return`）
 
-汇总 S1 + S2 全部证据，执行预期差博弈核心两步：
-1. **反推市场隐含假设**（价值型拆 PEV 反推隐含收益率 / 成长型拆 PE 反推隐含增速 / 周期型三口径 PE）
-2. **定价状态矩阵**：每条多空论据判 已计价/过度计价/未计价/计价不足
+汇总 S1 + S2 全部证据，分三步（职责分离，消除重复计价）：
 
-关键问题：**当前价格已经定价了多少悲观/乐观？剩余的预期差在哪？**
+- **S3A 市场现在隐含了什么**（调用 `expectation-arb`）：反推市场隐含假设（Reverse DCF / Reverse Earnings Model；价值型拆 PEV、成长型拆 PE、周期型三口径 PE），输出 Consensus vs Price-Implied 预期差审计表、定价状态矩阵（已计价/过度/未计价/计价不足）
+- **S3B 我们认为未来会发生什么**（调用 `forward-return` 的 Business Driver Tree）：拆解业务变量（Driver→Revenue→Margin→EBIT→NetIncome→FCF），催化剂对象化（概率+时点+影响+市场已定价+认识时滞），防逻辑陷阱逐环验证
+- **S3C 各期限回报是多少**（调用 `forward-return` 的收益率期限结构引擎）：输出 6m/1y/2y/3y/5y 收益率分布表 + attribution 拆解（R_earnings/rerating/dividend/buyback/FX）+ `data/forecasts/{code}.json` 机器可读落盘
+
+关键问题：**市场已经定价了多少（S3A）vs 我们认为未来会怎样（S3B），在各期限上的赔率差是多少（S3C）？**
 
 ### S4 买入前 Checklist（调用 `investment-checklist`）
 
 执行巴菲特买入前六关检查，作为终审前的最后一道筛子。产出每关通过/部分/不通过 + 说明。
 
-### S5 终审输出（team-lead 裁判）
+### S5 终审输出（team-lead 裁判，只裁决不重新建模）
 
 综合 S0-S4，输出：
 
 1. **单一内在涨幅（核心交付）**：
-   - 内在价值 = f(正常化利润, 合理倍数) ± 市场隐含假设修正（S3 定价审计结果）
-   - 单一涨幅 = 内在价值 ÷ 现价 − 1
+   - **禁止** `内在价值 = f(正常化利润, 合理倍数) ± 市场隐含假设修正`——"内在价值"与"市场预期差"是两个不同对象，把 expectation gap 直接加减到 intrinsic value 上会 double count
+   - 正确做法：Fundamental Model（S3B 业务路径）→ 独立估值 → Fundamental Value Distribution；Current Price → Reverse Valuation（S3A）→ Market Implied Expectations；最后只比较 **Our expectations VS Market expectations**
+   - 单一涨幅 = S3C(forward-return) 选定的 return distribution 对应的内在价值 ÷ 现价 − 1
+   - **裁判只裁决"我接受哪套假设，因此采用 S3C 的哪个 return distribution"，不自己重新建模**
    - 附三情景交叉验算（乐观/中性/保守），单一数字取中性偏保守中枢
-2. **概率加权回报**：乐观/基准/悲观/极端四档（悲观必填），概率加权年化 + 累计分布区间
+2. **概率加权回报**：直接采用 S3C 的收益率期限结构（6m/1y/2y/3y/5y + attribution），乐观/基准/悲观/极端四档（悲观必填），概率加权年化 + 累计分布区间
 3. **证伪清单**（每条利空必须有数据支撑）
 4. **加仓/减仓信号清单**（可证伪的事件）
-5. **thesis-tracker 衔接**：将证伪清单与监控指标写入 `reports/{code}{名称}-thesis.md`（建立/更新投资论文），进入持有期追踪
+5. **thesis-tracker 衔接**：将证伪清单与监控指标写入 `reports/{code}{名称}-thesis.md`（建立/更新投资论文）；catalyst 状态变化时触发 `forward-return --refresh` 重算收益率曲线，决定持有/加仓/轮出
 6. 数据校正小节 + "不构成投资建议"声明
 
-产出：`reports/{code}{名称}-super终审.md`
+产出：`reports/{code}{名称}-super终审.md` + `data/forecasts/{code}.json`
 
 ## 与其他 skill 的关系（调用图）
 
@@ -84,7 +88,8 @@ super-research（本编排器）
   ├─ small-cap-diligence   → S2 专项（条件：C级稀缺标的）
   ├─ earnings-team         → S2 专项（条件：财报≤30天）
   ├─ news-pulse            → S2 专项（条件：股价异动）
-  ├─ expectation-arb       → S3 定价审计
+  ├─ expectation-arb       → S3A 市场隐含预期（Reverse DCF/Consensus vs Price-Implied）
+  ├─ forward-return        → S3B 业务路径 + S3C 收益率期限结构（Business Driver/Catalyst/6m-5y回报曲线）
   ├─ investment-checklist  → S4 买入前检查
   └─ thesis-tracker        → S5 持有期衔接
 ```
