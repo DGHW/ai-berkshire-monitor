@@ -10,7 +10,7 @@
 |------|------|------|-----------|
 | **T0 原始披露** | Canonical facts 最高权威 | SEC EDGAR（10-K/10-Q）、HKEX 披露易、巨潮资讯 cninfo、上交所/深交所、MOPS（台股公开资讯观测站） | 最高权威，一切冲突以此为准 |
 | **T1 结构化数据商** | 机器可读的 canonical 数据 | Tushare Pro、FinMind | 可写 canonical，**必须记录 provenance**（来源/拉取时间） |
-| **T2 金融聚合网站** | 验算、补洞、快速交叉验证 | macrotrends、stockanalysis、aastocks、eastmoney、goodinfo | 可交叉验证，**不能覆盖 T0** |
+| **T2 金融聚合网站** | 验算、补洞、快速交叉验证 | macrotrends、stockanalysis、aastocks、eastmoney、goodinfo | 可交叉验证，**默认不能写 canonical**——确需补洞时标 provisional（见下） |
 | **T3 Web Research** | 研报、新闻、访谈、社区叙事、竞争情报 | 券商观点、雪球、媒体、专家文章、管理层访谈 | **只产生研究证据/共识预期，不产生 canonical 财务事实** |
 
 **为什么分四层**：两个金融网站（如 macrotrends + stockanalysis）并不等于两个真正独立的原始事实源——它们可能都来自同一个 SEC filing，只是口径不同（GAAP vs Non-GAAP、单季 vs YTD、归母 vs consolidated、最新股本 vs 历史股本、汇率日期、ADR 折算比例）。`245 vs 278 → 差异 13.5%` 往往不是"数据冲突"，而是**两个完全不同的 metric**。
@@ -68,6 +68,39 @@
 
 **规则**：两个 T2 来源均与 T0 不符时，以 T0 为准，并标记 T2 来源错误。
 
+### A股数据执行层：a-stock-data skill（本地已安装，A股首选工具包）
+
+本地已安装 `a-stock-data` skill（V3.2.3，27 端点实测可用，自包含零依赖、东财接口已内置限流防封）。**A 股研究一律优先经此工具包取数**，它把"四层体系"落到可执行代码。与四层的映射：
+
+| a-stock-data 七层 | 归属四层体系 | 说明 |
+|-------------------|-------------|------|
+| 公告层：巨潮 cninfo 公告全文检索+下载 | **T0** | 官方披露原文 |
+| 基础数据：mootdx finance 季报快照(37字段)/F10、新浪财报三表 | **T1/T2** | 结构化财务数据 |
+| 行情层：mootdx K线/五档/逐笔（TCP，不封IP）、腾讯财经 PE/PB/市值/涨跌停 | **T2 行情** | 不封IP可高频，Canonical Anchor Pack 的 price 来源 |
+| 信号层：龙虎榜席位/全市场龙虎榜/限售解禁日历/北向资金/概念板块 | **T0 级事件事实**（东财 datacenter 聚合接口） | 交易所披露数据经聚合 |
+| 资金面/筹码：融资融券/大宗交易/股东户数/分红送转/资金流120日 | **T0 级事件事实**（同上） | small-cap-diligence 冷信息的直接数据源 |
+| 研报层：东财研报/同花顺一致预期/iwencai | **T3 研究证据** | Consensus 预期 → expectation-arb 输入 |
+| 新闻层：东财个股新闻/全球资讯 | **T3 研究证据** | news-pulse 输入 |
+
+**使用规则**：①行情/K线/实时价/市值/财务三表一律走 mootdx/腾讯（不封IP，可高频），**东财仅用于它独有的数据**（龙虎榜/解禁/融资融券/大宗/股东户数/分红/资金流/研报/新闻）且已内置限流；②龙虎榜/解禁/股东户数是 small-cap-diligence 与 news-pulse 的直接数据源；③同花顺一致预期是 expectation-arb Consensus 层的输入；④经东财聚合的龙虎榜/解禁等数据本质是交易所披露（T0 级事件事实），但接口可靠性按 T2 对待、记录 provenance。
+
+### T2 Provisional Fallback（补洞规则 + 数据防火墙）
+
+T2 默认不能写 canonical。若 T0/T1 暂不可得而必须补洞：
+
+```json
+{ "source_tier": "T2", "status": "provisional", "confidence": 0.7, "requires_verification": true }
+```
+
+**防火墙规则**：`provisional=true` 的字段**禁止进入 Base Case 的核心 valuation driver**——只能进 sensitivity 分析、Bull/Bear 论据、或等 T0/T1 核实后转正。这是数据防火墙的最后一道闸。
+
+| 层 | 能否直接写 canonical |
+|----|:---:|
+| T0 | ✅ |
+| T1 | ✅（带 provenance） |
+| T2 | ❌ 默认不能（仅 provisional 补洞） |
+| T3 | ❌ |
+
 ### T1 结构化数据商（机器可读 canonical）
 
 - **Tushare Pro**：A股财务数据（`tools/financial_data.py` 直接拉 disclosure date / income statement / balance sheet / financial indicators，含 `ann_date/end_date/pre_date/actual_date`）。**注意：Tushare 是 T1 结构化数据服务，非 T0 原始披露**——不要把"Tushare 一手拉取"等同于"交易所原文"。
@@ -80,7 +113,7 @@
 |------|------|------|---------|
 | 美股（PDD/腾讯ADR/网易ADR） | macrotrends.net/stocks/charts/{ticker} | stockanalysis.com/stocks/{ticker}/financials | SEC EDGAR |
 | 港股（腾讯0700/网易9999/美团3690） | aastocks.com | macrotrends（ADR：腾讯TCEHY/网易NTES） | HKEX披露易 |
-| A股 | eastmoney.com → 财务报表 | cninfo.com.cn | 巨潮 PDF |
+| A股 | **a-stock-data skill（本地，首选）** | eastmoney.com → 财务报表 | cninfo.com.cn | 巨潮 PDF |
 | 台股 | FinMind API（`tools/twstock_data.py`） | goodinfo.tw | MOPS |
 
 **台股 FinMind 取数工具**（分析台股时优先调用，输出自带市值验算）：
