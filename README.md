@@ -46,6 +46,14 @@
 
 ## 快速开始
 
+### Codex 交互研究
+
+运行 `scripts/sync-codex-skills.py` 更新适配技能，再用本平台的 `scripts/install-codex-skills.*` 安装。在 Codex 中调用 `$investment-team-v2` 或 `$super-research`，附标的及研究要求。只说“快速”时才用 lite。
+
+适配技能按 [Codex 研究执行契约](docs/codex-research-runtime.md) 实际派出分析师及 Bull/Bear，容量不足分波，首轮隔离上下文，第二轮续跑原 Agent；记录实际回执与研究缺口。终审须给出现价行动、关键争议裁决与改判条件。可用 `scripts/sync-codex-skills.py --check` 检查正文和执行契约是否同步。
+
+这里适配的是 Codex 的交互研究入口。下方每日无人值守流程仍调用 CodeBuddy，不能通过安装 skills 自动切换成 Codex；生产池、交易与冻结判据沿用既有路径。
+
 ```bash
 git clone https://github.com/DGHW/ai-berkshire-monitor.git
 cd ai-berkshire-monitor

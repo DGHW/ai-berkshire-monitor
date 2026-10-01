@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CLAUDE_SKILLS = ROOT / "skills"
 CODEX_PROMPTS = ROOT / "codex-prompts"
+EXCLUDED_SOURCES = {"INDEX", "investment-memo-craft"}
 
 
 def split_frontmatter(text: str):
@@ -49,8 +50,12 @@ def prompt_for(source: Path) -> str:
         "argument-hint: $ARGUMENTS\n"
         "---\n\n"
         f"Use the installed AI Berkshire Codex skill `{name}` for this request.\n\n"
-        f"If the skill is not already loaded, read and follow "
-        f"`~/ai-berkshire/codex-skills/{name}/SKILL.md`.\n\n"
+        "If the skill is not already loaded, use its actual path from the "
+        "session's installed skill catalog. Otherwise locate the actual "
+        "AI Berkshire checkout and read "
+        f"`codex-skills/{name}/SKILL.md` there. Do not assume a fixed "
+        "home-directory checkout. Follow its Codex adapter note and local "
+        "runtime reference before research.\n\n"
         "User arguments:\n"
         "$ARGUMENTS\n"
     )
@@ -69,6 +74,8 @@ def main() -> None:
     count = 0
     stale: list[str] = []
     for source in sorted(CLAUDE_SKILLS.glob("*.md")):
+        if source.stem in EXCLUDED_SOURCES:
+            continue
         target = CODEX_PROMPTS / source.name
         content = prompt_for(source)
         if check:

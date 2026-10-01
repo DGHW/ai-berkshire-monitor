@@ -44,6 +44,14 @@ reports/monitor/daily/{date}-monitor.md          # 每日监控日报
 
 ## 研究任务入口
 
+### Codex 实际执行入口
+
+Codex 使用本仓库 `codex-skills/` 或已安装的同名 skill。开始多 Agent 研究前，读取 [Codex 研究执行契约](docs/codex-research-runtime.md)（安装版亦附同名 reference）。它明确替代源中的 Claude/WorkBuddy 工具名、限流合成和续跑要求：用真实 `spawn_agent` 派工，独立研究用 fresh context，按实际容量分波，第二轮用能启动新 turn 的 `followup_task`。
+
+v2 / super full 为四位分析师 + Bull/Bear 六位实际研究员；仅文件齐全不能证明团队完成。各角色保留有证据的领域判断与分歧，super S5 必须给出现价行动及改判条件。未返回、限流或失败的角色如实记为未完成，不用 lead 模拟补足。
+
+此入口服务用户授权的交互研究。`tools/agent_driver.py` 的无人值守生产调用仍是 CodeBuddy 旧 `/investment-team` 路径；安装 Codex skill 不会迁移生产运行器。不要用可能更新池或下单的 review/run-one 命令测试 Codex 适配。
+
 - 用户要求"研究某股" → **默认用 `/investment-team-v2 {code} {name}` 技能**（投研团队 2.0：四大师 + Bull/Bear 红队对抗辩论 + 裁判强制站队，详见 `skills/investment-team-v2.md`）；**要"一次性研究透+输出单一内在涨幅" → 用 `/super-research {code} {name}`**（超级投研编排器：初筛体检→v2红队→条件路由专项→定价审计→checklist→单一涨幅，详见 `skills/super-research.md`）；快速研究可用旧版 `/investment-team {code} {name}`（四视角并行）
 - v2 产出落盘 `reports/{code}{名称}-商业模式分析.md`、`-财务估值.md`、`-行业竞争.md`、`-风险评估.md`、`-多头立论.md`、`-空头猎杀.md`、`-终审.md`；财务估值报告含 `## 量化结论` 五字段（内在涨幅/击球区/目标建仓价/二次补仓价/数据核验），终审报告含强制站队方向 + 概率加权回报 + 证伪清单
 - v2 中 Bear（空头研究员）的"致命利空命中"（须有数据支撑）→ 闸门否决项；"证伪清单"→ 持有期监控指标（衔接 skills/thesis-tracker.md）
