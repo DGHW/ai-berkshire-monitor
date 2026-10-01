@@ -1,0 +1,169 @@
+---
+name: expectation-arb
+description: "AI Berkshire skill: 预期差博弈与定价审计（Expectation Arbitrage）. Source: skills/expectation-arb.md."
+---
+
+## Codex adapter note
+
+This skill is generated from `skills/expectation-arb.md` so Claude Code and Codex users share one canonical workflow.
+
+- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
+- Source `Task`/`Agent` research delegation means actual native `spawn_agent` calls (for example `collaboration.spawn_agent`); `TeamCreate`/`TaskCreate` are Claude or WorkBuddy bookkeeping and need not be called in Codex. Preserve the source's role count and dependencies. A lead must not simulate multiple researchers or claim that several report files prove separate agents ran.
+- `send_message` sends context but does not resume an idle agent. Use native `followup_task` to trigger another round in an existing agent; use the active session's documented wait and messaging APIs. If native delegation is unavailable, mark the requested team research incomplete. A lead-only alternative requires the user's explicit choice and must be labeled lead-only, never multi-agent.
+- Source `WebSearch` means real web browsing with sources; `Bash`, `Read`, and `Write` mean the session's shell and file tools. Verify actual access; do not infer Codex permissions from Claude settings or present training knowledge as a search result.
+- Locate the actual repository checkout before using its `tools/`; resolve an available Python interpreter (prefer the project's virtual environment) instead of assuming `python3` or a fixed home-directory path. Follow the applicable Windows shell wrapper.
+- Use the client's current date and timezone when supplied; otherwise confirm the date with the session clock. State the data cutoff and each source's actual period. Do not substitute the execution host's date or infer today's date from training data.
+- Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
+
+Before research, read this skill's local `references/codex-research-runtime.md`. It is the Codex runtime contract and takes precedence over conflicting source platform APIs, 429/timeout lead-synthesis shortcuts, time targets, and claims that report count or formatting proves a real team. Follow its context boundaries, blind first-round debate, evidence-stage domain judgments, and final action decision requirements rather than conflicting source instructions. Keep the source's research roles and business methodology.
+
+# 预期差博弈与定价审计（Expectation Arbitrage）
+
+## 核心理念（三条公理）
+
+1. **股价 = f(市场预期)，不是 f(基本面)**。基本面只通过"预期修正"影响股价。赚钱 = 预期修正幅度 × 该预期在定价中的权重。
+2. **表观指标对利润质量敏感的行业全部失真**。利润中"一次性/周期性/浮盈"占比越高，表观 PE/PB 越"假便宜"或"假贵"。任何估值比较前必须先做利润正常化（PE 膨胀倍数 = 真实PE ÷ 表观PE）。
+3. **便宜必须拆解**：每家公司的低估值都要拆成「该折的（风险真实，永久折价）」和「多折的（预期差，可修正）」——只有"多折的部分被修正"才赚钱。**禁止**把行业共性折价当成个股错杀证据。
+
+## 何时使用
+
+- 用户问："这个利好/利空股价反映了吗？""市场在定价什么？""还有多少没被定价？"
+- 用户自带研究资料/预期清单，要求审计市场定价
+- 多公司横向对比："谁被错杀最狠？"
+- 需要把基本面研究转化为"概率加权回报模型"时
+- 与 `investment-team` skill 配合：首轮研究用 investment-team，预期差博弈轮用本 skill
+
+## 五步工作流
+
+### 第 0 步：口径校准（增量信息审计）
+
+用户常自带其他来源的资料，**先校准再分析**：
+
+1. 逐项核对用户资料中的数字与已验证锚点，输出「增量信息 / 口径需修正 / 无法验证」三分类清单
+2. 常见口径陷阱：时点混用（不同日期的价格/EV）、单双季口径（H1 vs Q2单季）、分母口径（总资产 vs 投资资产、扣成本 EV vs 账面 EV）、汇率/税率差异、官方口径 vs 反推口径（如"官方营运利润" vs "lead 估算正常化利润"）
+3. **诚实规则**：无法验证的数字标注置信度，禁止把用户资料直接当事实引用
+
+产出：《口径校准清单》（增量✓/修正⚠️/存疑？）
+
+### 第 1 步：反推市场隐含假设（硬方法，本 skill 的核心武器）
+
+**不要问"便不便宜"，要问"当前价格隐含了什么假设，这个假设是否可辩护"。**
+
+通用反推公式：**把当前市值拆解到分部，倒算市场给每部分定的价，反推出隐含的长期假设，再与可验证的现实数据对比。**
+
+- 价值型（保险/银行）：市值 ÷ 每股 EV → P/EV；再拆 EV = 调整净资产 + 有效业务价值，反推市场给 VIF 定价多少 → 隐含长期投资收益率/增速（实例：新华 H 股 0.40x P/EV 反推出隐含长期收益率 ≤2.5%，低于负债成本=定价"永久利差损"，过度悲观 100-150bp）
+- 成长型（消费品/科技）：市值 ÷ 正常化净利 = 真实 PE → 用 DCF 反推隐含长期增速/利润率
+- 周期型：用周期均值利润反推，确认市场用的是"峰值利润"还是"谷值利润"定价
+- 更严格的路径：**Reverse DCF / Reverse Earnings Model**——固定其他假设（ROIC/再投资率/增长久期/利润率/派息/折现率/终值倍数），只 solve 1-2 个关键变量（如"市场隐含的未来 5 年营收 CAGR"或"市场给某新业务赋予的未来利润贡献"）
+
+**防伪精确：每个反推结果必须标 identifiability 分级**（股票价格同时反映主业增速/新业务/折现率/终值倍数/回购/风险溢价，多数时候无法唯一反推）：
+
+| identifiability | 含义 | 输出格式 |
+|-----------------|------|---------|
+| **high** | 反推变量可唯一确定（如分部结构清晰、假设可分离） | 单值：`priced_probability: 0.27` |
+| **medium** | 需固定假设后才有解 | 区间 + inference_method + fixed_assumptions |
+| **low** | 无法唯一反推（默认！多数情况属于此） | 三档区间：`{low: 0.10, base: 0.25, high: 0.40}` |
+
+```yaml
+# medium 示例
+price_implied:
+  revenue_cagr_5y:
+    range: [0.08, 0.11]
+    solved_variable: "revenue_cagr"
+    inference_method: "reverse_dcf"
+    fixed_assumptions: { roic: 0.2, payout: 0.3, discount_rate: 0.09 }
+    identifiability: "medium"
+```
+
+产出：《隐含假设反推卡》（价格 → 隐含假设 → identifiability → 该假设的历史分位/可辩护区间 → 过度悲观/乐观幅度）
+
+### 第 2 步：四大师定价审计（团队分工）
+
+用 TeamCreate + Agent 组建 4 角色团队（或 lead 直接合成，见"执行纪律"）。角色任务书骨架见 `references/templates.md` §5，按行业替换指标：
+
+| 角色 | 定价审计分工 | 核心交付 |
+|------|-------------|---------|
+| 巴菲特（定价审计师） | 逐项审计市场预期：每条"利好/利空"判 定价状态；用第1步反推结果校准 | 定价状态矩阵 + 隐含假设反推卡 |
+| 段永平（信号分析师） | 治理/分红/回购/管理层行为信号——"内部人用真金白银告诉你什么"；证伪"XX开关修复→估值弹性"类叙事 | 信号解读 + 开关叙事证伪/证实 |
+| 芒格（同业对比师） | 统一口径横向表；每家折价拆「该折的 + 多折的」；错杀排序 | 统一口径对比表 + 错杀排序 |
+| 李录（尾部风险师） | 逐项尾部风险：当前价格已计入百分比；安全垫击穿条件；期权型利好的期望值（防负偏分布） | 尾部定价审计表 + 击穿条件清单 |
+
+**定价状态四分类**（每条预期必须归入其一，附数字证据）：
+- **已计价**：市场按此定价，无预期差
+- **过度计价**：市场把周期性/一次性当永久性 → 修正则上涨
+- **未计价**：基本面已变化但市场用旧惯性定价 → 最大预期差来源
+- **计价不足**：尾部风险真实存在但价格只反映一部分 → 下行保护不足
+
+产出：四份维度报告（或 lead 合成，见"执行纪律"）。
+
+### 第 3 步：合成定价审计总表
+
+合并四份报告，输出：
+1. 定价状态矩阵（每条预期：市场隐含假设 / 实际数据 / 定价状态 / 预期差大小）
+2. **预期差排序**（Top 3：哪条一旦修正弹性最大 + 触发条件）
+3. **尾部风险排序**（哪些计价不足——下行保护的关键）
+4. 四大师共识与分歧（分歧必须诚实呈现，标注裁决依据）
+
+### 第 4 步：关键监测指标排序
+
+回答"接下来盯哪个指标"。每个指标给：为什么关键（连接到哪条预期差）/ 阈值（安全线与证伪线）/ 数据来源与更新频率。
+排序原则：①与"安全垫"直接相关（股息/现金流类）优先 ②能触发预期修正的（催化剂类）次之 ③叙事型信号（治理/评级）标注"必要非充分"。
+
+### 第 5 步：输出 Forward Return Input Pack（本 skill 的终态产出）
+
+**本 skill 不计算概率加权回报、四档情景、累计分布**——那是 `forward-return`（收益率期限结构引擎）的地盘。本 skill 的终态产出是一个**结构化的 Forward Return Input Pack**：
+
+```json
+{
+  "price_implied": {
+    "revenue_cagr_5y": {
+      "range": [0.08, 0.11],
+      "solved_variable": "revenue_cagr",
+      "fixed_assumptions": {},
+      "inference_method": "reverse_dcf",
+      "identifiability": "medium"
+    }
+  },
+  "consensus": {
+    "revenue_cagr_5y": 0.13,
+    "analyst_target_prices": [],
+    "narrative": ""
+  },
+  "expectation_gaps": [
+    {
+      "variable": "grocery_profit",
+      "market_implied": "...",
+      "our_estimate": "...",
+      "gap_direction": "under_priced",
+      "confidence": 0.65
+    }
+  ],
+  "monitoring_indicators": [],
+  "disputed_assumptions": []
+}
+```
+
+**为什么这样切**：Expectation Arb 不应该知道最终年化收益率是多少——它只回答"市场信什么、我们信什么、差在哪"。把 Input Pack 交给 `forward-return`（收益来源拆解 + 期限结构），再由裁判裁决，职责链才干净。
+
+与同业横向对比时保留"矛/盾"定性（错杀排序前列=矛，风险最低=盾），但这属于审计结论，**不携带任何目标价或年化收益数字**。
+
+## 行业适配
+
+不同行业的"反推变量、正常化口径、监测指标"不同，执行时**必须**先读对应 playbook：
+
+- `references/industry-playbooks.md` §1 通用层（利润质量四问、传导链模板）——任何行业先过一遍
+- §2 保险（PEV反推/偿付分档/NBV/利差损/承保财务损益/分红信号）
+- §3 消费品（提价权/渠道库存/复购/成本传导/隐含增速反推）
+- §4 全A股通用（扣非口径/现金流验证/周期位置/政策传导链）
+
+## 输出模板
+
+所有交付物套用 `references/templates.md` 中的模板：定价状态矩阵、隐含假设反推卡、错杀排序表、概率加权回报模型、监测指标表、四大师任务书骨架。
+
+## 团队执行纪律（实战教训）
+
+1. **先备锚点再派工**：lead 先用 WebSearch 取核心锚定数据（价格/市值/EV/利润/关键比率），写进每个 Agent 的任务书——Agent 拿到的是"已验证事实+待验证清单"，不是空白任务
+2. **429 处理**：一次 spawn 4 个后台 Agent 可能触发限流；改为逐个 spawn（一条消息一个）。429 报错自带重置时间，重置前 spawn 必失败——此时 lead 直接合成并显式标注「lead 合成，非独立子报告」，**禁止编造 Agent 报告**
+3. **跨 Agent 互查**：不同 Agent 对同一数据常给不同数字（汇率、每股口径、时点）。lead 合成时用自己的验证锚点裁决，终稿列「数据校正」小节
+4. **诚实三规则**：无法验证标注置信度；用户资料的乐观假设也要做压力测试；"内部人信号"（分红/回购/增减持）比研报观点权重高
+5. 本 skill 全流程仅供学习研究，最终报告必须带"不构成投资建议"声明

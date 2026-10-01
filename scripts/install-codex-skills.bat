@@ -23,10 +23,12 @@ if not exist "%DEST%" mkdir "%DEST%"
 if errorlevel 1 exit /b %ERRORLEVEL%
 
 for /d %%D in ("%ROOT%\codex-skills\*") do (
+  if /I not "%%~nxD"=="INDEX" (
   if exist "%DEST%\%%~nxD" rmdir /s /q "%DEST%\%%~nxD"
   if errorlevel 1 exit /b 1
   xcopy "%%~fD" "%DEST%\%%~nxD\" /E /I /Y >nul
   if errorlevel 1 exit /b 1
+  )
 )
 
 echo Installed Codex skills to %DEST%

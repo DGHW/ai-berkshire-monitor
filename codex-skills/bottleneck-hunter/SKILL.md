@@ -8,9 +8,11 @@ description: "AI Berkshire skill: 供应链瓶颈猎手：AI驱动的全球产�
 This skill is generated from `skills/bottleneck-hunter.md` so Claude Code and Codex users share one canonical workflow.
 
 - Treat `$ARGUMENTS` as the user's request in the current Codex thread.
-- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
-- Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
-- Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
+- Source `Task`/`Agent` research delegation means actual native `spawn_agent` calls (for example `collaboration.spawn_agent`); `TeamCreate`/`TaskCreate` are Claude or WorkBuddy bookkeeping and need not be called in Codex. Preserve the source's role count and dependencies. A lead must not simulate multiple researchers or claim that several report files prove separate agents ran.
+- `send_message` sends context but does not resume an idle agent. Use native `followup_task` to trigger another round in an existing agent; use the active session's documented wait and messaging APIs. If native delegation is unavailable, mark the requested team research incomplete. A lead-only alternative requires the user's explicit choice and must be labeled lead-only, never multi-agent.
+- Source `WebSearch` means real web browsing with sources; `Bash`, `Read`, and `Write` mean the session's shell and file tools. Verify actual access; do not infer Codex permissions from Claude settings or present training knowledge as a search result.
+- Locate the actual repository checkout before using its `tools/`; resolve an available Python interpreter (prefer the project's virtual environment) instead of assuming `python3` or a fixed home-directory path. Follow the applicable Windows shell wrapper.
+- Use the client's current date and timezone when supplied; otherwise confirm the date with the session clock. State the data cutoff and each source's actual period. Do not substitute the execution host's date or infer today's date from training data.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
 
 # 供应链瓶颈猎手：AI驱动的全球产业链瓶颈套利

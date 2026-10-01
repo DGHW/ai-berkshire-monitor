@@ -10,6 +10,7 @@ mkdir -p "$DEST"
 for skill_dir in "$ROOT"/codex-skills/*; do
   [ -d "$skill_dir" ] || continue
   name="$(basename "$skill_dir")"
+  [ "$name" = "INDEX" ] && continue
   rm -rf "$DEST/$name"
   cp -R "$skill_dir" "$DEST/$name"
 done
